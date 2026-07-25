@@ -1,0 +1,8 @@
+[services]
+  [services.googleAnalytics]
+    # Set this to the production GA4 measurement ID, for example G-XXXXXXXXXX.
+    id = "G-9Z4FFN1W48"
+
+[privacy]
+  [privacy.googleAnalytics]
+    respectDoNotTrack = true

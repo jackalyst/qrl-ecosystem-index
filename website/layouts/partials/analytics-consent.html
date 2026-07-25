@@ -1,0 +1,101 @@
+{{- with site.Config.Services.GoogleAnalytics.ID -}}
+<button class="analytics-settings" type="button" data-analytics-settings hidden>Analytics settings</button>
+<aside class="analytics-consent" data-analytics-consent hidden aria-labelledby="analytics-consent-title">
+    <p class="eyebrow">Privacy choice</p>
+    <h2 id="analytics-consent-title">Help us improve the index.</h2>
+    <p>With your permission, we use Google Analytics to understand page visits and links to projects. Analytics is not loaded unless you choose to allow it.</p>
+    <div class="analytics-consent-actions">
+        <button class="button button-primary" type="button" data-analytics-accept>Allow analytics</button>
+        <button class="button button-secondary" type="button" data-analytics-decline>Decline</button>
+    </div>
+</aside>
+<script>
+(() => {
+    const storageKey = "qrl-analytics-consent";
+    const banner = document.querySelector("[data-analytics-consent]");
+    const settings = document.querySelector("[data-analytics-settings]");
+    const accept = document.querySelector("[data-analytics-accept]");
+    const decline = document.querySelector("[data-analytics-decline]");
+
+    if (!banner || !settings || !accept || !decline) {
+        return;
+    }
+
+    const readChoice = () => {
+        try {
+            return window.localStorage.getItem(storageKey);
+        } catch (error) {
+            return null;
+        }
+    };
+
+    const writeChoice = (choice) => {
+        try {
+            window.localStorage.setItem(storageKey, choice);
+        } catch (error) {}
+    };
+
+    const clearAnalyticsCookies = () => {
+        document.cookie.split(";").forEach((cookie) => {
+            const name = cookie.split("=")[0].trim();
+            if (!name.startsWith("_ga")) {
+                return;
+            }
+            document.cookie = `${name}=; Max-Age=0; path=/`;
+        });
+    };
+
+    const closeBanner = () => {
+        banner.hidden = true;
+        settings.hidden = false;
+    };
+
+    const showBanner = () => {
+        banner.hidden = false;
+        settings.hidden = true;
+        accept.focus();
+    };
+
+    const grantConsent = () => {
+        writeChoice("granted");
+        if (window.qrlAnalytics) {
+            window.qrlAnalytics.load();
+        }
+        closeBanner();
+    };
+
+    const revokeConsent = () => {
+        writeChoice("denied");
+        if (window.qrlAnalytics) {
+            window[window.qrlAnalytics.disableKey] = true;
+            if (window.gtag) {
+                window.gtag("consent", "update", {
+                    ad_storage: "denied",
+                    analytics_storage: "denied",
+                    ad_user_data: "denied",
+                    ad_personalization: "denied"
+                });
+            }
+        }
+        clearAnalyticsCookies();
+        closeBanner();
+    };
+
+    accept.addEventListener("click", grantConsent);
+    decline.addEventListener("click", revokeConsent);
+    settings.addEventListener("click", showBanner);
+
+    const choice = readChoice();
+    if (choice === "granted") {
+        if (window.qrlAnalytics) {
+            window.qrlAnalytics.load();
+        }
+        settings.hidden = false;
+    } else if (choice === "denied") {
+        settings.hidden = false;
+    } else {
+        showBanner();
+    }
+})();
+</script>
+{{- end -}}

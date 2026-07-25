@@ -1,0 +1,61 @@
+{{- with site.Config.Services.GoogleAnalytics.ID -}}
+<script>
+(() => {
+    const measurementID = {{ . | jsonify }};
+    const disableKey = `ga-disable-${measurementID}`;
+
+    const doNotTrackEnabled = () => {
+        const signals = [navigator.doNotTrack, window.doNotTrack, navigator.msDoNotTrack];
+        return signals.some((signal) => signal === "1" || signal === "yes");
+    };
+
+    const loadAnalytics = () => {
+        if (doNotTrackEnabled()) {
+            return;
+        }
+
+        window[disableKey] = false;
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = window.gtag || function gtag() {
+            window.dataLayer.push(arguments);
+        };
+
+        if (window.__qrlAnalyticsLoaded) {
+            window.gtag("consent", "update", {
+                analytics_storage: "granted"
+            });
+            window.gtag("event", "page_view", {
+                page_title: document.title,
+                page_location: window.location.href
+            });
+            return;
+        }
+
+        window.gtag("js", new Date());
+        window.gtag("consent", "default", {
+            ad_storage: "denied",
+            analytics_storage: "denied",
+            ad_user_data: "denied",
+            ad_personalization: "denied",
+            wait_for_update: 500
+        });
+        window.gtag("consent", "update", {
+            analytics_storage: "granted"
+        });
+        window.gtag("config", measurementID);
+
+        const script = document.createElement("script");
+        script.async = true;
+        script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(measurementID)}`;
+        document.head.appendChild(script);
+        window.__qrlAnalyticsLoaded = true;
+    };
+
+    window.qrlAnalytics = {
+        disableKey,
+        doNotTrackEnabled,
+        load: loadAnalytics
+    };
+})();
+</script>
+{{- end -}}
