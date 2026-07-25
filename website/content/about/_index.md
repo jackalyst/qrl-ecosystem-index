@@ -12,6 +12,10 @@ Listings may include decentralized applications, user-facing applications, infra
 
 This index is informational. Inclusion does not mean endorsement by QRL, the QRL Foundation, or the maintainers of this repository.
 
+## Analytics and privacy
+
+If you choose to allow analytics, the site uses Google Analytics to understand page visits, scrolling, and links to listed projects. Analytics is not loaded before you make that choice, and you can change it using **Analytics settings** in the footer. The site also respects a browser's Do Not Track signal.
+
 ## How projects are organized
 
 Each project is assigned a project type:

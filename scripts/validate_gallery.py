@@ -12,7 +12,7 @@ import yaml
 
 
 MAX_GALLERY_ITEMS = 10
-MAX_SCREENSHOT_BYTES = 2 * 1024 * 1024
+MAX_SCREENSHOT_BYTES = 3 * 1024 * 1024
 MAX_CAPTION_LENGTH = 160
 SUPPORTED_EXTENSIONS = {".png", ".jpg", ".jpeg", ".webp"}
 YOUTUBE_ID_PATTERN = re.compile(r"^[A-Za-z0-9_-]{11}$")
