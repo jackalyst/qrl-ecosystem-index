@@ -58,9 +58,7 @@
 
     const grantConsent = () => {
         writeChoice("granted");
-        if (window.qrlAnalytics) {
-            window.qrlAnalytics.load();
-        }
+        window.qrlAnalytics?.load();
         closeBanner();
     };
 
@@ -68,14 +66,12 @@
         writeChoice("denied");
         if (window.qrlAnalytics) {
             window[window.qrlAnalytics.disableKey] = true;
-            if (window.gtag) {
-                window.gtag("consent", "update", {
+            window.gtag?.("consent", "update", {
                     ad_storage: "denied",
                     analytics_storage: "denied",
                     ad_user_data: "denied",
                     ad_personalization: "denied"
-                });
-            }
+            });
         }
         clearAnalyticsCookies();
         closeBanner();
@@ -87,9 +83,7 @@
 
     const choice = readChoice();
     if (choice === "granted") {
-        if (window.qrlAnalytics) {
-            window.qrlAnalytics.load();
-        }
+        window.qrlAnalytics?.load();
         settings.hidden = false;
     } else if (choice === "denied") {
         settings.hidden = false;
