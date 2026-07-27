@@ -1,7 +1,7 @@
 {{- with site.Config.Services.GoogleAnalytics.ID -}}
 <script>
 (() => {
-    const measurementID = {{ . | jsonify }};
+    const measurementID = {{ . | jsonify | safeJS }};
     const disableKey = `ga-disable-${measurementID}`;
     const scriptID = "qrl-google-analytics";
     let analyticsStarted = false;
