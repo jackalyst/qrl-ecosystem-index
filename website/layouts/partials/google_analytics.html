@@ -3,52 +3,61 @@
 (() => {
     const measurementID = {{ . | jsonify }};
     const disableKey = `ga-disable-${measurementID}`;
+    const scriptID = "qrl-google-analytics";
+    let analyticsStarted = false;
 
     const doNotTrackEnabled = () => {
         const signals = [navigator.doNotTrack, window.doNotTrack, navigator.msDoNotTrack];
         return signals.some((signal) => signal === "1" || signal === "yes");
     };
 
-    const loadAnalytics = () => {
-        if (doNotTrackEnabled()) {
-            return;
-        }
-
-        window[disableKey] = false;
+    const ensureGtag = () => {
         window.dataLayer = window.dataLayer || [];
         window.gtag = window.gtag || function gtag() {
             window.dataLayer.push(arguments);
         };
+        return window.gtag;
+    };
 
-        if (window.__qrlAnalyticsLoaded) {
-            window.gtag("consent", "update", {
-                analytics_storage: "granted"
-            });
-            window.gtag("event", "page_view", {
-                page_title: document.title,
-                page_location: window.location.href
-            });
-            return;
+    const loadAnalytics = () => {
+        if (doNotTrackEnabled()) {
+            return false;
         }
 
-        window.gtag("js", new Date());
-        window.gtag("consent", "default", {
+        const gtag = ensureGtag();
+        window[disableKey] = false;
+
+        if (analyticsStarted) {
+            gtag("consent", "update", {
+                analytics_storage: "granted"
+            });
+            return true;
+        }
+
+        analyticsStarted = true;
+        gtag("js", new Date());
+        gtag("consent", "default", {
             ad_storage: "denied",
             analytics_storage: "denied",
             ad_user_data: "denied",
             ad_personalization: "denied",
             wait_for_update: 500
         });
-        window.gtag("consent", "update", {
+        gtag("consent", "update", {
             analytics_storage: "granted"
         });
-        window.gtag("config", measurementID);
+        gtag("config", measurementID);
+
+        if (document.getElementById(scriptID)) {
+            return true;
+        }
 
         const script = document.createElement("script");
+        script.id = scriptID;
         script.async = true;
         script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(measurementID)}`;
         document.head.appendChild(script);
-        window.__qrlAnalyticsLoaded = true;
+        return true;
     };
 
     window.qrlAnalytics = {
