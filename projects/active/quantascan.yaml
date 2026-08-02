@@ -29,6 +29,20 @@ logo: quantascan/icon.svg
 
 open_source: false
 
+gallery:
+  - type: image
+    path: quantascan/homepage.png
+    caption: Homepage with live QRL network health — block height, transactions, supply and emission at a glance.
+  - type: image
+    path: quantascan/charts.png
+    caption: Charts hub — on-chain time-series grouped by subject, from daily transactions and blocks to fees and adoption.
+  - type: image
+    path: quantascan/rich-list.png
+    caption: QRL rich list ranking the largest holders by on-chain balance, with signature scheme and 30-day net flow.
+  - type: image
+    path: quantascan/exchange-flow.png
+    caption: Exchange flows — how much QRL sits on exchanges and whether it is moving in or out, per exchange.
+
 features:
   - Dual-chain coverage — QRL (PoW legacy) and QRL 2.0 (PoS, EVM-compatible)
   - Aggregated time-series and analytics charts across the whole network
