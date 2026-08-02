@@ -1,0 +1,65 @@
+id: quantascan
+name: Quantascan
+project_type: application
+status: production
+description: >-
+  Analytics-first block explorer for QRL and QRL 2.0: aggregated time-series,
+  cross-chain charts, rich lists, wallet classification, and validator and
+  mining dashboards — built around network-wide data, not just single block
+  and transaction lookups.
+category: explorer
+tags:
+  - explorer
+  - analytics
+  - dashboards
+  - charts
+  - rich-list
+  - validators
+  - mining
+  - statistics
+author: 12remember
+license: none
+created: 2026-08-02
+updated: 2026-08-02
+
+url: https://quantascan.io
+docs: https://quantascan.io/api-docs
+
+logo: quantascan/icon.svg
+
+open_source: false
+
+features:
+  - Dual-chain coverage — QRL (PoW legacy) and QRL 2.0 (PoS, EVM-compatible)
+  - Aggregated time-series and analytics charts across the whole network
+  - Rich list, wallet distribution, and wallet entity classification
+  - Validator and beacon-chain dashboards for QRL 2.0
+  - Mining pool dominance and reward analytics for QRL
+  - Cross-chain unified account history and supply timelines
+  - Free public REST API with usage-metered API keys
+
+application:
+  platforms:
+    - web
+  supported_networks:
+    - mainnet
+    - testnet
+
+long_description: |
+  Quantascan is an analytics-first platform for the QRL ecosystem, covering
+  both QRL (the Proof-of-Work legacy chain) and QRL 2.0 (the Proof-of-Stake,
+  EVM-compatible successor). Where a traditional explorer answers "what is in
+  this block?", Quantascan is built around network-wide questions: supply and
+  inflation over time, address distribution and rich lists, wallet
+  classification, exchange flows, mining-pool dominance, and validator
+  performance.
+
+  A full explorer UI (blocks, transactions, and address pages) is included for
+  operators who need it, but the emphasis is on aggregated data, time-series,
+  and cross-chain analysis. Legacy QRL data remains permanently browsable as a
+  read-only archive alongside the QRL 2.0 chain, with cross-chain views that
+  keep the two chains clearly distinguished.
+
+  All data is served through a free public REST API, and an educational
+  "Learn" section documents QRL concepts, post-quantum signatures, and the
+  QRL → QRL 2.0 migration model.

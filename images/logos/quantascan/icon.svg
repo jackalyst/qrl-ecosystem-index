@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Brand cobalt (224°) — mirrors --primary in globals.css. The static
+       favicon can't read CSS tokens, so the brand hex is inlined here and
+       lifted to the dark-mode cobalt (#93b4fd) via prefers-color-scheme so
+       the tab icon tracks the app logo in both light and dark tab themes.
+       The amber scan-tick / blip (#ffa729 = QRL chain-orange) is
+       theme-independent, matching the logo component. -->
+  <style>
+    .brand { stroke: #1d4ed8; }
+    .brand-fill { fill: #1d4ed8; }
+    @media (prefers-color-scheme: dark) {
+      .brand { stroke: #93b4fd; }
+      .brand-fill { fill: #93b4fd; }
+    }
+  </style>
+  <!-- Q bowl / radar range ring -->
+  <circle cx="50" cy="50" r="34" fill="none" class="brand" stroke-width="9"/>
+  <!-- Q tail — short diagonal stub at ~5 o'clock -->
+  <line x1="64" y1="64" x2="84" y2="84" class="brand" stroke-width="9" stroke-linecap="round"/>
+  <!-- Centre hub — radar origin / nucleus -->
+  <circle cx="50" cy="50" r="5.5" class="brand-fill"/>
+  <!-- Scan arm (static in favicon — fixed at ~10 o'clock so it still reads as radar) -->
+  <line x1="50" y1="50" x2="26" y2="34" stroke="#ffa729" stroke-width="5" stroke-linecap="round"/>
+  <!-- Blip — a "found block" on the ring -->
+  <circle cx="74" cy="26" r="5" fill="#ffa729"/>
+</svg>
