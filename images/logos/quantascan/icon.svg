@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <!-- Brand cobalt (224°) — mirrors --primary in globals.css. The static
+  <!-- Brand cobalt (224°) — mirrors primary in globals.css. The static
        favicon can't read CSS tokens, so the brand hex is inlined here and
        lifted to the dark-mode cobalt (#93b4fd) via prefers-color-scheme so
        the tab icon tracks the app logo in both light and dark tab themes.
