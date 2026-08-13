@@ -101,6 +101,13 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
+code,
+kbd,
+pre,
+samp {
+    font-family: var(--font-mono);
+}
+
 body::before {
     position: fixed;
     z-index: -1;
@@ -318,7 +325,7 @@ summary {
 
 .nav-dropdown-count {
     color: var(--muted);
-    font-family: var(--font-mono);
+    font-family: var(--font-sans);
     font-size: var(--text-label);
 }
 
@@ -415,7 +422,7 @@ main {
 .footer-label {
     margin: 0;
     color: var(--amber);
-    font-family: var(--font-mono);
+    font-family: var(--font-sans);
     font-size: var(--text-label);
     font-weight: var(--weight-semibold);
     letter-spacing: var(--tracking-label);
@@ -535,7 +542,7 @@ main {
 .hero-aside-label,
 .hero-aside-mark {
     color: var(--muted);
-    font-family: var(--font-mono);
+    font-family: var(--font-sans);
     font-size: var(--text-label);
     font-weight: var(--weight-semibold);
     letter-spacing: var(--tracking-label);
@@ -594,7 +601,7 @@ main {
 .hero-aside-grid span {
     margin-top: 0.35rem;
     color: var(--muted);
-    font-family: var(--font-mono);
+    font-family: var(--font-sans);
     font-size: var(--text-label);
     line-height: var(--leading-label);
     text-transform: uppercase;
@@ -639,7 +646,7 @@ main {
 .signal-label {
     margin-top: 0.45rem;
     color: var(--muted);
-    font-family: var(--font-mono);
+    font-family: var(--font-sans);
     font-size: var(--text-label);
     font-weight: var(--weight-medium);
     letter-spacing: var(--tracking-label);
@@ -732,7 +739,7 @@ main {
 .result-summary {
     margin: 0;
     color: var(--muted);
-    font-family: var(--font-mono);
+    font-family: var(--font-sans);
     font-size: var(--text-label);
     letter-spacing: var(--tracking-label);
     text-transform: uppercase;
@@ -859,7 +866,7 @@ main {
     border-radius: 999px;
     background: var(--surface-muted);
     color: var(--muted);
-    font-family: var(--font-mono);
+    font-family: var(--font-sans);
     font-size: var(--text-label);
     font-weight: var(--weight-semibold);
     letter-spacing: var(--tracking-label);
@@ -902,7 +909,7 @@ main {
     gap: 0.6rem;
     margin: 0;
     color: var(--muted);
-    font-family: var(--font-mono);
+    font-family: var(--font-sans);
     font-size: var(--text-label);
     font-weight: var(--weight-medium);
     letter-spacing: var(--tracking-label);
@@ -973,7 +980,7 @@ main {
     display: grid;
     gap: 0.35rem;
     color: var(--muted);
-    font-family: var(--font-mono);
+    font-family: var(--font-sans);
     font-size: var(--text-label);
     font-weight: var(--weight-semibold);
     letter-spacing: var(--tracking-label);
@@ -1066,7 +1073,7 @@ main {
     border-radius: 999px;
     background: var(--blue-soft);
     color: var(--blue);
-    font-family: var(--font-mono);
+    font-family: var(--font-sans);
     font-size: var(--text-label);
     font-weight: var(--weight-semibold);
 }
@@ -1080,7 +1087,7 @@ main {
 
 .taxonomy-card-index {
     color: var(--amber);
-    font-family: var(--font-mono);
+    font-family: var(--font-sans);
     font-size: var(--text-label);
     font-weight: var(--weight-semibold);
 }
@@ -1212,7 +1219,7 @@ main {
 
 .sidebar-note-date {
     color: var(--muted) !important;
-    font-family: var(--font-mono);
+    font-family: var(--font-sans);
     font-size: var(--text-label);
 }
 
@@ -1254,7 +1261,7 @@ main {
     align-items: center;
     gap: 0.45rem;
     color: var(--muted);
-    font-family: var(--font-mono);
+    font-family: var(--font-sans);
     font-size: var(--text-label);
     font-weight: var(--weight-semibold);
     letter-spacing: var(--tracking-label);
@@ -1576,7 +1583,7 @@ main {
     justify-self: end;
     flex: 0 0 auto;
     color: rgba(255, 255, 255, 0.72);
-    font-family: var(--font-mono);
+    font-family: var(--font-sans);
     font-size: var(--text-label);
     font-weight: var(--weight-semibold);
     letter-spacing: var(--tracking-label);
@@ -1666,7 +1673,7 @@ main {
     place-items: center;
     color: rgba(255, 255, 255, 0.72);
     content: "YouTube";
-    font-family: var(--font-mono);
+    font-family: var(--font-sans);
     font-size: var(--text-label);
     font-weight: var(--weight-semibold);
     letter-spacing: var(--tracking-label);
@@ -1780,7 +1787,7 @@ body.gallery-dialog-open {
 
 .facts-list dt {
     color: var(--muted);
-    font-family: var(--font-mono);
+    font-family: var(--font-sans);
     font-size: var(--text-label);
     font-weight: var(--weight-semibold);
     letter-spacing: var(--tracking-label);
@@ -1841,7 +1848,7 @@ body.gallery-dialog-open {
 .feature-marker {
     flex: 0 0 auto;
     color: var(--amber);
-    font-family: var(--font-mono);
+    font-family: var(--font-sans);
     font-weight: var(--weight-semibold);
 }
 
@@ -1927,7 +1934,7 @@ body.gallery-dialog-open {
     display: block;
     margin-top: 0.45rem;
     color: var(--muted);
-    font-family: var(--font-mono);
+    font-family: var(--font-sans);
     font-size: var(--text-label);
     font-weight: var(--weight-semibold);
     letter-spacing: var(--tracking-label);
@@ -2082,7 +2089,7 @@ body.gallery-dialog-open {
     min-width: 0;
     border-right: 1px solid var(--line);
     color: var(--ink-soft);
-    font-family: var(--font-mono);
+    font-family: var(--font-sans);
     font-size: var(--text-label);
     font-weight: var(--weight-semibold);
     padding: 1rem;
@@ -2224,7 +2231,7 @@ body.gallery-dialog-open {
 .guide-resource-type {
     margin: 0;
     color: var(--amber);
-    font-family: var(--font-mono);
+    font-family: var(--font-sans);
     font-size: var(--text-label);
     font-weight: var(--weight-semibold);
     letter-spacing: var(--tracking-label);
@@ -2304,7 +2311,7 @@ body.gallery-dialog-open {
 
 .guide-note strong {
     color: var(--amber);
-    font-family: var(--font-mono);
+    font-family: var(--font-sans);
     font-size: var(--text-label);
     font-weight: var(--weight-semibold);
     letter-spacing: var(--tracking-label);
@@ -2402,7 +2409,7 @@ body.gallery-dialog-open {
     border-radius: 999px;
     background: var(--surface-muted);
     color: var(--muted);
-    font-family: var(--font-mono);
+    font-family: var(--font-sans);
     font-size: var(--text-label);
     padding: 0.32rem 0.48rem;
     text-transform: uppercase;
@@ -2448,7 +2455,7 @@ body.gallery-dialog-open {
     display: block;
     margin-bottom: 0.25rem;
     color: var(--green);
-    font-family: var(--font-mono);
+    font-family: var(--font-sans);
     font-size: var(--text-label);
     font-weight: var(--weight-semibold);
     letter-spacing: var(--tracking-label);
@@ -2477,7 +2484,7 @@ body.gallery-dialog-open {
     background: var(--surface);
     color: var(--ink-soft);
     cursor: pointer;
-    font-family: var(--font-mono);
+    font-family: var(--font-sans);
     font-size: var(--text-label);
     font-weight: var(--weight-semibold);
     padding: 0.55rem 0.75rem;
@@ -2492,7 +2499,7 @@ body.gallery-dialog-open {
     background: var(--surface);
     color: var(--ink-soft);
     cursor: pointer;
-    font-family: var(--font-mono);
+    font-family: var(--font-sans);
     font-size: var(--text-label);
     font-weight: var(--weight-semibold);
     padding: 0.55rem 0.75rem;
