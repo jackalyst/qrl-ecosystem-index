@@ -17,28 +17,15 @@
 {{ $projectTypes := index site.Taxonomies "project-types" }}
 
 <section class="home-hero">
-    <div class="hero-copy">
+    <div class="hero-content">
         <p class="eyebrow">QRL / Ecosystem Index</p>
-        <h1>A clearer view of what’s being built on QRL.</h1>
-        <p class="hero-dek">A community-maintained directory of projects, tools, services, and resources connected to QRL 2.0.</p>
+        <h1 class="hero-title">A clearer view of what’s being built on QRL.</h1>
+        <p class="hero-copy">A community-maintained directory of projects, tools, services, and resources connected to QRL 2.0.</p>
         <div class="hero-actions">
             <a class="button button-primary" href="#directory">Explore the index <span aria-hidden="true">↓</span></a>
-            <a class="button button-secondary" href="https://github.com/theqrl-community/qrl-ecosystem-index/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">Submit a project <span aria-hidden="true">↗</span></a>
+            <a class="button button-secondary" href="{{ relURL "/getting-started/" }}">Start building <span aria-hidden="true">→</span></a>
         </div>
     </div>
-    <aside class="hero-aside" aria-label="Index context">
-        <div class="hero-aside-header">
-            <span class="hero-aside-label">Index status</span>
-            <span class="hero-aside-mark" aria-hidden="true">01</span>
-        </div>
-        <h2>Community maintained.</h2>
-        <p>Structured listings make the ecosystem easier to explore, compare, and contribute to.</p>
-        <div class="hero-aside-grid">
-            <div><strong>{{ len $activeProjects }}</strong><span>active projects</span></div>
-            <div><strong>{{ len site.Taxonomies.categories }}</strong><span>categories</span></div>
-            <div><strong>{{ len $projectTypes }}</strong><span>project types</span></div>
-        </div>
-    </aside>
 </section>
 
 <section class="signal-rail" aria-label="Index overview">

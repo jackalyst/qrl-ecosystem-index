@@ -1,0 +1,22 @@
+{{- $site := .site -}}
+{{- $group := .group -}}
+{{- $projects := where $site.RegularPages "Section" "projects" -}}
+{{- $projects = where $projects "Params.status" "!=" "archived" -}}
+{{- $matches := slice -}}
+{{- range $projects -}}
+    {{- $include := false -}}
+    {{- $networks := .Params.supported_networks | default (slice) -}}
+    {{- if eq $group "infrastructure" -}}
+        {{- $include = and (eq .Params.project_type "infrastructure") (in $networks "testnet") -}}
+    {{- else if eq $group "wallets" -}}
+        {{- $include = and (eq .Params.category "wallet") (in $networks "testnet") -}}
+    {{- else if eq $group "tooling" -}}
+        {{- $include = eq .Params.project_type "tooling" -}}
+    {{- else if eq $group "explorers" -}}
+        {{- $include = and (eq .Params.category "explorer") (in $networks "testnet") -}}
+    {{- else if eq $group "dapps" -}}
+        {{- $include = and (eq .Params.project_type "dapp") (eq .Params.network "testnet") -}}
+    {{- end -}}
+    {{- if $include }}{{ $matches = $matches | append . }}{{ end -}}
+{{- end -}}
+{{- return (sort $matches "Title") -}}

@@ -34,7 +34,9 @@ features:
     - QRL Wallet browser extension connectivity
 github: https://github.com/DigitalGuards/QuantaPool
 license: GPL-3.0
-logos: []
+logos:
+    - path: quantapool/icon.svg
+      description: ""
 network: testnet
 open_source: true
 project-types:
@@ -49,7 +51,7 @@ tags:
 title: QuantaPool
 token: stQRL
 twitter: ""
-updated: "2026-06-10"
+updated: "2026-07-14"
 url: /projects/quantapool/
 ---
 

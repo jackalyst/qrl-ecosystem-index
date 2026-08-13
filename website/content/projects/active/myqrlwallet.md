@@ -40,7 +40,9 @@ features:
     - dApp connectivity via the QRL Connect relay protocol (ML-KEM-768 + AES-256-GCM, ML-DSA-87 signing)
 github: https://github.com/DigitalGuards/myqrlwallet-frontend/
 license: none
-logos: []
+logos:
+    - path: myqrlwallet/icon.png
+      description: ""
 open_source: true
 platforms:
     - web
@@ -58,7 +60,7 @@ tags:
     - wallet
 title: MyQRLWallet
 twitter: https://x.com/DigitalGuards
-updated: "2026-07-11"
+updated: "2026-07-14"
 url: /projects/myqrlwallet/
 ---
 

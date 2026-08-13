@@ -15,6 +15,9 @@ The QRL Ecosystem Index is community-maintained and informational. Inclusion doe
 {{- with site.GetPage "/projects" }}{{ with .OutputFormats.Get "markdown" }}
 - [Project directory]({{ .Permalink }}): All active and archived project listings in the index.
 {{- end }}{{ end }}
+{{- with site.GetPage "/getting-started" }}{{ with .OutputFormats.Get "markdown" }}
+- [Getting started on QRL 2.0]({{ .Permalink }}): A Testnet V2 journey from running a node to deploying and connecting a smart contract.
+{{- end }}{{ end }}
 {{- with site.GetPage "/about" }}{{ with .OutputFormats.Get "markdown" }}
 - [About the index]({{ .Permalink }}): Scope, organization, project statuses, and contribution context.
 {{- end }}{{ end }}

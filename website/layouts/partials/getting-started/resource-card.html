@@ -1,0 +1,26 @@
+{{- $project := . -}}
+{{- $visitURL := $project.Params.project_url -}}
+{{- with $project.Params.default_client_url }}{{ $visitURL = . }}{{ end -}}
+{{- $metadata := $project.Params.platforms | default (slice) -}}
+{{- if not $metadata }}{{ $metadata = $project.Params.supported_networks | default (slice) }}{{ end -}}
+{{- if and (not $metadata) $project.Params.network }}{{ $metadata = slice $project.Params.network }}{{ end -}}
+{{- if not $metadata }}{{ $metadata = $project.Params.languages | default (slice) }}{{ end -}}
+<article class="guide-resource-card">
+    <header>
+        <div>
+            <p class="guide-resource-type">{{ $project.Params.category | default $project.Params.project_type }}</p>
+            <h4>{{ $project.Title }}</h4>
+        </div>
+        {{ with $project.Params.status }}<span class="status status-{{ . }}">{{ . }}</span>{{ end }}
+    </header>
+    {{ with $project.Params.description }}<p class="guide-resource-description">{{ . }}</p>{{ end }}
+    {{ with $metadata }}
+    <ul class="guide-resource-meta" aria-label="Supported platforms or networks">
+        {{ range . }}<li>{{ . }}</li>{{ end }}
+    </ul>
+    {{ end }}
+    <footer>
+        <a href="{{ $project.RelPermalink }}">View listing <span aria-hidden="true">→</span></a>
+        {{ with $visitURL }}<a href="{{ . }}" target="_blank" rel="noopener">Open project <span aria-hidden="true">↗</span></a>{{ end }}
+    </footer>
+</article>
