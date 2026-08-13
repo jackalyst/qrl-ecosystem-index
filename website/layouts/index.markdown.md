@@ -9,6 +9,9 @@ The QRL Ecosystem Index is a community-maintained directory of projects, tools, 
 {{ with site.GetPage "/projects" }}{{ with .OutputFormats.Get "markdown" -}}
 - [Project directory]({{ .Permalink }})
 {{- end }}{{ end }}
+{{- with site.GetPage "/getting-started" }}{{ with .OutputFormats.Get "markdown" }}
+- [Getting started on QRL 2.0]({{ .Permalink }})
+{{- end }}{{ end }}
 {{- with site.GetPage "/about" }}{{ with .OutputFormats.Get "markdown" }}
 - [About the index]({{ .Permalink }})
 {{- end }}{{ end }}

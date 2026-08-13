@@ -1,6 +1,6 @@
 {
-  "count": 8,
-  "generated": "2026-07-14T18:42:31Z",
+  "count": 9,
+  "generated": "2026-08-13T07:34:29Z",
   "projects": [
     {
       "id": "myqrlwallet",
@@ -10,6 +10,7 @@
       "description": "A family of wallet applications for QRL 2.0: web wallet, Android app, desktop wallet, and browser extension, with post-quantum dApp connectivity over the QRL Connect relay protocol.",
       "url": "https://myqrlwallet.com/",
       "github": "https://github.com/DigitalGuards/myqrlwallet-frontend/",
+      "logo": "/images/logos/myqrlwallet/icon.png",
       "clients": [
         {
           "platform": "web",
@@ -95,6 +96,7 @@
       "description": "A decentralized QRL liquid staking protocol for staking QRL, receiving stQRL, and earning validator rewards while staying liquid.",
       "url": "https://quantapool.io/",
       "github": "https://github.com/DigitalGuards/QuantaPool",
+      "logo": "/images/logos/quantapool/icon.svg",
       "clients": [
         {
           "platform": "web",
@@ -103,6 +105,16 @@
           "default": true
         }
       ]
+    },
+    {
+      "id": "quantascan",
+      "name": "Quantascan",
+      "status": "production",
+      "category": "explorer",
+      "description": "Analytics-first block explorer for QRL and QRL 2.0: aggregated time-series, cross-chain charts, rich lists, wallet classification, and validator and mining dashboards — built around network-wide data, not just single block and transaction lookups.",
+      "url": "https://quantascan.io",
+      "github": "",
+      "logo": "/images/logos/quantascan/icon.svg"
     },
     {
       "id": "quantaswap",
@@ -129,7 +141,8 @@
       "category": "explorer",
       "description": "A QRL Zond network explorer for browsing blocks, transactions, smart contracts, validators, addresses, and chain activity.",
       "url": "https://zondscan.com/",
-      "github": "https://github.com/DigitalGuards/zondscan"
+      "github": "https://github.com/DigitalGuards/zondscan",
+      "logo": "/images/logos/zondscan/icon.png"
     }
   ]
 }

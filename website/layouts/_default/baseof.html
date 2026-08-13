@@ -32,7 +32,7 @@
     {{ end }}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:opsz,wght@6..72,500;6..72,600;6..72,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <script>
     (() => {
         try {
@@ -99,7 +99,7 @@
                 </ul>
                 <div class="nav-actions">
                     <a class="nav-submit" href="https://github.com/theqrl-community/qrl-ecosystem-index/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">Submit a project <span aria-hidden="true">↗</span></a>
-                    <a class="nav-build" href="https://test-zond.theqrl.org" target="_blank" rel="noopener">Build on QRL <span aria-hidden="true">↗</span></a>
+                    <a class="nav-build" href="{{ relURL "/getting-started/" }}">Build on QRL <span aria-hidden="true">→</span></a>
                 </div>
             </div>
         </nav>
@@ -118,6 +118,7 @@
             <div class="footer-links">
                 <div>
                     <p class="footer-label">Explore</p>
+                    <a href="{{ relURL "/getting-started/" }}">Getting started</a>
                     <a href="{{ relURL "/projects/" }}">Projects</a>
                     <a href="{{ relURL "/ideas/" }}">Ideas</a>
                     <a href="{{ relURL "/about/" }}">About the index</a>

@@ -1,0 +1,121 @@
+{{ define "main" }}
+<section class="getting-started-hero">
+    <div class="getting-started-hero-copy">
+        <p class="eyebrow">QRL 2.0 / Testnet V2</p>
+        <h1>From zero to deployed on QRL 2.0.</h1>
+        <p class="page-dek">Run a node, secure a wallet, acquire test QRL, deploy a contract, and connect a working interface.</p>
+        <div class="hero-actions">
+            <a class="button button-primary" href="#run-a-node">Start with a node <span aria-hidden="true">↓</span></a>
+            <a class="button button-secondary" href="https://test-zond.theqrl.org/" target="_blank" rel="noopener">Open official docs <span aria-hidden="true">↗</span></a>
+        </div>
+    </div>
+    <aside class="getting-started-outcome" aria-labelledby="guide-outcome-title">
+        <p class="eyebrow">What you will finish with</p>
+        <h2 id="guide-outcome-title">A complete testnet development loop.</h2>
+        <ul>
+            <li>A synchronized local node</li>
+            <li>A funded Testnet V2 wallet</li>
+            <li>A deployed smart contract</li>
+            <li>A wallet-connected dApp interaction</li>
+        </ul>
+    </aside>
+</section>
+
+<nav class="guide-progress" aria-label="Getting started steps">
+    {{ range .Params.steps }}
+    <a href="#{{ .id }}"><span>{{ .number }}</span>{{ .kicker }}</a>
+    {{ end }}
+</nav>
+
+<section class="guide-context" aria-labelledby="guide-context-title">
+    <div>
+        <p class="eyebrow">Before you begin</p>
+        <h2 id="guide-context-title">Use this guide to find your way.</h2>
+    </div>
+    <div>
+        <p>This guide currently covers QRL 2.0 through Testnet V2. Follow the journey from running a node to connecting a dApp, and refer to the official documentation for the latest commands and network configuration.</p>
+        <p>Ecosystem listings are community-maintained and provided for information only. Inclusion does not imply endorsement, security review, or compatibility.</p>
+    </div>
+</section>
+
+<div class="guide-journey">
+    {{ range .Params.steps }}
+    {{- $step := . -}}
+    <section class="guide-step" id="{{ .id }}" aria-labelledby="{{ .id }}-title">
+        <div class="guide-step-marker" aria-hidden="true">{{ .number }}</div>
+        <div class="guide-step-main">
+            <header class="guide-step-header">
+                <p class="eyebrow">{{ .kicker }}</p>
+                <h2 id="{{ .id }}-title">{{ .title }}</h2>
+                <div class="guide-step-summary">{{ .summary | markdownify }}</div>
+            </header>
+
+            {{ with .platform_guides }}
+            <div class="platform-guide-grid" aria-label="Node guides by operating system">
+                {{ range . }}
+                <article class="platform-guide-card">
+                    <p class="guide-card-label">{{ .name }}</p>
+                    <div>
+                        <a href="{{ .install_url }}" target="_blank" rel="noopener">Install guide <span aria-hidden="true">↗</span></a>
+                        <a href="{{ .run_url }}" target="_blank" rel="noopener">Running guide <span aria-hidden="true">↗</span></a>
+                    </div>
+                </article>
+                {{ end }}
+            </div>
+            {{ end }}
+
+            {{ with .links }}
+            <div class="guide-official-links">
+                {{ range . }}
+                <a href="{{ .url }}" target="_blank" rel="noopener">
+                    <span><strong>{{ .label }}</strong>{{ with .description }}<small>{{ . }}</small>{{ end }}</span>
+                    <span aria-hidden="true">↗</span>
+                </a>
+                {{ end }}
+            </div>
+            {{ end }}
+
+            {{ with .note }}<aside class="guide-note"><strong>Keep in mind</strong><p>{{ . }}</p></aside>{{ end }}
+
+            {{ range .ecosystem_groups }}
+                {{- $group := . -}}
+                {{- $projects := partial "getting-started/project-pages.html" (dict "site" site "group" $group) -}}
+                {{- with $projects }}
+                {{- $groupMeta := index $.Params.resource_groups $group -}}
+                <section class="guide-resource-group" aria-labelledby="{{ $step.id }}-{{ $group }}-title">
+                    <div class="guide-resource-heading">
+                        <div>
+                            <p class="eyebrow">From the ecosystem index</p>
+                            <h3 id="{{ $step.id }}-{{ $group }}-title">{{ $groupMeta.title }}</h3>
+                        </div>
+                        <p>{{ $groupMeta.description }}</p>
+                    </div>
+                    <div class="guide-resource-grid">
+                        {{ range . }}{{ partial "getting-started/resource-card.html" . }}{{ end }}
+                    </div>
+                    <p class="guide-resource-disclaimer">Shown alphabetically from active index listings. Status is displayed for context; no ranking or recommendation is implied.</p>
+                </section>
+                {{- end }}
+            {{ end }}
+
+            <div class="guide-completion">
+                <span aria-hidden="true">✓</span>
+                <div><strong>Ready for the next step when</strong>{{ .completion | markdownify }}</div>
+            </div>
+        </div>
+    </section>
+    {{ end }}
+</div>
+
+<section class="split-callout" aria-labelledby="guide-next-title">
+    <div>
+        <p class="eyebrow">Keep building</p>
+        <h2 id="guide-next-title">Turn the first deployment into an ecosystem project.</h2>
+        <p>Explore current projects for patterns, check the ideas page for gaps, and add your work to the community-maintained index when it is ready to share.</p>
+    </div>
+    <div class="guide-final-actions">
+        <a class="button button-secondary" href="{{ relURL "/ideas/" }}">Explore ideas <span aria-hidden="true">→</span></a>
+        <a class="button button-primary" href="https://github.com/theqrl-community/qrl-ecosystem-index/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">Submit a project <span aria-hidden="true">↗</span></a>
+    </div>
+</section>
+{{ end }}

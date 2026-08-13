@@ -24,7 +24,9 @@ features:
     - Responsive web interface for desktop and mobile devices
 github: https://github.com/DigitalGuards/zondscan
 license: MIT
-logos: []
+logos:
+    - path: zondscan/icon.png
+      description: ""
 open_source: true
 platforms:
     - web
@@ -42,7 +44,7 @@ tags:
     - validators
 title: ZondScan
 twitter: ""
-updated: "2026-06-09"
+updated: "2026-07-14"
 url: /projects/zondscan/
 ---
 
