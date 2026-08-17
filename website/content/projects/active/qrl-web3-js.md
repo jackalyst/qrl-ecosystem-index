@@ -46,5 +46,3 @@ twitter: ""
 updated: "2026-08-17"
 url: /projects/qrl-web3-js/
 ---
-
-

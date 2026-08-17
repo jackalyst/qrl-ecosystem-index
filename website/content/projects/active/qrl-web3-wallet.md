@@ -65,4 +65,3 @@ support, and manage QRC-20 tokens.
 The project README notes that the code relates to the QRL v2.0 testnet and
 is not suitable for the current QRL v1 mainnet. Pre-built extension bundles
 are published through the project's GitHub releases.
-

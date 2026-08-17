@@ -77,4 +77,3 @@ desktop wallet with an isolated signer process, and a browser extension.
 dApps connect to the wallets through the open-source QRL Connect relay
 protocol (ML-KEM-768 key encapsulation with AES-256-GCM transport and
 ML-DSA-87 message signing) or through the browser extension via EIP-6963.
-

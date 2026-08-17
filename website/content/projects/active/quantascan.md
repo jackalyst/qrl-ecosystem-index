@@ -89,4 +89,3 @@ keep the two chains clearly distinguished.
 All data is served through a free public REST API, and an educational
 "Learn" section documents QRL concepts, post-quantum signatures, and the
 QRL → QRL 2.0 migration model.
-

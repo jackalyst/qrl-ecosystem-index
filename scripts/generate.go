@@ -354,7 +354,12 @@ func projectPageContent(params map[string]interface{}, longDescription string) (
 	if err != nil {
 		return nil, err
 	}
-	return []byte(fmt.Sprintf("---\n%s---\n\n%s\n", frontMatter, escapeMarkdown(longDescription))), nil
+
+	content := fmt.Sprintf("---\n%s---\n", frontMatter)
+	if body := strings.TrimSpace(escapeMarkdown(longDescription)); body != "" {
+		content += "\n" + body + "\n"
+	}
+	return []byte(content), nil
 }
 
 func projectOutputPath(p Project) string {

@@ -57,4 +57,3 @@ The SDK exposes an EIP-1193 style provider with EIP-6963 announcement, so
 it coexists with browser extension wallets in dApp wallet pickers. Sessions
 persist across page reloads and app relaunches with automatic reconnection.
 A live integration example is hosted at zondscan.com/dapp-example.
-

@@ -58,6 +58,20 @@ func TestProjectPageContentIncludesGallery(t *testing.T) {
 	}
 }
 
+func TestProjectPageContentOmitsEmptyBody(t *testing.T) {
+	content, err := projectPageContent(map[string]interface{}{
+		"url": "/projects/qrc20-factory/",
+	}, "\n")
+	if err != nil {
+		t.Fatalf("generate project page content: %v", err)
+	}
+
+	want := "---\nurl: /projects/qrc20-factory/\n---\n"
+	if string(content) != want {
+		t.Fatalf("generated empty project page = %q, want %q", content, want)
+	}
+}
+
 func TestGenerateProjectPageAddsExactMaintainerTaxonomy(t *testing.T) {
 	workingDirectory, err := os.Getwd()
 	if err != nil {

@@ -59,4 +59,3 @@ validators, addresses, and network activity.
 The project is open source and built with a Next.js frontend, a Go backend
 API, and a blockchain synchronizer that indexes QRL Zond data into MongoDB
 for fast lookup and analysis.
-

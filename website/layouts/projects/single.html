@@ -53,10 +53,10 @@
 
     <div class="project-content-grid">
         <div class="project-main-content">
-            {{ if .RawContent }}
+            {{ with strings.TrimSpace .RawContent }}
             <section class="project-section project-overview">
                 <p class="eyebrow">Overview</p>
-                <div class="prose">{{ .RawContent | markdownify }}</div>
+                <div class="prose">{{ . | markdownify }}</div>
             </section>
             {{ end }}
 

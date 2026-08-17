@@ -68,4 +68,3 @@ validators, exposes pool and validator statistics, supports withdrawal
 requests and claims, and connects through the QRL Wallet browser extension.
 The deployed web app defaults to the QRL 2.0 Testnet and links to the public
 DigitalGuards QuantaPool repository.
-

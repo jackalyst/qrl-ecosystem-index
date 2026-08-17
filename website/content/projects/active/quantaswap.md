@@ -84,4 +84,3 @@ Q94cd8e406d2bb4ea251dce3f0558941f2ac056ee and Ethereum Sepolia at
 pause, and no upgrade path, and claims are permissionless with the recipient
 fixed at lock time. An order book server handles coordination only; both
 parties independently verify locks on-chain before acting.
-

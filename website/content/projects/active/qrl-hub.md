@@ -53,4 +53,3 @@ news, QRL 2.0 information, and links to the official QRL website.
 
 QRL Hub states that it is not associated with the QRL Foundation and provides
 educational content only.
-
