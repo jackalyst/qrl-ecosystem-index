@@ -1,6 +1,6 @@
 {
-  "count": 39,
-  "generated": "2026-08-17T23:01:47Z",
+  "count": 41,
+  "generated": "2026-08-17T23:43:42Z",
   "projects": [
     {
       "id": "acornswap",
@@ -207,6 +207,19 @@
       "description": "An official command-line client for QRL 1.x wallet creation, balances, transfers, messages, notarization, tokens, OTS tracking, address validation, offline signing, and scripting against mainnet or testnet nodes.",
       "url": "https://www.npmjs.com/package/@theqrl/cli",
       "github": "https://github.com/theQRL/qrl-cli"
+    },
+    {
+      "id": "qrl-contract-example",
+      "name": "QRL Contract Example",
+      "status": "development",
+      "project_type": "tooling",
+      "category": "template",
+      "qrl_versions": [
+        "2.0"
+      ],
+      "description": "A JavaScript reference project for compiling, deploying, and interacting with a Hyperion token contract on QRL 2.0 using @theqrl/web3, including on-chain transfers and off-chain balance queries.",
+      "url": "https://github.com/theQRL/qrl-contract-example",
+      "github": "https://github.com/theQRL/qrl-contract-example"
     },
     {
       "id": "qrl-file-tools",
@@ -639,6 +652,19 @@
       "description": "An on-chain strategy game on the QRL 2.0 testnet where Quantum Computer NFTs mine qBTC and Squirrel NFTs tax or steal it, with Hyperion contracts for minting, staking, traits, yield accounting, and commit-reveal randomness.",
       "url": "https://github.com/PhuocNG0308/squirrel-game",
       "github": "https://github.com/PhuocNG0308/squirrel-game"
+    },
+    {
+      "id": "zond-web3-wallet-dapp-example",
+      "name": "Zond Web3 Wallet dApp Example",
+      "status": "development",
+      "project_type": "tooling",
+      "category": "template",
+      "qrl_versions": [
+        "2.0"
+      ],
+      "description": "A React and TypeScript example dApp for discovering and connecting to the Zond Web3 Wallet and other EIP-6963 browser wallets, exercising wallet and Zond JSON-RPC methods, and inspecting responses or errors.",
+      "url": "https://github.com/theQRL/zond-web3-wallet-dapp-example",
+      "github": "https://github.com/theQRL/zond-web3-wallet-dapp-example"
     },
     {
       "id": "zondscan",

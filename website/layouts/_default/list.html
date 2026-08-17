@@ -34,10 +34,9 @@
 {{ if $isProjectTypeIndex }}
 {{ $taxonomy := index site.Taxonomies "project-types" }}
 <div class="taxonomy-overview">
-    {{ range $index, $projectType := hugo.Data.classification.project_types }}
+    {{ range $projectType := hugo.Data.classification.project_types }}
     {{ $entry := index $taxonomy $projectType.taxonomy_slug }}
     <a class="taxonomy-card" href="{{ printf "/project-types/%s/" $projectType.taxonomy_slug | relURL }}">
-        <span class="taxonomy-card-index">{{ printf "%02d" (add 1 $index) }}</span>
         <span class="taxonomy-card-content">
             <strong>{{ $projectType.label }}</strong>
             <span>{{ $projectType.description }}</span>
