@@ -1,6 +1,6 @@
 {
-  "count": 42,
-  "generated": "2026-08-17T14:22:32Z",
+  "count": 39,
+  "generated": "2026-08-17T17:15:26Z",
   "projects": [
     {
       "id": "acornswap",
@@ -195,18 +195,6 @@
       "description": "An official command-line client for QRL 1.x wallet creation, balances, transfers, messages, notarization, tokens, OTS tracking, address validation, offline signing, and scripting against mainnet or testnet nodes.",
       "url": "https://www.npmjs.com/package/@theqrl/cli",
       "github": "https://github.com/theQRL/qrl-cli"
-    },
-    {
-      "id": "qrl-contract-example",
-      "name": "QRL Contract Example",
-      "status": "development",
-      "category": "educational",
-      "qrl_versions": [
-        "2.0"
-      ],
-      "description": "An official, minimal QRL 2.0 example showing how to configure a node and wallet, deploy a Hyperion smart contract to the testnet, wait for transaction confirmation, and make on-chain and read-only contract calls.",
-      "url": "https://github.com/theQRL/qrl-contract-example",
-      "github": "https://github.com/theQRL/qrl-contract-example"
     },
     {
       "id": "qrl-file-tools",
@@ -415,18 +403,6 @@
       "github": "https://github.com/theQRL/webtools"
     },
     {
-      "id": "qrl-web3-dapp-example",
-      "name": "QRL Web3 Wallet dApp Example",
-      "status": "development",
-      "category": "educational",
-      "qrl_versions": [
-        "2.0"
-      ],
-      "description": "An official example dApp demonstrating EIP-6963 discovery, connection, and JSON-RPC communication with the QRL Web3 Wallet, including account access, transactions, message signing, chain management, and asset requests.",
-      "url": "https://github.com/theQRL/zond-web3-wallet-dapp-example",
-      "github": "https://github.com/theQRL/zond-web3-wallet-dapp-example"
-    },
-    {
       "id": "qrl-web3-js",
       "name": "QRL Web3.js",
       "status": "development",
@@ -625,18 +601,6 @@
       "description": "An on-chain strategy game on the QRL 2.0 testnet where Quantum Computer NFTs mine qBTC and Squirrel NFTs tax or steal it, with Hyperion contracts for minting, staking, traits, yield accounting, and commit-reveal randomness.",
       "url": "https://github.com/PhuocNG0308/squirrel-game",
       "github": "https://github.com/PhuocNG0308/squirrel-game"
-    },
-    {
-      "id": "vortex-ide",
-      "name": "Vortex IDE",
-      "status": "development",
-      "category": "tooling",
-      "qrl_versions": [
-        "2.0"
-      ],
-      "description": "An in-development browser IDE based on Remix for writing, compiling, testing, and deploying Hyperion smart contracts on QRL 2.0 with a familiar Solidity-oriented development workflow.",
-      "url": "https://www.theqrl.org/roadmap/",
-      "github": ""
     },
     {
       "id": "zondscan",
