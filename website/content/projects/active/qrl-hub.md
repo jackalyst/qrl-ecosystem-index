@@ -24,6 +24,8 @@ github: ""
 language: English
 license: none
 logos: []
+maintainers:
+    - QRL Hub
 open_source: false
 platforms:
     - web
@@ -31,6 +33,9 @@ project-types:
     - community
 project_type: community
 project_url: https://qrlhub.com/
+qrl_versions:
+    - 1.x
+    - "2.0"
 status: production
 tags:
     - education
@@ -48,4 +53,3 @@ news, QRL 2.0 information, and links to the official QRL website.
 
 QRL Hub states that it is not associated with the QRL Foundation and provides
 educational content only.
-

@@ -1,0 +1,39 @@
+id: qrysm
+name: Qrysm
+project_type: infrastructure
+qrl_versions:
+  - "2.0"
+status: development
+description: >
+  The official Go consensus-layer client for QRL 2.0, coordinating proof-of-stake
+  beacon nodes and validators with the Go QRL execution client as part of a
+  complete QRL 2.0 node.
+category: infrastructure
+tags:
+  - node
+  - consensus-client
+  - proof-of-stake
+  - validator
+author: The QRL
+license: GPL-3.0
+created: 2026-08-17
+updated: 2026-08-17
+
+url: https://github.com/theQRL/qrysm
+github: https://github.com/theQRL/qrysm
+docs: https://test-zond.theqrl.org/
+
+open_source: true
+audited: false
+
+features:
+  - QRL 2.0 proof-of-stake consensus implementation
+  - Beacon-node and validator operation
+  - Integration with the Go QRL execution client
+  - Testnet and private-network support
+
+infrastructure:
+  supported_networks:
+    - testnet
+    - private network
+  endpoints: []

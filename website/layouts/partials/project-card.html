@@ -21,6 +21,7 @@
     data-search="{{ partial "project-search-text.html" $project }}"
     data-category="{{ with $project.Params.category }}{{ . | lower }}{{ end }}"
     data-type="{{ $projectTypeSlug | lower }}"
+    data-qrl-versions="{{ delimit $project.Params.qrl_versions " " }}"
     data-status="{{ with $project.Params.status }}{{ . | lower }}{{ end }}">
     <a class="project-card-link" href="{{ $project.RelPermalink }}" aria-label="View {{ $project.Title }} listing"></a>
     <div class="project-card-top">
@@ -29,6 +30,7 @@
         </div>
         <div class="project-card-badges">
             {{ with $project.Params.status }}<span class="status status-{{ . }}">{{ . }}</span>{{ end }}
+            {{ range $project.Params.qrl_versions }}<span class="meta-chip version-chip">QRL {{ . }}</span>{{ end }}
             {{ if $project.Params.open_source }}<span class="meta-chip source-chip">Open source</span>{{ end }}
         </div>
     </div>
@@ -41,7 +43,7 @@
         {{ with $project.Params.description }}<p class="project-card-description">{{ . }}</p>{{ end }}
     </div>
     <div class="project-card-footer">
-        <span class="project-card-author">{{ with $project.Params.author }}By {{ . }}{{ end }}</span>
+        {{ with $project.Params.author }}<a class="project-card-author" href="{{ printf "/maintainers/%s/" (. | urlize) | relURL }}">By {{ . }}</a>{{ end }}
         {{ with $visitURL }}
         <a class="card-action" href="{{ . }}" target="_blank" rel="noopener">Visit project <span aria-hidden="true">↗</span></a>
         {{ else }}

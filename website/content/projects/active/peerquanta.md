@@ -31,6 +31,8 @@ features:
 github: ""
 license: none
 logos: []
+maintainers:
+    - PeerQuanta
 open_source: false
 platforms:
     - web
@@ -38,6 +40,8 @@ project-types:
     - applications
 project_type: application
 project_url: https://peerquanta.com/
+qrl_versions:
+    - "2.0"
 status: development
 supported_networks:
     - testnet
@@ -61,4 +65,3 @@ reputation, notifications, and moderation workflows. Its public web app also
 exposes tools for secure notes, wagers, notary records, secret sharing,
 dead-man switches, time-locked content, polls, Merkle proofs, provenance,
 forums, and certificate workflows.
-

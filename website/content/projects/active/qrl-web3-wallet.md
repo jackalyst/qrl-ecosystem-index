@@ -34,6 +34,8 @@ features:
 github: https://github.com/theQRL/qrl-web3-wallet
 license: MIT
 logos: []
+maintainers:
+    - The QRL
 open_source: true
 platforms:
     - chromium
@@ -41,6 +43,8 @@ project-types:
     - applications
 project_type: application
 project_url: https://github.com/theQRL/qrl-web3-wallet/releases/latest
+qrl_versions:
+    - "2.0"
 status: development
 supported_networks:
     - testnet
@@ -61,4 +65,3 @@ support, and manage QRC-20 tokens.
 The project README notes that the code relates to the QRL v2.0 testnet and
 is not suitable for the current QRL v1 mainnet. Pre-built extension bundles
 are published through the project's GitHub releases.
-

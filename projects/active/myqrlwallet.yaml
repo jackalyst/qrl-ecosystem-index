@@ -1,6 +1,8 @@
 id: myqrlwallet
 name: MyQRLWallet
 project_type: application
+qrl_versions:
+  - "2.0"
 status: development
 description: >
   A family of wallet applications for QRL 2.0: web wallet, Android app,

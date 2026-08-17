@@ -43,6 +43,8 @@ license: none
 logos:
     - path: myqrlwallet/icon.png
       description: ""
+maintainers:
+    - DigitalGuards
 open_source: true
 platforms:
     - web
@@ -53,6 +55,8 @@ project-types:
     - applications
 project_type: application
 project_url: https://myqrlwallet.com/
+qrl_versions:
+    - "2.0"
 status: development
 supported_networks:
     - testnet
@@ -73,4 +77,3 @@ desktop wallet with an isolated signer process, and a browser extension.
 dApps connect to the wallets through the open-source QRL Connect relay
 protocol (ML-KEM-768 key encapsulation with AES-256-GCM transport and
 ML-DSA-87 message signing) or through the browser extension via EIP-6963.
-

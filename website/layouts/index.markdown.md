@@ -2,7 +2,7 @@
 
 > {{ site.Params.description }}
 
-The QRL Ecosystem Index is a community-maintained directory of projects, tools, services, and resources connected to QRL 2.0. Listings are informational and do not imply endorsement, audit, or affiliation.
+The QRL Ecosystem Index is a community-maintained directory of projects, tools, services, and resources across QRL 1.x and QRL 2.0. Listings are informational and do not imply endorsement, audit, or affiliation.
 
 ## Core Resources
 
@@ -16,7 +16,7 @@ The QRL Ecosystem Index is a community-maintained directory of projects, tools, 
 - [About the index]({{ .Permalink }})
 {{- end }}{{ end }}
 {{- with site.GetPage "/ideas" }}{{ with .OutputFormats.Get "markdown" }}
-- [Builder ideas]({{ .Permalink }})
+- [QRL 2.0 builder ideas]({{ .Permalink }})
 {{- end }}{{ end }}
 - [Structured project index]({{ "index.json" | absURL }})
 
@@ -26,6 +26,6 @@ The QRL Ecosystem Index is a community-maintained directory of projects, tools, 
 {{- range $projects }}
 {{- $project := . }}
 {{- with $project.OutputFormats.Get "markdown" }}
-- [{{ $project.Title }}]({{ .Permalink }}): {{ $project.Params.description | plainify }}
+- [{{ $project.Title }}]({{ .Permalink }}): {{ $project.Params.description | plainify }} QRL versions: {{ delimit $project.Params.qrl_versions ", " }}.
 {{- end }}
 {{- end }}

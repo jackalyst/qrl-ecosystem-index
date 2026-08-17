@@ -1,0 +1,50 @@
+id: qrl-zeus
+name: Zeus
+project_type: application
+qrl_versions:
+  - 1.x
+status: development
+description: >
+  An experimental multi-platform interface for QRL 1.x that combines wallet
+  and network interactions in a Vue, Ionic, Capacitor, and Electron client,
+  backed by a REST-to-gRPC proxy for QRL nodes.
+category: wallet
+tags:
+  - wallet
+  - web
+  - desktop
+  - mobile
+author: The QRL
+license: MIT
+created: 2026-08-17
+updated: 2026-08-17
+
+url: https://zeus.theqrl.org/
+github: https://github.com/theQRL/zeus
+
+open_source: true
+audited: false
+
+clients:
+  - platform: web
+    url: https://zeus.theqrl.org/
+    github: https://github.com/theQRL/zeus
+    default: true
+  - platform: proxy
+    github: https://github.com/theQRL/zeus-proxy
+
+features:
+  - QRL wallet and network interaction interface
+  - Shared web, desktop, iOS, and Android codebase
+  - Integration with QRLLIB and QRL helper packages
+  - REST middleware for communicating with QRL node gRPC services
+
+application:
+  platforms:
+    - web
+    - desktop
+    - android
+    - ios
+  supported_networks:
+    - mainnet
+    - testnet

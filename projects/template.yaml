@@ -6,6 +6,8 @@
 id: your-project-id
 name: Your Project Name
 project_type: dapp  # Options: dapp, application, infrastructure, tooling, community (See CONTRIBUTING.md)
+qrl_versions:  # One or both: 1.x, 2.0
+  - "2.0"
 status: development  # Options: development, production, archived (see CONTRIBUTING.md)
 description: >
   A brief description of your project (max 280 characters).

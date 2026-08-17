@@ -1,10 +1,10 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "QRL Ecosystem Project",
-  "version": 3,
+  "version": 4,
   "description": "Schema for QRL ecosystem project submissions",
   "type": "object",
-  "required": ["id", "name", "project_type", "status", "description", "category", "tags", "author", "license", "created", "updated"],
+  "required": ["id", "name", "project_type", "qrl_versions", "status", "description", "category", "tags", "author", "license", "created", "updated"],
   "properties": {
     "id": {
       "type": "string",
@@ -19,6 +19,16 @@
       "type": "string",
       "enum": ["dapp", "application", "infrastructure", "tooling", "community"],
       "description": "Project type: dapp, application, infrastructure, tooling, or community"
+    },
+    "qrl_versions": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": ["1.x", "2.0"]
+      },
+      "description": "QRL protocol generations supported by the project"
     },
     "status": {
       "type": "string",

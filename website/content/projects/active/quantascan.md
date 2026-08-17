@@ -41,6 +41,8 @@ license: none
 logos:
     - path: quantascan/icon.svg
       description: ""
+maintainers:
+    - 12remember
 open_source: false
 platforms:
     - web
@@ -48,6 +50,9 @@ project-types:
     - applications
 project_type: application
 project_url: https://quantascan.io
+qrl_versions:
+    - 1.x
+    - "2.0"
 status: production
 supported_networks:
     - mainnet
@@ -84,4 +89,3 @@ keep the two chains clearly distinguished.
 All data is served through a free public REST API, and an educational
 "Learn" section documents QRL concepts, post-quantum signatures, and the
 QRL → QRL 2.0 migration model.
-

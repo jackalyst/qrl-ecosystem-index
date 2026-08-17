@@ -37,12 +37,16 @@ license: GPL-3.0
 logos:
     - path: quantapool/icon.svg
       description: ""
+maintainers:
+    - DigitalGuards
 network: testnet
 open_source: true
 project-types:
     - dapps
 project_type: dapp
 project_url: https://quantapool.io/
+qrl_versions:
+    - "2.0"
 status: development
 tags:
     - liquid-staking
@@ -64,4 +68,3 @@ validators, exposes pool and validator statistics, supports withdrawal
 requests and claims, and connects through the QRL Wallet browser extension.
 The deployed web app defaults to the QRL 2.0 Testnet and links to the public
 DigitalGuards QuantaPool repository.
-

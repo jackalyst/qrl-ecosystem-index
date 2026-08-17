@@ -1,0 +1,37 @@
+id: qrl-wallet-js
+name: QRL Wallet.js
+project_type: tooling
+qrl_versions:
+  - "2.0"
+status: development
+description: >
+  A JavaScript wallet library for QRL 2.0 using FIPS 204 ML-DSA-87 signatures,
+  with deterministic account recovery, 34-word mnemonics, address generation
+  and checksums, message signing, and browser or Node.js support.
+category: tooling
+tags:
+  - wallet
+  - sdk
+  - mldsa
+  - javascript
+author: The QRL Contributors
+license: MIT
+created: 2026-08-17
+updated: 2026-08-17
+
+url: https://www.npmjs.com/package/@theqrl/wallet.js
+github: https://github.com/theQRL/wallet.js
+
+open_source: true
+audited: false
+
+features:
+  - ML-DSA-87 QRL wallet generation and signing
+  - Deterministic recovery from seeds and 34-word mnemonics
+  - QRL address generation, validation, and checksums
+  - ESM and CommonJS builds for browsers and Node.js
+
+tooling:
+  languages:
+    - javascript
+    - typescript

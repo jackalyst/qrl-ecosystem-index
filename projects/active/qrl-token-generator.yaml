@@ -1,0 +1,37 @@
+id: qrl-token-generator
+name: QRL 2.0 Token Generator
+project_type: application
+qrl_versions:
+  - "2.0"
+status: development
+description: >
+  A browser application for deploying configurable fungible tokens on the QRL
+  2.0 testnet without writing code, including supply, decimals, minting,
+  burning, ownership, recipient, wallet-cap, and transaction-limit options.
+category: tooling
+tags:
+  - token-generator
+  - qrc20
+  - no-code
+  - smart-contracts
+author: Quantum Future Limited and Volt Development
+license: none
+created: 2026-08-17
+updated: 2026-08-17
+
+url: https://qrl-zond.com/create-token
+
+open_source: false
+audited: false
+
+features:
+  - No-code fungible token deployment on the QRL 2.0 testnet
+  - Configurable token name, symbol, supply, and decimals
+  - Optional minting, burning, ownership, and recipient controls
+  - Optional maximum wallet holdings and transaction limits
+
+application:
+  platforms:
+    - web
+  supported_networks:
+    - testnet

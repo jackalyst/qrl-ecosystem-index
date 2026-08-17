@@ -49,12 +49,16 @@ license: GPL-3.0
 logos:
     - path: quantaswap/icon.svg
       description: ""
+maintainers:
+    - DigitalGuards
 network: testnet
 open_source: true
 project-types:
     - dapps
 project_type: dapp
 project_url: https://quantaswap.io/
+qrl_versions:
+    - "2.0"
 status: development
 tags:
     - atomic-swaps
@@ -80,4 +84,3 @@ Q94cd8e406d2bb4ea251dce3f0558941f2ac056ee and Ethereum Sepolia at
 pause, and no upgrade path, and claims are permissionless with the recipient
 fixed at lock time. An order book server handles coordination only; both
 parties independently verify locks on-chain before acting.
-

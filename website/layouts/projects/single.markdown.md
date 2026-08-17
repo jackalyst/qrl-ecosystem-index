@@ -8,10 +8,11 @@
 - Status: {{ .Params.status }}
 - Project type: {{ .Params.project_type }}
 - Category: {{ .Params.category }}
+- QRL versions: {{ range $index, $version := .Params.qrl_versions }}{{ if $index }}, {{ end }}QRL {{ $version }}{{ end }}
 {{- with .Params.tags }}
 - Tags: {{ delimit . ", " }}
 {{- end }}
-- Maintainer: {{ .Params.author }}
+- Maintainer: [{{ .Params.author }}]({{ printf "/maintainers/%s/" (.Params.author | urlize) | absURL }})
 - License: {{ .Params.license }}
 - Open source: {{ if .Params.open_source }}yes{{ else }}no{{ end }}
 - Listed as audited: {{ if .Params.audited }}yes{{ else }}no{{ end }}

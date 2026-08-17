@@ -1,6 +1,8 @@
 id: qrlwallet-connect
 name: QRL Wallet Connect
 project_type: tooling
+qrl_versions:
+  - "2.0"
 status: development
 description: >
   A TypeScript SDK (@qrlwallet/connect) for connecting dApps to MyQRLWallet

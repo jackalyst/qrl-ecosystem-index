@@ -1,0 +1,38 @@
+id: pqlymarket
+name: PQlyMarket
+project_type: dapp
+qrl_versions:
+  - "2.0"
+status: development
+description: >
+  An open-source prediction-market dApp for the QRL 2.0 testnet with market
+  creation, YES/NO conditional-token trading, constant-product automated market
+  makers, liquidity provision, oracle resolution, and a testnet faucet.
+category: defi
+tags:
+  - prediction-market
+  - amm
+  - oracle
+  - hyperion
+author: PhuocNG0308
+license: MIT
+created: 2026-08-17
+updated: 2026-08-17
+
+url: https://github.com/PhuocNG0308/pqlymarket
+github: https://github.com/PhuocNG0308/pqlymarket
+
+open_source: true
+audited: false
+
+features:
+  - Permissionless prediction-market creation
+  - YES and NO conditional-token trading through an AMM
+  - Liquidity provision and fee earning
+  - Oracle-based market resolution and outcome claims
+  - Built-in testnet QRL faucet contract
+
+dapp:
+  network: testnet
+  contract_address: deployment-specific
+  token: QRL

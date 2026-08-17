@@ -1,0 +1,37 @@
+id: qrl-contract-example
+name: QRL Contract Example
+project_type: tooling
+qrl_versions:
+  - "2.0"
+status: development
+description: >
+  An official, minimal QRL 2.0 example showing how to configure a node and
+  wallet, deploy a Hyperion smart contract to the testnet, wait for transaction
+  confirmation, and make on-chain and read-only contract calls.
+category: educational
+tags:
+  - smart-contracts
+  - example
+  - hyperion
+  - tutorial
+author: The QRL
+license: MIT
+created: 2026-08-17
+updated: 2026-08-17
+
+url: https://github.com/theQRL/qrl-contract-example
+github: https://github.com/theQRL/qrl-contract-example
+
+open_source: true
+audited: false
+
+features:
+  - Minimal Hyperion smart-contract source
+  - Deployment script for the QRL 2.0 testnet
+  - On-chain transaction and read-only call examples
+  - Node, wallet, provider, and confirmation configuration
+
+tooling:
+  languages:
+    - javascript
+    - hyperion

@@ -1,6 +1,8 @@
 id: zondscan
 name: ZondScan
 project_type: application
+qrl_versions:
+  - "2.0"
 status: development
 description: >
   A QRL Zond network explorer for browsing blocks, transactions, smart

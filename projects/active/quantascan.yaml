@@ -1,6 +1,9 @@
 id: quantascan
 name: Quantascan
 project_type: application
+qrl_versions:
+  - 1.x
+  - "2.0"
 status: production
 description: >-
   Analytics-first block explorer for QRL and QRL 2.0: aggregated time-series,

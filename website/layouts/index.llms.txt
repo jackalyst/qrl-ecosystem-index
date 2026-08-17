@@ -22,7 +22,7 @@ The QRL Ecosystem Index is community-maintained and informational. Inclusion doe
 - [About the index]({{ .Permalink }}): Scope, organization, project statuses, and contribution context.
 {{- end }}{{ end }}
 {{- with site.GetPage "/ideas" }}{{ with .OutputFormats.Get "markdown" }}
-- [Builder ideas]({{ .Permalink }}): Ecosystem coverage gaps and possible starting points for builders.
+- [QRL 2.0 builder ideas]({{ .Permalink }}): QRL 2.0 ecosystem coverage gaps and possible starting points for builders.
 {{- end }}{{ end }}
 - [Structured project index]({{ "index.json" | absURL }}): Machine-readable summary data for every project.
 - [Sitemap]({{ "sitemap.xml" | absURL }}): Canonical HTML pages published by the site.
@@ -32,7 +32,7 @@ The QRL Ecosystem Index is community-maintained and informational. Inclusion doe
 {{ range $activeProjects -}}
 {{- $project := . }}
 {{- with $project.OutputFormats.Get "markdown" }}
-- [{{ $project.Title }}]({{ .Permalink }}): {{ $project.Params.description | plainify }} Status: {{ $project.Params.status }}; type: {{ $project.Params.project_type }}; category: {{ $project.Params.category }}.
+- [{{ $project.Title }}]({{ .Permalink }}): {{ $project.Params.description | plainify }} Status: {{ $project.Params.status }}; type: {{ $project.Params.project_type }}; category: {{ $project.Params.category }}; QRL versions: {{ delimit $project.Params.qrl_versions ", " }}.
 {{- end }}
 {{- end }}
 
@@ -44,7 +44,7 @@ The QRL Ecosystem Index is community-maintained and informational. Inclusion doe
 - [Archived project: {{ $project.Title }}]({{ .Permalink }}): {{ $project.Params.description | plainify }}
 {{- end }}
 {{- end }}
-{{- range slice "/categories" "/project-types" "/tags" }}
+{{- range slice "/categories" "/maintainers" "/project-types" "/tags" }}
 {{- with site.GetPage . }}
 {{- $page := . }}
 {{- with $page.OutputFormats.Get "markdown" }}

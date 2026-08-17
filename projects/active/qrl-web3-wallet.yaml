@@ -1,6 +1,8 @@
 id: qrl-web3-wallet
 name: QRL Web3 Wallet
 project_type: application
+qrl_versions:
+  - "2.0"
 status: development
 description: >
   A Chromium-based browser extension wallet for creating and importing QRL

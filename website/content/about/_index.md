@@ -2,13 +2,15 @@
 title: "About"
 ---
 
-The QRL Ecosystem Index is a community-maintained directory of projects, tools, services, and resources connected to QRL 2.0. Its goal is to make the ecosystem easier to explore by collecting project information in one structured, searchable place.
+The QRL Ecosystem Index is a community-maintained directory of projects, tools, services, and resources across QRL 1.x and QRL 2.0. Its goal is to make the ecosystem easier to explore by collecting project information in one structured, searchable place.
 
 The index is intentionally lightweight. Each listing is stored as a YAML file in the public repository, validated against a shared schema, and organized by project type, category, tags, and status. This makes it easy for contributors to add new projects, update existing entries, and review changes through GitHub.
 
 ## What gets listed
 
-Listings may include decentralized applications, user-facing applications, infrastructure, developer tooling, and community resources. A project does not need to be complete to be included, but it should have enough public information for others to understand what it is, who maintains it, and how it relates to QRL 2.0.
+Listings may include decentralized applications, user-facing applications, infrastructure, developer tooling, and community resources. A project does not need to be complete to be included, but it should have enough public information for others to understand what it is, who maintains it, and whether it supports QRL 1.x, QRL 2.0, or both.
+
+The project directory covers both QRL generations. Builder guidance, Getting Started, and Ideas currently focus on QRL 2.0 and are labelled accordingly.
 
 This index is informational. Inclusion does not mean endorsement by QRL, the QRL Foundation, or the maintainers of this repository.
 
@@ -26,7 +28,7 @@ Each project is assigned a project type:
 - **tooling** - SDKs, libraries, templates, testing tools, or developer utilities
 - **community** - Community spaces, educational resources, news, or ecosystem information
 
-Projects are also grouped by category, such as defi, nft, wallet, explorer, infrastructure, tooling, dao, gaming, identity, oracle, bridge, social, educational, and news.
+Projects declare support for QRL 1.x, QRL 2.0, or both. They are also grouped by category, such as defi, nft, wallet, explorer, infrastructure, tooling, dao, gaming, identity, oracle, bridge, social, educational, and news.
 
 ## Project status
 

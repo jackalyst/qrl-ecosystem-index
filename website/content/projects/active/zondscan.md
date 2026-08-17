@@ -27,6 +27,8 @@ license: MIT
 logos:
     - path: zondscan/icon.png
       description: ""
+maintainers:
+    - DigitalGuards
 open_source: true
 platforms:
     - web
@@ -35,6 +37,8 @@ project-types:
     - applications
 project_type: application
 project_url: https://zondscan.com/
+qrl_versions:
+    - "2.0"
 status: development
 supported_networks:
     - testnet
@@ -55,4 +59,3 @@ validators, addresses, and network activity.
 The project is open source and built with a Next.js frontend, a Go backend
 API, and a blockchain synchronizer that indexes QRL Zond data into MongoDB
 for fast lookup and analysis.
-

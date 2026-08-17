@@ -1,0 +1,37 @@
+id: qrl-javascript-cryptography
+name: QRL JavaScript Cryptography
+project_type: tooling
+qrl_versions:
+  - "2.0"
+status: development
+description: >
+  A pure-JavaScript cryptography toolkit for QRL applications with ML-DSA-87,
+  Argon2id, AES encryption, secure random generation, Keccak and SHAKE hashing,
+  and modular browser or Node.js imports.
+category: tooling
+tags:
+  - cryptography
+  - mldsa
+  - argon2id
+  - javascript
+author: The QRL
+license: MIT
+created: 2026-08-17
+updated: 2026-08-17
+
+url: https://www.npmjs.com/package/@theqrl/qrl-cryptography
+github: https://github.com/theQRL/js-qrl-cryptography
+
+open_source: true
+audited: false
+
+features:
+  - FIPS 204 ML-DSA-87 signatures
+  - Argon2id password derivation and AES encryption
+  - Cryptographically secure random generation
+  - Keccak and SHAKE hashing with modular imports
+
+tooling:
+  languages:
+    - javascript
+    - typescript

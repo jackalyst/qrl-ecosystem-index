@@ -1,0 +1,36 @@
+id: qrl-web3-js
+name: QRL Web3.js
+project_type: tooling
+qrl_versions:
+  - "2.0"
+status: development
+description: >
+  A TypeScript Web3 client suite for QRL 2.0 with JSON-RPC providers, accounts,
+  contract wrappers, ABI tooling, subscriptions, address utilities, QRNS
+  helpers, and browser or Node.js application support.
+category: tooling
+tags:
+  - sdk
+  - web3
+  - json-rpc
+  - typescript
+author: The QRL Contributors
+license: LGPL-3.0
+created: 2026-08-17
+updated: 2026-08-17
+
+url: https://github.com/theQRL/web3.js
+github: https://github.com/theQRL/web3.js
+
+open_source: true
+audited: false
+
+features:
+  - HTTP, WebSocket, and IPC QRL JSON-RPC providers
+  - QRL account, contract, ABI, event, and subscription APIs
+  - Address, validation, QRNS, and general application utilities
+  - Modular TypeScript packages for browser and Node.js applications
+
+tooling:
+  languages:
+    - typescript

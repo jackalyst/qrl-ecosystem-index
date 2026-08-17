@@ -20,17 +20,16 @@
     <div class="hero-content">
         <p class="eyebrow">QRL / Ecosystem Index</p>
         <h1 class="hero-title">A clearer view of what’s being built on QRL.</h1>
-        <p class="hero-copy">A community-maintained directory of projects, tools, services, and resources connected to QRL 2.0.</p>
+        <p class="hero-copy">A community-maintained directory of projects, tools, services, and resources across QRL 1.x and QRL 2.0.</p>
         <div class="hero-actions">
             <a class="button button-primary" href="#directory">Explore the index <span aria-hidden="true">↓</span></a>
-            <a class="button button-secondary" href="{{ relURL "/getting-started/" }}">Start building <span aria-hidden="true">→</span></a>
+            <a class="button button-secondary" href="{{ relURL "/getting-started/" }}">Build on QRL 2.0 <span aria-hidden="true">→</span></a>
         </div>
     </div>
 </section>
 
 <section class="signal-rail" aria-label="Index overview">
     <div class="signal-item"><span class="signal-value">{{ len $projects }}</span><span class="signal-label">Projects listed</span></div>
-    <div class="signal-item"><span class="signal-value">{{ len $activeProjects }}</span><span class="signal-label">Active now</span></div>
     <div class="signal-item"><span class="signal-value">{{ len site.Taxonomies.categories }}</span><span class="signal-label">Categories represented</span></div>
     <div class="signal-item"><span class="signal-value">{{ len $projectTypes }}</span><span class="signal-label">Project types</span></div>
 </section>
@@ -85,6 +84,14 @@
                 {{ end }}
             </select>
         </label>
+        <label class="filter-control" for="project-qrl-version">
+            <span>QRL version</span>
+            <select id="project-qrl-version" data-project-qrl-version>
+                <option value="">All QRL versions</option>
+                <option value="1.x">Supports QRL 1.x</option>
+                <option value="2.0">Supports QRL 2.0</option>
+            </select>
+        </label>
         <label class="filter-control" for="project-status">
             <span>Status</span>
             <select id="project-status" data-project-status>
@@ -108,22 +115,23 @@
     <div>
         <p class="eyebrow">For the next contribution</p>
         <h2 id="next-title">See what’s missing. Then build it.</h2>
-        <p>Ideas maps coverage gaps across categories and project types so builders can find a useful starting point.</p>
+        <p>Ideas maps QRL 2.0 coverage gaps across categories and project types so builders can find a useful starting point.</p>
     </div>
-    <a class="button button-primary" href="{{ relURL "/ideas/" }}">Explore build ideas <span aria-hidden="true">↗</span></a>
+    <a class="button button-primary" href="{{ relURL "/ideas/" }}">Explore QRL 2.0 ideas <span aria-hidden="true">↗</span></a>
 </section>
 
 <script>
 (() => {
-    const projects = Array.from(document.querySelectorAll("[data-project]"));
+    const projects = Array.from(document.querySelectorAll("[data-project-list] [data-project]"));
     const search = document.querySelector("[data-project-search]");
     const category = document.querySelector("[data-project-category]");
     const type = document.querySelector("[data-project-type]");
+    const qrlVersion = document.querySelector("[data-project-qrl-version]");
     const status = document.querySelector("[data-project-status]");
     const count = document.querySelector("[data-result-count]");
     const empty = document.querySelector("[data-no-results]");
 
-    if (!projects.length || !search || !category || !type || !status || !count || !empty) {
+    if (!projects.length || !search || !category || !type || !qrlVersion || !status || !count || !empty) {
         return;
     }
 
@@ -136,10 +144,12 @@
 
         projects.forEach((project) => {
             const searchText = normalize(project.dataset.search || "");
+            const qrlVersions = (project.dataset.qrlVersions || "").split(/\s+/).filter(Boolean);
             const matches =
                 (!tokens.length || tokens.every((token) => searchText.includes(token))) &&
                 (!category.value || project.dataset.category === category.value) &&
                 (!type.value || project.dataset.type === type.value) &&
+                (!qrlVersion.value || qrlVersions.includes(qrlVersion.value)) &&
                 (!status.value || project.dataset.status === status.value);
 
             project.hidden = !matches;
@@ -152,7 +162,7 @@
         empty.hidden = visible !== 0;
     };
 
-    [search, category, type, status].forEach((control) => {
+    [search, category, type, qrlVersion, status].forEach((control) => {
         control.addEventListener("input", update);
         control.addEventListener("change", update);
     });

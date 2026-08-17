@@ -1,0 +1,45 @@
+id: qrl-mobile-wallet
+name: QRL Mobile Wallet
+project_type: application
+qrl_versions:
+  - 1.x
+status: production
+description: >
+  A non-custodial QRL 1.x wallet for Android and iOS with biometric access,
+  transaction history, multiple-wallet support, contacts, custom nodes, and
+  QRL purchasing through Banxa.
+category: wallet
+tags:
+  - wallet
+  - android
+  - ios
+  - mobile
+author: Volt Development
+license: none
+created: 2026-08-17
+updated: 2026-08-17
+
+url: https://qrl-wallet.com/
+
+open_source: false
+audited: false
+
+clients:
+  - platform: android
+    url: https://play.google.com/store/apps/details?id=com.volt.qrlmobile
+    default: true
+  - platform: ios
+    url: https://apps.apple.com/app/qrl-mobile/id6448219494
+
+features:
+  - Send, receive, and manage QRL from Android and iOS devices
+  - Biometric and passcode access controls
+  - Multiple wallets, contacts, custom nodes, and transaction export
+  - In-app QRL purchasing through Banxa
+
+application:
+  platforms:
+    - android
+    - ios
+  supported_networks:
+    - mainnet
