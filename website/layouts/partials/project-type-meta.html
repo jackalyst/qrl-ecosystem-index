@@ -1,0 +1,8 @@
+{{- $value := . -}}
+{{- $result := dict -}}
+{{- range hugo.Data.classification.project_types -}}
+    {{- if or (eq .id $value) (eq .taxonomy_slug $value) -}}
+        {{- $result = . -}}
+    {{- end -}}
+{{- end -}}
+{{- return $result -}}

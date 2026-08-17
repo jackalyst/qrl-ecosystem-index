@@ -8,7 +8,7 @@ description: >
   The official Python implementation of the QRL 1.x proof-of-work node, used to
   validate and relay the chain, expose gRPC APIs, serve wallets and explorers,
   and participate in solo or pool mining.
-category: infrastructure
+category: node
 tags:
   - node
   - proof-of-work

@@ -8,7 +8,7 @@ description: >
   The official Go consensus-layer client for QRL 2.0, coordinating proof-of-stake
   beacon nodes and validators with the Go QRL execution client as part of a
   complete QRL 2.0 node.
-category: infrastructure
+category: node
 tags:
   - node
   - consensus-client

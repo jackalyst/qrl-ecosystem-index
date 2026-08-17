@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "QRL Ecosystem Project",
-  "version": 4,
+  "version": 5,
   "description": "Schema for QRL ecosystem project submissions",
   "type": "object",
   "required": ["id", "name", "project_type", "qrl_versions", "status", "description", "category", "tags", "author", "license", "created", "updated"],
@@ -42,8 +42,8 @@
     },
     "category": {
       "type": "string",
-      "enum": ["defi", "nft", "wallet", "explorer", "infrastructure", "tooling", "dao", "gaming", "identity", "oracle", "bridge", "social", "educational", "news"],
-      "description": "Project category: defi, nft, wallet, explorer, infrastructure, tooling, dao, gaming, identity, oracle, bridge, social, educational, or news"
+      "enum": ["defi", "nft", "dao", "gaming", "identity", "oracle", "bridge", "social", "wallet", "explorer", "marketplace", "token-creation", "payments", "node", "mining-pool", "rpc-service", "indexer", "monitoring", "faucet", "library", "sdk", "cli", "compiler", "developer-utility", "template", "testing", "analytics", "education", "news", "forum", "ecosystem-coordination"],
+      "description": "Child category selected from the categories allowed by project_type"
     },
     "tags": {
       "type": "array",
@@ -318,5 +318,46 @@
       }
     }
   },
+  "allOf": [
+    {
+      "oneOf": [
+        {
+          "title": "dApp classification",
+          "properties": {
+            "project_type": { "const": "dapp" },
+            "category": { "enum": ["defi", "nft", "dao", "gaming", "identity", "oracle", "bridge", "social"] }
+          }
+        },
+        {
+          "title": "Application classification",
+          "properties": {
+            "project_type": { "const": "application" },
+            "category": { "enum": ["wallet", "explorer", "marketplace", "token-creation", "payments"] }
+          }
+        },
+        {
+          "title": "Infrastructure classification",
+          "properties": {
+            "project_type": { "const": "infrastructure" },
+            "category": { "enum": ["node", "mining-pool", "rpc-service", "indexer", "monitoring", "faucet"] }
+          }
+        },
+        {
+          "title": "Tooling classification",
+          "properties": {
+            "project_type": { "const": "tooling" },
+            "category": { "enum": ["library", "sdk", "cli", "compiler", "developer-utility", "template", "testing", "analytics"] }
+          }
+        },
+        {
+          "title": "Community classification",
+          "properties": {
+            "project_type": { "const": "community" },
+            "category": { "enum": ["education", "news", "forum", "ecosystem-coordination"] }
+          }
+        }
+      ]
+    }
+  ],
   "additionalProperties": false
 }

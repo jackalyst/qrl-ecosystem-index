@@ -7,7 +7,7 @@ status: development
 description: >
   A decentralized peer-to-peer marketplace for secure and anonymous digital
   goods and services, with encrypted chat and commitment-protocol features.
-category: defi
+category: marketplace
 tags:
   - marketplace
   - peer-to-peer

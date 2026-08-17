@@ -8,7 +8,7 @@ description: >
   A pure-JavaScript cryptography toolkit for QRL applications with ML-DSA-87,
   Argon2id, AES encryption, secure random generation, Keccak and SHAKE hashing,
   and modular browser or Node.js imports.
-category: tooling
+category: library
 tags:
   - cryptography
   - mldsa

@@ -8,7 +8,7 @@ description: >
   The official Go execution-layer client for QRL 2.0, providing full, archive,
   and light node modes, QRVM smart-contract execution, HTTP, WebSocket, and IPC
   JSON-RPC interfaces, and contract developer utilities.
-category: infrastructure
+category: node
 tags:
   - node
   - execution-client

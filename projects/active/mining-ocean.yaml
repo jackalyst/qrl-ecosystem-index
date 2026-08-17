@@ -8,7 +8,7 @@ description: >
   An independent QRL 1.x PROP and solo mining pool with regional servers,
   dynamic or fixed difficulty, TLS ports, per-worker statistics, configurable
   payouts, and Telegram or email notifications.
-category: infrastructure
+category: mining-pool
 tags:
   - mining
   - pool

@@ -6,8 +6,8 @@ audited: false
 audits: []
 author: The QRL
 categories:
-    - tooling
-category: tooling
+    - library
+category: library
 clients:
     - platform: source
       github: https://github.com/theQRL/qrllib

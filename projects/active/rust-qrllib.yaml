@@ -9,7 +9,7 @@ description: >
   A native Rust and WebAssembly implementation of QRL cryptography with
   ML-DSA-87, ML-KEM-1024, SPHINCS+, legacy XMSS, QRL wallet and address helpers,
   mnemonic recovery, and descriptor-bound signing.
-category: tooling
+category: library
 tags:
   - cryptography
   - mldsa

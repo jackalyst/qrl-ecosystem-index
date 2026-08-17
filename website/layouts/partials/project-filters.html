@@ -1,0 +1,55 @@
+{{- $idPrefix := .id_prefix -}}
+{{- $showClassification := .show_classification -}}
+{{- $showStatus := .show_status -}}
+{{- $projects := where site.RegularPages "Section" "projects" -}}
+<div class="project-filter{{ if not $showClassification }} project-filter-compact{{ end }}" role="search" data-project-filter>
+    <label class="filter-control filter-control-search" for="{{ $idPrefix }}-search">
+        <span>Search</span>
+        <input id="{{ $idPrefix }}-search" type="search" data-project-search placeholder="Name, author, or capability">
+    </label>
+    {{ if $showClassification }}
+    <label class="filter-control" for="{{ $idPrefix }}-type">
+        <span>Project type</span>
+        <select id="{{ $idPrefix }}-type" data-project-type>
+            <option value="">All project types</option>
+            {{ range hugo.Data.classification.project_types }}
+            {{ $count := len (where $projects "Params.project_type" .id) }}
+            <option value="{{ .id }}">{{ .label }} ({{ $count }})</option>
+            {{ end }}
+        </select>
+    </label>
+    <label class="filter-control" for="{{ $idPrefix }}-category">
+        <span>Category</span>
+        <select id="{{ $idPrefix }}-category" data-project-category disabled>
+            <option value="">Select a project type first</option>
+            {{ range hugo.Data.classification.project_types }}
+                {{ $projectType := . }}
+                {{ range .categories }}
+                    {{ $typeProjects := where $projects "Params.project_type" $projectType.id }}
+                    {{ $count := len (where $typeProjects "Params.category" .id) }}
+            <option value="{{ .id }}" data-parent="{{ $projectType.id }}" data-label="{{ .label }}" hidden disabled>{{ .label }} ({{ $count }})</option>
+                {{ end }}
+            {{ end }}
+        </select>
+    </label>
+    {{ end }}
+    <label class="filter-control" for="{{ $idPrefix }}-qrl-version">
+        <span>QRL version</span>
+        <select id="{{ $idPrefix }}-qrl-version" data-project-qrl-version>
+            <option value="">All QRL versions</option>
+            <option value="1.x">Supports QRL 1.x</option>
+            <option value="2.0">Supports QRL 2.0</option>
+        </select>
+    </label>
+    {{ if $showStatus }}
+    <label class="filter-control" for="{{ $idPrefix }}-status">
+        <span>Status</span>
+        <select id="{{ $idPrefix }}-status" data-project-status>
+            <option value="">All statuses</option>
+            <option value="production">Production</option>
+            <option value="development">Development</option>
+            <option value="archived">Archived</option>
+        </select>
+    </label>
+    {{ end }}
+</div>

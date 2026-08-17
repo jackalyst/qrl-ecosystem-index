@@ -68,28 +68,17 @@
             </button>
             <div class="nav-items" id="site-nav-items">
                 <ul class="nav-menu">
-                    <li><a class="nav-link" href="{{ relURL "/projects/" }}">Projects</a></li>
                     <li class="nav-dropdown">
                         <details>
-                            <summary class="nav-link">Categories <span class="nav-chevron" aria-hidden="true">⌄</span></summary>
+                            <summary class="nav-link">Browse <span class="nav-chevron" aria-hidden="true">⌄</span></summary>
                             <ul class="nav-dropdown-menu">
-                                <li><a href="{{ relURL "/categories/" }}">All categories</a></li>
-                                {{ range site.Taxonomies.categories.Alphabetical }}
-                                <li><a href="{{ .Page.RelPermalink }}"><span>{{ .Page.Title }}</span><span class="nav-dropdown-count">{{ .Count }}</span></a></li>
-                                {{ end }}
-                            </ul>
-                        </details>
-                    </li>
-                    <li class="nav-dropdown">
-                        <details>
-                            <summary class="nav-link">Project types <span class="nav-chevron" aria-hidden="true">⌄</span></summary>
-                            <ul class="nav-dropdown-menu">
-                                <li><a href="{{ relURL "/project-types/" }}">All project types</a></li>
+                                <li><a href="{{ relURL "/projects/" }}">All projects</a></li>
+                                <li><a href="{{ relURL "/project-types/" }}">Classification overview</a></li>
+                                <li><a href="{{ relURL "/categories/" }}">Categories by project type</a></li>
                                 {{ $taxonomy := index site.Taxonomies "project-types" }}
-                                {{ $types := slice "dapps" "applications" "infrastructure" "tooling" "community" }}
-                                {{ range $types }}
-                                {{ $entry := index $taxonomy . }}
-                                <li><a href="{{ printf "/project-types/%s/" . | relURL }}"><span>{{ partial "project-type-label.html" . }}</span><span class="nav-dropdown-count">{{ with $entry }}{{ .Count }}{{ else }}0{{ end }}</span></a></li>
+                                {{ range hugo.Data.classification.project_types }}
+                                {{ $entry := index $taxonomy .taxonomy_slug }}
+                                <li><a href="{{ printf "/project-types/%s/" .taxonomy_slug | relURL }}"><span>{{ .label }}</span><span class="nav-dropdown-count">{{ with $entry }}{{ .Count }}{{ else }}0{{ end }}</span></a></li>
                                 {{ end }}
                             </ul>
                         </details>

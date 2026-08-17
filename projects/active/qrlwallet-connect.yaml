@@ -8,7 +8,7 @@ description: >
   A TypeScript SDK (@qrlwallet/connect) for connecting dApps to MyQRLWallet
   over a post-quantum encrypted relay, with QR code and deep-link pairing, an
   EIP-1193 style provider, and persistent sessions.
-category: tooling
+category: sdk
 tags:
   - sdk
   - dapp

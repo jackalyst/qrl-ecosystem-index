@@ -2,4 +2,4 @@
 title: "Tooling"
 ---
 
-Development tools, libraries, and SDKs.
+Software used to build, test, integrate, and analyze QRL projects.

@@ -8,7 +8,7 @@ description: >
   A browser application for deploying configurable fungible tokens on the QRL
   2.0 testnet without writing code, including supply, decimals, minting,
   burning, ownership, recipient, wallet-cap, and transaction-limit options.
-category: tooling
+category: token-creation
 tags:
   - token-generator
   - qrc20

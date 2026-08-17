@@ -920,7 +920,7 @@ main {
 .project-card-kicker span + span::before {
     margin-right: 0.6rem;
     color: var(--line-strong);
-    content: "/";
+    content: "›";
 }
 
 .project-card h3 {
@@ -1029,6 +1029,11 @@ main {
     box-shadow: 0 0 0 3px var(--focus);
 }
 
+.filter-control select:disabled {
+    cursor: not-allowed;
+    opacity: 0.62;
+}
+
 .no-results,
 .empty-state {
     margin: 1rem 0 0;
@@ -1074,10 +1079,26 @@ main {
 }
 
 .browse-card span {
+    display: grid;
+    gap: 0.25rem;
     font-family: var(--font-display);
     font-size: var(--text-card-title);
     font-weight: var(--weight-semibold);
     letter-spacing: var(--tracking-tight);
+}
+
+.browse-card span small {
+    color: var(--muted);
+    font-family: var(--font-sans);
+    font-size: var(--text-label);
+    font-weight: var(--weight-semibold);
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+}
+
+.browse-card-empty {
+    border-style: dashed;
+    background: color-mix(in srgb, var(--surface) 72%, transparent);
 }
 
 .browse-card strong,
@@ -1111,6 +1132,62 @@ main {
 .taxonomy-card-content {
     display: grid;
     gap: 0.6rem;
+}
+
+.taxonomy-card-children {
+    color: var(--muted);
+    font-size: var(--text-caption);
+    line-height: var(--leading-copy);
+}
+
+.classification-groups,
+.classification-opportunity-groups {
+    display: grid;
+    gap: clamp(3rem, 7vw, 5.5rem);
+    margin-top: 3rem;
+}
+
+.classification-group,
+.classification-children,
+.classification-opportunity-group {
+    scroll-margin-top: 7rem;
+}
+
+.classification-group-header {
+    display: grid;
+    grid-template-columns: minmax(12rem, 0.7fr) minmax(16rem, 1fr);
+    gap: 2rem;
+    align-items: end;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 1.25rem;
+}
+
+.classification-group-header h2,
+.classification-opportunity-heading h3 {
+    margin: 0.35rem 0 0;
+    font-family: var(--font-display);
+    font-size: var(--text-subheading);
+    letter-spacing: var(--tracking-tight);
+    line-height: var(--leading-tight);
+}
+
+.classification-group-header h2 a {
+    color: var(--ink);
+    text-decoration: none;
+}
+
+.classification-group-header h2 a:hover {
+    color: var(--blue);
+}
+
+.classification-group-header > p {
+    max-width: 46rem;
+    margin: 0;
+    color: var(--ink-soft);
+}
+
+.classification-children {
+    margin-top: 3rem;
 }
 
 .taxonomy-card-content strong {
@@ -1323,6 +1400,12 @@ main {
 .meta-chip.project-type {
     background: var(--amber-soft);
     color: var(--amber);
+}
+
+.classification-separator {
+    align-self: center;
+    color: var(--line-strong);
+    font-weight: var(--weight-bold);
 }
 
 .project-dek {
@@ -1992,6 +2075,19 @@ body.gallery-dialog-open {
 .coverage-card p {
     margin: 0;
     color: var(--ink-soft);
+}
+
+.coverage-card .coverage-parent {
+    margin-top: 0.35rem;
+    color: var(--muted);
+    font-size: var(--text-label);
+    font-weight: var(--weight-semibold);
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+}
+
+.classification-opportunity-heading {
+    margin-bottom: 1rem;
 }
 
 .coverage-card ul {
@@ -2685,6 +2781,11 @@ body.gallery-dialog-open {
 }
 
 @media (max-width: 899px) {
+    .classification-group-header {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
     .site-header {
         padding-top: 0.75rem;
     }

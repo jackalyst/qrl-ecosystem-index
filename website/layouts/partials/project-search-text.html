@@ -1,4 +1,4 @@
-{{- $parts := slice .Title .Params.description .Params.category .Params.status .Params.author .Params.license .Params.project_url .Params.github .Params.docs .Params.discord .Params.twitter .Params.project_type .Params.ecosystem_type -}}
+{{- $parts := slice .Title .Params.description .Params.category (partial "category-label.html" .Params.category) .Params.status .Params.author .Params.license .Params.project_url .Params.github .Params.docs .Params.discord .Params.twitter .Params.project_type (partial "project-type-label.html" .Params.project_type) .Params.ecosystem_type -}}
 {{- with (index .Params "project-types") -}}
     {{- range . -}}
         {{- $parts = $parts | append . -}}

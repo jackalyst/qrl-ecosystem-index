@@ -2,4 +2,4 @@
 title: "Project Types"
 ---
 
-Browse projects by project type:
+Choose a parent project type, then explore its child categories and listed projects.

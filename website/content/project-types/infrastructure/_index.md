@@ -2,4 +2,4 @@
 title: "Infrastructure"
 ---
 
-Services that support or extend the QRL network.
+Network software and operated services that support QRL.

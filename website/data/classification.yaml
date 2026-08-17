@@ -1,0 +1,232 @@
+project_types:
+  - id: dapp
+    taxonomy_slug: dapps
+    label: dApps
+    description: Decentralized, smart-contract based applications with on-chain logic.
+    ideas:
+      - Starter dApps for token swaps, escrow, registries, auctions, and governance.
+      - Reference apps that show wallet connection, contract reads, and transaction submission.
+      - Small, testnet-first examples that other builders can fork.
+    categories:
+      - id: defi
+        label: DeFi
+        description: Financial protocols and primitives.
+        ideas:
+          - Token launchpads, decentralized exchanges, lending, collateral, escrow, and payment experiments.
+          - Liquidity, staking, treasury, and asset-management protocols designed for QRL.
+      - id: nft
+        label: NFTs
+        description: On-chain collections, marketplaces, galleries, and ownership primitives.
+        ideas:
+          - NFT minting and collection contracts with clear metadata and provenance conventions.
+          - QRL-native marketplaces, galleries, and collection-management dApps.
+      - id: dao
+        label: DAO & governance
+        description: Governance, treasuries, proposals, voting, and delegation.
+        ideas:
+          - DAO voting with proposal discussion, delegation, and treasury execution.
+          - On-chain grants and contribution registries with transparent milestones.
+      - id: gaming
+        label: Gaming
+        description: Games and game-adjacent on-chain assets.
+        ideas:
+          - On-chain game templates for raffles, tournaments, collectibles, or strategy games.
+          - Fair-selection and randomness-backed game mechanics.
+      - id: identity
+        label: Identity
+        description: Names, profiles, credentials, and attestations.
+        ideas:
+          - Human-readable names for addresses, profiles, websites, and projects.
+          - Attestation contracts for credentials, memberships, audits, and project claims.
+      - id: oracle
+        label: Oracles
+        description: External data feeds and signed data publication.
+        ideas:
+          - Price feeds for major assets and QRC-20 tokens.
+          - Proof-of-reserve, proof-of-liability, and signed-data publisher templates.
+      - id: bridge
+        label: Bridges
+        description: Cross-chain value, messaging, metadata, and compatibility.
+        ideas:
+          - Research-grade bridge prototypes for value or message passing.
+          - Wrapped-asset dashboards with supply, custody, risk, and contract details.
+      - id: social
+        label: Social
+        description: On-chain social, messaging, reputation, and coordination applications.
+        ideas:
+          - Social feeds or forums using QRL accounts for posting, voting, or moderation.
+          - Reputation and encrypted-messaging experiments tied to wallet identities.
+
+  - id: application
+    taxonomy_slug: applications
+    label: Applications
+    description: User-facing clients, interfaces, and end-user utilities.
+    ideas:
+      - Mobile and desktop clients that make QRL easier to use.
+      - Focused interfaces for accounts, tokens, network data, and payments.
+    categories:
+      - id: wallet
+        label: Wallets
+        description: Wallets, signing interfaces, and account-management experiences.
+        ideas:
+          - Multisig wallets for teams, treasuries, and validator operators.
+          - Hardware-wallet integrations, address books, and payment-request flows.
+      - id: explorer
+        label: Explorers
+        description: Interfaces for chain, contract, validator, token, and account activity.
+        ideas:
+          - Specialized token, contract, validator, and rich-list dashboards.
+          - Analytics for transactions, gas, active accounts, and contract usage.
+      - id: marketplace
+        label: Marketplaces
+        description: User-facing venues for discovering and exchanging goods or services.
+        ideas:
+          - Peer-to-peer commerce with transparent reputation and dispute flows.
+          - Directories for digital services, creator work, or ecosystem offerings.
+      - id: token-creation
+        label: Token creation
+        description: No-code and guided interfaces for creating and managing tokens.
+        ideas:
+          - Guided QRC-20 deployment with metadata, distribution, and verification.
+          - Token administration interfaces for minting, burning, and ownership changes.
+      - id: payments
+        label: Payments
+        description: Checkout, invoicing, payment requests, and merchant experiences.
+        ideas:
+          - Merchant checkout and invoice tools with verifiable payment state.
+          - Payment links, recurring requests, and point-of-sale experiments.
+
+  - id: infrastructure
+    taxonomy_slug: infrastructure
+    label: Infrastructure
+    description: Network software and operated services that support QRL.
+    ideas:
+      - Reliable public network services with documented operation and health.
+      - Deployment components for node operators, validators, and application builders.
+    categories:
+      - id: node
+        label: Node clients
+        description: Execution, consensus, validator, and full-node software.
+        ideas:
+          - Alternative clients, packaged node distributions, and reproducible node setups.
+          - Operator-focused improvements for archive, validator, and light-node modes.
+      - id: mining-pool
+        label: Mining pools
+        description: Operated services coordinating proof-of-work miners and payouts.
+        ideas:
+          - Transparent pool implementations and monitoring for QRL 1.x miners.
+          - Regional, low-latency pool services with documented payout policies.
+      - id: rpc-service
+        label: RPC services
+        description: Public or hosted endpoints for applications and network clients.
+        ideas:
+          - Public RPC directories with health checks, latency, and rate-limit notes.
+          - Hosted endpoints with transparent retention and reliability policies.
+      - id: indexer
+        label: Indexers
+        description: Services that transform chain data into queryable application data.
+        ideas:
+          - Hosted indexer APIs for blocks, transactions, events, tokens, and validators.
+          - Reusable indexing pipelines with stable schemas and backfill support.
+      - id: monitoring
+        label: Monitoring
+        description: Network, node, validator, and service health monitoring.
+        ideas:
+          - Prometheus and Grafana templates for nodes, validators, and RPC services.
+          - Public status pages, alerting packs, and network incident dashboards.
+      - id: faucet
+        label: Faucets
+        description: Testnet token distribution and developer funding services.
+        ideas:
+          - Rate-limited public faucets with abuse controls and clear availability.
+          - Local-development faucets for automated integration testing.
+
+  - id: tooling
+    taxonomy_slug: tooling
+    label: Tooling
+    description: Software used to build, test, integrate, and analyze QRL projects.
+    ideas:
+      - Reusable packages and utilities for common QRL development tasks.
+      - Testnet-first tools with examples that other builders can adopt.
+    categories:
+      - id: library
+        label: Libraries
+        description: Reusable code packages for cryptography, wallets, and protocol operations.
+        ideas:
+          - Maintained language libraries for accounts, signatures, transactions, and addresses.
+          - Focused cryptography packages with test vectors and migration guidance.
+      - id: sdk
+        label: SDKs
+        description: Higher-level integration kits for wallets, dApps, and network services.
+        ideas:
+          - Application SDKs with providers, subscriptions, contracts, and wallet connection.
+          - Framework-specific packages and complete integration examples.
+      - id: cli
+        label: CLI tools
+        description: Command-line tools for users, developers, and operators.
+        ideas:
+          - Scaffolding, deployment, token metadata, network-query, and signing commands.
+          - Scriptable administrative tools with machine-readable output.
+      - id: compiler
+        label: Compilers
+        description: Languages, compilers, and build systems for QRL smart contracts.
+        ideas:
+          - Compiler diagnostics, language tooling, formatters, and editor integration.
+          - Reproducible contract builds and source-verification workflows.
+      - id: developer-utility
+        label: Developer utilities
+        description: Focused utilities, scripts, installers, and operator helpers.
+        ideas:
+          - Local development stacks combining a node, explorer, faucet, and examples.
+          - Installation, migration, address, and transaction inspection utilities.
+      - id: template
+        label: Templates & examples
+        description: Reference implementations and reusable project starters.
+        ideas:
+          - Starter dApps with wallet connection, contract reads, and transaction submission.
+          - Contract examples for tokens, escrow, governance, auctions, and registries.
+      - id: testing
+        label: Testing tools
+        description: Test frameworks, fixtures, simulators, and quality-assurance utilities.
+        ideas:
+          - Test utilities for wallets, dApps, providers, indexers, and contracts.
+          - Deterministic fixtures and local network scenarios for integration tests.
+      - id: analytics
+        label: Analytics & data
+        description: Datasets and analytical tools for protocol and ecosystem research.
+        ideas:
+          - Reproducible datasets for supply, emissions, validators, and network activity.
+          - Notebooks and dashboards that explain methodology and data provenance.
+
+  - id: community
+    taxonomy_slug: community
+    label: Community
+    description: Educational resources, media, discussion spaces, and ecosystem coordination.
+    ideas:
+      - Welcoming spaces and resources that help people understand and contribute to QRL.
+      - Public coordination tools for ecosystem work and community programs.
+    categories:
+      - id: education
+        label: Education
+        description: Guides, courses, explainers, and learning paths.
+        ideas:
+          - Hands-on QRL 2.0 courses covering wallets, contracts, and dApps.
+          - Interactive tutorials, glossaries, and migration notes.
+      - id: news
+        label: News & media
+        description: Reporting, newsletters, podcasts, and ecosystem updates.
+        ideas:
+          - News sites, podcasts, or newsletters focused on QRL ecosystem development.
+          - Release, governance, project-launch, and ecosystem-change digests.
+      - id: forum
+        label: Forums & social spaces
+        description: Discussion spaces where community members meet and exchange knowledge.
+        ideas:
+          - Moderated forums and chat communities with clear participation guidance.
+          - Regular community calls, support spaces, and topic-focused groups.
+      - id: ecosystem-coordination
+        label: Ecosystem coordination
+        description: Grants, bounties, roadmaps, events, and contributor coordination.
+        ideas:
+          - Public grants and bounty boards with milestones and delivery updates.
+          - Ecosystem roadmaps, event calendars, and contributor directories.

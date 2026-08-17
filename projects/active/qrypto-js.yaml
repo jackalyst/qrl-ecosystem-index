@@ -8,7 +8,7 @@ description: >
   A JavaScript and TypeScript post-quantum signature library for QRL 2.0,
   providing FIPS 204 ML-DSA-87 and legacy Dilithium5 packages for browsers and
   Node.js with combined and detached signing APIs.
-category: tooling
+category: library
 tags:
   - cryptography
   - mldsa

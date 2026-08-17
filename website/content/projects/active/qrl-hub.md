@@ -6,8 +6,8 @@ audited: false
 audits: []
 author: QRL Hub
 categories:
-    - educational
-category: educational
+    - education
+category: education
 clients: []
 created: "2026-05-29"
 default_client_url: https://qrlhub.com/

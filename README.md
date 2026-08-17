@@ -79,21 +79,16 @@ qrl-ecosystem/
     └── PULL_REQUEST_TEMPLATE.md
 ```
 
-## Categories
+## Project Classification
 
-Projects are tagged with one of:
+Every project chooses a parent `project_type` and exactly one category allowed beneath that type. Categories are not interchangeable across project types.
 
-- `defi` - Decentralized finance
-- `nft` - NFT-related projects
-- `wallet` - Wallets and key management
-- `explorer` - Block explorers
-- `infrastructure` - Infrastructure services
-- `tooling` - Developer tools
-- `dao` - DAO governance
-- `gaming` - Gaming applications
-- `identity` - Identity solutions
-- `oracle` - Oracle services
-- `bridge` - Cross-chain bridges
-- `social` - Social platforms
-- `educational` - Educational resources
-- `news` - News and media
+| Project type | Allowed categories |
+|---|---|
+| `dapp` | `defi`, `nft`, `dao`, `gaming`, `identity`, `oracle`, `bridge`, `social` |
+| `application` | `wallet`, `explorer`, `marketplace`, `token-creation`, `payments` |
+| `infrastructure` | `node`, `mining-pool`, `rpc-service`, `indexer`, `monitoring`, `faucet` |
+| `tooling` | `library`, `sdk`, `cli`, `compiler`, `developer-utility`, `template`, `testing`, `analytics` |
+| `community` | `education`, `news`, `forum`, `ecosystem-coordination` |
+
+The ordered labels, descriptions, and roadmap ideas are defined in `website/data/classification.yaml`; the JSON schema enforces the same parent/child pairs.

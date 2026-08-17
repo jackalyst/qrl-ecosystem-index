@@ -50,7 +50,7 @@
     <p class="section-note section-note-bottom">Generated to help visitors explore different parts of the ecosystem. This is not a ranking or endorsement.</p>
 </section>
 
-<section class="section-shell directory-section" id="directory" aria-labelledby="directory-title">
+<section class="section-shell directory-section" id="directory" aria-labelledby="directory-title" data-project-directory>
     <div class="section-heading section-heading-row">
         <div>
             <p class="eyebrow">Browse the ecosystem</p>
@@ -59,56 +59,14 @@
         <p class="result-summary"><strong data-result-count>{{ len $projects }}</strong> matching projects</p>
     </div>
 
-    <div class="project-filter" role="search">
-        <label class="filter-control filter-control-search" for="project-search">
-            <span>Search</span>
-            <input id="project-search" type="search" data-project-search placeholder="Name, category, author, or capability">
-        </label>
-        <label class="filter-control" for="project-category">
-            <span>Category</span>
-            <select id="project-category" data-project-category>
-                <option value="">All categories</option>
-                {{ range site.Taxonomies.categories.Alphabetical }}
-                <option value="{{ .Name | lower }}">{{ .Page.Title }}</option>
-                {{ end }}
-            </select>
-        </label>
-        <label class="filter-control" for="project-type">
-            <span>Project type</span>
-            <select id="project-type" data-project-type>
-                <option value="">All types</option>
-                {{ $types := slice "dapps" "applications" "infrastructure" "tooling" "community" }}
-                {{ range $types }}
-                {{ $entry := index $projectTypes . }}
-                {{ if $entry }}<option value="{{ . }}">{{ partial "project-type-label.html" . }}</option>{{ end }}
-                {{ end }}
-            </select>
-        </label>
-        <label class="filter-control" for="project-qrl-version">
-            <span>QRL version</span>
-            <select id="project-qrl-version" data-project-qrl-version>
-                <option value="">All QRL versions</option>
-                <option value="1.x">Supports QRL 1.x</option>
-                <option value="2.0">Supports QRL 2.0</option>
-            </select>
-        </label>
-        <label class="filter-control" for="project-status">
-            <span>Status</span>
-            <select id="project-status" data-project-status>
-                <option value="">All statuses</option>
-                <option value="production">Production</option>
-                <option value="development">Development</option>
-                <option value="archived">Archived</option>
-            </select>
-        </label>
-    </div>
+    {{ partial "project-filters.html" (dict "id_prefix" "project" "show_classification" true "show_status" true) }}
 
     <div class="project-grid" data-project-list>
         {{ range $projects }}
             {{ partial "project-card.html" (dict "project" .) }}
         {{ end }}
     </div>
-    <p class="no-results" data-no-results hidden>No matching projects. Try a broader search or reset a filter.</p>
+    <p class="no-results" data-no-results hidden><span data-no-results-copy>No matching projects. Try a broader search or reset a filter.</span> <a href="{{ relURL "/ideas/" }}" data-no-results-ideas data-ideas-base="{{ relURL "/ideas/" }}" hidden>Explore this opportunity.</a></p>
 </section>
 
 <section class="split-callout" aria-labelledby="next-title">
@@ -120,54 +78,5 @@
     <a class="button button-primary" href="{{ relURL "/ideas/" }}">Explore QRL 2.0 ideas <span aria-hidden="true">↗</span></a>
 </section>
 
-<script>
-(() => {
-    const projects = Array.from(document.querySelectorAll("[data-project-list] [data-project]"));
-    const search = document.querySelector("[data-project-search]");
-    const category = document.querySelector("[data-project-category]");
-    const type = document.querySelector("[data-project-type]");
-    const qrlVersion = document.querySelector("[data-project-qrl-version]");
-    const status = document.querySelector("[data-project-status]");
-    const count = document.querySelector("[data-result-count]");
-    const empty = document.querySelector("[data-no-results]");
-
-    if (!projects.length || !search || !category || !type || !qrlVersion || !status || !count || !empty) {
-        return;
-    }
-
-    const normalize = (value) => value.toString().normalize("NFKD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
-    const queryTokens = () => normalize(search.value).trim().split(/\s+/).filter(Boolean);
-
-    const update = () => {
-        const tokens = queryTokens();
-        let visible = 0;
-
-        projects.forEach((project) => {
-            const searchText = normalize(project.dataset.search || "");
-            const qrlVersions = (project.dataset.qrlVersions || "").split(/\s+/).filter(Boolean);
-            const matches =
-                (!tokens.length || tokens.every((token) => searchText.includes(token))) &&
-                (!category.value || project.dataset.category === category.value) &&
-                (!type.value || project.dataset.type === type.value) &&
-                (!qrlVersion.value || qrlVersions.includes(qrlVersion.value)) &&
-                (!status.value || project.dataset.status === status.value);
-
-            project.hidden = !matches;
-            if (matches) {
-                visible += 1;
-            }
-        });
-
-        count.textContent = visible;
-        empty.hidden = visible !== 0;
-    };
-
-    [search, category, type, qrlVersion, status].forEach((control) => {
-        control.addEventListener("input", update);
-        control.addEventListener("change", update);
-    });
-    window.addEventListener("pageshow", update);
-    update();
-})();
-</script>
+{{ with resources.Get "js/project-filters.js" }}<script src="{{ .RelPermalink }}" defer></script>{{ end }}
 {{ end }}

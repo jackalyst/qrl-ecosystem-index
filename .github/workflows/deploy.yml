@@ -50,11 +50,6 @@ jobs:
           import jsonschema
           import yaml
 
-          VALID_CATEGORIES = {
-              'defi', 'nft', 'wallet', 'explorer', 'infrastructure', 'tooling',
-              'dao', 'gaming', 'identity', 'oracle', 'bridge', 'social',
-              'educational', 'news'
-          }
           VALID_STATUSES = {'development', 'production', 'archived'}
           VALID_NETWORKS = {'mainnet', 'testnet'}
           DATE_PATTERN = re.compile(r'^\d{4}-\d{2}-\d{2}$')
@@ -124,9 +119,6 @@ jobs:
               if 'description' in data and len(data['description']) > 280:
                   errors.append(f"{yaml_file}: Description exceeds 280 characters ({len(data['description'])})")
 
-              if data.get('category') and data['category'] not in VALID_CATEGORIES:
-                  errors.append(f"{yaml_file}: Invalid category '{data['category']}'")
-
               if data.get('status') and data['status'] not in VALID_STATUSES:
                   errors.append(f"{yaml_file}: Invalid status '{data['status']}'")
 
@@ -163,6 +155,11 @@ jobs:
 
       - name: Validate gallery media
         run: python3 scripts/validate_gallery.py
+
+      - name: Validate classification hierarchy
+        run: |
+          python3 scripts/validate_classification.py
+          python3 -m unittest discover -s scripts -p 'validate_classification_test.py'
 
       - name: Generate project content
         run: go run scripts/generate.go
