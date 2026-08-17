@@ -129,6 +129,7 @@
         control.addEventListener("input", update);
         control.addEventListener("change", update);
     });
+    window.addEventListener("pageshow", update);
     update();
 })();
 </script>
