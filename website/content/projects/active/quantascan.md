@@ -48,6 +48,9 @@ project-types:
     - applications
 project_type: application
 project_url: https://quantascan.io
+qrl_versions:
+    - 1.x
+    - "2.0"
 status: production
 supported_networks:
     - mainnet

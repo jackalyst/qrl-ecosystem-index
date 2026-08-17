@@ -55,6 +55,8 @@ project-types:
     - dapps
 project_type: dapp
 project_url: https://quantaswap.io/
+qrl_versions:
+    - "2.0"
 status: development
 tags:
     - atomic-swaps

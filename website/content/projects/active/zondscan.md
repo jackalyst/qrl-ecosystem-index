@@ -35,6 +35,8 @@ project-types:
     - applications
 project_type: application
 project_url: https://zondscan.com/
+qrl_versions:
+    - "2.0"
 status: development
 supported_networks:
     - testnet

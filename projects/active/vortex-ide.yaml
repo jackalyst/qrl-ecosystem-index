@@ -1,0 +1,36 @@
+id: vortex-ide
+name: Vortex IDE
+project_type: tooling
+qrl_versions:
+  - "2.0"
+status: development
+description: >
+  An in-development browser IDE based on Remix for writing, compiling,
+  testing, and deploying Hyperion smart contracts on QRL 2.0 with a familiar
+  Solidity-oriented development workflow.
+category: tooling
+tags:
+  - ide
+  - smart-contracts
+  - hyperion
+  - browser
+author: The QRL
+license: none
+created: 2026-08-17
+updated: 2026-08-17
+
+url: https://www.theqrl.org/roadmap/
+
+open_source: false
+audited: false
+
+features:
+  - Browser-based Hyperion contract editing
+  - QRL 2.0 contract compilation and deployment workflow
+  - Remix-derived interface for Solidity developers
+  - Testnet support under active development
+
+tooling:
+  languages:
+    - hyperion
+    - javascript

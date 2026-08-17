@@ -28,6 +28,7 @@ This index broadly covers five types of projects.
 | `id` | `string` | Unique slug identifier, lowercase, hyphenated (e.g. `my-qrl-dapp`) |
 | `name` | `string` | Human-readable project name |
 | `project_type` | `enum` | One of: `dapp`, `application`, `infrastructure`, `tooling`, `community` |
+| `qrl_versions` | `list[enum]` | One or both of: `1.x`, `2.0` |
 | `status` | `enum` | One of: `development`, `production`, `archived` |
 | `description` | `string` | Short description, max 280 characters |
 | `category` | `enum` | One of: `defi`, `nft`, `wallet`, `explorer`, `infrastructure`, `tooling`, `dao`, `gaming`, `identity`, `oracle`, `bridge`, `social`, `educational`, `news` |
@@ -183,6 +184,8 @@ Open an issue or reach out on the QRL Discord.
 id: quanta-swap
 name: Quanta Swap
 project_type: dapp
+qrl_versions:
+  - "2.0"
 status: development
 description: >
   A decentralized token swap protocol built natively
@@ -214,7 +217,7 @@ features:
   - Post-quantum secure transactions
 
 dapp:
-  networks: testnet
+  network: testnet
   contract_address: "Q0104..."
 
 long_description: |
@@ -231,6 +234,9 @@ long_description: |
 id: quanta-wallet
 name: Quanta Wallet
 project_type: application
+qrl_versions:
+  - 1.x
+  - "2.0"
 status: development
 description: >
   A post-quantum secure wallet for storing, sending,

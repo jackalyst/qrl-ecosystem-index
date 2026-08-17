@@ -32,6 +32,7 @@ type Project struct {
 	ID              string        `yaml:"id"`
 	Name            string        `yaml:"name"`
 	ProjectType     string        `yaml:"project_type"`
+	QRLVersions     []string      `yaml:"qrl_versions"`
 	Status          string        `yaml:"status"`
 	Description     string        `yaml:"description"`
 	Category        string        `yaml:"category"`
@@ -278,6 +279,7 @@ func generateProjectPage(p Project) {
 		"category":     p.Category,
 		"categories":   []string{p.Category},
 		"tags":         p.Tags,
+		"qrl_versions": p.QRLVersions,
 		"project_type": p.ProjectType,
 		"project-types": []string{
 			projectTypeSlug(p.ProjectType),
@@ -381,6 +383,7 @@ func generateJSONIndex(projects []Project) {
 		Name        string   `json:"name"`
 		Status      string   `json:"status"`
 		Category    string   `json:"category"`
+		QRLVersions []string `json:"qrl_versions"`
 		Description string   `json:"description"`
 		URL         string   `json:"url"`
 		GitHub      string   `json:"github"`
@@ -395,6 +398,7 @@ func generateJSONIndex(projects []Project) {
 			Name:        p.Name,
 			Status:      p.Status,
 			Category:    p.Category,
+			QRLVersions: p.QRLVersions,
 			Description: strings.TrimSpace(p.Description),
 			URL:         defaultProjectURL(p),
 			GitHub:      defaultProjectGitHub(p),
@@ -567,7 +571,7 @@ func renderDefaultSocialCard(fonts socialCardFonts) image.Image {
 	drawCardBackground(card)
 	drawLabel(card, fonts.label, "QRL / COMMUNITY INDEX", 72, 64, cardAccent)
 	drawWrappedText(card, fonts.title, "QRL Ecosystem\nIndex", 72, 190, 600, 2, 76, cardInk)
-	drawWrappedText(card, fonts.body, "A community-maintained view of projects, tools, services, and resources connected to QRL 2.0.", 72, 410, 580, 3, 36, cardMuted)
+	drawWrappedText(card, fonts.body, "A community-maintained view of projects, tools, services, and resources across QRL 1.x and QRL 2.0.", 72, 410, 580, 3, 36, cardMuted)
 	drawCardMotif(card, "QI", fonts, 770, 90, 350, 410)
 	drawFooter(card, fonts)
 	return card

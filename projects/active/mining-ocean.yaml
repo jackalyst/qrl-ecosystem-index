@@ -1,0 +1,38 @@
+id: mining-ocean
+name: MiningOcean QRL Pool
+project_type: infrastructure
+qrl_versions:
+  - 1.x
+status: production
+description: >
+  An independent QRL 1.x PROP and solo mining pool with regional servers,
+  dynamic or fixed difficulty, TLS ports, per-worker statistics, configurable
+  payouts, and Telegram or email notifications.
+category: infrastructure
+tags:
+  - mining
+  - pool
+  - randomx
+  - proof-of-work
+author: MiningOcean
+license: none
+created: 2026-08-17
+updated: 2026-08-17
+
+url: https://qrl.miningocean.org/
+docs: https://qrl.miningocean.org/how_to_start
+
+open_source: false
+audited: false
+
+features:
+  - PROP payout system with pool and solo mining
+  - Regional servers across Europe, North America, and Asia
+  - TLS, dynamic or fixed difficulty, and configurable payment thresholds
+  - Worker statistics and Telegram or email notifications
+
+infrastructure:
+  supported_networks:
+    - mainnet
+  endpoints:
+    - https://qrl.miningocean.org/how_to_start

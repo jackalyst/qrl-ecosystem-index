@@ -1,0 +1,36 @@
+id: qrl-file-tools
+name: QRL File Tools
+project_type: tooling
+qrl_versions:
+  - "2.0"
+status: development
+description: >
+  Command-line tools for post-quantum file signing, signature verification,
+  public-key extraction, hashing, and salt generation using FIPS 204 ML-DSA-87
+  or legacy Dilithium signatures.
+category: tooling
+tags:
+  - cli
+  - file-signing
+  - mldsa
+  - hashing
+author: The QRL
+license: MIT
+created: 2026-08-17
+updated: 2026-08-17
+
+url: https://github.com/theQRL/qrlft
+github: https://github.com/theQRL/qrlft
+
+open_source: true
+audited: false
+
+features:
+  - ML-DSA-87 and Dilithium file or string signing
+  - Detached signature verification and public-key extraction
+  - SHA-3, SHA-2, Keccak, and BLAKE2 hashing
+  - Secure key-file permissions and application-specific signing contexts
+
+tooling:
+  languages:
+    - go

@@ -1,6 +1,9 @@
 id: qrl-hub
 name: QRL Hub
 project_type: community
+qrl_versions:
+  - 1.x
+  - "2.0"
 status: production
 description: >
   A community-maintained educational website covering QRL, quantum computing

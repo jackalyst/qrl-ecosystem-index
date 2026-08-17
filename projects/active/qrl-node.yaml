@@ -1,0 +1,39 @@
+id: qrl-node
+name: QRL 1.x Node
+project_type: infrastructure
+qrl_versions:
+  - 1.x
+status: production
+description: >
+  The official Python implementation of the QRL 1.x proof-of-work node, used to
+  validate and relay the chain, expose gRPC APIs, serve wallets and explorers,
+  and participate in solo or pool mining.
+category: infrastructure
+tags:
+  - node
+  - proof-of-work
+  - grpc
+  - mining
+author: The QRL
+license: MIT
+created: 2026-08-17
+updated: 2026-08-17
+
+url: https://github.com/theQRL/QRL
+github: https://github.com/theQRL/QRL
+docs: https://docs.theqrl.org/use/node/
+
+open_source: true
+audited: false
+
+features:
+  - Full QRL 1.x blockchain validation and peer-to-peer networking
+  - Mainnet, testnet, and private-network operation
+  - gRPC interfaces for wallets, explorers, and custom applications
+  - Solo and pool mining support
+
+infrastructure:
+  supported_networks:
+    - mainnet
+    - testnet
+  endpoints: []

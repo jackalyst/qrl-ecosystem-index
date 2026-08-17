@@ -1,10 +1,10 @@
 # QRL Ecosystem Index
 
-A community-contributed index of projects building on QRL 2.0.
+A community-contributed index of projects across QRL 1.x and QRL 2.0.
 
 ## Overview
 
-This repository is the **data layer** for the QRL ecosystem, providing a structured, version-controlled, community-maintained index of projects built on QRL 2.0 smart contracts.
+This repository is the **data layer** for the QRL ecosystem, providing a structured, version-controlled, community-maintained index of projects supporting QRL 1.x, QRL 2.0, or both.
 
 ## Agent-Friendly Access
 

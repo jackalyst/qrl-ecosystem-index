@@ -1,0 +1,39 @@
+id: qrl-block-explorer
+name: QRL Block Explorer
+project_type: application
+qrl_versions:
+  - 1.x
+status: production
+description: >
+  The official explorer for the QRL 1.x mainnet, providing block, transaction,
+  address, token, rich-list, peer, mempool, network-statistics, and JSON API
+  views backed by a connected QRL node.
+category: explorer
+tags:
+  - explorer
+  - blocks
+  - transactions
+  - api
+author: The QRL
+license: MIT
+created: 2026-08-17
+updated: 2026-08-17
+
+url: https://explorer.theqrl.org/
+github: https://github.com/theQRL/block-explorer
+docs: https://docs.theqrl.org/use/tools/explorer/overview/
+
+open_source: true
+audited: false
+
+features:
+  - Block, transaction, address, token, and unconfirmed-transaction lookup
+  - Network status, peers, rich list, and mining statistics
+  - Public explorer API for application integrations
+  - Live QRL 1.x mainnet data
+
+application:
+  platforms:
+    - web
+  supported_networks:
+    - mainnet

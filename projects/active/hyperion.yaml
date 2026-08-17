@@ -1,0 +1,49 @@
+id: hyperion
+name: Hyperion
+project_type: tooling
+qrl_versions:
+  - "2.0"
+status: development
+description: >
+  QRL's contract-oriented smart-contract language and compiler for the Quantum
+  Resistant Virtual Machine, designed as a Solidity-derived toolchain for
+  building tokens, applications, voting systems, and other QRL 2.0 contracts.
+category: tooling
+tags:
+  - smart-contracts
+  - compiler
+  - language
+  - qrvm
+author: The QRL
+license: GPL-3.0
+created: 2026-08-17
+updated: 2026-08-17
+
+url: https://github.com/theQRL/hyperion
+github: https://github.com/theQRL/hyperion
+docs: https://github.com/theQRL/hyperion/tree/main/docs
+
+open_source: true
+audited: false
+
+clients:
+  - platform: native compiler
+    github: https://github.com/theQRL/hyperion
+    default: true
+  - platform: javascript bindings
+    url: https://www.npmjs.com/package/@theqrl/hypc
+    github: https://github.com/theQRL/hypc-js
+  - platform: browser binary
+    github: https://github.com/theQRL/hypc-bin
+
+features:
+  - Solidity-derived contract language for QRL 2.0
+  - Compilation to QRVM-compatible bytecode
+  - Native compiler and JavaScript bindings
+  - Example voting, auction, and remote-purchase contracts
+
+tooling:
+  languages:
+    - hyperion
+    - c++
+    - javascript

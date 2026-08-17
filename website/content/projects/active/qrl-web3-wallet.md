@@ -41,6 +41,8 @@ project-types:
     - applications
 project_type: application
 project_url: https://github.com/theQRL/qrl-web3-wallet/releases/latest
+qrl_versions:
+    - "2.0"
 status: development
 supported_networks:
     - testnet

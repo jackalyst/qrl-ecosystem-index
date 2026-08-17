@@ -31,6 +31,9 @@ project-types:
     - community
 project_type: community
 project_url: https://qrlhub.com/
+qrl_versions:
+    - 1.x
+    - "2.0"
 status: production
 tags:
     - education

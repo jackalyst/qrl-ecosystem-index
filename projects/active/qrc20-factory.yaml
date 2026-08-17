@@ -1,0 +1,37 @@
+id: qrc20-factory
+name: QRC20 Factory
+project_type: tooling
+qrl_versions:
+  - "2.0"
+status: development
+description: >
+  An open-source QRL 2.0 reference implementation for deploying a QRC20 token
+  factory, creating configurable tokens, and reading token details through
+  QRL Web3.js on the public testnet or a local node.
+category: tooling
+tags:
+  - qrc20
+  - token-factory
+  - smart-contracts
+  - example
+author: DigitalGuards
+license: MIT
+created: 2026-08-17
+updated: 2026-08-17
+
+url: https://github.com/DigitalGuards/QRC20-Factory
+github: https://github.com/DigitalGuards/QRC20-Factory
+
+open_source: true
+audited: false
+
+features:
+  - Hyperion QRC20 factory and token contracts
+  - Configurable name, symbol, supply, decimals, ownership, and transfer limits
+  - Factory deployment and token-creation scripts
+  - Read-only token information and balance examples
+
+tooling:
+  languages:
+    - javascript
+    - hyperion

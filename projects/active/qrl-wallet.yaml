@@ -1,0 +1,52 @@
+id: qrl-wallet
+name: QRL Web & Desktop Wallet
+project_type: application
+qrl_versions:
+  - 1.x
+status: production
+description: >
+  The official QRL 1.x wallet, available as a browser application and Electron
+  desktop client for Windows, macOS, and Linux, with local XMSS operations and
+  Ledger hardware-wallet support.
+category: wallet
+tags:
+  - wallet
+  - desktop
+  - web
+  - xmss
+author: The QRL
+license: MIT
+created: 2026-08-17
+updated: 2026-08-17
+
+url: https://wallet.theqrl.org/
+github: https://github.com/theQRL/qrl-wallet
+docs: https://docs.theqrl.org/use/wallet/
+
+open_source: true
+audited: false
+
+clients:
+  - platform: web
+    url: https://wallet.theqrl.org/
+    github: https://github.com/theQRL/qrl-wallet
+    default: true
+  - platform: desktop
+    url: https://github.com/theQRL/qrl-wallet/releases/latest
+    github: https://github.com/theQRL/qrl-wallet
+
+features:
+  - Browser wallet with XMSS operations performed locally through WebAssembly
+  - Electron desktop releases for Windows, macOS, and Linux
+  - Wallet creation, import, transactions, tokens, messages, and on-chain tools
+  - Ledger Nano X and Nano S Plus integration
+
+application:
+  platforms:
+    - web
+    - windows
+    - macos
+    - linux
+  supported_networks:
+    - mainnet
+    - testnet

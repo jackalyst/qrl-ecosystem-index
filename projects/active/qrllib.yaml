@@ -1,0 +1,47 @@
+id: qrllib
+name: QRLLIB
+project_type: tooling
+qrl_versions:
+  - 1.x
+status: production
+description: >
+  The QRL 1.x core cryptography library, exposing XMSS, SHA2 and SHAKE hashing,
+  seed and mnemonic helpers, and address generation through Python bindings and
+  WebAssembly for browser applications.
+category: tooling
+tags:
+  - cryptography
+  - xmss
+  - webassembly
+  - python
+author: The QRL
+license: MIT
+created: 2026-08-17
+updated: 2026-08-17
+
+url: https://github.com/theQRL/qrllib
+github: https://github.com/theQRL/qrllib
+
+open_source: true
+audited: false
+
+clients:
+  - platform: source
+    github: https://github.com/theQRL/qrllib
+    default: true
+  - platform: python
+    url: https://pypi.org/project/pyqrllib/
+  - platform: javascript
+    url: https://www.npmjs.com/package/qrllib
+
+features:
+  - XMSS and optimized XMSS implementations
+  - SHA2-256, SHAKE-128, and SHAKE-256 support
+  - Seed, mnemonic, address, and hash-chain helpers
+  - Python and WebAssembly bindings
+
+tooling:
+  languages:
+    - rust
+    - python
+    - javascript

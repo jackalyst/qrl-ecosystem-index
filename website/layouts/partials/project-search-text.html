@@ -11,6 +11,10 @@
 {{- range .Params.tags -}}
     {{- $parts = $parts | append . -}}
 {{- end -}}
+{{- range .Params.qrl_versions -}}
+    {{- $parts = $parts | append . -}}
+    {{- $parts = $parts | append (printf "QRL %s" .) -}}
+{{- end -}}
 {{- range .Params.features -}}
     {{- $parts = $parts | append . -}}
 {{- end -}}

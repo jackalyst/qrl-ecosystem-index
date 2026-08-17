@@ -1,0 +1,40 @@
+id: qrypto-js
+name: Qrypto.js
+project_type: tooling
+qrl_versions:
+  - "2.0"
+status: development
+description: >
+  A JavaScript and TypeScript post-quantum signature library for QRL 2.0,
+  providing FIPS 204 ML-DSA-87 and legacy Dilithium5 packages for browsers and
+  Node.js with combined and detached signing APIs.
+category: tooling
+tags:
+  - cryptography
+  - mldsa
+  - dilithium
+  - javascript
+author: The QRL
+license: MIT
+created: 2026-08-17
+updated: 2026-08-17
+
+url: https://www.npmjs.com/package/@theqrl/mldsa87
+github: https://github.com/theQRL/qrypto.js
+
+open_source: true
+audited: true
+audits:
+  - auditor: Halborn
+    audit_url: https://www.halborn.com/audits/qrl-quantum-resistant-ledger/qrl-quantum-resistant-ledger-37d3f1
+
+features:
+  - FIPS 204 ML-DSA-87 key generation, signing, and verification
+  - Legacy Dilithium5 support for compatibility
+  - Combined and detached signature APIs
+  - Browser and Node.js packages
+
+tooling:
+  languages:
+    - javascript
+    - typescript

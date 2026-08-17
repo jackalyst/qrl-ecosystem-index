@@ -1,0 +1,35 @@
+id: qrl-tokenomics
+name: QRL Tokenomics Tools
+project_type: tooling
+qrl_versions:
+  - 1.x
+status: production
+description: >
+  Community-maintained Python tools and datasets for examining QRL 1.x supply,
+  emission, block-reward decay, and other macro- and micro-tokenomics questions.
+category: educational
+tags:
+  - tokenomics
+  - emission
+  - datasets
+  - analysis
+author: The QRL Community
+license: MIT
+created: 2026-08-17
+updated: 2026-08-17
+
+url: https://github.com/theqrl-community/qrl-tokenomics
+github: https://github.com/theqrl-community/qrl-tokenomics
+
+open_source: true
+audited: false
+
+features:
+  - QRL supply and emission datasets
+  - Block-height-based emission calculations
+  - Python tools for tokenomics analysis
+  - Background notes on QRL supply and mining economics
+
+tooling:
+  languages:
+    - python

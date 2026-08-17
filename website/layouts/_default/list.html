@@ -46,10 +46,18 @@
         </div>
         <p class="result-summary"><strong data-result-count>{{ len .Pages }}</strong> matching projects</p>
     </div>
-    <div class="project-filter{{ if ne .Section "projects" }} project-filter-single{{ end }}" role="search">
+    <div class="project-filter{{ if ne .Section "projects" }} project-filter-compact{{ end }}" role="search">
         <label class="filter-control filter-control-search" for="project-directory-search">
             <span>Search</span>
             <input id="project-directory-search" type="search" data-project-search placeholder="Name, author, or capability">
+        </label>
+        <label class="filter-control" for="project-directory-qrl-version">
+            <span>QRL version</span>
+            <select id="project-directory-qrl-version" data-project-qrl-version>
+                <option value="">All QRL versions</option>
+                <option value="1.x">Supports QRL 1.x</option>
+                <option value="2.0">Supports QRL 2.0</option>
+            </select>
         </label>
         {{ if eq .Section "projects" }}
         <label class="filter-control" for="project-directory-category">
@@ -89,11 +97,12 @@
     const search = document.querySelector("[data-project-search]");
     const category = document.querySelector("[data-project-category]");
     const type = document.querySelector("[data-project-type]");
+    const qrlVersion = document.querySelector("[data-project-qrl-version]");
     const status = document.querySelector("[data-project-status]");
     const count = document.querySelector("[data-result-count]");
     const empty = document.querySelector("[data-no-results]");
 
-    if (!projects.length || !search || !count || !empty) {
+    if (!projects.length || !search || !qrlVersion || !count || !empty) {
         return;
     }
 
@@ -102,8 +111,10 @@
         const tokens = normalize(search.value).trim().split(/\s+/).filter(Boolean);
         let visible = 0;
         projects.forEach((project) => {
+            const qrlVersions = (project.dataset.qrlVersions || "").split(/\s+/).filter(Boolean);
             const matches =
                 (!tokens.length || tokens.every((token) => normalize(project.dataset.search || "").includes(token))) &&
+                (!qrlVersion.value || qrlVersions.includes(qrlVersion.value)) &&
                 (!category || !category.value || project.dataset.category === category.value) &&
                 (!type || !type.value || project.dataset.type === type.value) &&
                 (!status || !status.value || project.dataset.status === status.value);
@@ -114,7 +125,7 @@
         empty.hidden = visible !== 0;
     };
 
-    [search, category, type, status].filter(Boolean).forEach((control) => {
+    [search, qrlVersion, category, type, status].filter(Boolean).forEach((control) => {
         control.addEventListener("input", update);
         control.addEventListener("change", update);
     });

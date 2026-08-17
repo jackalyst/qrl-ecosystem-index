@@ -32,6 +32,8 @@ project-types:
     - tooling
 project_type: tooling
 project_url: https://www.npmjs.com/package/@qrlwallet/connect
+qrl_versions:
+    - "2.0"
 status: development
 tags:
     - sdk

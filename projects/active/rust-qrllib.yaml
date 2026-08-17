@@ -1,0 +1,39 @@
+id: rust-qrllib
+name: Rust QRLLIB
+project_type: tooling
+qrl_versions:
+  - 1.x
+  - "2.0"
+status: development
+description: >
+  A native Rust and WebAssembly implementation of QRL cryptography with
+  ML-DSA-87, ML-KEM-1024, SPHINCS+, legacy XMSS, QRL wallet and address helpers,
+  mnemonic recovery, and descriptor-bound signing.
+category: tooling
+tags:
+  - cryptography
+  - mldsa
+  - xmss
+  - rust
+  - webassembly
+author: The QRL
+license: MIT
+created: 2026-08-17
+updated: 2026-08-17
+
+url: https://github.com/theQRL/rust-qrllib
+github: https://github.com/theQRL/rust-qrllib
+
+open_source: true
+audited: false
+
+features:
+  - Native Rust APIs and wasm-bindgen browser bindings
+  - QRL 2.0 ML-DSA-87 wallets with descriptor-bound signatures
+  - Legacy XMSS wallets for QRL 1.x migration
+  - ML-KEM-1024 and SPHINCS+ cryptographic primitives
+
+tooling:
+  languages:
+    - rust
+    - webassembly

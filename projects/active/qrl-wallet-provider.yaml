@@ -1,0 +1,36 @@
+id: qrl-wallet-provider
+name: QRL Wallet Provider
+project_type: tooling
+qrl_versions:
+  - "2.0"
+status: development
+description: >
+  An EIP-6963-based provider package that lets QRL 2.0 dApps discover and
+  communicate with the QRL Web3 Wallet extension through an Ethereum-style
+  request, event, and JSON-RPC interface.
+category: tooling
+tags:
+  - wallet
+  - provider
+  - eip-6963
+  - dapp
+author: The QRL
+license: MIT
+created: 2026-08-17
+updated: 2026-08-17
+
+url: https://www.npmjs.com/package/@theqrl/qrl-wallet-provider
+github: https://github.com/theQRL/qrl-wallet-provider
+
+open_source: true
+audited: false
+
+features:
+  - EIP-6963 wallet discovery and announcement
+  - Ethereum-style request and event provider interface
+  - PostMessage streams between dApps and the browser extension
+  - Published TypeScript package for QRL dApp integrations
+
+tooling:
+  languages:
+    - typescript

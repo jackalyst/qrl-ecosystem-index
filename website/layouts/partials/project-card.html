@@ -21,6 +21,7 @@
     data-search="{{ partial "project-search-text.html" $project }}"
     data-category="{{ with $project.Params.category }}{{ . | lower }}{{ end }}"
     data-type="{{ $projectTypeSlug | lower }}"
+    data-qrl-versions="{{ delimit $project.Params.qrl_versions " " }}"
     data-status="{{ with $project.Params.status }}{{ . | lower }}{{ end }}">
     <a class="project-card-link" href="{{ $project.RelPermalink }}" aria-label="View {{ $project.Title }} listing"></a>
     <div class="project-card-top">
@@ -29,6 +30,7 @@
         </div>
         <div class="project-card-badges">
             {{ with $project.Params.status }}<span class="status status-{{ . }}">{{ . }}</span>{{ end }}
+            {{ range $project.Params.qrl_versions }}<span class="meta-chip version-chip">QRL {{ . }}</span>{{ end }}
             {{ if $project.Params.open_source }}<span class="meta-chip source-chip">Open source</span>{{ end }}
         </div>
     </div>

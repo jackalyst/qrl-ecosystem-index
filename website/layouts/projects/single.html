@@ -25,6 +25,7 @@
             </div>
             <div class="project-meta">
                 {{ with .Params.status }}<span class="status status-{{ . }}">{{ . }}</span>{{ end }}
+                {{ range .Params.qrl_versions }}<span class="meta-chip version-chip">QRL {{ . }}</span>{{ end }}
                 {{ with .Params.category }}<a class="meta-chip category" href="{{ printf "/categories/%s/" (. | urlize) | relURL }}">{{ . }}</a>{{ end }}
                 <a class="meta-chip project-type" href="{{ printf "/project-types/%s/" ($projectTypeSlug | urlize) | relURL }}">{{ partial "project-type-label.html" $projectTypeSlug }}</a>
             </div>
@@ -40,6 +41,7 @@
             <dl class="facts-list">
                 <dt>Maintainer</dt><dd>{{ .Params.author }}</dd>
                 <dt>License</dt><dd>{{ .Params.license }}</dd>
+                <dt>QRL versions</dt><dd>{{ range $index, $version := .Params.qrl_versions }}{{ if $index }}, {{ end }}QRL {{ $version }}{{ end }}</dd>
                 {{ if .Params.open_source }}<dt>Source</dt><dd>Open source</dd>{{ end }}
                 {{ if .Params.audited }}<dt>Audit</dt><dd>Listed as audited</dd>{{ end }}
                 <dt>Updated</dt><dd>{{ .Params.updated }}</dd>

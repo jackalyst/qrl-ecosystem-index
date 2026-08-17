@@ -43,6 +43,8 @@ project-types:
     - dapps
 project_type: dapp
 project_url: https://quantapool.io/
+qrl_versions:
+    - "2.0"
 status: development
 tags:
     - liquid-staking

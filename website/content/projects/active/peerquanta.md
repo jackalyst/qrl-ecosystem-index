@@ -38,6 +38,8 @@ project-types:
     - applications
 project_type: application
 project_url: https://peerquanta.com/
+qrl_versions:
+    - "2.0"
 status: development
 supported_networks:
     - testnet

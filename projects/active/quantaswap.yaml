@@ -1,6 +1,8 @@
 id: quantaswap
 name: QuantaSwap
 project_type: dapp
+qrl_versions:
+  - "2.0"
 status: development
 description: >
   Cross-chain atomic swaps between native QRL and native ETH using hashed

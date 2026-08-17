@@ -1,0 +1,35 @@
+id: qrl-helpers
+name: QRL Helpers
+project_type: tooling
+qrl_versions:
+  - "2.0"
+status: development
+description: >
+  A community-maintained collection of scripts and helper tools for QRL 2.0
+  development and operations, currently centered on installing a complete node
+  stack on Ubuntu 24.04.
+category: tooling
+tags:
+  - node
+  - scripts
+  - installer
+  - community
+author: The QRL Community
+license: MIT
+created: 2026-08-17
+updated: 2026-08-17
+
+url: https://github.com/theqrl-community/qrl-helpers
+github: https://github.com/theqrl-community/qrl-helpers
+
+open_source: true
+audited: false
+
+features:
+  - Automated QRL 2.0 node installation
+  - Ubuntu 24.04 operations helper scripts
+  - Community-maintained setup workflow
+
+tooling:
+  languages:
+    - shell

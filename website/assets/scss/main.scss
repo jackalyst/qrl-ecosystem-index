@@ -622,7 +622,7 @@ main {
 }
 
 .signal-item:first-child {
-    padding-left: 0;
+    // padding-left: 0;
 }
 
 .signal-item:last-child {
@@ -964,7 +964,7 @@ main {
 
 .project-filter {
     display: grid;
-    grid-template-columns: minmax(16rem, 1.45fr) repeat(3, minmax(8rem, 0.65fr));
+    grid-template-columns: minmax(16rem, 1.45fr) repeat(4, minmax(7.5rem, 0.65fr));
     gap: 0.65rem;
     margin: 0 0 1.25rem;
     border-top: 1px solid var(--line);
@@ -972,8 +972,8 @@ main {
     padding: 1rem 0;
 }
 
-.project-filter-single {
-    grid-template-columns: minmax(16rem, 1fr);
+.project-filter-compact {
+    grid-template-columns: minmax(16rem, 1.45fr) minmax(9rem, 0.65fr);
 }
 
 .filter-control {
@@ -2789,6 +2789,10 @@ body.gallery-dialog-open {
 
     .filter-control-search {
         grid-column: 1 / -1;
+    }
+
+    .project-filter-compact .filter-control-search {
+        grid-column: auto;
     }
 
     .coverage-grid-compact {

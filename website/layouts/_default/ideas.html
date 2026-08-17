@@ -1,5 +1,8 @@
 {{ define "main" }}
-{{ $projects := where (where site.RegularPages "Section" "projects") "Params.status" "!=" "archived" }}
+{{ $projects := slice }}
+{{ range where (where site.RegularPages "Section" "projects") "Params.status" "!=" "archived" }}
+    {{ if in (.Params.qrl_versions | default (slice)) "2.0" }}{{ $projects = $projects | append . }}{{ end }}
+{{ end }}
 {{ $projectTypes := slice
     (dict "slug" "dapps" "project_type" "dapp" "title" "dApps" "description" "Decentralized, smart-contract based applications with on-chain logic." "ideas" (slice "Starter dApps for token swaps, escrow, registries, auctions, and governance." "Reference apps that show wallet connection, contract reads, and transaction submission." "Small, testnet-first examples that other builders can fork."))
     (dict "slug" "applications" "project_type" "application" "title" "Applications" "description" "User-facing wallets, explorers, dashboards, and interfaces." "ideas" (slice "Mobile wallet and portfolio interfaces." "Network dashboards for validators, tokens, and contract activity." "Payment, checkout, and invoice tools for merchants."))
@@ -36,20 +39,20 @@
     {{ end }}
 {{ end }}
 <section class="page-hero page-hero-compact ideas-hero">
-    <p class="eyebrow">Builder opportunity map</p>
+    <p class="eyebrow">QRL 2.0 builder opportunity map</p>
     <h1>{{ .Title }}</h1>
     <div class="page-dek">{{ .Content }}</div>
 </section>
 
 <section class="ideas-section ideas-section-first" aria-labelledby="coverage-title">
     <div class="section-heading">
-        <p class="eyebrow">Generated from listings</p>
+        <p class="eyebrow">Generated from QRL 2.0 listings</p>
         <h2 id="coverage-title">Coverage Snapshot</h2>
     </div>
     <div class="coverage-stats">
         <div class="coverage-stat">
             <span class="count">{{ len $projects }}</span>
-            <span class="label">Projects listed</span>
+            <span class="label">QRL 2.0 projects listed</span>
         </div>
         <div class="coverage-stat">
             <span class="count">{{ sub (len $categories) $representedCategories }}</span>
@@ -127,7 +130,7 @@
         <h2 id="checklist-title">Coverage Checklist</h2>
     </div>
     <ul>
-        <li>Does it make QRL easier to use, build on, monitor, or explain?</li>
+        <li>Does it make QRL 2.0 easier to use, build on, monitor, or explain?</li>
         <li>Does it fill a category or project type with few or no current listings?</li>
         <li>Can it be maintained by a small team or community contributor?</li>
         <li>Does it have a clear first version that can ship on testnet?</li>
@@ -140,6 +143,6 @@
         <p class="eyebrow">Keep the index current</p>
         <h2 id="existing-title">Adding Existing Projects</h2>
     </div>
-    <p>If one of these ideas already exists, it should be added as a project listing rather than staying only as a gap. Submit a YAML file in <code>projects/active/</code> using the repository template, then include links to the website, repository, docs, clients, and any known deployment details.</p>
+    <p>If one of these QRL 2.0 ideas already exists, it should be added as a project listing rather than staying only as a gap. Submit a YAML file in <code>projects/active/</code> using the repository template, declare <code>qrl_versions</code>, then include links to the website, repository, docs, clients, and any known deployment details.</p>
 </section>
 {{ end }}
