@@ -1043,11 +1043,21 @@ main {
     padding: 1.15rem;
 }
 
-.browse-grid,
-.taxonomy-overview {
+.browse-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
     gap: 0.75rem;
+}
+
+.taxonomy-overview {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+}
+
+.taxonomy-overview .taxonomy-card {
+    flex: 0 1 calc((100% - 1.5rem) / 3);
 }
 
 .browse-grid-large {
@@ -1117,16 +1127,9 @@ main {
 
 .taxonomy-card {
     display: grid;
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: 1fr auto;
     align-items: start;
     min-height: 11rem;
-}
-
-.taxonomy-card-index {
-    color: var(--amber);
-    font-family: var(--font-sans);
-    font-size: var(--text-label);
-    font-weight: var(--weight-semibold);
 }
 
 .taxonomy-card-content {
@@ -1209,6 +1212,10 @@ main {
     margin-top: clamp(3rem, 8vw, 6rem);
     border-bottom: 1px solid var(--line);
     padding-bottom: clamp(2rem, 4vw, 3.5rem);
+}
+
+.page-taxonomy.page-type-project-types .page-hero {
+    border-bottom: 0;
 }
 
 .page-dek > p {
@@ -2781,6 +2788,10 @@ body.gallery-dialog-open {
 }
 
 @media (max-width: 899px) {
+    .taxonomy-overview .taxonomy-card {
+        flex-basis: calc((100% - 0.75rem) / 2);
+    }
+
     .classification-group-header {
         grid-template-columns: 1fr;
         gap: 1rem;
@@ -2918,6 +2929,10 @@ body.gallery-dialog-open {
 }
 
 @media (max-width: 640px) {
+    .taxonomy-overview .taxonomy-card {
+        flex-basis: 100%;
+    }
+
     main,
     .site-footer {
         width: calc(100% - 2rem);
@@ -3030,7 +3045,7 @@ body.gallery-dialog-open {
     }
 
     .taxonomy-card {
-        grid-template-columns: auto 1fr auto;
+        grid-template-columns: 1fr auto;
     }
 
     .project-identity {
