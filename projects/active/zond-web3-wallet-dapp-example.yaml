@@ -1,0 +1,48 @@
+id: zond-web3-wallet-dapp-example
+name: Zond Web3 Wallet dApp Example
+project_type: tooling
+qrl_versions:
+  - "2.0"
+status: development
+description: >
+  A React and TypeScript example dApp for discovering and connecting to the
+  Zond Web3 Wallet and other EIP-6963 browser wallets, exercising wallet and
+  Zond JSON-RPC methods, and inspecting responses or errors.
+category: template
+tags:
+  - dapp
+  - wallet
+  - eip-6963
+  - json-rpc
+  - typescript
+author: The QRL
+license: MIT
+created: 2026-08-17
+updated: 2026-08-17
+
+url: https://github.com/theQRL/zond-web3-wallet-dapp-example
+github: https://github.com/theQRL/zond-web3-wallet-dapp-example
+
+open_source: true
+audited: false
+
+features:
+  - EIP-6963 discovery and connection for compatible browser wallets
+  - Selected wallet, account, UUID, and reverse-DNS details
+  - Interactive restricted and unrestricted JSON-RPC method examples
+  - Wallet response and error inspection
+
+long_description: |
+  Zond Web3 Wallet dApp Example is an open-source React and TypeScript sample
+  application from The QRL. It demonstrates how a browser dApp can discover
+  EIP-6963-compatible wallets, connect to the Zond Web3 Wallet extension, and
+  interact with its provider.
+
+  The interface lists wallet methods, exposes example requests for wallet and
+  Zond JSON-RPC APIs, and displays successful responses or errors. Developers
+  can run the Vite application locally as a reference when building QRL 2.0
+  wallet integrations.
+
+tooling:
+  languages:
+    - typescript
