@@ -1,16 +1,120 @@
 package main
 
 import (
+	"encoding/json"
 	"image"
 	"image/color"
 	"image/png"
 	"os"
 	"path/filepath"
+	"reflect"
 	"strings"
 	"testing"
 
 	"gopkg.in/yaml.v3"
 )
+
+func TestClassificationMatchesSchema(t *testing.T) {
+	classification, err := loadClassification(filepath.Join("..", "website", "data", "classification.yaml"))
+	if err != nil {
+		t.Fatalf("load classification: %v", err)
+	}
+
+	type schemaProperty struct {
+		Const string   `json:"const"`
+		Enum  []string `json:"enum"`
+	}
+	type schemaBranch struct {
+		Properties map[string]schemaProperty `json:"properties"`
+	}
+	var schema struct {
+		Version    int                       `json:"version"`
+		Properties map[string]schemaProperty `json:"properties"`
+		AllOf      []struct {
+			OneOf []schemaBranch `json:"oneOf"`
+		} `json:"allOf"`
+	}
+	schemaData, err := os.ReadFile(filepath.Join("..", "schema", "project.schema.json"))
+	if err != nil {
+		t.Fatalf("read schema: %v", err)
+	}
+	if err := json.Unmarshal(schemaData, &schema); err != nil {
+		t.Fatalf("unmarshal schema: %v", err)
+	}
+	if schema.Version != 5 {
+		t.Fatalf("schema version = %d, want 5", schema.Version)
+	}
+
+	var projectTypeIDs []string
+	var categoryIDs []string
+	for _, projectType := range classification.ProjectTypes {
+		projectTypeIDs = append(projectTypeIDs, projectType.ID)
+		for _, category := range projectType.Categories {
+			categoryIDs = append(categoryIDs, category.ID)
+		}
+	}
+	if !reflect.DeepEqual(schema.Properties["project_type"].Enum, projectTypeIDs) {
+		t.Fatalf("schema project types = %#v, classification project types = %#v", schema.Properties["project_type"].Enum, projectTypeIDs)
+	}
+	if !reflect.DeepEqual(schema.Properties["category"].Enum, categoryIDs) {
+		t.Fatalf("schema categories = %#v, classification categories = %#v", schema.Properties["category"].Enum, categoryIDs)
+	}
+	if len(schema.AllOf) != 1 || len(schema.AllOf[0].OneOf) != len(classification.ProjectTypes) {
+		t.Fatalf("schema classification branches do not match project types")
+	}
+	for index, projectType := range classification.ProjectTypes {
+		branch := schema.AllOf[0].OneOf[index]
+		if branch.Properties["project_type"].Const != projectType.ID {
+			t.Fatalf("schema branch %d project type = %q, want %q", index, branch.Properties["project_type"].Const, projectType.ID)
+		}
+		var expectedCategories []string
+		for _, category := range projectType.Categories {
+			expectedCategories = append(expectedCategories, category.ID)
+		}
+		if !reflect.DeepEqual(branch.Properties["category"].Enum, expectedCategories) {
+			t.Fatalf("schema categories for %q = %#v, want %#v", projectType.ID, branch.Properties["category"].Enum, expectedCategories)
+		}
+	}
+}
+
+func TestValidateProjectClassifications(t *testing.T) {
+	classification := Classification{ProjectTypes: []ProjectTypeDefinition{
+		{ID: "application", TaxonomySlug: "applications", Label: "Applications", Categories: []CategoryDefinition{{ID: "wallet", Label: "Wallets"}}},
+		{ID: "tooling", TaxonomySlug: "tooling", Label: "Tooling", Categories: []CategoryDefinition{{ID: "sdk", Label: "SDKs"}}},
+	}}
+	projects := []Project{
+		{ID: "wallet", ProjectType: "application", Category: "wallet"},
+		{ID: "sdk", ProjectType: "tooling", Category: "sdk"},
+	}
+	if err := validateClassification(classification); err != nil {
+		t.Fatalf("valid classification rejected: %v", err)
+	}
+	if err := validateProjectClassifications(projects, classification); err != nil {
+		t.Fatalf("valid projects rejected: %v", err)
+	}
+
+	projects[1].Category = "wallet"
+	if err := validateProjectClassifications(projects, classification); err == nil || !strings.Contains(err.Error(), "outside project type") {
+		t.Fatalf("wrong-parent category error = %v", err)
+	}
+}
+
+func TestValidateClassificationRejectsDuplicateCategoryAndParentName(t *testing.T) {
+	duplicate := Classification{ProjectTypes: []ProjectTypeDefinition{
+		{ID: "application", TaxonomySlug: "applications", Label: "Applications", Categories: []CategoryDefinition{{ID: "wallet", Label: "Wallets"}}},
+		{ID: "tooling", TaxonomySlug: "tooling", Label: "Tooling", Categories: []CategoryDefinition{{ID: "wallet", Label: "Wallets"}}},
+	}}
+	if err := validateClassification(duplicate); err == nil || !strings.Contains(err.Error(), "belongs to both") {
+		t.Fatalf("duplicate category error = %v", err)
+	}
+
+	parentName := Classification{ProjectTypes: []ProjectTypeDefinition{
+		{ID: "tooling", TaxonomySlug: "tooling", Label: "Tooling", Categories: []CategoryDefinition{{ID: "tooling", Label: "Tooling"}}},
+	}}
+	if err := validateClassification(parentName); err == nil || !strings.Contains(err.Error(), "duplicates a project type") {
+		t.Fatalf("parent-name category error = %v", err)
+	}
+}
 
 func TestGalleryUnmarshalPreservesOrder(t *testing.T) {
 	data := []byte(`

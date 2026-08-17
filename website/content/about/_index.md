@@ -4,7 +4,7 @@ title: "About"
 
 The QRL Ecosystem Index is a community-maintained directory of projects, tools, services, and resources across QRL 1.x and QRL 2.0. Its goal is to make the ecosystem easier to explore by collecting project information in one structured, searchable place.
 
-The index is intentionally lightweight. Each listing is stored as a YAML file in the public repository, validated against a shared schema, and organized by project type, category, tags, and status. This makes it easy for contributors to add new projects, update existing entries, and review changes through GitHub.
+The index is intentionally lightweight. Each listing is stored as a YAML file in the public repository, validated against a shared schema, and organized by a parent project type, one child category, tags, and status. This makes it easy for contributors to add new projects, update existing entries, and review changes through GitHub.
 
 ## What gets listed
 
@@ -28,7 +28,7 @@ Each project is assigned a project type:
 - **tooling** - SDKs, libraries, templates, testing tools, or developer utilities
 - **community** - Community spaces, educational resources, news, or ecosystem information
 
-Projects declare support for QRL 1.x, QRL 2.0, or both. They are also grouped by category, such as defi, nft, wallet, explorer, infrastructure, tooling, dao, gaming, identity, oracle, bridge, social, educational, and news.
+Each category belongs to exactly one project type. For example, wallets and explorers sit beneath Applications, node clients and mining pools sit beneath Infrastructure, and libraries and SDKs sit beneath Tooling. Projects also declare support for QRL 1.x, QRL 2.0, or both.
 
 ## Project status
 

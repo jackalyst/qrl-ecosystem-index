@@ -5,13 +5,14 @@
 
 id: your-project-id
 name: Your Project Name
-project_type: dapp  # Options: dapp, application, infrastructure, tooling, community (See CONTRIBUTING.md)
+# Choose the parent project type first, then one allowed child category below.
+project_type: dapp  # Options: dapp, application, infrastructure, tooling, community
 qrl_versions:  # One or both: 1.x, 2.0
   - "2.0"
 status: development  # Options: development, production, archived (see CONTRIBUTING.md)
 description: >
   A brief description of your project (max 280 characters).
-category: defi  # Options: defi, nft, wallet, explorer, infrastructure, tooling, dao, gaming, identity, oracle, bridge, social, educational, news
+category: defi  # Must be allowed beneath project_type; see CONTRIBUTING.md
 tags:
   - tag1
   - tag2

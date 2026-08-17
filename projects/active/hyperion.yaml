@@ -8,7 +8,7 @@ description: >
   QRL's contract-oriented smart-contract language and compiler for the Quantum
   Resistant Virtual Machine, designed as a Solidity-derived toolchain for
   building tokens, applications, voting systems, and other QRL 2.0 contracts.
-category: tooling
+category: compiler
 tags:
   - smart-contracts
   - compiler

@@ -8,8 +8,8 @@ audits:
       audit_url: https://github.com/trailofbits/publications/blob/master/reviews/2026-07-thequantumresistantledger-go-qrlliblibrarysecurityreview.pdf
 author: The QRL
 categories:
-    - tooling
-category: tooling
+    - library
+category: library
 clients: []
 created: "2026-08-17"
 default_client_github: https://github.com/theQRL/go-qrllib

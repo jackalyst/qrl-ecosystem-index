@@ -8,7 +8,7 @@ description: >
   The QRL 1.x core cryptography library, exposing XMSS, SHA2 and SHAKE hashing,
   seed and mnemonic helpers, and address generation through Python bindings and
   WebAssembly for browser applications.
-category: tooling
+category: library
 tags:
   - cryptography
   - xmss

@@ -8,7 +8,7 @@ description: >
   A community-maintained collection of scripts and helper tools for QRL 2.0
   development and operations, currently centered on installing a complete node
   stack on Ubuntu 24.04.
-category: tooling
+category: developer-utility
 tags:
   - node
   - scripts

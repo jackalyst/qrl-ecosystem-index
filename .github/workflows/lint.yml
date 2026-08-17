@@ -4,8 +4,12 @@ on:
   pull_request:
     paths:
       - 'projects/**/*.yaml'
+      - 'schema/project.schema.json'
+      - 'website/data/classification.yaml'
       - 'images/logos/**'
       - 'images/screenshots/**'
+      - 'scripts/validate_classification.py'
+      - 'scripts/validate_classification_test.py'
       - 'scripts/validate_gallery.py'
 
 permissions: {}
@@ -26,7 +30,7 @@ jobs:
           python-version: '3.x'
 
       - name: Install dependencies
-        run: pip install pyyaml
+        run: pip install pyyaml jsonschema
 
       - name: Lint YAML files
         run: |
@@ -36,7 +40,6 @@ jobs:
           from pathlib import Path
           from urllib.parse import urlparse
 
-          VALID_CATEGORIES = {'defi', 'nft', 'wallet', 'explorer', 'infrastructure', 'tooling', 'dao', 'gaming', 'identity', 'oracle', 'bridge', 'social', 'educational', 'news'}
           VALID_STATUSES = {'development', 'production', 'archived'}
           VALID_NETWORKS = {'mainnet', 'testnet'}
 
@@ -68,10 +71,6 @@ jobs:
               # Check description length
               if 'description' in data and len(data['description']) > 280:
                   errors.append(f"Description exceeds 280 characters ({len(data['description'])})")
-
-              # Check category is valid
-              if 'category' in data and data['category'] not in VALID_CATEGORIES:
-                  errors.append(f"Invalid category '{data['category']}' (valid: {VALID_CATEGORIES})")
 
               # Check status is valid
               if 'status' in data and data['status'] not in VALID_STATUSES:
@@ -135,3 +134,8 @@ jobs:
 
       - name: Validate gallery media
         run: python3 scripts/validate_gallery.py
+
+      - name: Validate classification hierarchy
+        run: |
+          python3 scripts/validate_classification.py
+          python3 -m unittest discover -s scripts -p 'validate_classification_test.py'

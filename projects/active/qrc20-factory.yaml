@@ -8,7 +8,7 @@ description: >
   An open-source QRL 2.0 reference implementation for deploying a QRC20 token
   factory, creating configurable tokens, and reading token details through
   QRL Web3.js on the public testnet or a local node.
-category: tooling
+category: template
 tags:
   - qrc20
   - token-factory

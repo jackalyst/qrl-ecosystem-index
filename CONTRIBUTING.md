@@ -31,7 +31,7 @@ This index broadly covers five types of projects.
 | `qrl_versions` | `list[enum]` | One or both of: `1.x`, `2.0` |
 | `status` | `enum` | One of: `development`, `production`, `archived` |
 | `description` | `string` | Short description, max 280 characters |
-| `category` | `enum` | One of: `defi`, `nft`, `wallet`, `explorer`, `infrastructure`, `tooling`, `dao`, `gaming`, `identity`, `oracle`, `bridge`, `social`, `educational`, `news` |
+| `category` | `enum` | One child category allowed beneath the selected `project_type` (see below) |
 | `tags` | `list[string]` | Freeform tags for filtering/search |
 | `author` | `string` | Author name or organization |
 | `license` | `string` | SPDX license identifier (e.g. `MIT`, `Apache-2.0`). Use `none` if not applicable |
@@ -60,7 +60,17 @@ Use `clients` when one project has separate platform destinations, such as web, 
 
 ### Project Type-Specific Nested Blocks
 
-Only one type-specific block should be included per submission, matching the `project_type`. Use `category` and `tags` to provide finer-grained classification within each type — for example, a wallet application would set `project_type: application` with `category: [wallet]`, or a community-run wiki would set `project_type: community` with `category: [educational]`.
+Only one type-specific block should be included per submission, matching the `project_type`. Classification is hierarchical: choose the parent `project_type` first, then exactly one `category` from that row. A category belongs to only one project type.
+
+| Project type | Allowed child categories |
+|---|---|
+| `dapp` | `defi`, `nft`, `dao`, `gaming`, `identity`, `oracle`, `bridge`, `social` |
+| `application` | `wallet`, `explorer`, `marketplace`, `token-creation`, `payments` |
+| `infrastructure` | `node`, `mining-pool`, `rpc-service`, `indexer`, `monitoring`, `faucet` |
+| `tooling` | `library`, `sdk`, `cli`, `compiler`, `developer-utility`, `template`, `testing`, `analytics` |
+| `community` | `education`, `news`, `forum`, `ecosystem-coordination` |
+
+For example, a wallet uses `project_type: application` with `category: wallet`, while a cryptography package uses `project_type: tooling` with `category: library`. The schema rejects categories used beneath the wrong parent.
 
 | Block Key | Fields | Description |
 |---|---|---|

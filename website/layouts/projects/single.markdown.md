@@ -6,8 +6,7 @@
 - Canonical page: [{{ $.Title }}]({{ .Permalink }})
 {{- end }}
 - Status: {{ .Params.status }}
-- Project type: {{ .Params.project_type }}
-- Category: {{ .Params.category }}
+- Classification: {{ partial "project-type-label.html" .Params.project_type }} › {{ partial "category-label.html" .Params.category }} (`{{ .Params.project_type }}` / `{{ .Params.category }}`)
 - QRL versions: {{ range $index, $version := .Params.qrl_versions }}{{ if $index }}, {{ end }}QRL {{ $version }}{{ end }}
 {{- with .Params.tags }}
 - Tags: {{ delimit . ", " }}

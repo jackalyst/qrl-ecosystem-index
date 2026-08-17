@@ -1,11 +1,12 @@
 {
   "count": 39,
-  "generated": "2026-08-17T17:15:26Z",
+  "generated": "2026-08-17T23:01:47Z",
   "projects": [
     {
       "id": "acornswap",
       "name": "AcornSwap",
       "status": "development",
+      "project_type": "dapp",
       "category": "defi",
       "qrl_versions": [
         "2.0"
@@ -18,7 +19,8 @@
       "id": "go-qrl",
       "name": "Go QRL Execution Client",
       "status": "development",
-      "category": "infrastructure",
+      "project_type": "infrastructure",
+      "category": "node",
       "qrl_versions": [
         "2.0"
       ],
@@ -30,7 +32,8 @@
       "id": "go-qrllib",
       "name": "Go QRLLIB",
       "status": "development",
-      "category": "tooling",
+      "project_type": "tooling",
+      "category": "library",
       "qrl_versions": [
         "1.x",
         "2.0"
@@ -43,7 +46,8 @@
       "id": "hero-miners",
       "name": "HeroMiners QRL Pool",
       "status": "production",
-      "category": "infrastructure",
+      "project_type": "infrastructure",
+      "category": "mining-pool",
       "qrl_versions": [
         "1.x"
       ],
@@ -55,7 +59,8 @@
       "id": "hyperion",
       "name": "Hyperion",
       "status": "development",
-      "category": "tooling",
+      "project_type": "tooling",
+      "category": "compiler",
       "qrl_versions": [
         "2.0"
       ],
@@ -83,7 +88,8 @@
       "id": "mining-ocean",
       "name": "MiningOcean QRL Pool",
       "status": "production",
-      "category": "infrastructure",
+      "project_type": "infrastructure",
+      "category": "mining-pool",
       "qrl_versions": [
         "1.x"
       ],
@@ -95,6 +101,7 @@
       "id": "myqrlwallet",
       "name": "MyQRLWallet",
       "status": "development",
+      "project_type": "application",
       "category": "wallet",
       "qrl_versions": [
         "2.0"
@@ -133,7 +140,8 @@
       "id": "peerquanta",
       "name": "PeerQuanta",
       "status": "development",
-      "category": "defi",
+      "project_type": "application",
+      "category": "marketplace",
       "qrl_versions": [
         "2.0"
       ],
@@ -152,6 +160,7 @@
       "id": "pqlymarket",
       "name": "PQlyMarket",
       "status": "development",
+      "project_type": "dapp",
       "category": "defi",
       "qrl_versions": [
         "2.0"
@@ -164,7 +173,8 @@
       "id": "qrc20-factory",
       "name": "QRC20 Factory",
       "status": "development",
-      "category": "tooling",
+      "project_type": "tooling",
+      "category": "template",
       "qrl_versions": [
         "2.0"
       ],
@@ -176,6 +186,7 @@
       "id": "qrl-block-explorer",
       "name": "QRL Block Explorer",
       "status": "production",
+      "project_type": "application",
       "category": "explorer",
       "qrl_versions": [
         "1.x"
@@ -188,7 +199,8 @@
       "id": "qrl-cli",
       "name": "qrl-cli",
       "status": "production",
-      "category": "tooling",
+      "project_type": "tooling",
+      "category": "cli",
       "qrl_versions": [
         "1.x"
       ],
@@ -200,7 +212,8 @@
       "id": "qrl-file-tools",
       "name": "QRL File Tools",
       "status": "development",
-      "category": "tooling",
+      "project_type": "tooling",
+      "category": "cli",
       "qrl_versions": [
         "2.0"
       ],
@@ -212,7 +225,8 @@
       "id": "qrl-helpers",
       "name": "QRL Helpers",
       "status": "development",
-      "category": "tooling",
+      "project_type": "tooling",
+      "category": "developer-utility",
       "qrl_versions": [
         "2.0"
       ],
@@ -224,7 +238,8 @@
       "id": "qrl-hub",
       "name": "QRL Hub",
       "status": "production",
-      "category": "educational",
+      "project_type": "community",
+      "category": "education",
       "qrl_versions": [
         "1.x",
         "2.0"
@@ -237,7 +252,8 @@
       "id": "qrl-javascript-cryptography",
       "name": "QRL JavaScript Cryptography",
       "status": "development",
-      "category": "tooling",
+      "project_type": "tooling",
+      "category": "library",
       "qrl_versions": [
         "2.0"
       ],
@@ -249,6 +265,7 @@
       "id": "qrl-ledger-wallet",
       "name": "QRL Ledger Wallet",
       "status": "production",
+      "project_type": "application",
       "category": "wallet",
       "qrl_versions": [
         "1.x"
@@ -261,6 +278,7 @@
       "id": "qrl-mobile-wallet",
       "name": "QRL Mobile Wallet",
       "status": "production",
+      "project_type": "application",
       "category": "wallet",
       "qrl_versions": [
         "1.x"
@@ -284,7 +302,8 @@
       "id": "qrl-node",
       "name": "QRL 1.x Node",
       "status": "production",
-      "category": "infrastructure",
+      "project_type": "infrastructure",
+      "category": "node",
       "qrl_versions": [
         "1.x"
       ],
@@ -296,6 +315,7 @@
       "id": "qrl-offline-wallet-generator",
       "name": "QRL Offline Wallet Generator",
       "status": "production",
+      "project_type": "application",
       "category": "wallet",
       "qrl_versions": [
         "1.x"
@@ -321,7 +341,8 @@
       "id": "qrl-token-generator",
       "name": "QRL 2.0 Token Generator",
       "status": "development",
-      "category": "tooling",
+      "project_type": "application",
+      "category": "token-creation",
       "qrl_versions": [
         "2.0"
       ],
@@ -333,7 +354,8 @@
       "id": "qrl-tokenomics",
       "name": "QRL Tokenomics Tools",
       "status": "production",
-      "category": "educational",
+      "project_type": "tooling",
+      "category": "analytics",
       "qrl_versions": [
         "1.x"
       ],
@@ -345,7 +367,8 @@
       "id": "qrl-wallet-js",
       "name": "QRL Wallet.js",
       "status": "development",
-      "category": "tooling",
+      "project_type": "tooling",
+      "category": "library",
       "qrl_versions": [
         "2.0"
       ],
@@ -357,7 +380,8 @@
       "id": "qrl-wallet-provider",
       "name": "QRL Wallet Provider",
       "status": "development",
-      "category": "tooling",
+      "project_type": "tooling",
+      "category": "sdk",
       "qrl_versions": [
         "2.0"
       ],
@@ -369,6 +393,7 @@
       "id": "qrl-wallet",
       "name": "QRL Web \u0026 Desktop Wallet",
       "status": "production",
+      "project_type": "application",
       "category": "wallet",
       "qrl_versions": [
         "1.x"
@@ -394,7 +419,8 @@
       "id": "qrl-web-tools",
       "name": "QRL Web Tools",
       "status": "production",
-      "category": "tooling",
+      "project_type": "tooling",
+      "category": "developer-utility",
       "qrl_versions": [
         "1.x"
       ],
@@ -406,7 +432,8 @@
       "id": "qrl-web3-js",
       "name": "QRL Web3.js",
       "status": "development",
-      "category": "tooling",
+      "project_type": "tooling",
+      "category": "sdk",
       "qrl_versions": [
         "2.0"
       ],
@@ -418,6 +445,7 @@
       "id": "qrl-web3-wallet",
       "name": "QRL Web3 Wallet",
       "status": "development",
+      "project_type": "application",
       "category": "wallet",
       "qrl_versions": [
         "2.0"
@@ -438,6 +466,7 @@
       "id": "qrl-zeus",
       "name": "Zeus",
       "status": "development",
+      "project_type": "application",
       "category": "wallet",
       "qrl_versions": [
         "1.x"
@@ -462,7 +491,8 @@
       "id": "qrllib",
       "name": "QRLLIB",
       "status": "production",
-      "category": "tooling",
+      "project_type": "tooling",
+      "category": "library",
       "qrl_versions": [
         "1.x"
       ],
@@ -489,7 +519,8 @@
       "id": "qrlwallet-connect",
       "name": "QRL Wallet Connect",
       "status": "development",
-      "category": "tooling",
+      "project_type": "tooling",
+      "category": "sdk",
       "qrl_versions": [
         "2.0"
       ],
@@ -501,7 +532,8 @@
       "id": "qrypto-js",
       "name": "Qrypto.js",
       "status": "development",
-      "category": "tooling",
+      "project_type": "tooling",
+      "category": "library",
       "qrl_versions": [
         "2.0"
       ],
@@ -513,7 +545,8 @@
       "id": "qrysm",
       "name": "Qrysm",
       "status": "development",
-      "category": "infrastructure",
+      "project_type": "infrastructure",
+      "category": "node",
       "qrl_versions": [
         "2.0"
       ],
@@ -525,6 +558,7 @@
       "id": "quantapool",
       "name": "QuantaPool",
       "status": "development",
+      "project_type": "dapp",
       "category": "defi",
       "qrl_versions": [
         "2.0"
@@ -546,6 +580,7 @@
       "id": "quantascan",
       "name": "Quantascan",
       "status": "production",
+      "project_type": "application",
       "category": "explorer",
       "qrl_versions": [
         "1.x",
@@ -560,6 +595,7 @@
       "id": "quantaswap",
       "name": "QuantaSwap",
       "status": "development",
+      "project_type": "dapp",
       "category": "defi",
       "qrl_versions": [
         "2.0"
@@ -581,7 +617,8 @@
       "id": "rust-qrllib",
       "name": "Rust QRLLIB",
       "status": "development",
-      "category": "tooling",
+      "project_type": "tooling",
+      "category": "library",
       "qrl_versions": [
         "1.x",
         "2.0"
@@ -594,6 +631,7 @@
       "id": "squirrel-game",
       "name": "Squirrel Game",
       "status": "development",
+      "project_type": "dapp",
       "category": "gaming",
       "qrl_versions": [
         "2.0"
@@ -606,6 +644,7 @@
       "id": "zondscan",
       "name": "ZondScan",
       "status": "development",
+      "project_type": "application",
       "category": "explorer",
       "qrl_versions": [
         "2.0"

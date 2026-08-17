@@ -63,6 +63,26 @@ type Project struct {
 	Community      *CommunityBlock      `yaml:"community,omitempty"`
 }
 
+type Classification struct {
+	ProjectTypes []ProjectTypeDefinition `yaml:"project_types"`
+}
+
+type ProjectTypeDefinition struct {
+	ID           string               `yaml:"id"`
+	TaxonomySlug string               `yaml:"taxonomy_slug"`
+	Label        string               `yaml:"label"`
+	Description  string               `yaml:"description"`
+	Ideas        []string             `yaml:"ideas"`
+	Categories   []CategoryDefinition `yaml:"categories"`
+}
+
+type CategoryDefinition struct {
+	ID          string   `yaml:"id"`
+	Label       string   `yaml:"label"`
+	Description string   `yaml:"description"`
+	Ideas       []string `yaml:"ideas"`
+}
+
 type Logo struct {
 	Path        string `yaml:"path"`
 	Description string `yaml:"description"`
@@ -113,6 +133,12 @@ type CommunityBlock struct {
 }
 
 func main() {
+	classification, err := loadClassification(filepath.Join("website", "data", "classification.yaml"))
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error loading project classification: %v\n", err)
+		os.Exit(1)
+	}
+
 	// Ensure generated content and static asset directories exist.
 	os.MkdirAll("website/content/projects", 0755)
 	os.MkdirAll("website/static", 0755)
@@ -123,6 +149,10 @@ func main() {
 	processDir("projects/active", &projects)
 	// Process archived projects
 	processDir("projects/archived", &projects)
+	if err := validateProjectClassifications(projects, classification); err != nil {
+		fmt.Fprintf(os.Stderr, "Invalid project classification: %v\n", err)
+		os.Exit(1)
+	}
 
 	removeStaleProjectPages(projects)
 
@@ -155,6 +185,85 @@ func main() {
 	}
 
 	fmt.Printf("Generated %d project pages\n", len(projects))
+}
+
+func loadClassification(path string) (Classification, error) {
+	data, err := os.ReadFile(path)
+	if err != nil {
+		return Classification{}, err
+	}
+
+	var classification Classification
+	if err := yaml.Unmarshal(data, &classification); err != nil {
+		return Classification{}, err
+	}
+	if err := validateClassification(classification); err != nil {
+		return Classification{}, err
+	}
+	return classification, nil
+}
+
+func validateClassification(classification Classification) error {
+	if len(classification.ProjectTypes) == 0 {
+		return fmt.Errorf("no project types are defined")
+	}
+
+	projectTypes := make(map[string]bool, len(classification.ProjectTypes))
+	taxonomySlugs := make(map[string]bool, len(classification.ProjectTypes))
+	for _, projectType := range classification.ProjectTypes {
+		if projectType.ID == "" || projectType.TaxonomySlug == "" || projectType.Label == "" {
+			return fmt.Errorf("project types require id, taxonomy_slug, and label")
+		}
+		if projectTypes[projectType.ID] {
+			return fmt.Errorf("duplicate project type %q", projectType.ID)
+		}
+		if taxonomySlugs[projectType.TaxonomySlug] {
+			return fmt.Errorf("duplicate project type taxonomy slug %q", projectType.TaxonomySlug)
+		}
+		if len(projectType.Categories) == 0 {
+			return fmt.Errorf("project type %q has no categories", projectType.ID)
+		}
+		projectTypes[projectType.ID] = true
+		taxonomySlugs[projectType.TaxonomySlug] = true
+	}
+
+	categories := make(map[string]string)
+	for _, projectType := range classification.ProjectTypes {
+		for _, category := range projectType.Categories {
+			if category.ID == "" || category.Label == "" {
+				return fmt.Errorf("categories under %q require id and label", projectType.ID)
+			}
+			if projectTypes[category.ID] {
+				return fmt.Errorf("category %q duplicates a project type", category.ID)
+			}
+			if parent, exists := categories[category.ID]; exists {
+				return fmt.Errorf("category %q belongs to both %q and %q", category.ID, parent, projectType.ID)
+			}
+			categories[category.ID] = projectType.ID
+		}
+	}
+	return nil
+}
+
+func validateProjectClassifications(projects []Project, classification Classification) error {
+	allowed := make(map[string]map[string]bool, len(classification.ProjectTypes))
+	for _, projectType := range classification.ProjectTypes {
+		allowed[projectType.ID] = make(map[string]bool, len(projectType.Categories))
+		for _, category := range projectType.Categories {
+			allowed[projectType.ID][category.ID] = true
+		}
+	}
+
+	for _, project := range projects {
+		categories, projectTypeExists := allowed[project.ProjectType]
+		if !projectTypeExists {
+			return fmt.Errorf("%s uses unknown project type %q", project.ID, project.ProjectType)
+		}
+		if !categories[project.Category] {
+			return fmt.Errorf("%s uses category %q outside project type %q", project.ID, project.Category, project.ProjectType)
+		}
+	}
+	return nil
 }
 
 func processDir(dir string, projects *[]Project) {
@@ -388,6 +497,7 @@ func generateJSONIndex(projects []Project) {
 		ID          string   `json:"id"`
 		Name        string   `json:"name"`
 		Status      string   `json:"status"`
+		ProjectType string   `json:"project_type"`
 		Category    string   `json:"category"`
 		QRLVersions []string `json:"qrl_versions"`
 		Description string   `json:"description"`
@@ -403,6 +513,7 @@ func generateJSONIndex(projects []Project) {
 			ID:          p.ID,
 			Name:        p.Name,
 			Status:      p.Status,
+			ProjectType: p.ProjectType,
 			Category:    p.Category,
 			QRLVersions: p.QRLVersions,
 			Description: strings.TrimSpace(p.Description),

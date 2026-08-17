@@ -2,4 +2,4 @@
 title: "Community"
 ---
 
-Unofficial community groups, spaces, informational websites, and educational content.
+Educational resources, media, discussion spaces, and ecosystem coordination.

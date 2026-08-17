@@ -7,7 +7,7 @@ status: production
 description: >
   Community-maintained Python tools and datasets for examining QRL 1.x supply,
   emission, block-reward decay, and other macro- and micro-tokenomics questions.
-category: educational
+category: analytics
 tags:
   - tokenomics
   - emission

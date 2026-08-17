@@ -6,8 +6,8 @@ audited: false
 audits: []
 author: DigitalGuards
 categories:
-    - tooling
-category: tooling
+    - template
+category: template
 clients: []
 created: "2026-08-17"
 default_client_github: https://github.com/DigitalGuards/QRC20-Factory

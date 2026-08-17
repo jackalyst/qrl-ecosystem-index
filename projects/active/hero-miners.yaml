@@ -8,7 +8,7 @@ description: >
   An independent QRL 1.x mining pool offering PPS+, PROPX, and solo mining,
   global endpoints, worker statistics, TLS ports, adjustable payout thresholds,
   fixed or dynamic difficulty, and miner notifications.
-category: infrastructure
+category: mining-pool
 tags:
   - mining
   - pool

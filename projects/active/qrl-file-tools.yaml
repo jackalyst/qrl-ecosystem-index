@@ -8,7 +8,7 @@ description: >
   Command-line tools for post-quantum file signing, signature verification,
   public-key extraction, hashing, and salt generation using FIPS 204 ML-DSA-87
   or legacy Dilithium signatures.
-category: tooling
+category: cli
 tags:
   - cli
   - file-signing

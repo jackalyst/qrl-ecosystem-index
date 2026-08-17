@@ -1,0 +1,6 @@
+{{- $meta := partial "category-meta.html" . -}}
+{{- with $meta.category -}}
+    {{- .label -}}
+{{- else -}}
+    {{- . | humanize | title -}}
+{{- end -}}

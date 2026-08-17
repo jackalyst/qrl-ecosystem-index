@@ -6,8 +6,8 @@ audited: false
 audits: []
 author: The QRL Community
 categories:
-    - educational
-category: educational
+    - analytics
+category: analytics
 clients: []
 created: "2026-08-17"
 default_client_github: https://github.com/theqrl-community/qrl-tokenomics

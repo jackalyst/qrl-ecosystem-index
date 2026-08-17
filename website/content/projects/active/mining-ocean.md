@@ -6,8 +6,8 @@ audited: false
 audits: []
 author: MiningOcean
 categories:
-    - infrastructure
-category: infrastructure
+    - mining-pool
+category: mining-pool
 clients: []
 created: "2026-08-17"
 default_client_url: https://qrl.miningocean.org/

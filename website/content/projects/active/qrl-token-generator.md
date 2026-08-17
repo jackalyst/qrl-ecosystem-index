@@ -6,8 +6,8 @@ audited: false
 audits: []
 author: Quantum Future Limited and Volt Development
 categories:
-    - tooling
-category: tooling
+    - token-creation
+category: token-creation
 clients: []
 created: "2026-08-17"
 default_client_url: https://qrl-zond.com/create-token

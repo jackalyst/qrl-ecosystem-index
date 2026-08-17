@@ -9,7 +9,7 @@ description: >
   A Go post-quantum cryptography and wallet library for QRL, providing ML-DSA-87,
   ML-KEM-1024, SPHINCS+, QRL 2.0 wallet and address helpers, and legacy XMSS
   compatibility for QRL 1.x migration.
-category: tooling
+category: library
 tags:
   - cryptography
   - mldsa

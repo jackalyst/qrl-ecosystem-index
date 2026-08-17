@@ -6,8 +6,8 @@ audited: false
 audits: []
 author: The QRL
 categories:
-    - tooling
-category: tooling
+    - compiler
+category: compiler
 clients:
     - platform: native compiler
       github: https://github.com/theQRL/hyperion

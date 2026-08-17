@@ -8,7 +8,7 @@ description: >
   An EIP-6963-based provider package that lets QRL 2.0 dApps discover and
   communicate with the QRL Web3 Wallet extension through an Ethereum-style
   request, event, and JSON-RPC interface.
-category: tooling
+category: sdk
 tags:
   - wallet
   - provider

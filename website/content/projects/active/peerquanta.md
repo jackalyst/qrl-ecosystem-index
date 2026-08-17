@@ -6,8 +6,8 @@ audited: false
 audits: []
 author: PeerQuanta
 categories:
-    - defi
-category: defi
+    - marketplace
+category: marketplace
 clients:
     - platform: web
       url: https://peerquanta.com/

@@ -7,6 +7,9 @@ on:
       - 'images/logos/**'
       - 'images/screenshots/**'
       - 'schema/project.schema.json'
+      - 'website/data/classification.yaml'
+      - 'scripts/validate_classification.py'
+      - 'scripts/validate_classification_test.py'
       - 'scripts/validate_gallery.py'
       - 'scripts/validate_gallery_test.py'
 
@@ -180,3 +183,8 @@ jobs:
 
       - name: Test gallery validation
         run: python3 -m unittest discover -s scripts -p 'validate_gallery_test.py'
+
+      - name: Validate classification hierarchy
+        run: |
+          python3 scripts/validate_classification.py
+          python3 -m unittest discover -s scripts -p 'validate_classification_test.py'

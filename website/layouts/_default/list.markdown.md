@@ -1,4 +1,11 @@
-# {{ .Title }}
+{{- $heading := .Title -}}
+{{- $categoryMeta := dict -}}
+{{- if and .Data.Term (eq .Data.Plural "project-types") -}}
+    {{- $heading = partial "project-type-label.html" .Data.Term -}}
+{{- else if and .Data.Term (eq .Data.Plural "categories") -}}
+    {{- $categoryMeta = partial "category-meta.html" .Data.Term -}}
+    {{- $heading = $categoryMeta.category.label -}}
+{{- end -}}# {{ $heading }}
 
 {{- with .Description }}
 
@@ -7,6 +14,9 @@
 {{- with .OutputFormats.Get "html" }}
 
 - Canonical page: [{{ $.Title }}]({{ .Permalink }})
+{{- end }}
+{{- with $categoryMeta.project_type }}
+- Parent project type: [{{ .label }}]({{ printf "/project-types/%s/" .taxonomy_slug | absURL }})
 {{- end }}
 {{- with strings.TrimSpace .RawContent }}
 

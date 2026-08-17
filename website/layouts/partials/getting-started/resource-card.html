@@ -8,7 +8,7 @@
 <article class="guide-resource-card">
     <header>
         <div>
-            <p class="guide-resource-type">{{ $project.Params.category | default $project.Params.project_type }}</p>
+            <p class="guide-resource-type">{{ with $project.Params.category }}{{ partial "category-label.html" . }}{{ else }}{{ partial "project-type-label.html" $project.Params.project_type }}{{ end }}</p>
             <h4>{{ $project.Title }}</h4>
         </div>
         {{ with $project.Params.status }}<span class="status status-{{ . }}">{{ . }}</span>{{ end }}

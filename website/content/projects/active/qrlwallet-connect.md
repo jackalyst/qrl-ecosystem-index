@@ -6,8 +6,8 @@ audited: false
 audits: []
 author: DigitalGuards
 categories:
-    - tooling
-category: tooling
+    - sdk
+category: sdk
 clients: []
 created: "2026-06-11"
 default_client_github: https://github.com/DigitalGuards/myqrlwallet-connect

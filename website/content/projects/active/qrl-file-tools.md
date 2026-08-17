@@ -6,8 +6,8 @@ audited: false
 audits: []
 author: The QRL
 categories:
-    - tooling
-category: tooling
+    - cli
+category: cli
 clients: []
 created: "2026-08-17"
 default_client_github: https://github.com/theQRL/qrlft

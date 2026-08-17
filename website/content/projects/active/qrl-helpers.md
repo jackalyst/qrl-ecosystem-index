@@ -6,8 +6,8 @@ audited: false
 audits: []
 author: The QRL Community
 categories:
-    - tooling
-category: tooling
+    - developer-utility
+category: developer-utility
 clients: []
 created: "2026-08-17"
 default_client_github: https://github.com/theqrl-community/qrl-helpers

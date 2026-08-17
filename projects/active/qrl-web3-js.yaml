@@ -8,7 +8,7 @@ description: >
   A TypeScript Web3 client suite for QRL 2.0 with JSON-RPC providers, accounts,
   contract wrappers, ABI tooling, subscriptions, address utilities, QRNS
   helpers, and browser or Node.js application support.
-category: tooling
+category: sdk
 tags:
   - sdk
   - web3

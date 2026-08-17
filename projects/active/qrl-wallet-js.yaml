@@ -8,7 +8,7 @@ description: >
   A JavaScript wallet library for QRL 2.0 using FIPS 204 ML-DSA-87 signatures,
   with deterministic account recovery, 34-word mnemonics, address generation
   and checksums, message signing, and browser or Node.js support.
-category: tooling
+category: library
 tags:
   - wallet
   - sdk

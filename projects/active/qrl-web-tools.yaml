@@ -8,7 +8,7 @@ description: >
   A collection of browser-based QRL 1.x utilities for generating wallets,
   inspecting addresses, validating hexseeds, and testing mnemonic phrases,
   available as a downloadable offline release.
-category: tooling
+category: developer-utility
 tags:
   - wallet
   - address-validation

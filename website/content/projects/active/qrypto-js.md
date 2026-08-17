@@ -8,8 +8,8 @@ audits:
       audit_url: https://www.halborn.com/audits/qrl-quantum-resistant-ledger/qrl-quantum-resistant-ledger-37d3f1
 author: The QRL
 categories:
-    - tooling
-category: tooling
+    - library
+category: library
 clients: []
 created: "2026-08-17"
 default_client_github: https://github.com/theQRL/qrypto.js

@@ -1,5 +1,6 @@
 {{- $project := .project -}}
 {{- $variant := .variant | default "" -}}
+{{- $projectTypeID := $project.Params.project_type -}}
 {{- $projectTypeSlug := "" -}}
 {{- with (index $project.Params "project-types") -}}
     {{- range first 1 . }}{{ $projectTypeSlug = . }}{{ end -}}
@@ -20,7 +21,7 @@
     data-project
     data-search="{{ partial "project-search-text.html" $project }}"
     data-category="{{ with $project.Params.category }}{{ . | lower }}{{ end }}"
-    data-type="{{ $projectTypeSlug | lower }}"
+    data-type="{{ $projectTypeID | lower }}"
     data-qrl-versions="{{ delimit $project.Params.qrl_versions " " }}"
     data-status="{{ with $project.Params.status }}{{ . | lower }}{{ end }}">
     <a class="project-card-link" href="{{ $project.RelPermalink }}" aria-label="View {{ $project.Title }} listing"></a>
@@ -36,8 +37,8 @@
     </div>
     <div class="project-card-body">
         <p class="project-card-kicker">
-            {{ with $project.Params.category }}<span>{{ . }}</span>{{ end }}
-            {{ with $projectTypeSlug }}<span>{{ partial "project-type-label.html" . }}</span>{{ end }}
+            {{ with $projectTypeID }}<span>{{ partial "project-type-label.html" . }}</span>{{ end }}
+            {{ with $project.Params.category }}<span>{{ partial "category-label.html" . }}</span>{{ end }}
         </p>
         <h3><span class="project-card-title">{{ $project.Title }}</span></h3>
         {{ with $project.Params.description }}<p class="project-card-description">{{ . }}</p>{{ end }}
