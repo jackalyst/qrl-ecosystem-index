@@ -1,7 +1,7 @@
 {{ define "main" }}
 {{ $isProjectTypeIndex := and (eq .Data.Plural "project-types") (not .Data.Term) }}
 {{ $isTaxonomyIndex := and .Data.Terms (not .Data.Term) }}
-{{ $isTermPage := and .Data.Term (in (slice "categories" "project-types" "tags") .Data.Plural) }}
+{{ $isTermPage := and .Data.Term (in (slice "categories" "maintainers" "project-types" "tags") .Data.Plural) }}
 {{ $showsProjectCards := or (eq .Section "projects") $isTermPage }}
 {{ $heading := .Title }}
 {{ if and .Data.Term (eq .Data.Plural "project-types") }}{{ $heading = partial "project-type-label.html" .Data.Term }}{{ end }}

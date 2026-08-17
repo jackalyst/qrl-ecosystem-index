@@ -34,6 +34,8 @@ features:
 github: https://github.com/theQRL/qrl-web3-wallet
 license: MIT
 logos: []
+maintainers:
+    - The QRL
 open_source: true
 platforms:
     - chromium

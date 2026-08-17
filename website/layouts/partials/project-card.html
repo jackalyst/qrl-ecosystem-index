@@ -43,7 +43,7 @@
         {{ with $project.Params.description }}<p class="project-card-description">{{ . }}</p>{{ end }}
     </div>
     <div class="project-card-footer">
-        <span class="project-card-author">{{ with $project.Params.author }}By {{ . }}{{ end }}</span>
+        {{ with $project.Params.author }}<a class="project-card-author" href="{{ printf "/maintainers/%s/" (. | urlize) | relURL }}">By {{ . }}</a>{{ end }}
         {{ with $visitURL }}
         <a class="card-action" href="{{ . }}" target="_blank" rel="noopener">Visit project <span aria-hidden="true">↗</span></a>
         {{ else }}

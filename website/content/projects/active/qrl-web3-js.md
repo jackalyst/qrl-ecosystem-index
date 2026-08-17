@@ -26,6 +26,8 @@ languages:
     - typescript
 license: LGPL-3.0
 logos: []
+maintainers:
+    - The QRL Contributors
 open_source: true
 project-types:
     - tooling

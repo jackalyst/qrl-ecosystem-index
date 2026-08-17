@@ -40,6 +40,8 @@ languages:
     - javascript
 license: GPL-3.0
 logos: []
+maintainers:
+    - The QRL
 open_source: true
 project-types:
     - tooling

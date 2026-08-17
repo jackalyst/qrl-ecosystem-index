@@ -23,6 +23,8 @@ features:
 github: ""
 license: none
 logos: []
+maintainers:
+    - Quantum Future Limited and Volt Development
 open_source: false
 platforms:
     - web

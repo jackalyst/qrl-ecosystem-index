@@ -24,6 +24,8 @@ github: ""
 language: English
 license: none
 logos: []
+maintainers:
+    - QRL Hub
 open_source: false
 platforms:
     - web

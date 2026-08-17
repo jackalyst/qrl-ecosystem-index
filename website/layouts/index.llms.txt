@@ -44,7 +44,7 @@ The QRL Ecosystem Index is community-maintained and informational. Inclusion doe
 - [Archived project: {{ $project.Title }}]({{ .Permalink }}): {{ $project.Params.description | plainify }}
 {{- end }}
 {{- end }}
-{{- range slice "/categories" "/project-types" "/tags" }}
+{{- range slice "/categories" "/maintainers" "/project-types" "/tags" }}
 {{- with site.GetPage . }}
 {{- $page := . }}
 {{- with $page.OutputFormats.Get "markdown" }}

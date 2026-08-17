@@ -958,8 +958,15 @@ main {
     overflow: hidden;
     color: var(--muted);
     font-size: var(--text-caption);
+    pointer-events: auto;
+    text-decoration-color: transparent;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+.project-card-author:hover {
+    color: var(--blue);
+    text-decoration-color: currentColor;
 }
 
 .project-filter {

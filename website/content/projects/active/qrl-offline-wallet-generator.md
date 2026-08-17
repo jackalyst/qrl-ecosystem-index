@@ -36,6 +36,8 @@ features:
 github: https://github.com/theQRL/offline-wallet-generator
 license: none
 logos: []
+maintainers:
+    - The QRL
 open_source: true
 platforms:
     - web

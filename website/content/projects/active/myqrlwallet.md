@@ -43,6 +43,8 @@ license: none
 logos:
     - path: myqrlwallet/icon.png
       description: ""
+maintainers:
+    - DigitalGuards
 open_source: true
 platforms:
     - web

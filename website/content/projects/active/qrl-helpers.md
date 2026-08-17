@@ -25,6 +25,8 @@ languages:
     - shell
 license: MIT
 logos: []
+maintainers:
+    - The QRL Community
 open_source: true
 project-types:
     - tooling

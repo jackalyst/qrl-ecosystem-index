@@ -25,6 +25,8 @@ features:
 github: ""
 license: none
 logos: []
+maintainers:
+    - HeroMiners
 open_source: false
 project-types:
     - infrastructure

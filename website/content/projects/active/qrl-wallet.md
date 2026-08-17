@@ -36,6 +36,8 @@ features:
 github: https://github.com/theQRL/qrl-wallet
 license: MIT
 logos: []
+maintainers:
+    - The QRL
 open_source: true
 platforms:
     - web

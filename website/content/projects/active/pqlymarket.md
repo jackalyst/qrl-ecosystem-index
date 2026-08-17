@@ -26,6 +26,8 @@ features:
 github: https://github.com/PhuocNG0308/pqlymarket
 license: MIT
 logos: []
+maintainers:
+    - PhuocNG0308
 network: testnet
 open_source: true
 project-types:

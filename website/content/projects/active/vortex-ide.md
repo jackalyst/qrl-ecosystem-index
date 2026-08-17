@@ -26,6 +26,8 @@ languages:
     - javascript
 license: none
 logos: []
+maintainers:
+    - The QRL
 open_source: false
 project-types:
     - tooling

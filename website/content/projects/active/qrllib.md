@@ -39,6 +39,8 @@ languages:
     - javascript
 license: MIT
 logos: []
+maintainers:
+    - The QRL
 open_source: true
 project-types:
     - tooling

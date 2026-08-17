@@ -32,6 +32,8 @@ features:
 github: ""
 license: none
 logos: []
+maintainers:
+    - Volt Development
 open_source: false
 platforms:
     - android

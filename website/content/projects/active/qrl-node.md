@@ -25,6 +25,8 @@ features:
 github: https://github.com/theQRL/QRL
 license: MIT
 logos: []
+maintainers:
+    - The QRL
 open_source: true
 project-types:
     - infrastructure

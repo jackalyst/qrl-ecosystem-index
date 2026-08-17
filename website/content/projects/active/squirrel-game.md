@@ -25,6 +25,8 @@ features:
 github: https://github.com/PhuocNG0308/squirrel-game
 license: none
 logos: []
+maintainers:
+    - PhuocNG0308
 network: testnet
 open_source: true
 project-types:

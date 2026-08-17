@@ -285,6 +285,7 @@ func generateProjectPage(p Project) {
 			projectTypeSlug(p.ProjectType),
 		},
 		"author":      p.Author,
+		"maintainers": []string{p.Author},
 		"license":     p.License,
 		"created":     p.Created,
 		"updated":     p.Updated,

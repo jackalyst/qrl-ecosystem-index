@@ -41,6 +41,8 @@ license: none
 logos:
     - path: quantascan/icon.svg
       description: ""
+maintainers:
+    - 12remember
 open_source: false
 platforms:
     - web

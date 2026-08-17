@@ -58,6 +58,54 @@ func TestProjectPageContentIncludesGallery(t *testing.T) {
 	}
 }
 
+func TestGenerateProjectPageAddsExactMaintainerTaxonomy(t *testing.T) {
+	workingDirectory, err := os.Getwd()
+	if err != nil {
+		t.Fatalf("get working directory: %v", err)
+	}
+	temporaryDirectory := t.TempDir()
+	t.Cleanup(func() {
+		if err := os.Chdir(workingDirectory); err != nil {
+			t.Errorf("restore working directory: %v", err)
+		}
+	})
+
+	if err := os.Chdir(temporaryDirectory); err != nil {
+		t.Fatalf("change to temporary directory: %v", err)
+	}
+
+	project := Project{
+		ID:     "example-project",
+		Name:   "Example project",
+		Status: "production",
+		Author: "The QRL",
+	}
+	generateProjectPage(project)
+
+	content, err := os.ReadFile(projectOutputPath(project))
+	if err != nil {
+		t.Fatalf("read generated project page: %v", err)
+	}
+	parts := strings.SplitN(string(content), "---", 3)
+	if len(parts) != 3 {
+		t.Fatalf("generated project page is missing front matter: %s", content)
+	}
+
+	var metadata struct {
+		Author      string   `yaml:"author"`
+		Maintainers []string `yaml:"maintainers"`
+	}
+	if err := yaml.Unmarshal([]byte(parts[1]), &metadata); err != nil {
+		t.Fatalf("unmarshal generated front matter: %v", err)
+	}
+	if metadata.Author != "The QRL" {
+		t.Fatalf("generated author = %q, want %q", metadata.Author, "The QRL")
+	}
+	if len(metadata.Maintainers) != 1 || metadata.Maintainers[0] != "The QRL" {
+		t.Fatalf("generated maintainers = %#v, want [The QRL]", metadata.Maintainers)
+	}
+}
+
 func TestCopyAssetTreeCopiesFilesAndRemovesStaleOutput(t *testing.T) {
 	root := t.TempDir()
 	source := filepath.Join(root, "source")

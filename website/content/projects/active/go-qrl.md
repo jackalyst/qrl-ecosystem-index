@@ -25,6 +25,8 @@ features:
 github: https://github.com/theQRL/go-qrl
 license: LGPL-3.0
 logos: []
+maintainers:
+    - The QRL
 open_source: true
 project-types:
     - infrastructure

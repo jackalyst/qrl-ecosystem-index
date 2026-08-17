@@ -27,6 +27,8 @@ license: MIT
 logos:
     - path: zondscan/icon.png
       description: ""
+maintainers:
+    - DigitalGuards
 open_source: true
 platforms:
     - web

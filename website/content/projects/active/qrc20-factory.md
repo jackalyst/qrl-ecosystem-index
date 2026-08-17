@@ -27,6 +27,8 @@ languages:
     - hyperion
 license: MIT
 logos: []
+maintainers:
+    - DigitalGuards
 open_source: true
 project-types:
     - tooling

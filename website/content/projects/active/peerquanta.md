@@ -31,6 +31,8 @@ features:
 github: ""
 license: none
 logos: []
+maintainers:
+    - PeerQuanta
 open_source: false
 platforms:
     - web

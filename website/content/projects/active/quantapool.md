@@ -37,6 +37,8 @@ license: GPL-3.0
 logos:
     - path: quantapool/icon.svg
       description: ""
+maintainers:
+    - DigitalGuards
 network: testnet
 open_source: true
 project-types:

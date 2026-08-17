@@ -39,7 +39,7 @@
         <aside class="project-quick-facts">
             <p class="eyebrow">Listing facts</p>
             <dl class="facts-list">
-                <dt>Maintainer</dt><dd>{{ .Params.author }}</dd>
+                <dt>Maintainer</dt><dd>{{ with .Params.author }}<a href="{{ printf "/maintainers/%s/" (. | urlize) | relURL }}">{{ . }}</a>{{ end }}</dd>
                 <dt>License</dt><dd>{{ .Params.license }}</dd>
                 <dt>QRL versions</dt><dd>{{ range $index, $version := .Params.qrl_versions }}{{ if $index }}, {{ end }}QRL {{ $version }}{{ end }}</dd>
                 {{ if .Params.open_source }}<dt>Source</dt><dd>Open source</dd>{{ end }}

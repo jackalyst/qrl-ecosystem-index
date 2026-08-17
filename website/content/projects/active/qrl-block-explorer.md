@@ -24,6 +24,8 @@ features:
 github: https://github.com/theQRL/block-explorer
 license: MIT
 logos: []
+maintainers:
+    - The QRL
 open_source: true
 platforms:
     - web

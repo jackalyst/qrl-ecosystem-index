@@ -35,6 +35,8 @@ features:
 github: https://github.com/theQRL/zeus
 license: MIT
 logos: []
+maintainers:
+    - The QRL
 open_source: true
 platforms:
     - web

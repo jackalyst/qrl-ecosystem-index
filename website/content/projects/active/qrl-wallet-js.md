@@ -27,6 +27,8 @@ languages:
     - typescript
 license: MIT
 logos: []
+maintainers:
+    - The QRL Contributors
 open_source: true
 project-types:
     - tooling

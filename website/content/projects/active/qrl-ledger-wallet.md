@@ -24,6 +24,8 @@ features:
 github: https://github.com/theQRL/ledger-qrl-app
 license: Apache-2.0
 logos: []
+maintainers:
+    - The QRL
 open_source: true
 platforms:
     - hardware

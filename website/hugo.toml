@@ -28,6 +28,7 @@ openGraphDefaultImage = "/images/og/default.png"
 
 [taxonomies]
 category = "categories"
+maintainer = "maintainers"
 project_type = "project-types"
 tag = "tags"
 
