@@ -763,6 +763,7 @@ main {
 .project-card {
     position: relative;
     display: flex;
+    min-width: 0;
     min-height: 22rem;
     flex-direction: column;
     border: 1px solid var(--line);
@@ -948,6 +949,7 @@ main {
 }
 
 .project-card-footer {
+    min-width: 0;
     align-items: end;
     margin-top: 1.5rem;
     border-top: 1px solid var(--line);
@@ -955,13 +957,20 @@ main {
 }
 
 .project-card-author {
+    min-width: 0;
+    flex: 1 1 auto;
     overflow: hidden;
     color: var(--muted);
     font-size: var(--text-caption);
     pointer-events: auto;
+    padding: 0.62rem 0.82rem 0.62rem 0;
     text-decoration-color: transparent;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+.project-card-footer .card-action {
+    flex: 0 0 auto;
 }
 
 .project-card-author:hover {
