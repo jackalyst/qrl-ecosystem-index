@@ -1,10 +1,13 @@
+{{- $projects := where site.RegularPages "Section" "projects" -}}
+{{- $activeProjects := sort (where $projects "Params.availability" "!=" "archived") "Title" -}}
+{{- $archivedProjects := sort (where $projects "Params.availability" "archived") "Title" -}}
 # {{ site.Title }}
 
 > {{ site.Params.description }}
 
-The QRL Ecosystem Index is a community-maintained directory of projects, tools, services, and resources across QRL 1.x and QRL 2.0. Listings are informational and do not imply endorsement, audit, or affiliation.
+The QRL Ecosystem Index is community-maintained and informational. Inclusion does not imply endorsement, security review, ownership verification, or affiliation.
 
-## Core Resources
+## Core resources
 
 {{ with site.GetPage "/projects" }}{{ with .OutputFormats.Get "markdown" -}}
 - [Project directory]({{ .Permalink }})
@@ -18,14 +21,24 @@ The QRL Ecosystem Index is a community-maintained directory of projects, tools, 
 {{- with site.GetPage "/ideas" }}{{ with .OutputFormats.Get "markdown" }}
 - [QRL 2.0 builder ideas]({{ .Permalink }})
 {{- end }}{{ end }}
-- [Structured project index]({{ "index.json" | absURL }})
+- [Structured schema v6 project index]({{ "index.json" | absURL }})
 
-## Active Projects
+## Active projects
 
-{{ $projects := sort (where (where site.RegularPages "Section" "projects") "Params.status" "!=" "archived") "Title" -}}
-{{- range $projects }}
-{{- $project := . }}
+{{ range $activeProjects -}}
+{{- $project := . -}}
 {{- with $project.OutputFormats.Get "markdown" }}
-- [{{ $project.Title }}]({{ .Permalink }}): {{ $project.Params.description | plainify }} QRL versions: {{ delimit $project.Params.qrl_versions ", " }}.
+- [{{ $project.Title }}]({{ .Permalink }}): {{ $project.Params.description | plainify }} Status: {{ $project.Params.display_status }}; type: {{ partial "project-type-label.html" $project.Params.project_type }}; primary category: {{ partial "category-label.html" $project.Params.primary_category }}; QRL generations: {{ delimit $project.Params.qrl_generations ", " }}.
+{{- end }}
+{{- end }}
+
+{{ if $archivedProjects -}}
+## Archived projects
+
+{{ range $archivedProjects -}}
+{{- $project := . -}}
+{{- with $project.OutputFormats.Get "markdown" }}
+- [{{ $project.Title }}]({{ .Permalink }}): {{ $project.Params.description | plainify }}
+{{- end }}
 {{- end }}
 {{- end }}

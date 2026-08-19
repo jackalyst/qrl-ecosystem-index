@@ -2,47 +2,63 @@
 aliases:
     - /projects/active/qrl-hub/
     - /projects/archived/qrl-hub/
-audited: false
-audits: []
-author: QRL Hub
-categories:
+availability: live
+capabilities:
     - education
-category: education
-clients: []
-created: "2026-05-29"
-default_client_url: https://qrlhub.com/
+    - news
+categories:
+    - education-research-ecosystem
+data_updated_at: "2026-05-29"
 description: A community-maintained educational website covering QRL, quantum computing threats, blockchain security, quantum news, and QRL 2.0 updates.
-discord: ""
-docs: ""
-ecosystem_type: community
+display_status: Stable
 features:
     - Educational QRL and quantum-security resources
     - Quantum computing and blockchain security news
     - QRL 2.0 updates and builder-oriented information
     - Multilingual website content
-github: ""
-language: English
-license: none
-logos: []
-maintainers:
-    - QRL Hub
-open_source: false
-platforms:
-    - web
-project-types:
-    - community
-project_type: community
-project_url: https://qrlhub.com/
-qrl_versions:
-    - 1.x
-    - "2.0"
-status: production
-tags:
+id: qrl-hub
+keywords:
     - education
     - news
+links:
+    - type: website
+      url: https://qrlhub.com/
+      primary: true
+listed_at: "2026-05-29"
+maintainer_records:
+    - name: QRL Hub
+      contact: https://qrlhub.com/
+maintainers:
+    - QRL Hub
+maturity: stable
+platforms:
+    - web
+primary_category: education-research-ecosystem
+primary_link:
+    type: website
+    url: https://qrlhub.com/
+    primary: true
+primary_url: https://qrlhub.com/
+project-types:
+    - resources
+project_type: resource
+publisher:
+    name: QRL Hub
+    url: https://qrlhub.com/
+qrl_environments: []
+qrl_generations:
+    - 1.x
+    - "2.0"
+qrl_relationship: ecosystem-resource
+qrl_support:
+    - generation: 1.x
+      environments: []
+    - generation: "2.0"
+      environments: []
+repositories: []
+secondary_categories: []
+source_availability: unavailable
 title: QRL Hub
-twitter: ""
-updated: "2026-05-29"
 url: /projects/qrl-hub/
 ---
 

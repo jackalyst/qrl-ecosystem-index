@@ -2,58 +2,75 @@
 aliases:
     - /projects/active/qrl-web3-wallet/
     - /projects/archived/qrl-web3-wallet/
-audited: false
-audits: []
-author: The QRL
-categories:
+availability: live
+capabilities:
     - wallet
-category: wallet
-clients:
-    - platform: chromium
-      url: https://github.com/theQRL/qrl-web3-wallet/releases/latest
-      github: https://github.com/theQRL/qrl-web3-wallet
-      default: true
-created: "2026-06-09"
-default_client:
-    platform: chromium
-    url: https://github.com/theQRL/qrl-web3-wallet/releases/latest
-    github: https://github.com/theQRL/qrl-web3-wallet
-    default: true
-default_client_github: https://github.com/theQRL/qrl-web3-wallet
-default_client_url: https://github.com/theQRL/qrl-web3-wallet/releases/latest
+    - wallet-connector
+categories:
+    - security-custody-account-management
+    - payments-commerce
+    - assets-tokenization
+data_updated_at: "2026-06-09"
 description: A Chromium-based browser extension wallet for creating and importing QRL accounts, sending transactions, connecting to dApps, and managing QRC-20 tokens.
-discord: ""
-docs: ""
-ecosystem_type: application
+display_status: Beta · Testnet
 features:
     - Chromium-based extension for Chrome, Brave, Edge, and Vivaldi
     - Account creation and account import
     - QRL transaction sending with gas fee estimates
     - EIP-1193 and EIP-6963 dApp connectivity
     - QRC-20 token import and transfer support
-github: https://github.com/theQRL/qrl-web3-wallet
-license: MIT
-logos: []
+id: qrl-web3-wallet
+keywords:
+    - wallet
+    - browser-extension
+links:
+    - type: website
+      url: https://github.com/theQRL/qrl-web3-wallet/releases/latest
+    - type: application
+      url: https://github.com/theQRL/qrl-web3-wallet/releases/latest
+      platform: chromium
+      primary: true
+listed_at: "2026-06-09"
+maintainer_records:
+    - name: The QRL
+      contact: https://github.com/theQRL/qrl-web3-wallet
 maintainers:
     - The QRL
-open_source: true
+maturity: beta
 platforms:
-    - chromium
+    - browser-extension
+primary_category: security-custody-account-management
+primary_link:
+    type: application
+    url: https://github.com/theQRL/qrl-web3-wallet/releases/latest
+    platform: chromium
+    primary: true
+primary_url: https://github.com/theQRL/qrl-web3-wallet/releases/latest
 project-types:
     - applications
 project_type: application
-project_url: https://github.com/theQRL/qrl-web3-wallet/releases/latest
-qrl_versions:
-    - "2.0"
-status: development
-supported_networks:
+publisher:
+    name: The QRL
+    url: https://github.com/theQRL/qrl-web3-wallet
+qrl_environments:
     - testnet
-tags:
-    - wallet
-    - browser-extension
+qrl_generations:
+    - "2.0"
+qrl_relationship: native
+qrl_support:
+    - generation: "2.0"
+      environments:
+        - testnet
+repositories:
+    - id: main
+      role: client
+      url: https://github.com/theQRL/qrl-web3-wallet
+      license: MIT
+secondary_categories:
+    - payments-commerce
+    - assets-tokenization
+source_availability: full
 title: QRL Web3 Wallet
-twitter: ""
-updated: "2026-06-09"
 url: /projects/qrl-web3-wallet/
 ---
 

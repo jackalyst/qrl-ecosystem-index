@@ -1,0 +1,8 @@
+{{- $value := . -}}
+{{- $result := dict -}}
+{{- range hugo.Data.classification.capabilities -}}
+    {{- if eq .id $value -}}
+        {{- $result = . -}}
+    {{- end -}}
+{{- end -}}
+{{- return $result -}}

@@ -1,0 +1,6 @@
+{{- $value := . -}}
+{{- $label := . | humanize | title -}}
+{{- range hugo.Data.classification.networks -}}
+    {{- if eq .id $value -}}{{- $label = .label -}}{{- end -}}
+{{- end -}}
+{{- $label -}}

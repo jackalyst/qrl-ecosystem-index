@@ -1,47 +1,52 @@
 id: qrllib
 name: QRLLIB
 project_type: tooling
-qrl_versions:
-  - 1.x
-status: production
-description: >
-  The QRL 1.x core cryptography library, exposing XMSS, SHA2 and SHAKE hashing,
-  seed and mnemonic helpers, and address generation through Python bindings and
-  WebAssembly for browser applications.
-category: library
-tags:
+primary_category: developer-experience
+secondary_categories:
+  - security-custody-account-management
+capabilities:
+  - library
+platforms: []
+keywords:
   - cryptography
   - xmss
   - webassembly
   - python
-author: The QRL
-license: MIT
-created: 2026-08-17
-updated: 2026-08-17
-
-url: https://github.com/theQRL/qrllib
-github: https://github.com/theQRL/qrllib
-
-open_source: true
-audited: false
-
-clients:
-  - platform: source
-    github: https://github.com/theQRL/qrllib
-    default: true
-  - platform: python
+  - signing
+maturity: stable
+availability: live
+qrl_relationship: native
+qrl_support:
+  - generation: 1.x
+    environments: []
+description: |
+  The QRL 1.x core cryptography library, exposing XMSS, SHA2 and SHAKE hashing, seed and mnemonic helpers, and address generation through Python bindings and WebAssembly for browser applications.
+publisher:
+  name: The QRL
+  url: https://github.com/theQRL/qrllib
+maintainers:
+  - name: The QRL
+    contact: https://github.com/theQRL/qrllib
+source_availability: full
+repositories:
+  - id: main
+    role: sdk
+    url: https://github.com/theQRL/qrllib
+    license: MIT
+links:
+  - type: website
+    url: https://github.com/theQRL/qrllib
+    primary: true
+  - type: application
     url: https://pypi.org/project/pyqrllib/
-  - platform: javascript
+    platform: python
+  - type: application
     url: https://www.npmjs.com/package/qrllib
-
+    platform: javascript
+listed_at: '2026-08-17'
+data_updated_at: '2026-08-17'
 features:
   - XMSS and optimized XMSS implementations
   - SHA2-256, SHAKE-128, and SHAKE-256 support
   - Seed, mnemonic, address, and hash-chain helpers
   - Python and WebAssembly bindings
-
-tooling:
-  languages:
-    - rust
-    - python
-    - javascript

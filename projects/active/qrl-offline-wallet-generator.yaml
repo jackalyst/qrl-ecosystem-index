@@ -1,49 +1,57 @@
 id: qrl-offline-wallet-generator
 name: QRL Offline Wallet Generator
 project_type: application
-qrl_versions:
-  - 1.x
-status: production
-description: >
-  An official single-file QRL 1.x wallet generator designed for air-gapped use,
-  with locally generated XMSS keys, encrypted or unencrypted JSON export,
-  printable output, checksums, and build attestations.
-category: wallet
-tags:
+primary_category: security-custody-account-management
+secondary_categories: []
+capabilities:
+  - wallet
+  - key-management
+platforms:
+  - web
+keywords:
   - wallet
   - offline
   - air-gapped
   - xmss
-author: The QRL
-license: none
-created: 2026-08-17
-updated: 2026-08-17
-
-url: https://offline-wallet-generator.theqrl.org/
-github: https://github.com/theQRL/offline-wallet-generator
-docs: https://docs.theqrl.org/use/wallet/offline/
-
-open_source: true
-audited: false
-
-clients:
-  - platform: web
+  - signing
+maturity: stable
+availability: live
+qrl_relationship: native
+qrl_support:
+  - generation: 1.x
+    environments:
+      - mainnet
+description: |
+  An official single-file QRL 1.x wallet generator designed for air-gapped use, with locally generated XMSS keys, encrypted or unencrypted JSON export, printable output, checksums, and build attestations.
+publisher:
+  name: The QRL
+  url: https://github.com/theQRL/offline-wallet-generator
+maintainers:
+  - name: The QRL
+    contact: https://github.com/theQRL/offline-wallet-generator
+source_availability: full
+repositories:
+  - id: main
+    role: client
+    url: https://github.com/theQRL/offline-wallet-generator
+    license: NOASSERTION
+links:
+  - type: website
     url: https://offline-wallet-generator.theqrl.org/
-    github: https://github.com/theQRL/offline-wallet-generator
-    default: true
-  - platform: offline html
+    primary: false
+  - type: application
+    url: https://offline-wallet-generator.theqrl.org/
+    platform: web
+    primary: true
+  - type: application
     url: https://github.com/theQRL/offline-wallet-generator/releases/latest
-    github: https://github.com/theQRL/offline-wallet-generator
-
+    platform: offline html
+  - type: documentation
+    url: https://docs.theqrl.org/use/wallet/offline/
+listed_at: '2026-08-17'
+data_updated_at: '2026-08-17'
 features:
   - Self-contained HTML release for air-gapped wallet generation
   - Local XMSS key generation with no network connection required
   - Encrypted JSON, unencrypted JSON, print, and PDF export
   - Published SHA-256 checksums and GitHub build attestations
-
-application:
-  platforms:
-    - web
-    - offline html
-  supported_networks:
-    - mainnet

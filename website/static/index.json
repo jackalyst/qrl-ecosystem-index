@@ -1,684 +1,2307 @@
 {
   "count": 41,
-  "generated": "2026-08-17T23:43:42Z",
+  "generated_at": "2026-08-19T08:11:55Z",
   "projects": [
     {
       "id": "acornswap",
       "name": "AcornSwap",
-      "status": "development",
-      "project_type": "dapp",
-      "category": "defi",
-      "qrl_versions": [
-        "2.0"
+      "project_type": "protocol",
+      "primary_category": "finance",
+      "secondary_categories": [],
+      "capabilities": [
+        "dex"
+      ],
+      "platforms": [],
+      "keywords": [
+        "dex",
+        "amm",
+        "liquidity",
+        "hyperion"
+      ],
+      "maturity": "beta",
+      "availability": "live",
+      "display_status": "Beta · Testnet",
+      "qrl_relationship": "native",
+      "qrl_support": [
+        {
+          "generation": "2.0",
+          "environments": [
+            "testnet"
+          ]
+        }
+      ],
+      "deployments": [
+        {
+          "id": "qrl-2-testnet-v2",
+          "network": "qrl-2-testnet-v2",
+          "operational_state": "live",
+          "identifiers": [
+            {
+              "type": "contract",
+              "value": "QA19FA6B49A10F1B57E303ECE95eF21acE640d312"
+            }
+          ],
+          "evidence": [
+            "https://github.com/PhuocNG0308/acorn-swap"
+          ],
+          "source_verification": "unverified"
+        }
       ],
       "description": "A Hyperion port of Uniswap V2 and V3 for the QRL 2.0 testnet. Its deployed V2 contracts provide constant-product pairs and routing, while the concentrated- liquidity V3 contracts are built and tested but not yet deployed.",
-      "url": "https://github.com/PhuocNG0308/acorn-swap",
-      "github": "https://github.com/PhuocNG0308/acorn-swap"
+      "primary_url": "https://github.com/PhuocNG0308/acorn-swap",
+      "source_availability": "full",
+      "repositories": [
+        {
+          "id": "main",
+          "role": "contracts",
+          "url": "https://github.com/PhuocNG0308/acorn-swap",
+          "license": "NOASSERTION"
+        }
+      ],
+      "links": [
+        {
+          "type": "website",
+          "url": "https://github.com/PhuocNG0308/acorn-swap",
+          "primary": true
+        }
+      ]
     },
     {
       "id": "go-qrl",
       "name": "Go QRL Execution Client",
-      "status": "development",
       "project_type": "infrastructure",
-      "category": "node",
-      "qrl_versions": [
-        "2.0"
+      "primary_category": "network-operations",
+      "secondary_categories": [],
+      "capabilities": [
+        "node-client",
+        "rpc"
       ],
+      "platforms": [],
+      "keywords": [
+        "node",
+        "execution-client",
+        "json-rpc",
+        "qrvm"
+      ],
+      "maturity": "beta",
+      "availability": "live",
+      "display_status": "Beta · Testnet + Local/Private",
+      "qrl_relationship": "native",
+      "qrl_support": [
+        {
+          "generation": "2.0",
+          "environments": [
+            "testnet",
+            "local-private"
+          ]
+        }
+      ],
+      "deployments": [],
       "description": "The official Go execution-layer client for QRL 2.0, providing full, archive, and light node modes, QRVM smart-contract execution, HTTP, WebSocket, and IPC JSON-RPC interfaces, and contract developer utilities.",
-      "url": "https://github.com/theQRL/go-qrl",
-      "github": "https://github.com/theQRL/go-qrl"
+      "primary_url": "https://github.com/theQRL/go-qrl",
+      "source_availability": "full",
+      "repositories": [
+        {
+          "id": "main",
+          "role": "infrastructure",
+          "url": "https://github.com/theQRL/go-qrl",
+          "license": "GPL-3.0 AND LGPL-3.0"
+        }
+      ],
+      "links": [
+        {
+          "type": "website",
+          "url": "https://github.com/theQRL/go-qrl",
+          "primary": true
+        },
+        {
+          "type": "documentation",
+          "url": "https://test-zond.theqrl.org/install"
+        }
+      ]
     },
     {
       "id": "go-qrllib",
       "name": "Go QRLLIB",
-      "status": "development",
       "project_type": "tooling",
-      "category": "library",
-      "qrl_versions": [
-        "1.x",
-        "2.0"
+      "primary_category": "developer-experience",
+      "secondary_categories": [
+        "security-custody-account-management"
       ],
+      "capabilities": [
+        "library",
+        "key-management"
+      ],
+      "platforms": [],
+      "keywords": [
+        "cryptography",
+        "mldsa",
+        "xmss",
+        "go"
+      ],
+      "maturity": "beta",
+      "availability": "live",
+      "display_status": "Beta",
+      "qrl_relationship": "native",
+      "qrl_support": [
+        {
+          "generation": "1.x",
+          "environments": []
+        },
+        {
+          "generation": "2.0",
+          "environments": []
+        }
+      ],
+      "deployments": [],
       "description": "A Go post-quantum cryptography and wallet library for QRL, providing ML-DSA-87, ML-KEM-1024, SPHINCS+, QRL 2.0 wallet and address helpers, and legacy XMSS compatibility for QRL 1.x migration.",
-      "url": "https://pkg.go.dev/github.com/theQRL/go-qrllib",
-      "github": "https://github.com/theQRL/go-qrllib"
+      "primary_url": "https://pkg.go.dev/github.com/theQRL/go-qrllib",
+      "source_availability": "full",
+      "repositories": [
+        {
+          "id": "main",
+          "role": "sdk",
+          "url": "https://github.com/theQRL/go-qrllib",
+          "license": "MIT"
+        }
+      ],
+      "links": [
+        {
+          "type": "package",
+          "url": "https://pkg.go.dev/github.com/theQRL/go-qrllib",
+          "primary": true
+        }
+      ]
     },
     {
       "id": "hero-miners",
       "name": "HeroMiners QRL Pool",
-      "status": "production",
       "project_type": "infrastructure",
-      "category": "mining-pool",
-      "qrl_versions": [
-        "1.x"
+      "primary_category": "network-operations",
+      "secondary_categories": [],
+      "capabilities": [
+        "mining-pool",
+        "analytics"
       ],
+      "platforms": [],
+      "keywords": [
+        "mining",
+        "pool",
+        "randomx",
+        "proof-of-work"
+      ],
+      "maturity": "stable",
+      "availability": "live",
+      "display_status": "Stable · Mainnet",
+      "qrl_relationship": "integrated",
+      "qrl_support": [
+        {
+          "generation": "1.x",
+          "environments": [
+            "mainnet"
+          ]
+        }
+      ],
+      "deployments": [],
       "description": "An independent QRL 1.x mining pool offering PPS+, PROPX, and solo mining, global endpoints, worker statistics, TLS ports, adjustable payout thresholds, fixed or dynamic difficulty, and miner notifications.",
-      "url": "https://qrl.herominers.com/",
-      "github": ""
+      "primary_url": "https://qrl.herominers.com/",
+      "source_availability": "unavailable",
+      "repositories": [],
+      "links": [
+        {
+          "type": "website",
+          "url": "https://qrl.herominers.com/",
+          "primary": true
+        }
+      ]
     },
     {
       "id": "hyperion",
       "name": "Hyperion",
-      "status": "development",
       "project_type": "tooling",
-      "category": "compiler",
-      "qrl_versions": [
-        "2.0"
+      "primary_category": "developer-experience",
+      "secondary_categories": [],
+      "capabilities": [
+        "compiler",
+        "contract-template"
       ],
+      "platforms": [],
+      "keywords": [
+        "smart-contracts",
+        "compiler",
+        "language",
+        "qrvm"
+      ],
+      "maturity": "beta",
+      "availability": "live",
+      "display_status": "Beta",
+      "qrl_relationship": "native",
+      "qrl_support": [
+        {
+          "generation": "2.0",
+          "environments": []
+        }
+      ],
+      "deployments": [],
       "description": "QRL's contract-oriented smart-contract language and compiler for the Quantum Resistant Virtual Machine, designed as a Solidity-derived toolchain for building tokens, applications, voting systems, and other QRL 2.0 contracts.",
-      "url": "https://github.com/theQRL/hyperion",
-      "github": "https://github.com/theQRL/hyperion",
-      "clients": [
+      "primary_url": "https://github.com/theQRL/hyperion",
+      "source_availability": "full",
+      "repositories": [
         {
-          "platform": "native compiler",
-          "github": "https://github.com/theQRL/hyperion",
-          "default": true
+          "id": "main",
+          "role": "tooling",
+          "url": "https://github.com/theQRL/hyperion",
+          "license": "GPL-3.0"
         },
         {
-          "platform": "javascript bindings",
+          "id": "javascript-bindings",
+          "role": "client",
+          "url": "https://github.com/theQRL/hypc-js",
+          "license": "NOASSERTION"
+        },
+        {
+          "id": "browser-binary",
+          "role": "client",
+          "url": "https://github.com/theQRL/hypc-bin",
+          "license": "NOASSERTION"
+        }
+      ],
+      "links": [
+        {
+          "type": "website",
+          "url": "https://github.com/theQRL/hyperion",
+          "primary": true
+        },
+        {
+          "type": "application",
           "url": "https://www.npmjs.com/package/@theqrl/hypc",
-          "github": "https://github.com/theQRL/hypc-js"
+          "platform": "javascript bindings"
         },
         {
-          "platform": "browser binary",
-          "github": "https://github.com/theQRL/hypc-bin"
+          "type": "documentation",
+          "url": "https://github.com/theQRL/hyperion/tree/main/docs"
         }
       ]
     },
     {
       "id": "mining-ocean",
       "name": "MiningOcean QRL Pool",
-      "status": "production",
       "project_type": "infrastructure",
-      "category": "mining-pool",
-      "qrl_versions": [
-        "1.x"
+      "primary_category": "network-operations",
+      "secondary_categories": [],
+      "capabilities": [
+        "mining-pool",
+        "analytics"
       ],
+      "platforms": [],
+      "keywords": [
+        "mining",
+        "pool",
+        "randomx",
+        "proof-of-work"
+      ],
+      "maturity": "stable",
+      "availability": "live",
+      "display_status": "Stable · Mainnet",
+      "qrl_relationship": "integrated",
+      "qrl_support": [
+        {
+          "generation": "1.x",
+          "environments": [
+            "mainnet"
+          ]
+        }
+      ],
+      "deployments": [],
       "description": "An independent QRL 1.x PROP and solo mining pool with regional servers, dynamic or fixed difficulty, TLS ports, per-worker statistics, configurable payouts, and Telegram or email notifications.",
-      "url": "https://qrl.miningocean.org/",
-      "github": ""
-    },
-    {
-      "id": "myqrlwallet",
-      "name": "MyQRLWallet",
-      "status": "development",
-      "project_type": "application",
-      "category": "wallet",
-      "qrl_versions": [
-        "2.0"
-      ],
-      "description": "A family of wallet applications for QRL 2.0: web wallet, Android app, desktop wallet, and browser extension, with post-quantum dApp connectivity over the QRL Connect relay protocol.",
-      "url": "https://myqrlwallet.com/",
-      "github": "https://github.com/DigitalGuards/myqrlwallet-frontend/",
-      "logo": "/images/logos/myqrlwallet/icon.png",
-      "clients": [
+      "primary_url": "https://qrl.miningocean.org/",
+      "source_availability": "unavailable",
+      "repositories": [],
+      "links": [
         {
-          "platform": "web",
-          "url": "https://myqrlwallet.com/",
-          "default": true
+          "type": "website",
+          "url": "https://qrl.miningocean.org/",
+          "primary": true
         },
         {
-          "platform": "web wallet",
-          "url": "https://qrlwallet.com/",
-          "github": "https://github.com/DigitalGuards/myqrlwallet-frontend/"
-        },
-        {
-          "platform": "android",
-          "url": "https://play.google.com/store/apps/details?id=com.chiefdg.myqrlwallet"
-        },
-        {
-          "platform": "desktop",
-          "url": "https://github.com/DigitalGuards/myqrlwallet-desktop/releases",
-          "github": "https://github.com/DigitalGuards/myqrlwallet-desktop"
-        },
-        {
-          "platform": "browser extension",
-          "github": "https://github.com/DigitalGuards/myqrlwallet-extension"
+          "type": "documentation",
+          "url": "https://qrl.miningocean.org/how_to_start"
         }
       ]
     },
     {
+      "id": "myqrlwallet",
+      "name": "MyQRLWallet",
+      "project_type": "application",
+      "primary_category": "security-custody-account-management",
+      "secondary_categories": [
+        "payments-commerce",
+        "assets-tokenization"
+      ],
+      "capabilities": [
+        "wallet",
+        "wallet-connector"
+      ],
+      "platforms": [
+        "mobile",
+        "desktop",
+        "browser-extension",
+        "web"
+      ],
+      "keywords": [
+        "wallet"
+      ],
+      "maturity": "beta",
+      "availability": "live",
+      "display_status": "Beta · Testnet",
+      "qrl_relationship": "native",
+      "qrl_support": [
+        {
+          "generation": "2.0",
+          "environments": [
+            "testnet"
+          ]
+        }
+      ],
+      "deployments": [],
+      "description": "A family of wallet applications for QRL 2.0: web wallet, Android app, desktop wallet, and browser extension, with post-quantum dApp connectivity over the QRL Connect relay protocol.",
+      "primary_url": "https://myqrlwallet.com/",
+      "source_availability": "full",
+      "repositories": [
+        {
+          "id": "main",
+          "role": "client",
+          "url": "https://github.com/DigitalGuards/myqrlwallet-frontend/",
+          "license": "MIT"
+        },
+        {
+          "id": "desktop",
+          "role": "client",
+          "url": "https://github.com/DigitalGuards/myqrlwallet-desktop",
+          "license": "MIT"
+        },
+        {
+          "id": "browser-extension",
+          "role": "client",
+          "url": "https://github.com/DigitalGuards/myqrlwallet-extension",
+          "license": "MIT"
+        }
+      ],
+      "links": [
+        {
+          "type": "website",
+          "url": "https://myqrlwallet.com/"
+        },
+        {
+          "type": "application",
+          "url": "https://myqrlwallet.com/",
+          "platform": "web",
+          "primary": true
+        },
+        {
+          "type": "application",
+          "url": "https://qrlwallet.com/",
+          "platform": "web wallet"
+        },
+        {
+          "type": "application",
+          "url": "https://play.google.com/store/apps/details?id=com.chiefdg.myqrlwallet",
+          "platform": "android"
+        },
+        {
+          "type": "application",
+          "url": "https://github.com/DigitalGuards/myqrlwallet-desktop/releases",
+          "platform": "desktop"
+        },
+        {
+          "type": "application",
+          "url": "https://github.com/DigitalGuards/myqrlwallet-extension",
+          "label": "GitHub",
+          "platform": "browser extension"
+        },
+        {
+          "type": "social",
+          "url": "https://x.com/DigitalGuards"
+        }
+      ],
+      "logo": "/images/logos/myqrlwallet/icon.png"
+    },
+    {
       "id": "peerquanta",
       "name": "PeerQuanta",
-      "status": "development",
       "project_type": "application",
-      "category": "marketplace",
-      "qrl_versions": [
-        "2.0"
+      "primary_category": "payments-commerce",
+      "secondary_categories": [
+        "social-creator-content",
+        "identity-naming-privacy"
       ],
-      "description": "A decentralized peer-to-peer marketplace for secure and anonymous digital goods and services, with encrypted chat and commitment-protocol features.",
-      "url": "https://peerquanta.com/",
-      "github": "",
-      "clients": [
+      "capabilities": [
+        "marketplace",
+        "notarization"
+      ],
+      "platforms": [
+        "web"
+      ],
+      "keywords": [
+        "marketplace",
+        "peer-to-peer",
+        "encrypted-chat",
+        "messaging"
+      ],
+      "maturity": "beta",
+      "availability": "live",
+      "display_status": "Beta · Testnet",
+      "qrl_relationship": "native",
+      "qrl_support": [
         {
-          "platform": "web",
+          "generation": "2.0",
+          "environments": [
+            "testnet"
+          ]
+        }
+      ],
+      "deployments": [],
+      "description": "A decentralized peer-to-peer marketplace for secure and anonymous digital goods and services, with encrypted chat and commitment-protocol features.",
+      "primary_url": "https://peerquanta.com/",
+      "source_availability": "unavailable",
+      "repositories": [],
+      "links": [
+        {
+          "type": "website",
+          "url": "https://peerquanta.com/"
+        },
+        {
+          "type": "application",
           "url": "https://peerquanta.com/",
-          "default": true
+          "platform": "web",
+          "primary": true
         }
       ]
     },
     {
       "id": "pqlymarket",
       "name": "PQlyMarket",
-      "status": "development",
-      "project_type": "dapp",
-      "category": "defi",
-      "qrl_versions": [
-        "2.0"
+      "project_type": "protocol",
+      "primary_category": "finance",
+      "secondary_categories": [
+        "interoperability-messaging-data"
+      ],
+      "capabilities": [
+        "prediction-market",
+        "oracle",
+        "faucet",
+        "dex"
+      ],
+      "platforms": [],
+      "keywords": [
+        "prediction-market",
+        "amm",
+        "oracle",
+        "hyperion"
+      ],
+      "maturity": "beta",
+      "availability": "live",
+      "display_status": "Beta · Testnet",
+      "qrl_relationship": "native",
+      "qrl_support": [
+        {
+          "generation": "2.0",
+          "environments": [
+            "testnet"
+          ]
+        }
+      ],
+      "deployments": [
+        {
+          "id": "qrl-2-testnet-v2",
+          "network": "qrl-2-testnet-v2",
+          "operational_state": "live",
+          "identifiers": [],
+          "evidence": [
+            "https://github.com/PhuocNG0308/pqlymarket"
+          ],
+          "source_verification": "unverified"
+        }
       ],
       "description": "An open-source prediction-market dApp for the QRL 2.0 testnet with market creation, YES/NO conditional-token trading, constant-product automated market makers, liquidity provision, oracle resolution, and a testnet faucet.",
-      "url": "https://github.com/PhuocNG0308/pqlymarket",
-      "github": "https://github.com/PhuocNG0308/pqlymarket"
+      "primary_url": "https://github.com/PhuocNG0308/pqlymarket",
+      "source_availability": "full",
+      "repositories": [
+        {
+          "id": "main",
+          "role": "contracts",
+          "url": "https://github.com/PhuocNG0308/pqlymarket",
+          "license": "MIT"
+        }
+      ],
+      "links": [
+        {
+          "type": "website",
+          "url": "https://github.com/PhuocNG0308/pqlymarket",
+          "primary": true
+        }
+      ]
     },
     {
       "id": "qrc20-factory",
       "name": "QRC20 Factory",
-      "status": "development",
       "project_type": "tooling",
-      "category": "template",
-      "qrl_versions": [
-        "2.0"
+      "primary_category": "assets-tokenization",
+      "secondary_categories": [
+        "developer-experience"
       ],
+      "capabilities": [
+        "contract-template",
+        "token-creator",
+        "deployment"
+      ],
+      "platforms": [],
+      "keywords": [
+        "qrc20",
+        "token-factory",
+        "smart-contracts",
+        "example"
+      ],
+      "maturity": "beta",
+      "availability": "live",
+      "display_status": "Beta",
+      "qrl_relationship": "native",
+      "qrl_support": [
+        {
+          "generation": "2.0",
+          "environments": []
+        }
+      ],
+      "deployments": [],
       "description": "An open-source QRL 2.0 reference implementation for deploying a QRC20 token factory, creating configurable tokens, and reading token details through QRL Web3.js on the public testnet or a local node.",
-      "url": "https://github.com/DigitalGuards/QRC20-Factory",
-      "github": "https://github.com/DigitalGuards/QRC20-Factory"
+      "primary_url": "https://github.com/DigitalGuards/QRC20-Factory",
+      "source_availability": "full",
+      "repositories": [
+        {
+          "id": "main",
+          "role": "tooling",
+          "url": "https://github.com/DigitalGuards/QRC20-Factory",
+          "license": "MIT"
+        }
+      ],
+      "links": [
+        {
+          "type": "website",
+          "url": "https://github.com/DigitalGuards/QRC20-Factory",
+          "primary": true
+        }
+      ]
     },
     {
       "id": "qrl-block-explorer",
       "name": "QRL Block Explorer",
-      "status": "production",
       "project_type": "application",
-      "category": "explorer",
-      "qrl_versions": [
-        "1.x"
+      "primary_category": "network-operations",
+      "secondary_categories": [
+        "assets-tokenization"
       ],
+      "capabilities": [
+        "explorer",
+        "analytics"
+      ],
+      "platforms": [
+        "web"
+      ],
+      "keywords": [
+        "explorer",
+        "blocks",
+        "transactions",
+        "api"
+      ],
+      "maturity": "stable",
+      "availability": "live",
+      "display_status": "Stable · Mainnet",
+      "qrl_relationship": "native",
+      "qrl_support": [
+        {
+          "generation": "1.x",
+          "environments": [
+            "mainnet"
+          ]
+        }
+      ],
+      "deployments": [],
       "description": "The official explorer for the QRL 1.x mainnet, providing block, transaction, address, token, rich-list, peer, mempool, network-statistics, and JSON API views backed by a connected QRL node.",
-      "url": "https://explorer.theqrl.org/",
-      "github": "https://github.com/theQRL/block-explorer"
+      "primary_url": "https://explorer.theqrl.org/",
+      "source_availability": "full",
+      "repositories": [
+        {
+          "id": "main",
+          "role": "client",
+          "url": "https://github.com/theQRL/block-explorer",
+          "license": "MIT"
+        }
+      ],
+      "links": [
+        {
+          "type": "website",
+          "url": "https://explorer.theqrl.org/",
+          "primary": true
+        },
+        {
+          "type": "documentation",
+          "url": "https://docs.theqrl.org/use/tools/explorer/overview/"
+        }
+      ]
     },
     {
       "id": "qrl-cli",
       "name": "qrl-cli",
-      "status": "production",
       "project_type": "tooling",
-      "category": "cli",
-      "qrl_versions": [
-        "1.x"
+      "primary_category": "developer-experience",
+      "secondary_categories": [
+        "security-custody-account-management",
+        "utility-storage-compute"
       ],
+      "capabilities": [
+        "cli",
+        "wallet",
+        "notarization",
+        "token-creator"
+      ],
+      "platforms": [],
+      "keywords": [
+        "cli",
+        "wallet",
+        "automation",
+        "npm"
+      ],
+      "maturity": "stable",
+      "availability": "live",
+      "display_status": "Stable",
+      "qrl_relationship": "native",
+      "qrl_support": [
+        {
+          "generation": "1.x",
+          "environments": []
+        }
+      ],
+      "deployments": [],
       "description": "An official command-line client for QRL 1.x wallet creation, balances, transfers, messages, notarization, tokens, OTS tracking, address validation, offline signing, and scripting against mainnet or testnet nodes.",
-      "url": "https://www.npmjs.com/package/@theqrl/cli",
-      "github": "https://github.com/theQRL/qrl-cli"
+      "primary_url": "https://www.npmjs.com/package/@theqrl/cli",
+      "source_availability": "full",
+      "repositories": [
+        {
+          "id": "main",
+          "role": "tooling",
+          "url": "https://github.com/theQRL/qrl-cli",
+          "license": "NOASSERTION"
+        }
+      ],
+      "links": [
+        {
+          "type": "package",
+          "url": "https://www.npmjs.com/package/@theqrl/cli",
+          "primary": true
+        }
+      ]
     },
     {
       "id": "qrl-contract-example",
       "name": "QRL Contract Example",
-      "status": "development",
       "project_type": "tooling",
-      "category": "template",
-      "qrl_versions": [
-        "2.0"
+      "primary_category": "developer-experience",
+      "secondary_categories": [],
+      "capabilities": [
+        "contract-template",
+        "deployment"
       ],
+      "platforms": [],
+      "keywords": [
+        "smart-contract",
+        "hyperion",
+        "web3",
+        "javascript",
+        "token"
+      ],
+      "maturity": "beta",
+      "availability": "live",
+      "display_status": "Beta",
+      "qrl_relationship": "native",
+      "qrl_support": [
+        {
+          "generation": "2.0",
+          "environments": []
+        }
+      ],
+      "deployments": [],
       "description": "A JavaScript reference project for compiling, deploying, and interacting with a Hyperion token contract on QRL 2.0 using @theqrl/web3, including on-chain transfers and off-chain balance queries.",
-      "url": "https://github.com/theQRL/qrl-contract-example",
-      "github": "https://github.com/theQRL/qrl-contract-example"
+      "primary_url": "https://github.com/theQRL/qrl-contract-example",
+      "source_availability": "full",
+      "repositories": [
+        {
+          "id": "main",
+          "role": "tooling",
+          "url": "https://github.com/theQRL/qrl-contract-example",
+          "license": "MIT"
+        }
+      ],
+      "links": [
+        {
+          "type": "website",
+          "url": "https://github.com/theQRL/qrl-contract-example",
+          "primary": true
+        }
+      ]
     },
     {
       "id": "qrl-file-tools",
       "name": "QRL File Tools",
-      "status": "development",
       "project_type": "tooling",
-      "category": "cli",
-      "qrl_versions": [
-        "2.0"
+      "primary_category": "security-custody-account-management",
+      "secondary_categories": [
+        "developer-experience"
       ],
+      "capabilities": [
+        "cli"
+      ],
+      "platforms": [],
+      "keywords": [
+        "cli",
+        "file-signing",
+        "mldsa",
+        "hashing"
+      ],
+      "maturity": "beta",
+      "availability": "live",
+      "display_status": "Beta",
+      "qrl_relationship": "native",
+      "qrl_support": [
+        {
+          "generation": "2.0",
+          "environments": []
+        }
+      ],
+      "deployments": [],
       "description": "Command-line tools for post-quantum file signing, signature verification, public-key extraction, hashing, and salt generation using FIPS 204 ML-DSA-87 or legacy Dilithium signatures.",
-      "url": "https://github.com/theQRL/qrlft",
-      "github": "https://github.com/theQRL/qrlft"
+      "primary_url": "https://github.com/theQRL/qrlft",
+      "source_availability": "full",
+      "repositories": [
+        {
+          "id": "main",
+          "role": "tooling",
+          "url": "https://github.com/theQRL/qrlft",
+          "license": "NOASSERTION"
+        }
+      ],
+      "links": [
+        {
+          "type": "website",
+          "url": "https://github.com/theQRL/qrlft",
+          "primary": true
+        }
+      ]
     },
     {
       "id": "qrl-helpers",
       "name": "QRL Helpers",
-      "status": "development",
       "project_type": "tooling",
-      "category": "developer-utility",
-      "qrl_versions": [
-        "2.0"
+      "primary_category": "network-operations",
+      "secondary_categories": [
+        "developer-experience"
       ],
+      "capabilities": [
+        "deployment",
+        "node-client"
+      ],
+      "platforms": [],
+      "keywords": [
+        "node",
+        "scripts",
+        "installer",
+        "community"
+      ],
+      "maturity": "beta",
+      "availability": "live",
+      "display_status": "Beta",
+      "qrl_relationship": "native",
+      "qrl_support": [
+        {
+          "generation": "2.0",
+          "environments": []
+        }
+      ],
+      "deployments": [],
       "description": "A community-maintained collection of scripts and helper tools for QRL 2.0 development and operations, currently centered on installing a complete node stack on Ubuntu 24.04.",
-      "url": "https://github.com/theqrl-community/qrl-helpers",
-      "github": "https://github.com/theqrl-community/qrl-helpers"
+      "primary_url": "https://github.com/theqrl-community/qrl-helpers",
+      "source_availability": "full",
+      "repositories": [
+        {
+          "id": "main",
+          "role": "tooling",
+          "url": "https://github.com/theqrl-community/qrl-helpers",
+          "license": "MIT"
+        }
+      ],
+      "links": [
+        {
+          "type": "website",
+          "url": "https://github.com/theqrl-community/qrl-helpers",
+          "primary": true
+        }
+      ]
     },
     {
       "id": "qrl-hub",
       "name": "QRL Hub",
-      "status": "production",
-      "project_type": "community",
-      "category": "education",
-      "qrl_versions": [
-        "1.x",
-        "2.0"
+      "project_type": "resource",
+      "primary_category": "education-research-ecosystem",
+      "secondary_categories": [],
+      "capabilities": [
+        "education",
+        "news"
       ],
+      "platforms": [
+        "web"
+      ],
+      "keywords": [
+        "education",
+        "news"
+      ],
+      "maturity": "stable",
+      "availability": "live",
+      "display_status": "Stable",
+      "qrl_relationship": "ecosystem-resource",
+      "qrl_support": [
+        {
+          "generation": "1.x",
+          "environments": []
+        },
+        {
+          "generation": "2.0",
+          "environments": []
+        }
+      ],
+      "deployments": [],
       "description": "A community-maintained educational website covering QRL, quantum computing threats, blockchain security, quantum news, and QRL 2.0 updates.",
-      "url": "https://qrlhub.com/",
-      "github": ""
+      "primary_url": "https://qrlhub.com/",
+      "source_availability": "unavailable",
+      "repositories": [],
+      "links": [
+        {
+          "type": "website",
+          "url": "https://qrlhub.com/",
+          "primary": true
+        }
+      ]
     },
     {
       "id": "qrl-javascript-cryptography",
       "name": "QRL JavaScript Cryptography",
-      "status": "development",
       "project_type": "tooling",
-      "category": "library",
-      "qrl_versions": [
-        "2.0"
+      "primary_category": "developer-experience",
+      "secondary_categories": [
+        "security-custody-account-management"
       ],
+      "capabilities": [
+        "library"
+      ],
+      "platforms": [],
+      "keywords": [
+        "cryptography",
+        "mldsa",
+        "argon2id",
+        "javascript",
+        "signing"
+      ],
+      "maturity": "beta",
+      "availability": "live",
+      "display_status": "Beta",
+      "qrl_relationship": "native",
+      "qrl_support": [
+        {
+          "generation": "2.0",
+          "environments": []
+        }
+      ],
+      "deployments": [],
       "description": "A pure-JavaScript cryptography toolkit for QRL applications with ML-DSA-87, Argon2id, AES encryption, secure random generation, Keccak and SHAKE hashing, and modular browser or Node.js imports.",
-      "url": "https://www.npmjs.com/package/@theqrl/qrl-cryptography",
-      "github": "https://github.com/theQRL/js-qrl-cryptography"
+      "primary_url": "https://www.npmjs.com/package/@theqrl/qrl-cryptography",
+      "source_availability": "full",
+      "repositories": [
+        {
+          "id": "main",
+          "role": "sdk",
+          "url": "https://github.com/theQRL/js-qrl-cryptography",
+          "license": "MIT"
+        }
+      ],
+      "links": [
+        {
+          "type": "package",
+          "url": "https://www.npmjs.com/package/@theqrl/qrl-cryptography",
+          "primary": true
+        }
+      ]
     },
     {
       "id": "qrl-ledger-wallet",
       "name": "QRL Ledger Wallet",
-      "status": "production",
       "project_type": "application",
-      "category": "wallet",
-      "qrl_versions": [
-        "1.x"
+      "primary_category": "security-custody-account-management",
+      "secondary_categories": [
+        "payments-commerce"
       ],
+      "capabilities": [
+        "wallet",
+        "hardware-wallet",
+        "key-management"
+      ],
+      "platforms": [],
+      "keywords": [
+        "wallet",
+        "hardware-wallet",
+        "ledger",
+        "xmss",
+        "signing"
+      ],
+      "maturity": "stable",
+      "availability": "live",
+      "display_status": "Stable · Mainnet",
+      "qrl_relationship": "native",
+      "qrl_support": [
+        {
+          "generation": "1.x",
+          "environments": [
+            "mainnet"
+          ]
+        }
+      ],
+      "deployments": [],
       "description": "The QRL application for Ledger Nano hardware wallets, keeping XMSS keys offline while supporting QRL transfers, messages, multiple address trees, OTS tracking, and optional passphrase-protected address spaces.",
-      "url": "https://docs.theqrl.org/use/wallet/ledger/overview/",
-      "github": "https://github.com/theQRL/ledger-qrl-app"
+      "primary_url": "https://docs.theqrl.org/use/wallet/ledger/overview/",
+      "source_availability": "full",
+      "repositories": [
+        {
+          "id": "main",
+          "role": "client",
+          "url": "https://github.com/theQRL/ledger-qrl-app",
+          "license": "Apache-2.0"
+        }
+      ],
+      "links": [
+        {
+          "type": "website",
+          "url": "https://docs.theqrl.org/use/wallet/ledger/overview/",
+          "primary": true
+        }
+      ]
     },
     {
       "id": "qrl-mobile-wallet",
       "name": "QRL Mobile Wallet",
-      "status": "production",
       "project_type": "application",
-      "category": "wallet",
-      "qrl_versions": [
-        "1.x"
+      "primary_category": "security-custody-account-management",
+      "secondary_categories": [
+        "payments-commerce"
       ],
-      "description": "A non-custodial QRL 1.x wallet for Android and iOS with biometric access, transaction history, multiple-wallet support, contacts, custom nodes, and QRL purchasing through Banxa.",
-      "url": "https://play.google.com/store/apps/details?id=com.volt.qrlmobile",
-      "github": "",
-      "clients": [
+      "capabilities": [
+        "wallet",
+        "payments"
+      ],
+      "platforms": [
+        "mobile"
+      ],
+      "keywords": [
+        "wallet",
+        "android",
+        "ios",
+        "mobile"
+      ],
+      "maturity": "stable",
+      "availability": "live",
+      "display_status": "Stable · Mainnet",
+      "qrl_relationship": "native",
+      "qrl_support": [
         {
-          "platform": "android",
-          "url": "https://play.google.com/store/apps/details?id=com.volt.qrlmobile",
-          "default": true
+          "generation": "1.x",
+          "environments": [
+            "mainnet"
+          ]
+        }
+      ],
+      "deployments": [],
+      "description": "A non-custodial QRL 1.x wallet for Android and iOS with biometric access, transaction history, multiple-wallet support, contacts, custom nodes, and QRL purchasing through Banxa.",
+      "primary_url": "https://play.google.com/store/apps/details?id=com.volt.qrlmobile",
+      "source_availability": "unavailable",
+      "repositories": [],
+      "links": [
+        {
+          "type": "website",
+          "url": "https://qrl-wallet.com/"
         },
         {
-          "platform": "ios",
-          "url": "https://apps.apple.com/app/qrl-mobile/id6448219494"
+          "type": "application",
+          "url": "https://play.google.com/store/apps/details?id=com.volt.qrlmobile",
+          "platform": "android",
+          "primary": true
+        },
+        {
+          "type": "application",
+          "url": "https://apps.apple.com/app/qrl-mobile/id6448219494",
+          "platform": "ios"
         }
       ]
     },
     {
       "id": "qrl-node",
       "name": "QRL 1.x Node",
-      "status": "production",
       "project_type": "infrastructure",
-      "category": "node",
-      "qrl_versions": [
-        "1.x"
+      "primary_category": "network-operations",
+      "secondary_categories": [],
+      "capabilities": [
+        "node-client",
+        "rpc"
       ],
+      "platforms": [],
+      "keywords": [
+        "node",
+        "proof-of-work",
+        "grpc",
+        "mining"
+      ],
+      "maturity": "stable",
+      "availability": "live",
+      "display_status": "Stable · Mainnet + Testnet",
+      "qrl_relationship": "native",
+      "qrl_support": [
+        {
+          "generation": "1.x",
+          "environments": [
+            "mainnet",
+            "testnet"
+          ]
+        }
+      ],
+      "deployments": [],
       "description": "The official Python implementation of the QRL 1.x proof-of-work node, used to validate and relay the chain, expose gRPC APIs, serve wallets and explorers, and participate in solo or pool mining.",
-      "url": "https://github.com/theQRL/QRL",
-      "github": "https://github.com/theQRL/QRL"
+      "primary_url": "https://github.com/theQRL/QRL",
+      "source_availability": "full",
+      "repositories": [
+        {
+          "id": "main",
+          "role": "infrastructure",
+          "url": "https://github.com/theQRL/QRL",
+          "license": "MIT"
+        }
+      ],
+      "links": [
+        {
+          "type": "website",
+          "url": "https://github.com/theQRL/QRL",
+          "primary": true
+        },
+        {
+          "type": "documentation",
+          "url": "https://docs.theqrl.org/use/node/"
+        }
+      ]
     },
     {
       "id": "qrl-offline-wallet-generator",
       "name": "QRL Offline Wallet Generator",
-      "status": "production",
       "project_type": "application",
-      "category": "wallet",
-      "qrl_versions": [
-        "1.x"
+      "primary_category": "security-custody-account-management",
+      "secondary_categories": [],
+      "capabilities": [
+        "wallet",
+        "key-management"
       ],
-      "description": "An official single-file QRL 1.x wallet generator designed for air-gapped use, with locally generated XMSS keys, encrypted or unencrypted JSON export, printable output, checksums, and build attestations.",
-      "url": "https://offline-wallet-generator.theqrl.org/",
-      "github": "https://github.com/theQRL/offline-wallet-generator",
-      "clients": [
+      "platforms": [
+        "web"
+      ],
+      "keywords": [
+        "wallet",
+        "offline",
+        "air-gapped",
+        "xmss",
+        "signing"
+      ],
+      "maturity": "stable",
+      "availability": "live",
+      "display_status": "Stable · Mainnet",
+      "qrl_relationship": "native",
+      "qrl_support": [
         {
-          "platform": "web",
-          "url": "https://offline-wallet-generator.theqrl.org/",
-          "github": "https://github.com/theQRL/offline-wallet-generator",
-          "default": true
+          "generation": "1.x",
+          "environments": [
+            "mainnet"
+          ]
+        }
+      ],
+      "deployments": [],
+      "description": "An official single-file QRL 1.x wallet generator designed for air-gapped use, with locally generated XMSS keys, encrypted or unencrypted JSON export, printable output, checksums, and build attestations.",
+      "primary_url": "https://offline-wallet-generator.theqrl.org/",
+      "source_availability": "full",
+      "repositories": [
+        {
+          "id": "main",
+          "role": "client",
+          "url": "https://github.com/theQRL/offline-wallet-generator",
+          "license": "NOASSERTION"
+        }
+      ],
+      "links": [
+        {
+          "type": "website",
+          "url": "https://offline-wallet-generator.theqrl.org/"
         },
         {
-          "platform": "offline html",
+          "type": "application",
+          "url": "https://offline-wallet-generator.theqrl.org/",
+          "platform": "web",
+          "primary": true
+        },
+        {
+          "type": "application",
           "url": "https://github.com/theQRL/offline-wallet-generator/releases/latest",
-          "github": "https://github.com/theQRL/offline-wallet-generator"
+          "platform": "offline html"
+        },
+        {
+          "type": "documentation",
+          "url": "https://docs.theqrl.org/use/wallet/offline/"
         }
       ]
     },
     {
       "id": "qrl-token-generator",
       "name": "QRL 2.0 Token Generator",
-      "status": "development",
       "project_type": "application",
-      "category": "token-creation",
-      "qrl_versions": [
-        "2.0"
+      "primary_category": "assets-tokenization",
+      "secondary_categories": [],
+      "capabilities": [
+        "token-creator",
+        "deployment"
       ],
+      "platforms": [
+        "web"
+      ],
+      "keywords": [
+        "token-generator",
+        "qrc20",
+        "no-code",
+        "smart-contracts"
+      ],
+      "maturity": "beta",
+      "availability": "live",
+      "display_status": "Beta · Testnet",
+      "qrl_relationship": "native",
+      "qrl_support": [
+        {
+          "generation": "2.0",
+          "environments": [
+            "testnet"
+          ]
+        }
+      ],
+      "deployments": [],
       "description": "A browser application for deploying configurable fungible tokens on the QRL 2.0 testnet without writing code, including supply, decimals, minting, burning, ownership, recipient, wallet-cap, and transaction-limit options.",
-      "url": "https://qrl-zond.com/create-token",
-      "github": ""
+      "primary_url": "https://qrl-zond.com/create-token",
+      "source_availability": "unavailable",
+      "repositories": [],
+      "links": [
+        {
+          "type": "website",
+          "url": "https://qrl-zond.com/create-token",
+          "primary": true
+        }
+      ]
     },
     {
       "id": "qrl-tokenomics",
       "name": "QRL Tokenomics Tools",
-      "status": "production",
       "project_type": "tooling",
-      "category": "analytics",
-      "qrl_versions": [
-        "1.x"
+      "primary_category": "finance",
+      "secondary_categories": [
+        "education-research-ecosystem"
       ],
+      "capabilities": [
+        "analytics"
+      ],
+      "platforms": [],
+      "keywords": [
+        "tokenomics",
+        "emission",
+        "datasets",
+        "analysis"
+      ],
+      "maturity": "stable",
+      "availability": "live",
+      "display_status": "Stable",
+      "qrl_relationship": "native",
+      "qrl_support": [
+        {
+          "generation": "1.x",
+          "environments": []
+        }
+      ],
+      "deployments": [],
       "description": "Community-maintained Python tools and datasets for examining QRL 1.x supply, emission, block-reward decay, and other macro- and micro-tokenomics questions.",
-      "url": "https://github.com/theqrl-community/qrl-tokenomics",
-      "github": "https://github.com/theqrl-community/qrl-tokenomics"
+      "primary_url": "https://github.com/theqrl-community/qrl-tokenomics",
+      "source_availability": "full",
+      "repositories": [
+        {
+          "id": "main",
+          "role": "tooling",
+          "url": "https://github.com/theqrl-community/qrl-tokenomics",
+          "license": "MIT"
+        }
+      ],
+      "links": [
+        {
+          "type": "website",
+          "url": "https://github.com/theqrl-community/qrl-tokenomics",
+          "primary": true
+        }
+      ]
     },
     {
       "id": "qrl-wallet-js",
       "name": "QRL Wallet.js",
-      "status": "development",
       "project_type": "tooling",
-      "category": "library",
-      "qrl_versions": [
-        "2.0"
+      "primary_category": "developer-experience",
+      "secondary_categories": [
+        "security-custody-account-management"
       ],
+      "capabilities": [
+        "library",
+        "key-management"
+      ],
+      "platforms": [],
+      "keywords": [
+        "wallet",
+        "sdk",
+        "mldsa",
+        "javascript"
+      ],
+      "maturity": "beta",
+      "availability": "live",
+      "display_status": "Beta",
+      "qrl_relationship": "native",
+      "qrl_support": [
+        {
+          "generation": "2.0",
+          "environments": []
+        }
+      ],
+      "deployments": [],
       "description": "A JavaScript wallet library for QRL 2.0 using FIPS 204 ML-DSA-87 signatures, with deterministic account recovery, 34-word mnemonics, address generation and checksums, message signing, and browser or Node.js support.",
-      "url": "https://www.npmjs.com/package/@theqrl/wallet.js",
-      "github": "https://github.com/theQRL/wallet.js"
+      "primary_url": "https://www.npmjs.com/package/@theqrl/wallet.js",
+      "source_availability": "full",
+      "repositories": [
+        {
+          "id": "main",
+          "role": "sdk",
+          "url": "https://github.com/theQRL/wallet.js",
+          "license": "MIT"
+        }
+      ],
+      "links": [
+        {
+          "type": "package",
+          "url": "https://www.npmjs.com/package/@theqrl/wallet.js",
+          "primary": true
+        }
+      ]
     },
     {
       "id": "qrl-wallet-provider",
       "name": "QRL Wallet Provider",
-      "status": "development",
       "project_type": "tooling",
-      "category": "sdk",
-      "qrl_versions": [
-        "2.0"
+      "primary_category": "developer-experience",
+      "secondary_categories": [
+        "security-custody-account-management"
       ],
+      "capabilities": [
+        "sdk",
+        "wallet-connector"
+      ],
+      "platforms": [],
+      "keywords": [
+        "wallet",
+        "provider",
+        "eip-6963",
+        "dapp"
+      ],
+      "maturity": "beta",
+      "availability": "live",
+      "display_status": "Beta",
+      "qrl_relationship": "native",
+      "qrl_support": [
+        {
+          "generation": "2.0",
+          "environments": []
+        }
+      ],
+      "deployments": [],
       "description": "An EIP-6963-based provider package that lets QRL 2.0 dApps discover and communicate with the QRL Web3 Wallet extension through an Ethereum-style request, event, and JSON-RPC interface.",
-      "url": "https://www.npmjs.com/package/@theqrl/qrl-wallet-provider",
-      "github": "https://github.com/theQRL/qrl-wallet-provider"
+      "primary_url": "https://www.npmjs.com/package/@theqrl/qrl-wallet-provider",
+      "source_availability": "full",
+      "repositories": [
+        {
+          "id": "main",
+          "role": "sdk",
+          "url": "https://github.com/theQRL/qrl-wallet-provider",
+          "license": "MIT"
+        }
+      ],
+      "links": [
+        {
+          "type": "package",
+          "url": "https://www.npmjs.com/package/@theqrl/qrl-wallet-provider",
+          "primary": true
+        }
+      ]
     },
     {
       "id": "qrl-wallet",
       "name": "QRL Web \u0026 Desktop Wallet",
-      "status": "production",
       "project_type": "application",
-      "category": "wallet",
-      "qrl_versions": [
-        "1.x"
+      "primary_category": "security-custody-account-management",
+      "secondary_categories": [
+        "payments-commerce",
+        "assets-tokenization"
       ],
-      "description": "The official QRL 1.x wallet, available as a browser application and Electron desktop client for Windows, macOS, and Linux, with local XMSS operations and Ledger hardware-wallet support.",
-      "url": "https://wallet.theqrl.org/",
-      "github": "https://github.com/theQRL/qrl-wallet",
-      "clients": [
+      "capabilities": [
+        "wallet",
+        "hardware-wallet"
+      ],
+      "platforms": [
+        "desktop",
+        "web"
+      ],
+      "keywords": [
+        "wallet",
+        "desktop",
+        "web",
+        "xmss",
+        "signing"
+      ],
+      "maturity": "stable",
+      "availability": "live",
+      "display_status": "Stable · Mainnet + Testnet",
+      "qrl_relationship": "native",
+      "qrl_support": [
         {
-          "platform": "web",
-          "url": "https://wallet.theqrl.org/",
-          "github": "https://github.com/theQRL/qrl-wallet",
-          "default": true
+          "generation": "1.x",
+          "environments": [
+            "mainnet",
+            "testnet"
+          ]
+        }
+      ],
+      "deployments": [],
+      "description": "The official QRL 1.x wallet, available as a browser application and Electron desktop client for Windows, macOS, and Linux, with local XMSS operations and Ledger hardware-wallet support.",
+      "primary_url": "https://wallet.theqrl.org/",
+      "source_availability": "full",
+      "repositories": [
+        {
+          "id": "main",
+          "role": "client",
+          "url": "https://github.com/theQRL/qrl-wallet",
+          "license": "MIT"
+        }
+      ],
+      "links": [
+        {
+          "type": "website",
+          "url": "https://wallet.theqrl.org/"
         },
         {
-          "platform": "desktop",
+          "type": "application",
+          "url": "https://wallet.theqrl.org/",
+          "platform": "web",
+          "primary": true
+        },
+        {
+          "type": "application",
           "url": "https://github.com/theQRL/qrl-wallet/releases/latest",
-          "github": "https://github.com/theQRL/qrl-wallet"
+          "platform": "desktop"
+        },
+        {
+          "type": "documentation",
+          "url": "https://docs.theqrl.org/use/wallet/"
         }
       ]
     },
     {
       "id": "qrl-web-tools",
       "name": "QRL Web Tools",
-      "status": "production",
       "project_type": "tooling",
-      "category": "developer-utility",
-      "qrl_versions": [
-        "1.x"
+      "primary_category": "security-custody-account-management",
+      "secondary_categories": [
+        "developer-experience"
       ],
+      "capabilities": [
+        "key-management"
+      ],
+      "platforms": [
+        "web"
+      ],
+      "keywords": [
+        "wallet",
+        "address-validation",
+        "offline",
+        "webassembly"
+      ],
+      "maturity": "stable",
+      "availability": "live",
+      "display_status": "Stable",
+      "qrl_relationship": "native",
+      "qrl_support": [
+        {
+          "generation": "1.x",
+          "environments": []
+        }
+      ],
+      "deployments": [],
       "description": "A collection of browser-based QRL 1.x utilities for generating wallets, inspecting addresses, validating hexseeds, and testing mnemonic phrases, available as a downloadable offline release.",
-      "url": "https://github.com/theQRL/webtools/releases/latest",
-      "github": "https://github.com/theQRL/webtools"
+      "primary_url": "https://github.com/theQRL/webtools/releases/latest",
+      "source_availability": "full",
+      "repositories": [
+        {
+          "id": "main",
+          "role": "tooling",
+          "url": "https://github.com/theQRL/webtools",
+          "license": "MIT"
+        }
+      ],
+      "links": [
+        {
+          "type": "website",
+          "url": "https://github.com/theQRL/webtools/releases/latest",
+          "primary": true
+        }
+      ]
     },
     {
       "id": "qrl-web3-js",
       "name": "QRL Web3.js",
-      "status": "development",
       "project_type": "tooling",
-      "category": "sdk",
-      "qrl_versions": [
-        "2.0"
+      "primary_category": "developer-experience",
+      "secondary_categories": [],
+      "capabilities": [
+        "sdk",
+        "library",
+        "rpc"
       ],
+      "platforms": [],
+      "keywords": [
+        "sdk",
+        "web3",
+        "json-rpc",
+        "typescript"
+      ],
+      "maturity": "beta",
+      "availability": "live",
+      "display_status": "Beta",
+      "qrl_relationship": "native",
+      "qrl_support": [
+        {
+          "generation": "2.0",
+          "environments": []
+        }
+      ],
+      "deployments": [],
       "description": "A TypeScript Web3 client suite for QRL 2.0 with JSON-RPC providers, accounts, contract wrappers, ABI tooling, subscriptions, address utilities, QRNS helpers, and browser or Node.js application support.",
-      "url": "https://github.com/theQRL/web3.js",
-      "github": "https://github.com/theQRL/web3.js"
+      "primary_url": "https://github.com/theQRL/web3.js",
+      "source_availability": "full",
+      "repositories": [
+        {
+          "id": "main",
+          "role": "sdk",
+          "url": "https://github.com/theQRL/web3.js",
+          "license": "LGPL-3.0"
+        }
+      ],
+      "links": [
+        {
+          "type": "website",
+          "url": "https://github.com/theQRL/web3.js",
+          "primary": true
+        }
+      ]
     },
     {
       "id": "qrl-web3-wallet",
       "name": "QRL Web3 Wallet",
-      "status": "development",
       "project_type": "application",
-      "category": "wallet",
-      "qrl_versions": [
-        "2.0"
+      "primary_category": "security-custody-account-management",
+      "secondary_categories": [
+        "payments-commerce",
+        "assets-tokenization"
       ],
-      "description": "A Chromium-based browser extension wallet for creating and importing QRL accounts, sending transactions, connecting to dApps, and managing QRC-20 tokens.",
-      "url": "https://github.com/theQRL/qrl-web3-wallet/releases/latest",
-      "github": "https://github.com/theQRL/qrl-web3-wallet",
-      "clients": [
+      "capabilities": [
+        "wallet",
+        "wallet-connector"
+      ],
+      "platforms": [
+        "browser-extension"
+      ],
+      "keywords": [
+        "wallet",
+        "browser-extension"
+      ],
+      "maturity": "beta",
+      "availability": "live",
+      "display_status": "Beta · Testnet",
+      "qrl_relationship": "native",
+      "qrl_support": [
         {
-          "platform": "chromium",
+          "generation": "2.0",
+          "environments": [
+            "testnet"
+          ]
+        }
+      ],
+      "deployments": [],
+      "description": "A Chromium-based browser extension wallet for creating and importing QRL accounts, sending transactions, connecting to dApps, and managing QRC-20 tokens.",
+      "primary_url": "https://github.com/theQRL/qrl-web3-wallet/releases/latest",
+      "source_availability": "full",
+      "repositories": [
+        {
+          "id": "main",
+          "role": "client",
+          "url": "https://github.com/theQRL/qrl-web3-wallet",
+          "license": "MIT"
+        }
+      ],
+      "links": [
+        {
+          "type": "website",
+          "url": "https://github.com/theQRL/qrl-web3-wallet/releases/latest"
+        },
+        {
+          "type": "application",
           "url": "https://github.com/theQRL/qrl-web3-wallet/releases/latest",
-          "github": "https://github.com/theQRL/qrl-web3-wallet",
-          "default": true
+          "platform": "chromium",
+          "primary": true
         }
       ]
     },
     {
       "id": "qrl-zeus",
       "name": "Zeus",
-      "status": "development",
       "project_type": "application",
-      "category": "wallet",
-      "qrl_versions": [
-        "1.x"
+      "primary_category": "security-custody-account-management",
+      "secondary_categories": [
+        "payments-commerce",
+        "network-operations"
       ],
-      "description": "An experimental multi-platform interface for QRL 1.x that combines wallet and network interactions in a Vue, Ionic, Capacitor, and Electron client, backed by a REST-to-gRPC proxy for QRL nodes.",
-      "url": "https://zeus.theqrl.org/",
-      "github": "https://github.com/theQRL/zeus",
-      "clients": [
+      "capabilities": [
+        "wallet"
+      ],
+      "platforms": [
+        "mobile",
+        "desktop",
+        "web"
+      ],
+      "keywords": [
+        "wallet",
+        "web",
+        "desktop",
+        "mobile"
+      ],
+      "maturity": "beta",
+      "availability": "live",
+      "display_status": "Beta · Mainnet + Testnet",
+      "qrl_relationship": "native",
+      "qrl_support": [
         {
-          "platform": "web",
-          "url": "https://zeus.theqrl.org/",
-          "github": "https://github.com/theQRL/zeus",
-          "default": true
+          "generation": "1.x",
+          "environments": [
+            "mainnet",
+            "testnet"
+          ]
+        }
+      ],
+      "deployments": [],
+      "description": "An experimental multi-platform interface for QRL 1.x that combines wallet and network interactions in a Vue, Ionic, Capacitor, and Electron client, backed by a REST-to-gRPC proxy for QRL nodes.",
+      "primary_url": "https://zeus.theqrl.org/",
+      "source_availability": "full",
+      "repositories": [
+        {
+          "id": "main",
+          "role": "client",
+          "url": "https://github.com/theQRL/zeus",
+          "license": "MIT"
         },
         {
-          "platform": "proxy",
-          "github": "https://github.com/theQRL/zeus-proxy"
+          "id": "proxy",
+          "role": "client",
+          "url": "https://github.com/theQRL/zeus-proxy",
+          "license": "NOASSERTION"
+        }
+      ],
+      "links": [
+        {
+          "type": "website",
+          "url": "https://zeus.theqrl.org/"
+        },
+        {
+          "type": "application",
+          "url": "https://zeus.theqrl.org/",
+          "platform": "web",
+          "primary": true
         }
       ]
     },
     {
       "id": "qrllib",
       "name": "QRLLIB",
-      "status": "production",
       "project_type": "tooling",
-      "category": "library",
-      "qrl_versions": [
-        "1.x"
+      "primary_category": "developer-experience",
+      "secondary_categories": [
+        "security-custody-account-management"
       ],
+      "capabilities": [
+        "library"
+      ],
+      "platforms": [],
+      "keywords": [
+        "cryptography",
+        "xmss",
+        "webassembly",
+        "python",
+        "signing"
+      ],
+      "maturity": "stable",
+      "availability": "live",
+      "display_status": "Stable",
+      "qrl_relationship": "native",
+      "qrl_support": [
+        {
+          "generation": "1.x",
+          "environments": []
+        }
+      ],
+      "deployments": [],
       "description": "The QRL 1.x core cryptography library, exposing XMSS, SHA2 and SHAKE hashing, seed and mnemonic helpers, and address generation through Python bindings and WebAssembly for browser applications.",
-      "url": "https://github.com/theQRL/qrllib",
-      "github": "https://github.com/theQRL/qrllib",
-      "clients": [
+      "primary_url": "https://github.com/theQRL/qrllib",
+      "source_availability": "full",
+      "repositories": [
         {
-          "platform": "source",
-          "github": "https://github.com/theQRL/qrllib",
-          "default": true
+          "id": "main",
+          "role": "sdk",
+          "url": "https://github.com/theQRL/qrllib",
+          "license": "MIT"
+        }
+      ],
+      "links": [
+        {
+          "type": "website",
+          "url": "https://github.com/theQRL/qrllib",
+          "primary": true
         },
         {
-          "platform": "python",
-          "url": "https://pypi.org/project/pyqrllib/"
+          "type": "application",
+          "url": "https://pypi.org/project/pyqrllib/",
+          "platform": "python"
         },
         {
-          "platform": "javascript",
-          "url": "https://www.npmjs.com/package/qrllib"
+          "type": "application",
+          "url": "https://www.npmjs.com/package/qrllib",
+          "platform": "javascript"
         }
       ]
     },
     {
       "id": "qrlwallet-connect",
       "name": "QRL Wallet Connect",
-      "status": "development",
       "project_type": "tooling",
-      "category": "sdk",
-      "qrl_versions": [
-        "2.0"
+      "primary_category": "developer-experience",
+      "secondary_categories": [
+        "security-custody-account-management"
       ],
-      "description": "A TypeScript SDK (@qrlwallet/connect) for connecting dApps to MyQRLWallet over a post-quantum encrypted relay, with QR code and deep-link pairing, an EIP-1193 style provider, and persistent sessions.",
-      "url": "https://www.npmjs.com/package/@qrlwallet/connect",
-      "github": "https://github.com/DigitalGuards/myqrlwallet-connect"
-    },
-    {
-      "id": "qrypto-js",
-      "name": "Qrypto.js",
-      "status": "development",
-      "project_type": "tooling",
-      "category": "library",
-      "qrl_versions": [
-        "2.0"
+      "capabilities": [
+        "sdk",
+        "wallet-connector"
       ],
-      "description": "A JavaScript and TypeScript post-quantum signature library for QRL 2.0, providing FIPS 204 ML-DSA-87 and legacy Dilithium5 packages for browsers and Node.js with combined and detached signing APIs.",
-      "url": "https://www.npmjs.com/package/@theqrl/mldsa87",
-      "github": "https://github.com/theQRL/qrypto.js"
-    },
-    {
-      "id": "qrysm",
-      "name": "Qrysm",
-      "status": "development",
-      "project_type": "infrastructure",
-      "category": "node",
-      "qrl_versions": [
-        "2.0"
+      "platforms": [],
+      "keywords": [
+        "sdk",
+        "dapp",
+        "post-quantum"
       ],
-      "description": "The official Go consensus-layer client for QRL 2.0, coordinating proof-of-stake beacon nodes and validators with the Go QRL execution client as part of a complete QRL 2.0 node.",
-      "url": "https://github.com/theQRL/qrysm",
-      "github": "https://github.com/theQRL/qrysm"
-    },
-    {
-      "id": "quantapool",
-      "name": "QuantaPool",
-      "status": "development",
-      "project_type": "dapp",
-      "category": "defi",
-      "qrl_versions": [
-        "2.0"
-      ],
-      "description": "A decentralized QRL liquid staking protocol for staking QRL, receiving stQRL, and earning validator rewards while staying liquid.",
-      "url": "https://quantapool.io/",
-      "github": "https://github.com/DigitalGuards/QuantaPool",
-      "logo": "/images/logos/quantapool/icon.svg",
-      "clients": [
+      "maturity": "beta",
+      "availability": "live",
+      "display_status": "Beta",
+      "qrl_relationship": "native",
+      "qrl_support": [
         {
-          "platform": "web",
-          "url": "https://quantapool.io/",
-          "github": "https://github.com/DigitalGuards/QuantaPool",
-          "default": true
+          "generation": "2.0",
+          "environments": []
+        }
+      ],
+      "deployments": [],
+      "description": "A TypeScript SDK (@qrlwallet/connect) for connecting dApps to MyQRLWallet over a post-quantum encrypted relay, with QR code and deep-link pairing, an EIP-1193 style provider, and persistent sessions.",
+      "primary_url": "https://www.npmjs.com/package/@qrlwallet/connect",
+      "source_availability": "full",
+      "repositories": [
+        {
+          "id": "main",
+          "role": "sdk",
+          "url": "https://github.com/DigitalGuards/myqrlwallet-connect",
+          "license": "MIT"
+        }
+      ],
+      "links": [
+        {
+          "type": "package",
+          "url": "https://www.npmjs.com/package/@qrlwallet/connect",
+          "primary": true
+        },
+        {
+          "type": "documentation",
+          "url": "https://github.com/DigitalGuards/myqrlwallet-connect/blob/main/docs/JSON-RPC-REFERENCE.md"
         }
       ]
     },
     {
+      "id": "qrypto-js",
+      "name": "Qrypto.js",
+      "project_type": "tooling",
+      "primary_category": "developer-experience",
+      "secondary_categories": [
+        "security-custody-account-management"
+      ],
+      "capabilities": [
+        "library"
+      ],
+      "platforms": [],
+      "keywords": [
+        "cryptography",
+        "mldsa",
+        "dilithium",
+        "javascript"
+      ],
+      "maturity": "beta",
+      "availability": "live",
+      "display_status": "Beta",
+      "qrl_relationship": "native",
+      "qrl_support": [
+        {
+          "generation": "2.0",
+          "environments": []
+        }
+      ],
+      "deployments": [],
+      "description": "A JavaScript and TypeScript post-quantum signature library for QRL 2.0, providing FIPS 204 ML-DSA-87 and legacy Dilithium5 packages for browsers and Node.js with combined and detached signing APIs.",
+      "primary_url": "https://www.npmjs.com/package/@theqrl/mldsa87",
+      "source_availability": "full",
+      "repositories": [
+        {
+          "id": "main",
+          "role": "sdk",
+          "url": "https://github.com/theQRL/qrypto.js",
+          "license": "MIT"
+        }
+      ],
+      "links": [
+        {
+          "type": "package",
+          "url": "https://www.npmjs.com/package/@theqrl/mldsa87",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "id": "qrysm",
+      "name": "Qrysm",
+      "project_type": "infrastructure",
+      "primary_category": "network-operations",
+      "secondary_categories": [],
+      "capabilities": [
+        "node-client",
+        "validator"
+      ],
+      "platforms": [],
+      "keywords": [
+        "node",
+        "consensus-client",
+        "proof-of-stake",
+        "validator"
+      ],
+      "maturity": "beta",
+      "availability": "live",
+      "display_status": "Beta · Testnet + Local/Private",
+      "qrl_relationship": "native",
+      "qrl_support": [
+        {
+          "generation": "2.0",
+          "environments": [
+            "testnet",
+            "local-private"
+          ]
+        }
+      ],
+      "deployments": [],
+      "description": "The official Go consensus-layer client for QRL 2.0, coordinating proof-of-stake beacon nodes and validators with the Go QRL execution client as part of a complete QRL 2.0 node.",
+      "primary_url": "https://github.com/theQRL/qrysm",
+      "source_availability": "full",
+      "repositories": [
+        {
+          "id": "main",
+          "role": "infrastructure",
+          "url": "https://github.com/theQRL/qrysm",
+          "license": "GPL-3.0"
+        }
+      ],
+      "links": [
+        {
+          "type": "website",
+          "url": "https://github.com/theQRL/qrysm",
+          "primary": true
+        },
+        {
+          "type": "documentation",
+          "url": "https://test-zond.theqrl.org/"
+        }
+      ]
+    },
+    {
+      "id": "quantapool",
+      "name": "QuantaPool",
+      "project_type": "protocol",
+      "primary_category": "finance",
+      "secondary_categories": [
+        "network-operations",
+        "assets-tokenization"
+      ],
+      "capabilities": [
+        "liquid-staking",
+        "staking"
+      ],
+      "platforms": [],
+      "keywords": [
+        "liquid-staking",
+        "staking",
+        "stqrl"
+      ],
+      "maturity": "beta",
+      "availability": "live",
+      "display_status": "Beta · Testnet",
+      "qrl_relationship": "native",
+      "qrl_support": [
+        {
+          "generation": "2.0",
+          "environments": [
+            "testnet"
+          ]
+        }
+      ],
+      "deployments": [
+        {
+          "id": "qrl-2-testnet-v2",
+          "network": "qrl-2-testnet-v2",
+          "operational_state": "live",
+          "identifiers": [
+            {
+              "type": "contract",
+              "value": "Q109d7C528a67b80eb638D4C85e7C4545ef9Bb9aC"
+            }
+          ],
+          "evidence": [
+            "https://github.com/DigitalGuards/QuantaPool"
+          ],
+          "source_verification": "unverified"
+        }
+      ],
+      "description": "A decentralized QRL liquid staking protocol for staking QRL, receiving stQRL, and earning validator rewards while staying liquid.",
+      "primary_url": "https://quantapool.io/",
+      "source_availability": "full",
+      "repositories": [
+        {
+          "id": "main",
+          "role": "contracts",
+          "url": "https://github.com/DigitalGuards/QuantaPool",
+          "license": "GPL-3.0"
+        }
+      ],
+      "links": [
+        {
+          "type": "website",
+          "url": "https://quantapool.io/"
+        },
+        {
+          "type": "application",
+          "url": "https://quantapool.io/",
+          "platform": "web",
+          "primary": true
+        },
+        {
+          "type": "documentation",
+          "url": "https://quantapool.io/how-it-works"
+        }
+      ],
+      "logo": "/images/logos/quantapool/icon.svg"
+    },
+    {
       "id": "quantascan",
       "name": "Quantascan",
-      "status": "production",
       "project_type": "application",
-      "category": "explorer",
-      "qrl_versions": [
-        "1.x",
-        "2.0"
+      "primary_category": "network-operations",
+      "secondary_categories": [
+        "assets-tokenization"
       ],
+      "capabilities": [
+        "explorer",
+        "analytics"
+      ],
+      "platforms": [
+        "web"
+      ],
+      "keywords": [
+        "explorer",
+        "analytics",
+        "dashboards",
+        "charts",
+        "rich-list",
+        "validators",
+        "mining",
+        "statistics",
+        "portfolio"
+      ],
+      "maturity": "stable",
+      "availability": "live",
+      "display_status": "Stable · Mainnet + Testnet",
+      "qrl_relationship": "native",
+      "qrl_support": [
+        {
+          "generation": "1.x",
+          "environments": [
+            "mainnet",
+            "testnet"
+          ]
+        },
+        {
+          "generation": "2.0",
+          "environments": [
+            "testnet"
+          ]
+        }
+      ],
+      "deployments": [],
       "description": "Analytics-first block explorer for QRL and QRL 2.0: aggregated time-series, cross-chain charts, rich lists, wallet classification, and validator and mining dashboards — built around network-wide data, not just single block and transaction lookups.",
-      "url": "https://quantascan.io",
-      "github": "",
+      "primary_url": "https://quantascan.io",
+      "source_availability": "unavailable",
+      "repositories": [],
+      "links": [
+        {
+          "type": "website",
+          "url": "https://quantascan.io",
+          "primary": true
+        },
+        {
+          "type": "documentation",
+          "url": "https://quantascan.io/api-docs"
+        }
+      ],
       "logo": "/images/logos/quantascan/icon.svg"
     },
     {
       "id": "quantaswap",
       "name": "QuantaSwap",
-      "status": "development",
-      "project_type": "dapp",
-      "category": "defi",
-      "qrl_versions": [
-        "2.0"
+      "project_type": "protocol",
+      "primary_category": "interoperability-messaging-data",
+      "secondary_categories": [
+        "finance"
+      ],
+      "capabilities": [
+        "atomic-swap",
+        "dex",
+        "wallet-connector"
+      ],
+      "platforms": [],
+      "keywords": [
+        "atomic-swaps",
+        "htlc",
+        "cross-chain",
+        "ethereum"
+      ],
+      "maturity": "beta",
+      "availability": "live",
+      "display_status": "Beta · Testnet",
+      "qrl_relationship": "native",
+      "qrl_support": [
+        {
+          "generation": "2.0",
+          "environments": [
+            "testnet"
+          ]
+        }
+      ],
+      "deployments": [
+        {
+          "id": "qrl-2-testnet-v2",
+          "network": "qrl-2-testnet-v2",
+          "operational_state": "live",
+          "identifiers": [
+            {
+              "type": "contract",
+              "value": "Q94cd8e406d2bb4ea251dce3f0558941f2ac056ee"
+            }
+          ],
+          "evidence": [
+            "https://github.com/DigitalGuards/QuantaSwap"
+          ],
+          "source_verification": "unverified"
+        }
       ],
       "description": "Cross-chain atomic swaps between native QRL and native ETH using hashed timelock contracts on both chains. No bridge, no wrapped assets, no custodian: each leg settles natively and the swap secret never leaves the client.",
-      "url": "https://quantaswap.io/",
-      "github": "https://github.com/DigitalGuards/QuantaSwap",
-      "logo": "/images/logos/quantaswap/icon.svg",
-      "clients": [
+      "primary_url": "https://quantaswap.io/",
+      "source_availability": "full",
+      "repositories": [
         {
-          "platform": "web",
-          "url": "https://quantaswap.io/",
-          "github": "https://github.com/DigitalGuards/QuantaSwap",
-          "default": true
+          "id": "main",
+          "role": "contracts",
+          "url": "https://github.com/DigitalGuards/QuantaSwap",
+          "license": "GPL-3.0"
         }
-      ]
+      ],
+      "links": [
+        {
+          "type": "website",
+          "url": "https://quantaswap.io/"
+        },
+        {
+          "type": "application",
+          "url": "https://quantaswap.io/",
+          "platform": "web",
+          "primary": true
+        },
+        {
+          "type": "social",
+          "url": "https://x.com/DigitalGuards"
+        }
+      ],
+      "logo": "/images/logos/quantaswap/icon.svg"
     },
     {
       "id": "rust-qrllib",
       "name": "Rust QRLLIB",
-      "status": "development",
       "project_type": "tooling",
-      "category": "library",
-      "qrl_versions": [
-        "1.x",
-        "2.0"
+      "primary_category": "developer-experience",
+      "secondary_categories": [
+        "security-custody-account-management"
       ],
+      "capabilities": [
+        "library",
+        "key-management"
+      ],
+      "platforms": [],
+      "keywords": [
+        "cryptography",
+        "mldsa",
+        "xmss",
+        "rust",
+        "webassembly"
+      ],
+      "maturity": "beta",
+      "availability": "live",
+      "display_status": "Beta",
+      "qrl_relationship": "native",
+      "qrl_support": [
+        {
+          "generation": "1.x",
+          "environments": []
+        },
+        {
+          "generation": "2.0",
+          "environments": []
+        }
+      ],
+      "deployments": [],
       "description": "A native Rust and WebAssembly implementation of QRL cryptography with ML-DSA-87, ML-KEM-1024, SPHINCS+, legacy XMSS, QRL wallet and address helpers, mnemonic recovery, and descriptor-bound signing.",
-      "url": "https://github.com/theQRL/rust-qrllib",
-      "github": "https://github.com/theQRL/rust-qrllib"
+      "primary_url": "https://github.com/theQRL/rust-qrllib",
+      "source_availability": "full",
+      "repositories": [
+        {
+          "id": "main",
+          "role": "sdk",
+          "url": "https://github.com/theQRL/rust-qrllib",
+          "license": "MIT"
+        }
+      ],
+      "links": [
+        {
+          "type": "website",
+          "url": "https://github.com/theQRL/rust-qrllib",
+          "primary": true
+        }
+      ]
     },
     {
       "id": "squirrel-game",
       "name": "Squirrel Game",
-      "status": "development",
-      "project_type": "dapp",
-      "category": "gaming",
-      "qrl_versions": [
-        "2.0"
+      "project_type": "protocol",
+      "primary_category": "gaming-virtual-worlds",
+      "secondary_categories": [
+        "assets-tokenization"
+      ],
+      "capabilities": [
+        "staking"
+      ],
+      "platforms": [],
+      "keywords": [
+        "gaming",
+        "nft",
+        "staking",
+        "hyperion"
+      ],
+      "maturity": "beta",
+      "availability": "live",
+      "display_status": "Beta · Testnet",
+      "qrl_relationship": "native",
+      "qrl_support": [
+        {
+          "generation": "2.0",
+          "environments": [
+            "testnet"
+          ]
+        }
+      ],
+      "deployments": [
+        {
+          "id": "qrl-2-testnet-v2",
+          "network": "qrl-2-testnet-v2",
+          "operational_state": "live",
+          "identifiers": [
+            {
+              "type": "contract",
+              "value": "Qfb47c6091d44465E10A576EeAD73c049C339258b"
+            }
+          ],
+          "evidence": [
+            "https://github.com/PhuocNG0308/squirrel-game"
+          ],
+          "source_verification": "unverified"
+        }
       ],
       "description": "An on-chain strategy game on the QRL 2.0 testnet where Quantum Computer NFTs mine qBTC and Squirrel NFTs tax or steal it, with Hyperion contracts for minting, staking, traits, yield accounting, and commit-reveal randomness.",
-      "url": "https://github.com/PhuocNG0308/squirrel-game",
-      "github": "https://github.com/PhuocNG0308/squirrel-game"
+      "primary_url": "https://github.com/PhuocNG0308/squirrel-game",
+      "source_availability": "full",
+      "repositories": [
+        {
+          "id": "main",
+          "role": "contracts",
+          "url": "https://github.com/PhuocNG0308/squirrel-game",
+          "license": "NOASSERTION"
+        }
+      ],
+      "links": [
+        {
+          "type": "website",
+          "url": "https://github.com/PhuocNG0308/squirrel-game",
+          "primary": true
+        }
+      ]
     },
     {
       "id": "zond-web3-wallet-dapp-example",
       "name": "Zond Web3 Wallet dApp Example",
-      "status": "development",
       "project_type": "tooling",
-      "category": "template",
-      "qrl_versions": [
-        "2.0"
+      "primary_category": "developer-experience",
+      "secondary_categories": [],
+      "capabilities": [
+        "contract-template",
+        "wallet-connector"
       ],
+      "platforms": [],
+      "keywords": [
+        "dapp",
+        "wallet",
+        "eip-6963",
+        "json-rpc",
+        "typescript",
+        "testing"
+      ],
+      "maturity": "beta",
+      "availability": "live",
+      "display_status": "Beta",
+      "qrl_relationship": "native",
+      "qrl_support": [
+        {
+          "generation": "2.0",
+          "environments": []
+        }
+      ],
+      "deployments": [],
       "description": "A React and TypeScript example dApp for discovering and connecting to the Zond Web3 Wallet and other EIP-6963 browser wallets, exercising wallet and Zond JSON-RPC methods, and inspecting responses or errors.",
-      "url": "https://github.com/theQRL/zond-web3-wallet-dapp-example",
-      "github": "https://github.com/theQRL/zond-web3-wallet-dapp-example"
+      "primary_url": "https://github.com/theQRL/zond-web3-wallet-dapp-example",
+      "source_availability": "full",
+      "repositories": [
+        {
+          "id": "main",
+          "role": "tooling",
+          "url": "https://github.com/theQRL/zond-web3-wallet-dapp-example",
+          "license": "MIT"
+        }
+      ],
+      "links": [
+        {
+          "type": "website",
+          "url": "https://github.com/theQRL/zond-web3-wallet-dapp-example",
+          "primary": true
+        }
+      ]
     },
     {
       "id": "zondscan",
       "name": "ZondScan",
-      "status": "development",
       "project_type": "application",
-      "category": "explorer",
-      "qrl_versions": [
-        "2.0"
+      "primary_category": "network-operations",
+      "secondary_categories": [],
+      "capabilities": [
+        "explorer",
+        "analytics"
       ],
+      "platforms": [
+        "web"
+      ],
+      "keywords": [
+        "explorer",
+        "zond",
+        "validators"
+      ],
+      "maturity": "beta",
+      "availability": "live",
+      "display_status": "Beta · Testnet",
+      "qrl_relationship": "native",
+      "qrl_support": [
+        {
+          "generation": "2.0",
+          "environments": [
+            "testnet"
+          ]
+        }
+      ],
+      "deployments": [],
       "description": "A QRL Zond network explorer for browsing blocks, transactions, smart contracts, validators, addresses, and chain activity.",
-      "url": "https://zondscan.com/",
-      "github": "https://github.com/DigitalGuards/zondscan",
+      "primary_url": "https://zondscan.com/",
+      "source_availability": "full",
+      "repositories": [
+        {
+          "id": "main",
+          "role": "client",
+          "url": "https://github.com/DigitalGuards/zondscan",
+          "license": "MIT"
+        }
+      ],
+      "links": [
+        {
+          "type": "website",
+          "url": "https://zondscan.com/",
+          "primary": true
+        }
+      ],
       "logo": "/images/logos/zondscan/icon.png"
     }
-  ]
+  ],
+  "schema_version": 6
 }

@@ -1,11 +1,11 @@
 {{- $idPrefix := .id_prefix -}}
 {{- $showClassification := .show_classification -}}
-{{- $showStatus := .show_status -}}
+{{- $showLifecycle := .show_status -}}
 {{- $projects := where site.RegularPages "Section" "projects" -}}
 <div class="project-filter{{ if not $showClassification }} project-filter-compact{{ end }}" role="search" data-project-filter>
     <label class="filter-control filter-control-search" for="{{ $idPrefix }}-search">
         <span>Search</span>
-        <input id="{{ $idPrefix }}-search" type="search" data-project-search placeholder="Name, author, or capability">
+        <input id="{{ $idPrefix }}-search" type="search" data-project-search placeholder="Name, publisher, capability, or platform">
     </label>
     {{ if $showClassification }}
     <label class="filter-control" for="{{ $idPrefix }}-type">
@@ -14,42 +14,90 @@
             <option value="">All project types</option>
             {{ range hugo.Data.classification.project_types }}
             {{ $count := len (where $projects "Params.project_type" .id) }}
-            <option value="{{ .id }}">{{ .label }} ({{ $count }})</option>
+            <option value="{{ .id }}" data-label="{{ .label }}">{{ .label }} ({{ $count }})</option>
             {{ end }}
         </select>
     </label>
     <label class="filter-control" for="{{ $idPrefix }}-category">
         <span>Category</span>
-        <select id="{{ $idPrefix }}-category" data-project-category disabled>
-            <option value="">Select a project type first</option>
-            {{ range hugo.Data.classification.project_types }}
-                {{ $projectType := . }}
-                {{ range .categories }}
-                    {{ $typeProjects := where $projects "Params.project_type" $projectType.id }}
-                    {{ $count := len (where $typeProjects "Params.category" .id) }}
-            <option value="{{ .id }}" data-parent="{{ $projectType.id }}" data-label="{{ .label }}" hidden disabled>{{ .label }} ({{ $count }})</option>
-                {{ end }}
+        <select id="{{ $idPrefix }}-category" data-project-category>
+            <option value="">All categories</option>
+            {{ range hugo.Data.classification.categories }}
+                {{ $count := len (where $projects "Params.categories" "intersect" (slice .id)) }}
+            <option value="{{ .id }}" data-label="{{ .label }}">{{ .label }} ({{ $count }})</option>
+            {{ end }}
+        </select>
+    </label>
+    <label class="filter-control" for="{{ $idPrefix }}-capability">
+        <span>Capability</span>
+        <select id="{{ $idPrefix }}-capability" data-project-capability>
+            <option value="">All capabilities</option>
+            {{ range hugo.Data.classification.capabilities }}
+                {{ $count := len (where $projects "Params.capabilities" "intersect" (slice .id)) }}
+            <option value="{{ .id }}" data-label="{{ .label }}">{{ .label }} ({{ $count }})</option>
+            {{ end }}
+        </select>
+    </label>
+    <label class="filter-control" for="{{ $idPrefix }}-platform">
+        <span>Available on</span>
+        <select id="{{ $idPrefix }}-platform" data-project-platform>
+            <option value="">All platforms</option>
+            {{ range hugo.Data.classification.platforms }}
+                {{ $count := len (where $projects "Params.platforms" "intersect" (slice .id)) }}
+            <option value="{{ .id }}" data-label="{{ .label }}">{{ .label }} ({{ $count }})</option>
             {{ end }}
         </select>
     </label>
     {{ end }}
-    <label class="filter-control" for="{{ $idPrefix }}-qrl-version">
-        <span>QRL version</span>
-        <select id="{{ $idPrefix }}-qrl-version" data-project-qrl-version>
-            <option value="">All QRL versions</option>
-            <option value="1.x">Supports QRL 1.x</option>
-            <option value="2.0">Supports QRL 2.0</option>
+    <label class="filter-control" for="{{ $idPrefix }}-qrl-generation">
+        <span>QRL generation</span>
+        <select id="{{ $idPrefix }}-qrl-generation" data-project-qrl-generation>
+            <option value="">All QRL generations</option>
+            <option value="1.x" data-label="QRL 1.x">Supports QRL 1.x</option>
+            <option value="2.0" data-label="QRL 2.0">Supports QRL 2.0</option>
         </select>
     </label>
-    {{ if $showStatus }}
-    <label class="filter-control" for="{{ $idPrefix }}-status">
-        <span>Status</span>
-        <select id="{{ $idPrefix }}-status" data-project-status>
-            <option value="">All statuses</option>
-            <option value="production">Production</option>
-            <option value="development">Development</option>
-            <option value="archived">Archived</option>
-        </select>
-    </label>
+    {{ if $showLifecycle }}
+    <details class="filter-more">
+        <summary>More filters</summary>
+        <div class="filter-more-grid">
+            <label class="filter-control" for="{{ $idPrefix }}-maturity">
+                <span>Maturity</span>
+                <select id="{{ $idPrefix }}-maturity" data-project-maturity>
+                    <option value="">All maturity levels</option>
+                    <option value="prototype" data-label="Prototype">Prototype</option>
+                    <option value="beta" data-label="Beta">Beta</option>
+                    <option value="stable" data-label="Stable">Stable</option>
+                    <option value="deprecated" data-label="Deprecated">Deprecated</option>
+                </select>
+            </label>
+            <label class="filter-control" for="{{ $idPrefix }}-availability">
+                <span>Availability</span>
+                <select id="{{ $idPrefix }}-availability" data-project-availability>
+                    <option value="">All availability states</option>
+                    <option value="live" data-label="Live">Live</option>
+                    <option value="limited" data-label="Limited">Limited</option>
+                    <option value="paused" data-label="Paused">Paused</option>
+                    <option value="offline" data-label="Offline">Offline</option>
+                    <option value="archived" data-label="Archived">Archived</option>
+                </select>
+            </label>
+            <label class="filter-control" for="{{ $idPrefix }}-environment">
+                <span>Environment</span>
+                <select id="{{ $idPrefix }}-environment" data-project-environment>
+                    <option value="">All environments</option>
+                    <option value="mainnet" data-label="Mainnet">Mainnet</option>
+                    <option value="testnet" data-label="Testnet">Testnet</option>
+                    <option value="devnet" data-label="Devnet">Devnet</option>
+                    <option value="local-private" data-label="Local/private">Local/private</option>
+                </select>
+            </label>
+        </div>
+    </details>
     {{ end }}
+</div>
+<div class="active-filters" data-active-filters aria-labelledby="{{ $idPrefix }}-active-filters-label" hidden>
+    <span class="active-filters-label" id="{{ $idPrefix }}-active-filters-label">Active filters</span>
+    <ul class="active-filter-list" data-active-filter-list></ul>
+    <button class="clear-filters" type="button" data-clear-filters>Clear all</button>
 </div>

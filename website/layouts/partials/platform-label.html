@@ -1,0 +1,8 @@
+{{- $value := . -}}
+{{- $label := "" -}}
+{{- range hugo.Data.classification.platforms -}}
+    {{- if eq .id $value -}}
+        {{- $label = .label -}}
+    {{- end -}}
+{{- end -}}
+{{- if $label -}}{{- $label -}}{{- else -}}{{- $value | humanize | title -}}{{- end -}}

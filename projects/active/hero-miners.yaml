@@ -1,37 +1,42 @@
 id: hero-miners
 name: HeroMiners QRL Pool
 project_type: infrastructure
-qrl_versions:
-  - 1.x
-status: production
-description: >
-  An independent QRL 1.x mining pool offering PPS+, PROPX, and solo mining,
-  global endpoints, worker statistics, TLS ports, adjustable payout thresholds,
-  fixed or dynamic difficulty, and miner notifications.
-category: mining-pool
-tags:
+primary_category: network-operations
+secondary_categories: []
+capabilities:
+  - mining-pool
+  - analytics
+platforms: []
+keywords:
   - mining
   - pool
   - randomx
   - proof-of-work
-author: HeroMiners
-license: none
-created: 2026-08-17
-updated: 2026-08-17
-
-url: https://qrl.herominers.com/
-
-open_source: false
-audited: false
-
+maturity: stable
+availability: live
+qrl_relationship: integrated
+qrl_support:
+  - generation: 1.x
+    environments:
+      - mainnet
+description: |
+  An independent QRL 1.x mining pool offering PPS+, PROPX, and solo mining, global endpoints, worker statistics, TLS ports, adjustable payout thresholds, fixed or dynamic difficulty, and miner notifications.
+publisher:
+  name: HeroMiners
+  url: https://qrl.herominers.com/
+maintainers:
+  - name: HeroMiners
+    contact: https://qrl.herominers.com/
+source_availability: unavailable
+repositories: []
+links:
+  - type: website
+    url: https://qrl.herominers.com/
+    primary: true
+listed_at: '2026-08-17'
+data_updated_at: '2026-08-17'
 features:
   - PPS+, PROPX, pool, and solo mining modes
   - Global mining endpoints with TLS support
   - Per-rig statistics and estimated earnings
   - Adjustable payout thresholds and worker notifications
-
-infrastructure:
-  supported_networks:
-    - mainnet
-  endpoints:
-    - https://qrl.herominers.com/

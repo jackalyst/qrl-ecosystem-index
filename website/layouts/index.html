@@ -1,22 +1,26 @@
 {{ define "main" }}
 {{ $projects := where site.RegularPages "Section" "projects" }}
-{{ $activeProjects := where $projects "Params.status" "!=" "archived" }}
-{{ $production := sort (where $activeProjects "Params.status" "production") "Title" }}
-{{ $production = sort $production "Params.updated" "desc" }}
-{{ $development := sort (where $activeProjects "Params.status" "development") "Title" }}
-{{ $development = sort $development "Params.updated" "desc" }}
-{{ $featured := slice }}
-{{ range $production }}
-    {{ if lt (len $featured) 3 }}{{ $featured = $featured | append . }}{{ end }}
-{{ end }}
-{{ if lt (len $featured) 3 }}
-    {{ range $development }}
-        {{ if lt (len $featured) 3 }}{{ $featured = $featured | append . }}{{ end }}
+{{ $activeProjects := where $projects "Params.availability" "!=" "archived" }}
+{{ $spotlightCandidates := slice }}
+{{ range $activeProjects }}
+    {{ $images := where (.Params.gallery | default slice) "type" "image" }}
+    {{ if and (eq .Params.maturity "stable") (eq .Params.availability "live") (gt (len $images) 0) }}
+        {{ $spotlightCandidates = $spotlightCandidates | append . }}
     {{ end }}
+{{ end }}
+{{ $spotlightCandidates = sort $spotlightCandidates "Params.id" }}
+{{ $spotlight := false }}
+{{ $spotlightImage := false }}
+{{ if gt (len $spotlightCandidates) 0 }}
+    {{ $mondayWeek := div (add now.Unix 259200) 604800 }}
+    {{ $spotlightIndex := mod $mondayWeek (len $spotlightCandidates) }}
+    {{ $spotlight = index $spotlightCandidates $spotlightIndex }}
+    {{ $spotlightImages := where ($spotlight.Params.gallery | default slice) "type" "image" }}
+    {{ $spotlightImage = index $spotlightImages 0 }}
 {{ end }}
 {{ $projectTypes := index site.Taxonomies "project-types" }}
 
-<section class="home-hero">
+<section class="home-hero{{ if not $spotlight }} home-hero-no-spotlight{{ end }}">
     <div class="hero-content">
         <p class="eyebrow">QRL / Ecosystem Index</p>
         <h1 class="hero-title">A clearer view of what’s being built on QRL.</h1>
@@ -26,28 +30,36 @@
             <a class="button button-secondary" href="{{ relURL "/getting-started/" }}">Build on QRL 2.0 <span aria-hidden="true">→</span></a>
         </div>
     </div>
+    {{ with $spotlight }}
+    {{ $spotlightAvailability := .Params.availability }}
+    <aside class="project-spotlight"
+        data-project-spotlight
+        data-project-id="{{ .Params.id }}"
+        data-project-maturity="{{ .Params.maturity }}"
+        data-project-availability="{{ .Params.availability }}"
+        data-project-image="{{ $spotlightImage.path }}"
+        aria-labelledby="project-spotlight-title">
+        <a class="project-spotlight-media" href="{{ .RelPermalink }}" aria-label="View {{ .Title }} listing">
+            <img src="{{ printf "/images/screenshots/%s" $spotlightImage.path | relURL }}" alt="{{ $spotlightImage.caption }}" loading="eager" fetchpriority="high" decoding="async">
+        </a>
+        <div class="project-spotlight-body">
+            <div class="project-spotlight-heading">
+                <p class="eyebrow">Weekly project spotlight</p>
+                {{ with .Params.display_status }}<span class="status status-{{ $spotlightAvailability }}">{{ . }}</span>{{ end }}
+            </div>
+            <h2 id="project-spotlight-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+            <p class="project-spotlight-description">{{ .Params.description }}</p>
+            <a class="section-link" href="{{ .RelPermalink }}">View project listing <span aria-hidden="true">→</span></a>
+        </div>
+        <p class="project-spotlight-policy">Selected automatically from live, stable projects with screenshots. Rotates weekly; not an endorsement.</p>
+    </aside>
+    {{ end }}
 </section>
 
 <section class="signal-rail" aria-label="Index overview">
     <div class="signal-item"><span class="signal-value">{{ len $projects }}</span><span class="signal-label">Projects listed</span></div>
     <div class="signal-item"><span class="signal-value">{{ len site.Taxonomies.categories }}</span><span class="signal-label">Categories represented</span></div>
     <div class="signal-item"><span class="signal-value">{{ len $projectTypes }}</span><span class="signal-label">Project types</span></div>
-</section>
-
-<section class="section-shell" aria-labelledby="featured-title">
-    <div class="section-heading section-heading-row">
-        <div>
-            <p class="eyebrow">A representative sample</p>
-            <h2 id="featured-title">Projects in view</h2>
-        </div>
-        <a class="section-link" href="{{ relURL "/projects/" }}">See all projects <span aria-hidden="true">↗</span></a>
-    </div>
-    <div class="project-grid featured-grid">
-        {{ range $featured }}
-            {{ partial "project-card.html" (dict "project" . "variant" "project-card-featured") }}
-        {{ end }}
-    </div>
-    <p class="section-note section-note-bottom">Generated to help visitors explore different parts of the ecosystem. This is not a ranking or endorsement.</p>
 </section>
 
 <section class="section-shell directory-section" id="directory" aria-labelledby="directory-title" data-project-directory>

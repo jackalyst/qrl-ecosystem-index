@@ -1,11 +1,8 @@
 {{- $value := . -}}
 {{- $result := dict -}}
-{{- range hugo.Data.classification.project_types -}}
-    {{- $projectType := . -}}
-    {{- range .categories -}}
-        {{- if eq .id $value -}}
-            {{- $result = dict "category" . "project_type" $projectType -}}
-        {{- end -}}
+{{- range hugo.Data.classification.categories -}}
+    {{- if eq .id $value -}}
+        {{- $result = dict "category" . -}}
     {{- end -}}
 {{- end -}}
 {{- return $result -}}

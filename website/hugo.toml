@@ -28,9 +28,12 @@ openGraphDefaultImage = "/images/og/default.png"
 
 [taxonomies]
 category = "categories"
+capability = "capabilities"
 maintainer = "maintainers"
 project_type = "project-types"
-tag = "tags"
+
+[markup.goldmark.renderer]
+unsafe = false
 
 [build]
 publishDir = "public"

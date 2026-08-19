@@ -2,49 +2,71 @@
 aliases:
     - /projects/active/qrl-block-explorer/
     - /projects/archived/qrl-block-explorer/
-audited: false
-audits: []
-author: The QRL
-categories:
+availability: live
+capabilities:
     - explorer
-category: explorer
-clients: []
-created: "2026-08-17"
-default_client_github: https://github.com/theQRL/block-explorer
-default_client_url: https://explorer.theqrl.org/
+    - analytics
+categories:
+    - network-operations
+    - assets-tokenization
+data_updated_at: "2026-08-17"
 description: The official explorer for the QRL 1.x mainnet, providing block, transaction, address, token, rich-list, peer, mempool, network-statistics, and JSON API views backed by a connected QRL node.
-discord: ""
-docs: https://docs.theqrl.org/use/tools/explorer/overview/
-ecosystem_type: application
+display_status: Stable · Mainnet
 features:
     - Block, transaction, address, token, and unconfirmed-transaction lookup
     - Network status, peers, rich list, and mining statistics
     - Public explorer API for application integrations
     - Live QRL 1.x mainnet data
-github: https://github.com/theQRL/block-explorer
-license: MIT
-logos: []
-maintainers:
-    - The QRL
-open_source: true
-platforms:
-    - web
-project-types:
-    - applications
-project_type: application
-project_url: https://explorer.theqrl.org/
-qrl_versions:
-    - 1.x
-status: production
-supported_networks:
-    - mainnet
-tags:
+id: qrl-block-explorer
+keywords:
     - explorer
     - blocks
     - transactions
     - api
+links:
+    - type: website
+      url: https://explorer.theqrl.org/
+      primary: true
+    - type: documentation
+      url: https://docs.theqrl.org/use/tools/explorer/overview/
+listed_at: "2026-08-17"
+maintainer_records:
+    - name: The QRL
+      contact: https://github.com/theQRL/block-explorer
+maintainers:
+    - The QRL
+maturity: stable
+platforms:
+    - web
+primary_category: network-operations
+primary_link:
+    type: website
+    url: https://explorer.theqrl.org/
+    primary: true
+primary_url: https://explorer.theqrl.org/
+project-types:
+    - applications
+project_type: application
+publisher:
+    name: The QRL
+    url: https://github.com/theQRL/block-explorer
+qrl_environments:
+    - mainnet
+qrl_generations:
+    - 1.x
+qrl_relationship: native
+qrl_support:
+    - generation: 1.x
+      environments:
+        - mainnet
+repositories:
+    - id: main
+      role: client
+      url: https://github.com/theQRL/block-explorer
+      license: MIT
+secondary_categories:
+    - assets-tokenization
+source_availability: full
 title: QRL Block Explorer
-twitter: ""
-updated: "2026-08-17"
 url: /projects/qrl-block-explorer/
 ---

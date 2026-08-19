@@ -1,31 +1,31 @@
 {{ define "main" }}
 {{ $isProjectTypeIndex := and (eq .Data.Plural "project-types") (not .Data.Term) }}
 {{ $isCategoryIndex := and (eq .Data.Plural "categories") (not .Data.Term) }}
+{{ $isCapabilityIndex := and (eq .Data.Plural "capabilities") (not .Data.Term) }}
 {{ $isTaxonomyIndex := and .Data.Terms (not .Data.Term) }}
-{{ $isTermPage := and .Data.Term (in (slice "categories" "maintainers" "project-types" "tags") .Data.Plural) }}
+{{ $isTermPage := and .Data.Term (in (slice "capabilities" "categories" "maintainers" "project-types") .Data.Plural) }}
 {{ $showsProjectCards := or (eq .Section "projects") $isTermPage }}
 {{ $heading := .Title }}
-{{ $projectTypeMeta := dict }}
-{{ $categoryMeta := dict }}
+{{ $description := "" }}
 {{ if and .Data.Term (eq .Data.Plural "project-types") }}
-    {{ $projectTypeMeta = partial "project-type-meta.html" .Data.Term }}
-    {{ $heading = $projectTypeMeta.label }}
+    {{ $meta := partial "project-type-meta.html" .Data.Term }}
+    {{ $heading = $meta.label }}
+    {{ $description = $meta.description }}
 {{ else if and .Data.Term (eq .Data.Plural "categories") }}
-    {{ $categoryMeta = partial "category-meta.html" .Data.Term }}
-    {{ $heading = $categoryMeta.category.label }}
+    {{ $meta := partial "category-meta.html" .Data.Term }}
+    {{ $heading = $meta.category.label }}
+    {{ $description = $meta.category.description }}
+{{ else if and .Data.Term (eq .Data.Plural "capabilities") }}
+    {{ $meta := partial "capability-meta.html" .Data.Term }}
+    {{ $heading = $meta.label }}
+    {{ $description = $meta.description }}
 {{ end }}
 
 <section class="page-hero page-hero-compact">
-    {{ if $categoryMeta.category }}
-    <p class="eyebrow"><a href="{{ printf "/project-types/%s/" $categoryMeta.project_type.taxonomy_slug | relURL }}">{{ $categoryMeta.project_type.label }}</a> <span aria-hidden="true">›</span> Category</p>
-    {{ else }}
-    <p class="eyebrow">{{ if eq .Section "projects" }}Directory{{ else if .Data.Term }}Browse by classification{{ else }}Explore the index{{ end }}</p>
-    {{ end }}
+    <p class="eyebrow">{{ if eq .Section "projects" }}Directory{{ else if .Data.Term }}Browse by facet{{ else }}Explore the index{{ end }}</p>
     <h1>{{ $heading }}</h1>
-    {{ if $categoryMeta.category }}
-    <div class="page-dek"><p>{{ $categoryMeta.category.description }}</p></div>
-    {{ else if $projectTypeMeta.label }}
-    <div class="page-dek"><p>{{ $projectTypeMeta.description }}</p></div>
+    {{ if $description }}
+    <div class="page-dek"><p>{{ $description }}</p></div>
     {{ else if .Content }}
     <div class="page-dek">{{ .Content }}</div>
     {{ end }}
@@ -37,57 +37,32 @@
     {{ range $projectType := hugo.Data.classification.project_types }}
     {{ $entry := index $taxonomy $projectType.taxonomy_slug }}
     <a class="taxonomy-card" href="{{ printf "/project-types/%s/" $projectType.taxonomy_slug | relURL }}">
-        <span class="taxonomy-card-content">
-            <strong>{{ $projectType.label }}</strong>
-            <span>{{ $projectType.description }}</span>
-            <span class="taxonomy-card-children">{{ range $categoryIndex, $category := $projectType.categories }}{{ if $categoryIndex }} · {{ end }}{{ $category.label }}{{ end }}</span>
-        </span>
+        <span class="taxonomy-card-content"><strong>{{ $projectType.label }}</strong><span>{{ $projectType.description }}</span></span>
         <span class="taxonomy-card-count">{{ with $entry }}{{ .Count }}{{ else }}0{{ end }}</span>
     </a>
     {{ end }}
 </div>
 {{ else if $isCategoryIndex }}
-{{ $categoryTaxonomy := site.Taxonomies.categories }}
-<div class="classification-groups">
-    {{ range $projectType := hugo.Data.classification.project_types }}
-    <section class="classification-group" aria-labelledby="categories-{{ $projectType.id }}">
-        <header class="classification-group-header">
-            <div>
-                <p class="eyebrow">Project type</p>
-                <h2 id="categories-{{ $projectType.id }}"><a href="{{ printf "/project-types/%s/" $projectType.taxonomy_slug | relURL }}">{{ $projectType.label }}</a></h2>
-            </div>
-            <p>{{ $projectType.description }}</p>
-        </header>
-        <div class="browse-grid browse-grid-large">
-            {{ range $projectType.categories }}
-            {{ $entry := index $categoryTaxonomy .id }}
-            {{ $count := 0 }}{{ with $entry }}{{ $count = .Count }}{{ end }}
-            <a class="browse-card{{ if eq $count 0 }} browse-card-empty{{ end }}" href="{{ if gt $count 0 }}{{ printf "/categories/%s/" .id | relURL }}{{ else }}{{ printf "/ideas/#category-%s" .id | relURL }}{{ end }}">
-                <span><small>{{ if eq $count 0 }}Opportunity{{ else }}Category{{ end }}</small>{{ .label }}</span><strong>{{ $count }}</strong>
-            </a>
-            {{ end }}
-        </div>
-    </section>
+{{ $taxonomy := site.Taxonomies.categories }}
+<div class="browse-grid browse-grid-large">
+    {{ range hugo.Data.classification.categories }}
+    {{ $entry := index $taxonomy .id }}{{ $count := 0 }}{{ with $entry }}{{ $count = .Count }}{{ end }}
+    <a class="browse-card{{ if eq $count 0 }} browse-card-empty{{ end }}" href="{{ if gt $count 0 }}{{ printf "/categories/%s/" .id | relURL }}{{ else }}{{ printf "/ideas/#category-%s" .id | relURL }}{{ end }}">
+        <span><small>{{ if eq $count 0 }}Opportunity{{ else }}Use case{{ end }}</small>{{ .label }}</span><strong>{{ $count }}</strong>
+    </a>
     {{ end }}
 </div>
-{{ else if and .Data.Term (eq .Data.Plural "project-types") }}
-{{ $categoryTaxonomy := site.Taxonomies.categories }}
-<section class="classification-children" aria-labelledby="classification-children-title">
-    <div class="section-heading">
-        <p class="eyebrow">Child categories</p>
-        <h2 id="classification-children-title">Explore {{ $projectTypeMeta.label }}</h2>
-    </div>
-    <div class="browse-grid browse-grid-large">
-        {{ range $projectTypeMeta.categories }}
-        {{ $entry := index $categoryTaxonomy .id }}
-        {{ $count := 0 }}{{ with $entry }}{{ $count = .Count }}{{ end }}
-        <a class="browse-card{{ if eq $count 0 }} browse-card-empty{{ end }}" href="{{ if gt $count 0 }}{{ printf "/categories/%s/" .id | relURL }}{{ else }}{{ printf "/ideas/#category-%s" .id | relURL }}{{ end }}">
-            <span><small>{{ if eq $count 0 }}Opportunity{{ else }}Category{{ end }}</small>{{ .label }}</span><strong>{{ $count }}</strong>
-        </a>
-        {{ end }}
-    </div>
-</section>
-{{ else if $isTaxonomyIndex }}
+{{ else if $isCapabilityIndex }}
+{{ $taxonomy := site.Taxonomies.capabilities }}
+<div class="browse-grid browse-grid-large">
+    {{ range hugo.Data.classification.capabilities }}
+    {{ $entry := index $taxonomy .id }}{{ $count := 0 }}{{ with $entry }}{{ $count = .Count }}{{ end }}
+    <a class="browse-card{{ if eq $count 0 }} browse-card-empty{{ end }}" href="{{ if gt $count 0 }}{{ printf "/capabilities/%s/" .id | relURL }}{{ else }}{{ relURL "/ideas/" }}{{ end }}">
+        <span><small>{{ if eq $count 0 }}Opportunity{{ else }}Capability{{ end }}</small>{{ .label }}</span><strong>{{ $count }}</strong>
+    </a>
+    {{ end }}
+</div>
+{{ else if and $isTaxonomyIndex (not $showsProjectCards) }}
 <div class="browse-grid browse-grid-large">
     {{ range .Data.Terms.Alphabetical }}
     <a class="browse-card" href="{{ .Page.RelPermalink }}"><span>{{ .Page.Title }}</span><strong>{{ .Count }}</strong></a>
@@ -98,10 +73,7 @@
 {{ if $showsProjectCards }}
 <section class="listing-section" aria-labelledby="listing-results-title" data-project-directory>
     <div class="listing-toolbar">
-        <div>
-            <p class="eyebrow">{{ if eq .Section "projects" }}All listings{{ else }}Matching projects{{ end }}</p>
-            <h2 id="listing-results-title">{{ if eq .Section "projects" }}Explore projects{{ else }}Projects in this view{{ end }}</h2>
-        </div>
+        <div><p class="eyebrow">{{ if eq .Section "projects" }}All listings{{ else }}Matching projects{{ end }}</p><h2 id="listing-results-title">{{ if eq .Section "projects" }}Explore projects{{ else }}Projects in this view{{ end }}</h2></div>
         <p class="result-summary"><strong data-result-count>{{ len .Pages }}</strong> matching projects</p>
     </div>
     {{ partial "project-filters.html" (dict "id_prefix" "project-directory" "show_classification" (eq .Section "projects") "show_status" (eq .Section "projects")) }}
@@ -111,7 +83,7 @@
     <p class="no-results" data-no-results hidden><span data-no-results-copy>No matching projects. Try a broader search or reset a filter.</span> <a href="{{ relURL "/ideas/" }}" data-no-results-ideas data-ideas-base="{{ relURL "/ideas/" }}" hidden>Explore this opportunity.</a></p>
 </section>
 {{ with resources.Get "js/project-filters.js" }}<script src="{{ .RelPermalink }}" defer></script>{{ end }}
-{{ else if not (or $isProjectTypeIndex $isCategoryIndex $isTaxonomyIndex) }}
+{{ else if not (or $isProjectTypeIndex $isCategoryIndex $isCapabilityIndex $isTaxonomyIndex) }}
 <p class="empty-state">No projects found in this view.</p>
 {{ end }}
 {{ end }}

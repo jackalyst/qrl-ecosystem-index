@@ -1,16 +1,18 @@
-name: Lint YAML
+name: Lint project data
 
 on:
   pull_request:
     paths:
       - 'projects/**/*.yaml'
-      - 'schema/project.schema.json'
-      - 'website/data/classification.yaml'
       - 'images/logos/**'
       - 'images/screenshots/**'
-      - 'scripts/validate_classification.py'
-      - 'scripts/validate_classification_test.py'
+      - 'schema/project.schema.json'
+      - 'website/data/classification.yaml'
+      - 'requirements-validation.txt'
+      - 'scripts/validate_projects.py'
+      - 'scripts/validate_projects_test.py'
       - 'scripts/validate_gallery.py'
+      - 'scripts/validate_gallery_test.py'
 
 permissions: {}
 
@@ -27,115 +29,12 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
         with:
-          python-version: '3.x'
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: requirements-validation.txt
 
-      - name: Install dependencies
-        run: pip install pyyaml jsonschema
+      - name: Install pinned validation dependencies
+        run: python3 -m pip install --requirement requirements-validation.txt
 
-      - name: Lint YAML files
-        run: |
-          python << 'EOF'
-          import yaml
-          import re
-          from pathlib import Path
-          from urllib.parse import urlparse
-
-          VALID_STATUSES = {'development', 'production', 'archived'}
-          VALID_NETWORKS = {'mainnet', 'testnet'}
-
-          DATE_PATTERN = re.compile(r'^\d{4}-\d{2}-\d{2}$')
-
-          def is_valid_url(s):
-              if not s:
-                  return True
-              try:
-                  result = urlparse(s)
-                  return bool(result.scheme and result.netloc)
-              except:
-                  return False
-
-          def lint_file(yaml_path):
-              errors = []
-              with open(yaml_path) as f:
-                  data = yaml.safe_load(f)
-
-              if not data:
-                  return ["Empty file"]
-
-              # Check dates are valid ISO 8601
-              for date_field in ['created', 'updated']:
-                  if date_field in data:
-                      if not DATE_PATTERN.match(str(data[date_field])):
-                          errors.append(f"Invalid date format for '{date_field}': {data[date_field]} (expected YYYY-MM-DD)")
-
-              # Check description length
-              if 'description' in data and len(data['description']) > 280:
-                  errors.append(f"Description exceeds 280 characters ({len(data['description'])})")
-
-              # Check status is valid
-              if 'status' in data and data['status'] not in VALID_STATUSES:
-                  errors.append(f"Invalid status '{data['status']}' (valid: {VALID_STATUSES})")
-
-              # Check network is valid
-              if 'network' in data and data['network'] not in VALID_NETWORKS:
-                  errors.append(f"Invalid network '{data['network']}' (valid: {VALID_NETWORKS})")
-
-              # Check URLs are well-formed
-              for url_field in ['url', 'github', 'docs']:
-                  if url_field in data and data[url_field] and not is_valid_url(data[url_field]):
-                      errors.append(f"Invalid URL for '{url_field}': {data[url_field]}")
-
-              # Check logo field does not contain external URLs
-              if 'logo' in data and data['logo']:
-                  if data['logo'].startswith(('http://', 'https://', '//')):
-                      errors.append(f"Logo must be a local path, not a URL: {data['logo']}")
-
-              # Check logos array for external URLs
-              if 'logos' in data and data['logos']:
-                  for i, logo_entry in enumerate(data['logos']):
-                      if isinstance(logo_entry, dict) and logo_entry.get('path'):
-                          if logo_entry['path'].startswith(('http://', 'https://', '//')):
-                              errors.append(f"Logos[{i}] path must be local, not a URL: {logo_entry['path']}")
-                      elif isinstance(logo_entry, str):
-                          if logo_entry.startswith(('http://', 'https://', '//')):
-                              errors.append(f"Logos[{i}] must be a local path, not a URL: {logo_entry}")
-
-              # Check tags is a list
-              if 'tags' in data and not isinstance(data['tags'], list):
-                  errors.append(f"Tags must be a list, got {type(data['tags'])}")
-
-              # Check features is a list
-              if 'features' in data and not isinstance(data['features'], list):
-                  errors.append(f"Features must be a list, got {type(data['features'])}")
-
-              return errors
-
-          def project_yaml_files():
-              return (
-                  yaml_file
-                  for yaml_file in Path('projects').rglob('*.yaml')
-                  if yaml_file.name != 'template.yaml'
-              )
-
-          all_errors = []
-          for yaml_file in project_yaml_files():
-              file_errors = lint_file(yaml_file)
-              if file_errors:
-                  all_errors.append(f"\n{yaml_file}:")
-                  all_errors.extend(f"  - {e}" for e in file_errors)
-
-          if all_errors:
-              print("LINT ERRORS:")
-              print('\n'.join(all_errors))
-              exit(1)
-          else:
-              print("All YAML files pass linting!")
-          EOF
-
-      - name: Validate gallery media
-        run: python3 scripts/validate_gallery.py
-
-      - name: Validate classification hierarchy
-        run: |
-          python3 scripts/validate_classification.py
-          python3 -m unittest discover -s scripts -p 'validate_classification_test.py'
+      - name: Run the canonical project-data checks
+        run: python3 scripts/validate_projects.py

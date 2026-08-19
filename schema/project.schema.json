@@ -1,363 +1,478 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "QRL Ecosystem Project",
-  "version": 5,
-  "description": "Schema for QRL ecosystem project submissions",
+  "version": 6,
+  "description": "Schema for QRL ecosystem project submissions using faceted classification",
   "type": "object",
-  "required": ["id", "name", "project_type", "qrl_versions", "status", "description", "category", "tags", "author", "license", "created", "updated"],
+  "required": [
+    "id",
+    "name",
+    "project_type",
+    "primary_category",
+    "secondary_categories",
+    "capabilities",
+    "platforms",
+    "keywords",
+    "maturity",
+    "availability",
+    "qrl_relationship",
+    "qrl_support",
+    "description",
+    "publisher",
+    "maintainers",
+    "source_availability",
+    "repositories",
+    "links",
+    "listed_at",
+    "data_updated_at",
+    "features"
+  ],
   "properties": {
     "id": {
       "type": "string",
-      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
-      "description": "Unique slug identifier, lowercase, hyphenated"
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
     },
     "name": {
       "type": "string",
-      "description": "Human-readable project name"
+      "minLength": 1
     },
     "project_type": {
       "type": "string",
-      "enum": ["dapp", "application", "infrastructure", "tooling", "community"],
-      "description": "Project type: dapp, application, infrastructure, tooling, or community"
+      "enum": ["protocol", "application", "infrastructure", "tooling", "resource"]
     },
-    "qrl_versions": {
+    "primary_category": {
+      "$ref": "#/$defs/category"
+    },
+    "secondary_categories": {
+      "type": "array",
+      "maxItems": 2,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/category" }
+    },
+    "capabilities": {
       "type": "array",
       "minItems": 1,
+      "maxItems": 4,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/capability" }
+    },
+    "platforms": {
+      "type": "array",
+      "maxItems": 4,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/platform" }
+    },
+    "keywords": {
+      "type": "array",
       "uniqueItems": true,
       "items": {
         "type": "string",
-        "enum": ["1.x", "2.0"]
-      },
-      "description": "QRL protocol generations supported by the project"
+        "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+      }
     },
-    "status": {
+    "maturity": {
       "type": "string",
-      "enum": ["development", "production", "archived"],
-      "description": "Project development stage"
+      "enum": ["prototype", "beta", "stable", "deprecated"]
+    },
+    "availability": {
+      "type": "string",
+      "enum": ["live", "limited", "paused", "offline", "archived"]
+    },
+    "maintenance": {
+      "type": "string",
+      "enum": ["active", "low-activity", "inactive"]
+    },
+    "qrl_relationship": {
+      "type": "string",
+      "enum": ["native", "deployed", "integrated", "ecosystem-resource"]
+    },
+    "qrl_support": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/qrl_support" }
+    },
+    "deployments": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/deployment" }
     },
     "description": {
       "type": "string",
-      "maxLength": 280,
-      "description": "Short description, max 280 characters"
+      "minLength": 1,
+      "maxLength": 280
     },
-    "category": {
-      "type": "string",
-      "enum": ["defi", "nft", "dao", "gaming", "identity", "oracle", "bridge", "social", "wallet", "explorer", "marketplace", "token-creation", "payments", "node", "mining-pool", "rpc-service", "indexer", "monitoring", "faucet", "library", "sdk", "cli", "compiler", "developer-utility", "template", "testing", "analytics", "education", "news", "forum", "ecosystem-coordination"],
-      "description": "Child category selected from the categories allowed by project_type"
+    "publisher": {
+      "$ref": "#/$defs/publisher"
     },
-    "tags": {
+    "maintainers": {
       "type": "array",
-      "items": { "type": "string" },
-      "description": "Freeform tags for filtering/search"
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/maintainer" }
     },
-    "author": {
+    "source_availability": {
       "type": "string",
-      "description": "Author name or organization"
+      "enum": ["full", "partial", "unavailable", "not-applicable"]
     },
-    "license": {
-      "type": "string",
-      "description": "SPDX license identifier"
+    "repositories": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/repository" }
     },
-    "created": {
-      "type": "string",
-      "format": "date",
-      "description": "ISO 8601 date of initial submission"
+    "links": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/link" }
     },
-    "updated": {
-      "type": "string",
-      "format": "date",
-      "description": "ISO 8601 date of last meaningful update"
+    "security_reviews": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/security_review" }
     },
-    "url": {
-      "type": "string",
-      "format": "uri",
-      "description": "Primary project URL"
+    "evidence": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/evidence" }
     },
-    "github": {
-      "type": "string",
-      "format": "uri",
-      "description": "GitHub repository URL"
+    "relationships": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/relationship" }
     },
-    "discord": {
-      "type": "string",
-      "description": "Discord invite or channel link"
+    "previous_names": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1 }
     },
-    "twitter": {
-      "type": "string",
-      "description": "Twitter/X handle or URL"
+    "assets": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/asset" }
     },
-    "docs": {
+    "listed_at": {
       "type": "string",
-      "format": "uri",
-      "description": "Documentation URL"
+      "format": "date"
     },
-    "logo": {
+    "data_updated_at": {
       "type": "string",
-      "description": "Single logo path (shorthand for logos[0].path)"
+      "format": "date"
+    },
+    "project_launched_at": {
+      "type": "string",
+      "format": "date"
+    },
+    "last_release_at": {
+      "type": "string",
+      "format": "date"
+    },
+    "last_verified_at": {
+      "type": "string",
+      "format": "date"
     },
     "logos": {
       "type": "array",
-      "description": "Local logo files (no external URLs allowed for security)",
-      "items": {
-        "type": "object",
-        "required": ["path"],
-        "properties": {
-          "path": {
-            "type": "string",
-            "description": "Local path relative to images/logos/ (e.g., 'my-project/icon.png')"
-          },
-          "description": {
-            "type": "string",
-            "description": "Description of this logo variant (e.g., 'Light mode icon', 'Full logo')"
-          }
-        }
-      }
+      "maxItems": 4,
+      "items": { "$ref": "#/$defs/logo" }
     },
     "gallery": {
       "type": "array",
       "minItems": 1,
       "maxItems": 10,
-      "description": "Ordered image and YouTube media displayed on the project page; the first item is the default",
-      "items": {
-        "oneOf": [
-          {
-            "type": "object",
-            "required": ["type", "path", "caption"],
-            "properties": {
-              "type": {
-                "const": "image",
-                "description": "Local image gallery item"
-              },
-              "path": {
-                "type": "string",
-                "pattern": "^[a-z0-9]+(-[a-z0-9]+)*/[^/]+\\.(png|jpe?g|webp)$",
-                "description": "Local path relative to images/screenshots/ (e.g., 'my-project/main-dashboard.webp')"
-              },
-              "caption": {
-                "type": "string",
-                "minLength": 1,
-                "maxLength": 160,
-                "pattern": "^[^\\r\\n]+$",
-                "description": "Short plain-text description of the image"
-              }
-            },
-            "additionalProperties": false
-          },
-          {
-            "type": "object",
-            "required": ["type", "id", "caption"],
-            "properties": {
-              "type": {
-                "const": "youtube",
-                "description": "YouTube video gallery item"
-              },
-              "id": {
-                "type": "string",
-                "pattern": "^[A-Za-z0-9_-]{11}$",
-                "description": "YouTube video ID only, not a full URL"
-              },
-              "caption": {
-                "type": "string",
-                "minLength": 1,
-                "maxLength": 160,
-                "pattern": "^[^\\r\\n]+$",
-                "description": "Short plain-text description of the video"
-              }
-            },
-            "additionalProperties": false
-          }
-        ]
-      }
+      "items": { "$ref": "#/$defs/gallery_item" }
     },
     "long_description": {
-      "type": "string",
-      "description": "Extended markdown description"
+      "type": "string"
     },
     "features": {
       "type": "array",
-      "items": { "type": "string" },
-      "description": "Key features or capabilities"
-    },
-    "open_source": {
-      "type": "boolean",
-      "description": "True if the source code is public"
-    },
-    "audited": {
-      "type": "boolean",
-      "description": "True if professionally audited"
-    },
-    "audits": {
-      "type": "array",
-      "description": "Security audit reports",
-      "items": {
-        "type": "object",
-        "required": ["auditor", "audit_url"],
-        "properties": {
-          "auditor": {
-            "type": "string",
-            "description": "Name of the auditor or auditing organization"
-          },
-          "audit_url": {
-            "type": "string",
-            "format": "uri",
-            "description": "Link to security audit report"
-          }
-        },
-        "additionalProperties": false
-      }
-    },
-    "clients": {
-      "type": "array",
-      "description": "Platform-specific project destinations. Mark one client with default: true to use it as the primary external destination in cards and indexes.",
-      "items": {
-        "type": "object",
-        "required": ["platform"],
-        "anyOf": [
-          { "required": ["url"] },
-          { "required": ["github"] }
-        ],
-        "properties": {
-          "platform": {
-            "type": "string",
-            "description": "Client platform or channel, e.g. web, android, ios, macos, windows, linux"
-          },
-          "url": {
-            "type": "string",
-            "format": "uri",
-            "description": "Platform-specific destination URL"
-          },
-          "github": {
-            "type": "string",
-            "format": "uri",
-            "description": "Platform-specific source repository URL"
-          },
-          "default": {
-            "type": "boolean",
-            "description": "True if this client should be the default external destination for cards and indexes"
-          }
-        },
-        "additionalProperties": false
-      }
-    },
-    "dapp": {
-      "type": "object",
-      "description": "For smart-contract based decentralized applications",
-      "properties": {
-        "network": {
-          "type": "string",
-          "enum": ["mainnet", "testnet"],
-          "description": "Network deployment"
-        },
-        "contract_address": {
-          "type": "string",
-          "description": "On-chain contract address"
-        },
-        "token": {
-          "type": "string",
-          "description": "Token symbol if applicable"
-        }
-      },
-      "required": ["network", "contract_address", "token"]
-    },
-    "application": {
-      "type": "object",
-      "description": "For user-facing client applications such as wallets and explorers",
-      "properties": {
-        "platforms": {
-          "type": "array",
-          "items": { "type": "string" },
-          "description": "Supported platforms (e.g., linux, windows, macos, android, ios)"
-        },
-        "supported_networks": {
-          "type": "array",
-          "items": { "type": "string" },
-          "description": "Supported networks (e.g., mainnet, testnet)"
-        }
-      }
-    },
-    "infrastructure": {
-      "type": "object",
-      "description": "For network services, nodes, indexers, and APIs",
-      "properties": {
-        "supported_networks": {
-          "type": "array",
-          "items": { "type": "string" },
-          "description": "Supported networks (e.g., mainnet, testnet)"
-        },
-        "endpoints": {
-          "type": "array",
-          "items": { "type": "string" },
-          "description": "API endpoints"
-        }
-      }
-    },
-    "tooling": {
-      "type": "object",
-      "description": "For development tools, libraries, and SDKs",
-      "properties": {
-        "languages": {
-          "type": "array",
-          "items": { "type": "string" },
-          "description": "Programming languages (e.g., python, javascript, go)"
-        }
-      }
-    },
-    "community": {
-      "type": "object",
-      "description": "For community groups, social spaces, informational websites, and educational resources",
-      "properties": {
-        "platforms": {
-          "type": "array",
-          "items": { "type": "string" },
-          "description": "Platforms (e.g., discord, telegram, forum)"
-        },
-        "language": {
-          "type": "string",
-          "description": "Primary language"
-        }
-      }
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1 }
     }
   },
-  "allOf": [
-    {
+  "$defs": {
+    "category": {
+      "type": "string",
+      "enum": [
+        "finance",
+        "payments-commerce",
+        "assets-tokenization",
+        "identity-naming-privacy",
+        "governance-coordination",
+        "interoperability-messaging-data",
+        "gaming-virtual-worlds",
+        "social-creator-content",
+        "security-custody-account-management",
+        "network-operations",
+        "developer-experience",
+        "education-research-ecosystem",
+        "utility-storage-compute"
+      ]
+    },
+    "capability": {
+      "type": "string",
+      "enum": [
+        "analytics",
+        "atomic-swap",
+        "cli",
+        "compiler",
+        "contract-template",
+        "deployment",
+        "dex",
+        "education",
+        "explorer",
+        "faucet",
+        "hardware-wallet",
+        "key-management",
+        "library",
+        "liquid-staking",
+        "marketplace",
+        "mining-pool",
+        "news",
+        "node-client",
+        "notarization",
+        "oracle",
+        "payments",
+        "prediction-market",
+        "rpc",
+        "sdk",
+        "staking",
+        "token-creator",
+        "validator",
+        "wallet",
+        "wallet-connector"
+      ]
+    },
+    "platform": {
+      "type": "string",
+      "enum": ["web", "browser-extension", "desktop", "mobile"]
+    },
+    "qrl_support": {
+      "type": "object",
+      "required": ["generation", "environments"],
+      "properties": {
+        "generation": {
+          "type": "string",
+          "enum": ["1.x", "2.0"]
+        },
+        "environments": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": ["mainnet", "testnet", "devnet", "local-private"]
+          }
+        },
+        "evidence": {
+          "type": "array",
+          "items": { "type": "string", "format": "uri" }
+        }
+      },
+      "additionalProperties": false
+    },
+    "deployment": {
+      "type": "object",
+      "required": ["id", "network", "operational_state", "identifiers", "evidence", "source_verification"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+        },
+        "network": {
+          "type": "string",
+          "enum": [
+            "qrl-1-mainnet",
+            "qrl-1-testnet",
+            "qrl-1-local-private",
+            "qrl-2-testnet-v2",
+            "qrl-2-devnet",
+            "qrl-2-local-private"
+          ]
+        },
+        "operational_state": {
+          "type": "string",
+          "enum": ["live", "limited", "paused", "offline"]
+        },
+        "identifiers": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/deployment_identifier" }
+        },
+        "evidence": {
+          "type": "array",
+          "items": { "type": "string", "format": "uri" }
+        },
+        "source_verification": {
+          "type": "string",
+          "enum": ["verified", "unverified", "not-applicable", "unknown"]
+        }
+      },
+      "additionalProperties": false
+    },
+    "deployment_identifier": {
+      "type": "object",
+      "required": ["type", "value"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["contract", "proxy", "implementation", "factory", "token", "transaction", "service", "other"]
+        },
+        "value": { "type": "string", "minLength": 1 },
+        "role": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    },
+    "publisher": {
+      "type": "object",
+      "required": ["name"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "url": { "type": "string", "format": "uri" }
+      },
+      "additionalProperties": false
+    },
+    "maintainer": {
+      "type": "object",
+      "required": ["name", "contact"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "contact": { "type": "string", "format": "uri" }
+      },
+      "additionalProperties": false
+    },
+    "repository": {
+      "type": "object",
+      "required": ["id", "role", "url", "license"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+        },
+        "role": {
+          "type": "string",
+          "enum": ["contracts", "frontend", "client", "sdk", "infrastructure", "tooling", "content", "other"]
+        },
+        "url": { "type": "string", "format": "uri" },
+        "license": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    },
+    "link": {
+      "type": "object",
+      "required": ["type", "url"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["website", "documentation", "status", "support", "community", "social", "package", "app-store", "application", "security", "governance"]
+        },
+        "url": { "type": "string", "format": "uri" },
+        "label": { "type": "string", "minLength": 1 },
+        "platform": { "type": "string", "minLength": 1 },
+        "primary": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    },
+    "security_review": {
+      "type": "object",
+      "required": ["auditor", "report_url", "scope", "remediation_status"],
+      "properties": {
+        "auditor": { "type": "string", "minLength": 1 },
+        "report_url": { "type": "string", "format": "uri" },
+        "report_date": { "type": "string", "format": "date" },
+        "repository_id": { "type": "string" },
+        "revision": { "type": "string" },
+        "scope": { "type": "string", "minLength": 1 },
+        "deployment_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string" }
+        },
+        "remediation_status": {
+          "type": "string",
+          "enum": ["not-reported", "open", "partial", "completed"]
+        }
+      },
+      "additionalProperties": false
+    },
+    "evidence": {
+      "type": "object",
+      "required": ["type", "url"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["qrl-relationship", "deployment", "integration", "ownership"]
+        },
+        "url": { "type": "string", "format": "uri" },
+        "note": { "type": "string" },
+        "checked_at": { "type": "string", "format": "date" }
+      },
+      "additionalProperties": false
+    },
+    "relationship": {
+      "type": "object",
+      "required": ["type", "project_id"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["fork-of", "successor-to", "frontend-for", "uses-protocol", "part-of"]
+        },
+        "project_id": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "asset": {
+      "type": "object",
+      "required": ["type", "name"],
+      "properties": {
+        "type": { "type": "string", "enum": ["token", "collection"] },
+        "name": { "type": "string", "minLength": 1 },
+        "symbol": { "type": "string" },
+        "deployment_id": { "type": "string" },
+        "identifier": { "type": "string" },
+        "evidence_url": { "type": "string", "format": "uri" }
+      },
+      "additionalProperties": false
+    },
+    "logo": {
+      "type": "object",
+      "required": ["path"],
+      "properties": {
+        "path": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(-[a-z0-9]+)*/[^/]+\\.(png|webp|svg)$"
+        },
+        "description": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "gallery_item": {
       "oneOf": [
         {
-          "title": "dApp classification",
+          "type": "object",
+          "required": ["type", "path", "caption"],
           "properties": {
-            "project_type": { "const": "dapp" },
-            "category": { "enum": ["defi", "nft", "dao", "gaming", "identity", "oracle", "bridge", "social"] }
-          }
+            "type": { "const": "image" },
+            "path": {
+              "type": "string",
+              "pattern": "^[a-z0-9]+(-[a-z0-9]+)*/[^/]+\\.(png|jpe?g|webp)$"
+            },
+            "caption": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 160,
+              "pattern": "^[^\\r\\n]+$"
+            }
+          },
+          "additionalProperties": false
         },
         {
-          "title": "Application classification",
+          "type": "object",
+          "required": ["type", "id", "caption"],
           "properties": {
-            "project_type": { "const": "application" },
-            "category": { "enum": ["wallet", "explorer", "marketplace", "token-creation", "payments"] }
-          }
-        },
-        {
-          "title": "Infrastructure classification",
-          "properties": {
-            "project_type": { "const": "infrastructure" },
-            "category": { "enum": ["node", "mining-pool", "rpc-service", "indexer", "monitoring", "faucet"] }
-          }
-        },
-        {
-          "title": "Tooling classification",
-          "properties": {
-            "project_type": { "const": "tooling" },
-            "category": { "enum": ["library", "sdk", "cli", "compiler", "developer-utility", "template", "testing", "analytics"] }
-          }
-        },
-        {
-          "title": "Community classification",
-          "properties": {
-            "project_type": { "const": "community" },
-            "category": { "enum": ["education", "news", "forum", "ecosystem-coordination"] }
-          }
+            "type": { "const": "youtube" },
+            "id": { "type": "string", "pattern": "^[A-Za-z0-9_-]{11}$" },
+            "caption": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 160,
+              "pattern": "^[^\\r\\n]+$"
+            }
+          },
+          "additionalProperties": false
         }
       ]
     }
-  ],
+  },
   "additionalProperties": false
 }

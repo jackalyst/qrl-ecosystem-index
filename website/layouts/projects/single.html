@@ -1,8 +1,13 @@
 {{ define "main" }}
 {{- $projectTypeSlug := .Params.project_type -}}
 {{- with (index .Params "project-types") }}{{ range first 1 . }}{{ $projectTypeSlug = . }}{{ end }}{{ end -}}
-{{- $visitURL := .Params.project_url -}}
-{{- with .Params.default_client_url }}{{ $visitURL = . }}{{ end -}}
+{{- $visitURL := .Params.primary_url -}}
+{{- $docsURL := "" -}}
+{{- range .Params.links }}{{ if and (eq .type "documentation") (not $docsURL) }}{{ $docsURL = .url }}{{ end }}{{ end -}}
+{{- $clientLinks := where .Params.links "type" "application" -}}
+{{- $projectLinks := where .Params.links "type" "ne" "application" -}}
+{{- $sourceURL := "" -}}
+{{- with .Params.repositories }}{{ with index . 0 }}{{ $sourceURL = .url }}{{ end }}{{ end -}}
 {{- $cleanTitle := replaceRE "[^[:alnum:]]" "" .Title -}}
 {{- $initials := upper (substr $cleanTitle 0 2) -}}
 {{- if not $initials }}{{ $initials = "QI" }}{{ end -}}
@@ -25,27 +30,27 @@
             </div>
             <div class="project-meta">
                 <a class="meta-chip project-type" href="{{ printf "/project-types/%s/" ($projectTypeSlug | urlize) | relURL }}">{{ partial "project-type-label.html" $projectTypeSlug }}</a>
-                <span class="classification-separator" aria-hidden="true">›</span>
-                {{ with .Params.category }}<a class="meta-chip category" href="{{ printf "/categories/%s/" (. | urlize) | relURL }}">{{ partial "category-label.html" . }}</a>{{ end }}
-                {{ with .Params.status }}<span class="status status-{{ . }}">{{ . }}</span>{{ end }}
-                {{ range .Params.qrl_versions }}<span class="meta-chip version-chip">QRL {{ . }}</span>{{ end }}
+                <span class="classification-separator" aria-hidden="true">·</span>
+                <a class="meta-chip category" href="{{ printf "/categories/%s/" (.Params.primary_category | urlize) | relURL }}">{{ partial "category-label.html" .Params.primary_category }}</a>
+                {{ with .Params.display_status }}<span class="status status-{{ $.Params.availability }}">{{ . }}</span>{{ end }}
+                {{ range .Params.qrl_generations }}<span class="meta-chip version-chip">QRL {{ . }}</span>{{ end }}
             </div>
             <p class="project-dek">{{ .Params.description }}</p>
             <div class="project-actions">
                 {{ with $visitURL }}<a class="button button-primary" href="{{ . }}" target="_blank" rel="noopener">Visit project <span aria-hidden="true">↗</span></a>{{ end }}
-                {{ with .Params.docs }}<a class="button button-secondary" href="{{ . }}" target="_blank" rel="noopener">Read docs <span aria-hidden="true">↗</span></a>{{ end }}
-                {{ with .Params.github }}<a class="text-action" href="{{ . }}" target="_blank" rel="noopener">Source on GitHub <span aria-hidden="true">↗</span></a>{{ end }}
+                {{ with $docsURL }}<a class="button button-secondary" href="{{ . }}" target="_blank" rel="noopener">Read docs <span aria-hidden="true">↗</span></a>{{ end }}
+                {{ with $sourceURL }}<a class="text-action" href="{{ . }}" target="_blank" rel="noopener">View source <span aria-hidden="true">↗</span></a>{{ end }}
             </div>
         </div>
         <aside class="project-quick-facts">
             <p class="eyebrow">Listing facts</p>
             <dl class="facts-list">
-                <dt>Maintainer</dt><dd>{{ with .Params.author }}<a href="{{ printf "/maintainers/%s/" (. | urlize) | relURL }}">{{ . }}</a>{{ end }}</dd>
-                <dt>License</dt><dd>{{ .Params.license }}</dd>
-                <dt>QRL versions</dt><dd>{{ range $index, $version := .Params.qrl_versions }}{{ if $index }}, {{ end }}QRL {{ $version }}{{ end }}</dd>
-                {{ if .Params.open_source }}<dt>Source</dt><dd>Open source</dd>{{ end }}
-                {{ if .Params.audited }}<dt>Audit</dt><dd>Listed as audited</dd>{{ end }}
-                <dt>Updated</dt><dd>{{ .Params.updated }}</dd>
+                <dt>Publisher</dt><dd>{{ with .Params.publisher }}{{ with .url }}<a href="{{ . }}" target="_blank" rel="noopener">{{ $.Params.publisher.name }}</a>{{ else }}{{ .name }}{{ end }}{{ end }}</dd>
+                <dt>QRL relationship</dt><dd>{{ .Params.qrl_relationship | humanize | title }}</dd>
+                <dt>QRL generations</dt><dd>{{ range $index, $generation := .Params.qrl_generations }}{{ if $index }}, {{ end }}QRL {{ $generation }}{{ end }}</dd>
+                <dt>Source</dt><dd>{{ .Params.source_availability | humanize | title }}</dd>
+                <dt>Data updated</dt><dd>{{ .Params.data_updated_at }}</dd>
+                {{ with .Params.last_verified_at }}<dt>Last verified</dt><dd>{{ . }}</dd>{{ end }}
             </dl>
         </aside>
     </header>
@@ -64,8 +69,8 @@
             {{ with .Params.features }}
             <section class="project-section">
                 <div class="section-heading">
-                    <p class="eyebrow">What it offers</p>
-                    <h2>Capabilities</h2>
+                    <p class="eyebrow">What it provides</p>
+                    <h2>Features</h2>
                 </div>
                 <ul class="feature-list">
                 {{ range . }}<li><span class="feature-marker" aria-hidden="true">+</span><span>{{ . }}</span></li>{{ end }}
@@ -73,7 +78,7 @@
             </section>
             {{ end }}
 
-            {{ with .Params.clients }}
+            {{ with $clientLinks }}
             <section class="project-section">
                 <div class="section-heading">
                     <p class="eyebrow">Access points</p>
@@ -82,32 +87,135 @@
                 <ul class="client-list">
                 {{ range . }}
                     <li>
-                        <div><strong>{{ .platform }}</strong>{{ if .default }}<span class="status status-production">Default</span>{{ end }}</div>
-                        <div class="client-links">
-                            {{ with .url }}<a href="{{ . }}" target="_blank" rel="noopener">Open client ↗</a>{{ end }}
-                            {{ with .github }}<a href="{{ . }}" target="_blank" rel="noopener">GitHub ↗</a>{{ end }}
-                        </div>
+                        <div><strong>{{ with .platform }}{{ . | humanize | title }}{{ else }}Client{{ end }}</strong>{{ if .primary }}<span class="status status-live">Default</span>{{ end }}</div>
+                        <div class="client-links"><a href="{{ .url }}" target="_blank" rel="noopener">{{ with .label }}{{ . }}{{ else }}Open client{{ end }} ↗</a></div>
                     </li>
                 {{ end }}
                 </ul>
             </section>
             {{ end }}
+
+            <section class="project-section">
+                <div class="section-heading">
+                    <p class="eyebrow">Faceted classification</p>
+                    <h2>Categories & capabilities</h2>
+                </div>
+                <div class="project-meta">
+                    <a class="meta-chip category" href="{{ printf "/categories/%s/" .Params.primary_category | relURL }}">Primary: {{ partial "category-label.html" .Params.primary_category }}</a>
+                    {{ range .Params.secondary_categories }}<a class="meta-chip category" href="{{ printf "/categories/%s/" . | relURL }}">{{ partial "category-label.html" . }}</a>{{ end }}
+                </div>
+                <div class="project-meta project-capability-list">
+                    {{ range .Params.capabilities }}<a class="meta-chip" href="{{ printf "/capabilities/%s/" . | relURL }}">{{ partial "capability-label.html" . }}</a>{{ end }}
+                </div>
+                {{ with .Params.platforms }}
+                <div class="project-platform-list">
+                    <p>Available on</p>
+                    <div class="project-meta">
+                        {{ range . }}<span class="meta-chip platform-chip">{{ partial "platform-label.html" . }}</span>{{ end }}
+                    </div>
+                </div>
+                {{ end }}
+            </section>
+
+            {{ with .Params.deployments }}
+            <section class="project-section">
+                <div class="section-heading"><p class="eyebrow">Where it runs</p><h2>Deployments</h2></div>
+                <ul class="client-list">
+                {{ range . }}
+                    <li>
+                        <div><strong>{{ partial "network-label.html" .network }}</strong><span class="status status-{{ .operational_state }}">{{ .operational_state | humanize | title }}</span></div>
+                        <p>Source verification: {{ .source_verification | humanize }}.</p>
+                        {{ with .identifiers }}<ul>{{ range . }}<li><strong>{{ .type | humanize | title }}{{ with .role }} ({{ . }}){{ end }}:</strong> <code>{{ .value }}</code></li>{{ end }}</ul>{{ end }}
+                        {{ with .evidence }}<div class="client-links">{{ range . }}<a href="{{ . }}" target="_blank" rel="noopener">Deployment evidence ↗</a>{{ end }}</div>{{ end }}
+                    </li>
+                {{ end }}
+                </ul>
+            </section>
+            {{ end }}
+
+            {{ with .Params.assets }}
+            <section class="project-section">
+                <div class="section-heading"><p class="eyebrow">Project-attached records</p><h2>Assets</h2></div>
+                <ul class="client-list">
+                {{ range . }}
+                    <li>
+                        <div><strong>{{ .name }}</strong><span>{{ .type | humanize | title }}{{ with .symbol }} · {{ . }}{{ end }}</span></div>
+                        {{ with .identifier }}<p>Identifier: <code>{{ . }}</code></p>{{ end }}
+                        {{ with .deployment_id }}<p>Deployment: <code>{{ . }}</code></p>{{ end }}
+                        {{ with .evidence_url }}<div class="client-links"><a href="{{ . }}" target="_blank" rel="noopener">Asset evidence ↗</a></div>{{ end }}
+                    </li>
+                {{ end }}
+                </ul>
+            </section>
+            {{ end }}
+
+            {{ with .Params.repositories }}
+            <section class="project-section">
+                <div class="section-heading"><p class="eyebrow">Source provenance</p><h2>Repositories</h2></div>
+                <ul class="client-list">
+                {{ range . }}<li><div><strong>{{ .role | humanize | title }}</strong><span>{{ .license }}</span></div><div class="client-links"><a href="{{ .url }}" target="_blank" rel="noopener">Open repository ↗</a></div></li>{{ end }}
+                </ul>
+            </section>
+            {{ end }}
+
+            {{ with .Params.security_reviews }}
+            <section class="project-section">
+                <div class="section-heading"><p class="eyebrow">Report provenance, not a safety rating</p><h2>Security review reports</h2></div>
+                <ul class="client-list">
+                {{ range . }}
+                    <li>
+                        <div><strong>{{ .auditor }}</strong>{{ with .report_date }}<span>{{ . }}</span>{{ end }}</div>
+                        <p>{{ .scope }}{{ with .repository_id }} Repository: <code>{{ . }}</code>.{{ end }}{{ with .revision }} Reviewed revision: <code>{{ . }}</code>.{{ end }}{{ with .deployment_ids }} Affected deployments: {{ delimit . ", " }}.{{ end }} Remediation: {{ .remediation_status | humanize }}.</p>
+                        <div class="client-links"><a href="{{ .report_url }}" target="_blank" rel="noopener">Read security review report ↗</a></div>
+                    </li>
+                {{ end }}
+                </ul>
+            </section>
+            {{ end }}
+
+            {{ if or .Params.relationships .Params.previous_names }}
+            <section class="project-section">
+                <div class="section-heading"><p class="eyebrow">Project history</p><h2>Relationships & names</h2></div>
+                {{ with .Params.relationships }}<ul class="feature-list">{{ range . }}<li><span class="feature-marker" aria-hidden="true">→</span><span>{{ .type | humanize | title }} <a href="{{ printf "/projects/%s/" .project_id | relURL }}">{{ .project_id }}</a></span></li>{{ end }}</ul>{{ end }}
+                {{ with .Params.previous_names }}<p>Previous names: {{ delimit . ", " }}.</p>{{ end }}
+            </section>
+            {{ end }}
+
+            {{ with .Params.evidence }}
+            <section class="project-section">
+                <div class="section-heading"><p class="eyebrow">Submitted references, not a trust label</p><h2>Evidence links</h2></div>
+                <ul class="client-list">{{ range . }}<li><div><strong>{{ .type | humanize | title }}</strong>{{ with .checked_at }}<span>Checked {{ . }}</span>{{ end }}</div>{{ with .note }}<p>{{ . }}</p>{{ end }}<div class="client-links"><a href="{{ .url }}" target="_blank" rel="noopener">Open evidence ↗</a></div></li>{{ end }}</ul>
+            </section>
+            {{ end }}
         </div>
 
         <aside class="project-sidebar">
+            {{ with $projectLinks }}
             <section class="sidebar-panel">
                 <p class="eyebrow">Project links</p>
                 <div class="sidebar-links">
-                    {{ with .Params.project_url }}<a href="{{ . }}" target="_blank" rel="noopener"><span>Website</span><span aria-hidden="true">↗</span></a>{{ end }}
-                    {{ with .Params.docs }}<a href="{{ . }}" target="_blank" rel="noopener"><span>Documentation</span><span aria-hidden="true">↗</span></a>{{ end }}
-                    {{ with .Params.github }}<a href="{{ . }}" target="_blank" rel="noopener"><span>GitHub</span><span aria-hidden="true">↗</span></a>{{ end }}
-                    {{ with .Params.twitter }}<a href="{{ . }}" target="_blank" rel="noopener"><span>Social profile</span><span aria-hidden="true">↗</span></a>{{ end }}
+                    {{ range . }}
+                    <a href="{{ .url }}" target="_blank" rel="noopener"><span>{{ with .label }}{{ . }}{{ else }}{{ .type | humanize | title }}{{ with .platform }} · {{ . }}{{ end }}{{ end }}</span><span aria-hidden="true">↗</span></a>
+                    {{ end }}
+                </div>
+            </section>
+            {{ end }}
+            <section class="sidebar-panel">
+                <p class="eyebrow">Maintainers</p>
+                <div class="sidebar-links">
+                    {{ range .Params.maintainer_records }}<a href="{{ .contact }}" target="_blank" rel="noopener"><span>{{ .name }}</span><span aria-hidden="true">↗</span></a>{{ end }}
+                </div>
+            </section>
+            <section class="sidebar-panel">
+                <p class="eyebrow">QRL support</p>
+                <div class="sidebar-links">
+                    {{ range .Params.qrl_support }}<span><strong>QRL {{ .generation }}</strong>{{ with .environments }} · {{ delimit . ", " }}{{ else }} · generation-level support{{ end }}</span>{{ end }}
                 </div>
             </section>
             <section class="sidebar-note">
                 <p class="eyebrow">About this listing</p>
-                <p>The index is community-maintained and informational. Inclusion does not imply endorsement, audit, or affiliation with QRL or the QRL Foundation.</p>
-                <p class="sidebar-note-date">Created {{ .Params.created }} · Updated {{ .Params.updated }}</p>
+                <p>The index is community-maintained and informational. Inclusion does not imply endorsement, security review, ownership verification, or affiliation with QRL or the QRL Foundation.</p>
+                <p class="sidebar-note-date">Listed {{ .Params.listed_at }} · Data updated {{ .Params.data_updated_at }}</p>
             </section>
         </aside>
     </div>
@@ -115,26 +223,12 @@
 <script>
 (() => {
     const backLink = document.querySelector("[data-project-back-link]");
-    if (!backLink || !document.referrer || window.history.length < 2) {
-        return;
-    }
-
+    if (!backLink || !document.referrer || window.history.length < 2) return;
     let referrer;
-    try {
-        referrer = new URL(document.referrer);
-    } catch (error) {
-        return;
-    }
-
-    if (referrer.origin !== window.location.origin) {
-        return;
-    }
-
+    try { referrer = new URL(document.referrer); } catch (error) { return; }
+    if (referrer.origin !== window.location.origin) return;
     backLink.addEventListener("click", (event) => {
-        if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
-            return;
-        }
-
+        if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
         event.preventDefault();
         window.history.back();
     });

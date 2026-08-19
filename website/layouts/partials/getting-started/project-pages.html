@@ -1,23 +1,23 @@
 {{- $site := .site -}}
 {{- $group := .group -}}
 {{- $projects := where $site.RegularPages "Section" "projects" -}}
-{{- $projects = where $projects "Params.status" "!=" "archived" -}}
+{{- $projects = where $projects "Params.availability" "!=" "archived" -}}
 {{- $matches := slice -}}
 {{- range $projects -}}
     {{- $include := false -}}
-    {{- $networks := .Params.supported_networks | default (slice) -}}
-    {{- $qrlVersions := .Params.qrl_versions | default (slice) -}}
-    {{- if in $qrlVersions "2.0" -}}
+    {{- $environments := .Params.qrl_environments | default (slice) -}}
+    {{- $qrlGenerations := .Params.qrl_generations | default (slice) -}}
+    {{- if in $qrlGenerations "2.0" -}}
         {{- if eq $group "infrastructure" -}}
-            {{- $include = and (eq .Params.project_type "infrastructure") (in $networks "testnet") -}}
+            {{- $include = and (eq .Params.project_type "infrastructure") (in $environments "testnet") -}}
         {{- else if eq $group "wallets" -}}
-            {{- $include = and (eq .Params.category "wallet") (in $networks "testnet") -}}
+            {{- $include = and (in .Params.capabilities "wallet") (in $environments "testnet") -}}
         {{- else if eq $group "tooling" -}}
             {{- $include = eq .Params.project_type "tooling" -}}
         {{- else if eq $group "explorers" -}}
-            {{- $include = and (eq .Params.category "explorer") (in $networks "testnet") -}}
+            {{- $include = and (in .Params.capabilities "explorer") (in $environments "testnet") -}}
         {{- else if eq $group "dapps" -}}
-            {{- $include = and (eq .Params.project_type "dapp") (eq .Params.network "testnet") -}}
+            {{- $include = and (eq .Params.project_type "protocol") (in $environments "testnet") -}}
         {{- end -}}
     {{- end -}}
     {{- if $include }}{{ $matches = $matches | append . }}{{ end -}}

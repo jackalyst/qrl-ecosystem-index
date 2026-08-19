@@ -1,37 +1,53 @@
 id: zondscan
 name: ZondScan
 project_type: application
-qrl_versions:
-  - "2.0"
-status: development
-description: >
-  A QRL Zond network explorer for browsing blocks, transactions, smart
-  contracts, validators, addresses, and chain activity.
-category: explorer
-tags:
+primary_category: network-operations
+secondary_categories: []
+capabilities:
+  - explorer
+  - analytics
+platforms:
+  - web
+keywords:
   - explorer
   - zond
   - validators
-author: DigitalGuards
-license: MIT
-created: 2026-06-09
-updated: 2026-07-14
-
-url: https://zondscan.com/
-github: https://github.com/DigitalGuards/zondscan
-
-open_source: true
-audited: false
-
-logo: zondscan/icon.png
-
+maturity: beta
+availability: live
+qrl_relationship: native
+qrl_support:
+  - generation: '2.0'
+    environments:
+      - testnet
+description: |
+  A QRL Zond network explorer for browsing blocks, transactions, smart contracts, validators, addresses, and chain activity.
+publisher:
+  name: DigitalGuards
+  url: https://github.com/DigitalGuards/zondscan
+maintainers:
+  - name: DigitalGuards
+    contact: https://github.com/DigitalGuards/zondscan
+source_availability: full
+repositories:
+  - id: main
+    role: client
+    url: https://github.com/DigitalGuards/zondscan
+    license: MIT
+links:
+  - type: website
+    url: https://zondscan.com/
+    primary: true
+listed_at: '2026-06-09'
+data_updated_at: '2026-07-14'
 features:
   - Real-time QRL Zond blockchain data exploration
   - Transaction, block, smart contract, and validator views
   - Address details, balance checking, richlist, and unit conversion tools
   - Next.js frontend with a Go-powered backend API
   - Responsive web interface for desktop and mobile devices
-
+logos:
+  - path: zondscan/icon.png
+    description: ZondScan logo
 long_description: |
   ZondScan is a DigitalGuards block explorer for the QRL Zond network. It
   provides a web interface for exploring blocks, transactions, smart contracts,
@@ -40,10 +56,3 @@ long_description: |
   The project is open source and built with a Next.js frontend, a Go backend
   API, and a blockchain synchronizer that indexes QRL Zond data into MongoDB
   for fast lookup and analysis.
-
-application:
-  platforms:
-    - web
-    - mobile
-  supported_networks:
-    - testnet
