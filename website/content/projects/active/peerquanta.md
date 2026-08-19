@@ -2,56 +2,73 @@
 aliases:
     - /projects/active/peerquanta/
     - /projects/archived/peerquanta/
-audited: false
-audits: []
-author: PeerQuanta
-categories:
+availability: live
+capabilities:
     - marketplace
-category: marketplace
-clients:
-    - platform: web
-      url: https://peerquanta.com/
-      default: true
-created: "2026-06-10"
-default_client:
-    platform: web
-    url: https://peerquanta.com/
-    default: true
-default_client_url: https://peerquanta.com/
+    - notarization
+categories:
+    - payments-commerce
+    - social-creator-content
+    - identity-naming-privacy
+data_updated_at: "2026-06-10"
 description: A decentralized peer-to-peer marketplace for secure and anonymous digital goods and services, with encrypted chat and commitment-protocol features.
-discord: ""
-docs: ""
-ecosystem_type: application
+display_status: Beta · Testnet
 features:
     - Peer-to-peer marketplace for digital goods and services
     - Secure account, listing, transaction, and reputation flows
     - Encrypted chat and privacy-oriented marketplace features
     - Commitment-protocol tools including wagers, polls, notary, and Merkle proofs
     - Web interface with accessibility and multilingual controls
-github: ""
-license: none
-logos: []
-maintainers:
-    - PeerQuanta
-open_source: false
-platforms:
-    - web
-project-types:
-    - applications
-project_type: application
-project_url: https://peerquanta.com/
-qrl_versions:
-    - "2.0"
-status: development
-supported_networks:
-    - testnet
-tags:
+id: peerquanta
+keywords:
     - marketplace
     - peer-to-peer
     - encrypted-chat
+    - messaging
+links:
+    - type: website
+      url: https://peerquanta.com/
+    - type: application
+      url: https://peerquanta.com/
+      platform: web
+      primary: true
+listed_at: "2026-06-10"
+maintainer_records:
+    - name: PeerQuanta
+      contact: https://peerquanta.com/
+maintainers:
+    - PeerQuanta
+maturity: beta
+platforms:
+    - web
+primary_category: payments-commerce
+primary_link:
+    type: application
+    url: https://peerquanta.com/
+    platform: web
+    primary: true
+primary_url: https://peerquanta.com/
+project-types:
+    - applications
+project_type: application
+publisher:
+    name: PeerQuanta
+    url: https://peerquanta.com/
+qrl_environments:
+    - testnet
+qrl_generations:
+    - "2.0"
+qrl_relationship: native
+qrl_support:
+    - generation: "2.0"
+      environments:
+        - testnet
+repositories: []
+secondary_categories:
+    - social-creator-content
+    - identity-naming-privacy
+source_availability: unavailable
 title: PeerQuanta
-twitter: ""
-updated: "2026-06-10"
 url: /projects/peerquanta/
 ---
 

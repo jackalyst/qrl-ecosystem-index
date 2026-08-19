@@ -1,51 +1,82 @@
 id: myqrlwallet
 name: MyQRLWallet
 project_type: application
-qrl_versions:
-  - "2.0"
-status: development
-description: >
-  A family of wallet applications for QRL 2.0: web wallet, Android app,
-  desktop wallet, and browser extension, with post-quantum dApp connectivity
-  over the QRL Connect relay protocol.
-category: wallet
-tags:
+primary_category: security-custody-account-management
+secondary_categories:
+  - payments-commerce
+  - assets-tokenization
+capabilities:
   - wallet
-author: DigitalGuards
-license: none
-created: 2026-06-09
-updated: 2026-07-14
-
-url: https://myqrlwallet.com/
-github: https://github.com/DigitalGuards/myqrlwallet-frontend/
-twitter: https://x.com/DigitalGuards
-
-open_source: true
-audited: false
-
-logo: myqrlwallet/icon.png
-
-clients:
-  - platform: web
+  - wallet-connector
+platforms:
+  - mobile
+  - desktop
+  - browser-extension
+  - web
+keywords:
+  - wallet
+maturity: beta
+availability: live
+qrl_relationship: native
+qrl_support:
+  - generation: '2.0'
+    environments:
+      - testnet
+description: |
+  A family of wallet applications for QRL 2.0: web wallet, Android app, desktop wallet, and browser extension, with post-quantum dApp connectivity over the QRL Connect relay protocol.
+publisher:
+  name: DigitalGuards
+  url: https://github.com/DigitalGuards/myqrlwallet-frontend/
+maintainers:
+  - name: DigitalGuards
+    contact: https://github.com/DigitalGuards/myqrlwallet-frontend/
+source_availability: full
+repositories:
+  - id: main
+    role: client
+    url: https://github.com/DigitalGuards/myqrlwallet-frontend/
+    license: MIT
+  - id: desktop
+    role: client
+    url: https://github.com/DigitalGuards/myqrlwallet-desktop
+    license: MIT
+  - id: browser-extension
+    role: client
+    url: https://github.com/DigitalGuards/myqrlwallet-extension
+    license: MIT
+links:
+  - type: website
     url: https://myqrlwallet.com/
-    default: true
-  - platform: web wallet
+    primary: false
+  - type: application
+    url: https://myqrlwallet.com/
+    platform: web
+    primary: true
+  - type: application
     url: https://qrlwallet.com/
-    github: https://github.com/DigitalGuards/myqrlwallet-frontend/
-  - platform: android
+    platform: web wallet
+  - type: application
     url: https://play.google.com/store/apps/details?id=com.chiefdg.myqrlwallet
-  - platform: desktop
+    platform: android
+  - type: application
     url: https://github.com/DigitalGuards/myqrlwallet-desktop/releases
-    github: https://github.com/DigitalGuards/myqrlwallet-desktop
-  - platform: browser extension
-    github: https://github.com/DigitalGuards/myqrlwallet-extension
-
+    platform: desktop
+  - type: application
+    url: https://github.com/DigitalGuards/myqrlwallet-extension
+    label: GitHub
+    platform: browser extension
+  - type: social
+    url: https://x.com/DigitalGuards
+listed_at: '2026-06-09'
+data_updated_at: '2026-07-14'
 features:
   - Web wallet for account creation, transactions, tokens, and NFTs on the quantum-resistant ledger
   - Android app and hardened Electron desktop wallet
   - Browser extension (MIT fork of the QRL web3 wallet)
   - dApp connectivity via the QRL Connect relay protocol (ML-KEM-768 + AES-256-GCM, ML-DSA-87 signing)
-
+logos:
+  - path: myqrlwallet/icon.png
+    description: MyQRLWallet logo
 long_description: |
   MyQRLWallet is a DigitalGuards family of wallet applications for QRL 2.0.
   It started as a browser-based web wallet (qrlwallet.com) for creating
@@ -56,12 +87,3 @@ long_description: |
   dApps connect to the wallets through the open-source QRL Connect relay
   protocol (ML-KEM-768 key encapsulation with AES-256-GCM transport and
   ML-DSA-87 message signing) or through the browser extension via EIP-6963.
-
-application:
-  platforms:
-    - web
-    - android
-    - desktop
-    - browser extension
-  supported_networks:
-    - testnet

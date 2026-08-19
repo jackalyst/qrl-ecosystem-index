@@ -56,12 +56,11 @@ This guide currently covers QRL 2.0 through Testnet V2. Follow the journey from 
 
 {{- range . }}
 {{- $project := . }}
-{{- $metadata := $project.Params.platforms | default (slice) }}
-{{- if not $metadata }}{{ $metadata = $project.Params.supported_networks | default (slice) }}{{ end }}
-{{- if and (not $metadata) $project.Params.network }}{{ $metadata = slice $project.Params.network }}{{ end }}
-{{- if not $metadata }}{{ $metadata = $project.Params.languages | default (slice) }}{{ end }}
+{{- $metadata := $project.Params.qrl_environments | default (slice) }}
+{{- if not $metadata }}{{ $metadata = $project.Params.qrl_generations | default (slice) }}{{ end }}
+{{- if not $metadata }}{{ $metadata = $project.Params.capabilities | default (slice) }}{{ end }}
 {{- with $project.OutputFormats.Get "markdown" }}
-- [{{ $project.Title }}]({{ .Permalink }}): {{ $project.Params.description | plainify }} Status: {{ $project.Params.status }}{{ with $metadata }}; platforms or networks: {{ delimit . ", " }}{{ end }}.
+- [{{ $project.Title }}]({{ .Permalink }}): {{ $project.Params.description | plainify }} Status: {{ $project.Params.display_status }}{{ with $metadata }}; environments or capabilities: {{ delimit . ", " }}{{ end }}.
 {{- end }}
 {{- end }}
 {{- end }}

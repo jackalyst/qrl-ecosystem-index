@@ -4,11 +4,11 @@ title: "About"
 
 The QRL Ecosystem Index is a community-maintained directory of projects, tools, services, and resources across QRL 1.x and QRL 2.0. Its goal is to make the ecosystem easier to explore by collecting project information in one structured, searchable place.
 
-The index is intentionally lightweight. Each listing is stored as a YAML file in the public repository, validated against a shared schema, and organized by a parent project type, one child category, tags, and status. This makes it easy for contributors to add new projects, update existing entries, and review changes through GitHub.
+Each listing is stored as YAML in the public repository and validated against schema v6. Artifact type, use-case categories, primary capabilities, available platforms, QRL support and deployments, lifecycle, provenance, and links are recorded as independent facts. This makes changes reviewable and keeps classification from implying maturity or trust.
 
 ## What gets listed
 
-Listings may include decentralized applications, user-facing applications, infrastructure, developer tooling, and community resources. A project does not need to be complete to be included, but it should have enough public information for others to understand what it is, who maintains it, and whether it supports QRL 1.x, QRL 2.0, or both.
+Listings may include protocols, user-facing applications, infrastructure, developer tooling, and community resources. A project does not need to be complete, but it should have enough public information for others to understand what it is, who maintains it, its QRL relationship, and the generations or environments it supports.
 
 The project directory covers both QRL generations. Builder guidance, Getting Started, and Ideas currently focus on QRL 2.0 and are labelled accordingly.
 
@@ -20,21 +20,25 @@ If you choose to allow analytics, the site uses Google Analytics to understand p
 
 ## How projects are organized
 
-Each project is assigned a project type:
+Each project has an artifact type:
 
-- **dapp** - Decentralized applications with smart-contract or on-chain functionality
+- **protocol** - On-chain or protocol-level logic with a documented deployment
 - **application** - User-facing software such as wallets, explorers, or interfaces
 - **infrastructure** - Services, nodes, APIs, indexers, or other network-supporting systems
 - **tooling** - SDKs, libraries, templates, testing tools, or developer utilities
-- **community** - Community spaces, educational resources, news, or ecosystem information
+- **resource** - Community spaces, educational resources, news, research, or ecosystem information
 
-Each category belongs to exactly one project type. For example, wallets and explorers sit beneath Applications, node clients and mining pools sit beneath Infrastructure, and libraries and SDKs sit beneath Tooling. Projects also declare support for QRL 1.x, QRL 2.0, or both.
+Type is independent from use-case classification. Every project has one primary category, up to two secondary categories, one to four controlled capabilities, and a separate list of applicable platforms. Projects also record their QRL relationship, support, and any concrete deployments separately.
 
-## Project status
+## Lifecycle and trust
 
-- **development** - Projects that are still being built, tested, or prepared for release
-- **production** - Projects that are live and intended for public use
-- **archived** - Projects that are no longer active
+Maturity (`prototype`, `beta`, `stable`, or `deprecated`) and availability (`live`, `limited`, `paused`, `offline`, or `archived`) are separate. Network environment is not a maturity label.
+
+Publisher, maintainer, repository, license, security-review, and evidence records provide context without creating an endorsement. Evidence and ownership checks do not produce public trust labels in the initial schema v6 release. The [moderation and takedown policy](https://github.com/theqrl-community/qrl-ecosystem-index/blob/main/docs/MODERATION.md) explains reporting and safety responses.
+
+## Homepage spotlight
+
+The homepage spotlight is not editorially selected. It rotates weekly among projects that are marked `stable` and `live` and include at least one gallery screenshot. Eligible listings are ordered by their stable project ID before the weekly selection is calculated. Appearance in the spotlight is not a ranking, endorsement, audit, or affiliation.
 
 ## Submitting updates
 

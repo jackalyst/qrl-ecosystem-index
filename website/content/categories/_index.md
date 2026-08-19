@@ -2,4 +2,4 @@
 title: "Categories"
 ---
 
-Categories are child classifications beneath a project type. Browse the complete hierarchy, including open categories that do not have a listed project yet.
+Categories describe the problems projects address, independently of artifact type. A project has one primary category and may have up to two secondary categories.

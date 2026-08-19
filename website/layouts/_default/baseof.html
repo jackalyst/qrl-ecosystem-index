@@ -73,8 +73,9 @@
                             <summary class="nav-link">Browse <span class="nav-chevron" aria-hidden="true">⌄</span></summary>
                             <ul class="nav-dropdown-menu">
                                 <li><a href="{{ relURL "/projects/" }}">All projects</a></li>
-                                <li><a href="{{ relURL "/project-types/" }}">Classification overview</a></li>
-                                <li><a href="{{ relURL "/categories/" }}">Categories by project type</a></li>
+                                <li><a href="{{ relURL "/project-types/" }}">Project types</a></li>
+                                <li><a href="{{ relURL "/categories/" }}">Use-case categories</a></li>
+                                <li><a href="{{ relURL "/capabilities/" }}">Capabilities</a></li>
                                 {{ $taxonomy := index site.Taxonomies "project-types" }}
                                 {{ range hugo.Data.classification.project_types }}
                                 {{ $entry := index $taxonomy .taxonomy_slug }}

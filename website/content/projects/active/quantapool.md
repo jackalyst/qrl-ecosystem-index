@@ -2,60 +2,95 @@
 aliases:
     - /projects/active/quantapool/
     - /projects/archived/quantapool/
-audited: false
-audits: []
-author: DigitalGuards
+assets:
+    - type: token
+      name: stQRL
+      symbol: stQRL
+      deployment_id: qrl-2-testnet-v2
+availability: live
+capabilities:
+    - liquid-staking
+    - staking
 categories:
-    - defi
-category: defi
-clients:
-    - platform: web
-      url: https://quantapool.io/
-      github: https://github.com/DigitalGuards/QuantaPool
-      default: true
-contract_address: Q109d7C528a67b80eb638D4C85e7C4545ef9Bb9aC
-created: "2026-06-10"
-default_client:
-    platform: web
-    url: https://quantapool.io/
-    github: https://github.com/DigitalGuards/QuantaPool
-    default: true
-default_client_github: https://github.com/DigitalGuards/QuantaPool
-default_client_url: https://quantapool.io/
+    - finance
+    - network-operations
+    - assets-tokenization
+data_updated_at: "2026-07-14"
+deployments:
+    - id: qrl-2-testnet-v2
+      network: qrl-2-testnet-v2
+      operational_state: live
+      identifiers:
+        - type: contract
+          value: Q109d7C528a67b80eb638D4C85e7C4545ef9Bb9aC
+      evidence:
+        - https://github.com/DigitalGuards/QuantaPool
+      source_verification: unverified
 description: A decentralized QRL liquid staking protocol for staking QRL, receiving stQRL, and earning validator rewards while staying liquid.
-discord: ""
-docs: https://quantapool.io/how-it-works
-ecosystem_type: dapp
+display_status: Beta · Testnet
 features:
     - Liquid staking for QRL through stQRL pool shares
     - Validator rewards reflected through the stQRL to QRL exchange rate
     - Withdrawal request and claim flow with protocol-enforced delay
     - Public pool, validator, reward, and contract statistics
     - QRL Wallet browser extension connectivity
-github: https://github.com/DigitalGuards/QuantaPool
-license: GPL-3.0
-logos:
-    - path: quantapool/icon.svg
-      description: ""
-maintainers:
-    - DigitalGuards
-network: testnet
-open_source: true
-project-types:
-    - dapps
-project_type: dapp
-project_url: https://quantapool.io/
-qrl_versions:
-    - "2.0"
-status: development
-tags:
+id: quantapool
+keywords:
     - liquid-staking
     - staking
     - stqrl
+links:
+    - type: website
+      url: https://quantapool.io/
+    - type: application
+      url: https://quantapool.io/
+      platform: web
+      primary: true
+    - type: documentation
+      url: https://quantapool.io/how-it-works
+listed_at: "2026-06-10"
+logos:
+    - path: quantapool/icon.svg
+      description: QuantaPool logo
+maintainer_records:
+    - name: DigitalGuards
+      contact: https://github.com/DigitalGuards/QuantaPool
+maintainers:
+    - DigitalGuards
+maturity: beta
+platforms: []
+primary_category: finance
+primary_link:
+    type: application
+    url: https://quantapool.io/
+    platform: web
+    primary: true
+primary_url: https://quantapool.io/
+project-types:
+    - protocols
+project_type: protocol
+publisher:
+    name: DigitalGuards
+    url: https://github.com/DigitalGuards/QuantaPool
+qrl_environments:
+    - testnet
+qrl_generations:
+    - "2.0"
+qrl_relationship: native
+qrl_support:
+    - generation: "2.0"
+      environments:
+        - testnet
+repositories:
+    - id: main
+      role: contracts
+      url: https://github.com/DigitalGuards/QuantaPool
+      license: GPL-3.0
+secondary_categories:
+    - network-operations
+    - assets-tokenization
+source_availability: full
 title: QuantaPool
-token: stQRL
-twitter: ""
-updated: "2026-07-14"
 url: /projects/quantapool/
 ---
 

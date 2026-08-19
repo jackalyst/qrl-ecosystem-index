@@ -2,47 +2,66 @@
 aliases:
     - /projects/active/qrl-wallet-provider/
     - /projects/archived/qrl-wallet-provider/
-audited: false
-audits: []
-author: The QRL
-categories:
+availability: live
+capabilities:
     - sdk
-category: sdk
-clients: []
-created: "2026-08-17"
-default_client_github: https://github.com/theQRL/qrl-wallet-provider
-default_client_url: https://www.npmjs.com/package/@theqrl/qrl-wallet-provider
+    - wallet-connector
+categories:
+    - developer-experience
+    - security-custody-account-management
+data_updated_at: "2026-08-17"
 description: An EIP-6963-based provider package that lets QRL 2.0 dApps discover and communicate with the QRL Web3 Wallet extension through an Ethereum-style request, event, and JSON-RPC interface.
-discord: ""
-docs: ""
-ecosystem_type: tooling
+display_status: Beta
 features:
     - EIP-6963 wallet discovery and announcement
     - Ethereum-style request and event provider interface
     - PostMessage streams between dApps and the browser extension
     - Published TypeScript package for QRL dApp integrations
-github: https://github.com/theQRL/qrl-wallet-provider
-languages:
-    - typescript
-license: MIT
-logos: []
-maintainers:
-    - The QRL
-open_source: true
-project-types:
-    - tooling
-project_type: tooling
-project_url: https://www.npmjs.com/package/@theqrl/qrl-wallet-provider
-qrl_versions:
-    - "2.0"
-status: development
-tags:
+id: qrl-wallet-provider
+keywords:
     - wallet
     - provider
     - eip-6963
     - dapp
+links:
+    - type: package
+      url: https://www.npmjs.com/package/@theqrl/qrl-wallet-provider
+      primary: true
+listed_at: "2026-08-17"
+maintainer_records:
+    - name: The QRL
+      contact: https://github.com/theQRL/qrl-wallet-provider
+maintainers:
+    - The QRL
+maturity: beta
+platforms: []
+primary_category: developer-experience
+primary_link:
+    type: package
+    url: https://www.npmjs.com/package/@theqrl/qrl-wallet-provider
+    primary: true
+primary_url: https://www.npmjs.com/package/@theqrl/qrl-wallet-provider
+project-types:
+    - tooling
+project_type: tooling
+publisher:
+    name: The QRL
+    url: https://github.com/theQRL/qrl-wallet-provider
+qrl_environments: []
+qrl_generations:
+    - "2.0"
+qrl_relationship: native
+qrl_support:
+    - generation: "2.0"
+      environments: []
+repositories:
+    - id: main
+      role: sdk
+      url: https://github.com/theQRL/qrl-wallet-provider
+      license: MIT
+secondary_categories:
+    - security-custody-account-management
+source_availability: full
 title: QRL Wallet Provider
-twitter: ""
-updated: "2026-08-17"
 url: /projects/qrl-wallet-provider/
 ---

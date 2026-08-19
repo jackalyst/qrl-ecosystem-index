@@ -1,39 +1,53 @@
 id: peerquanta
 name: PeerQuanta
 project_type: application
-qrl_versions:
-  - "2.0"
-status: development
-description: >
-  A decentralized peer-to-peer marketplace for secure and anonymous digital
-  goods and services, with encrypted chat and commitment-protocol features.
-category: marketplace
-tags:
+primary_category: payments-commerce
+secondary_categories:
+  - social-creator-content
+  - identity-naming-privacy
+capabilities:
+  - marketplace
+  - notarization
+platforms:
+  - web
+keywords:
   - marketplace
   - peer-to-peer
   - encrypted-chat
-author: PeerQuanta
-license: none
-created: 2026-06-10
-updated: 2026-06-10
-
-url: https://peerquanta.com/
-
-open_source: false
-audited: false
-
-clients:
-  - platform: web
+  - messaging
+maturity: beta
+availability: live
+qrl_relationship: native
+qrl_support:
+  - generation: '2.0'
+    environments:
+      - testnet
+description: |
+  A decentralized peer-to-peer marketplace for secure and anonymous digital goods and services, with encrypted chat and commitment-protocol features.
+publisher:
+  name: PeerQuanta
+  url: https://peerquanta.com/
+maintainers:
+  - name: PeerQuanta
+    contact: https://peerquanta.com/
+source_availability: unavailable
+repositories: []
+links:
+  - type: website
     url: https://peerquanta.com/
-    default: true
-
+    primary: false
+  - type: application
+    url: https://peerquanta.com/
+    platform: web
+    primary: true
+listed_at: '2026-06-10'
+data_updated_at: '2026-06-10'
 features:
   - Peer-to-peer marketplace for digital goods and services
   - Secure account, listing, transaction, and reputation flows
   - Encrypted chat and privacy-oriented marketplace features
   - Commitment-protocol tools including wagers, polls, notary, and Merkle proofs
   - Web interface with accessibility and multilingual controls
-
 long_description: |
   PeerQuanta is a web-based peer-to-peer marketplace for digital goods and
   services. The site describes itself as a decentralized marketplace focused on
@@ -45,9 +59,3 @@ long_description: |
   exposes tools for secure notes, wagers, notary records, secret sharing,
   dead-man switches, time-locked content, polls, Merkle proofs, provenance,
   forums, and certificate workflows.
-
-application:
-  platforms:
-    - web
-  supported_networks:
-    - testnet

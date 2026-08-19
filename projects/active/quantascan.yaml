@@ -1,17 +1,15 @@
 id: quantascan
 name: Quantascan
 project_type: application
-qrl_versions:
-  - 1.x
-  - "2.0"
-status: production
-description: >-
-  Analytics-first block explorer for QRL and QRL 2.0: aggregated time-series,
-  cross-chain charts, rich lists, wallet classification, and validator and
-  mining dashboards — built around network-wide data, not just single block
-  and transaction lookups.
-category: explorer
-tags:
+primary_category: network-operations
+secondary_categories:
+  - assets-tokenization
+capabilities:
+  - explorer
+  - analytics
+platforms:
+  - web
+keywords:
   - explorer
   - analytics
   - dashboards
@@ -20,18 +18,48 @@ tags:
   - validators
   - mining
   - statistics
-author: 12remember
-license: none
-created: 2026-08-02
-updated: 2026-08-02
-
-url: https://quantascan.io
-docs: https://quantascan.io/api-docs
-
-logo: quantascan/icon.svg
-
-open_source: false
-
+  - portfolio
+maturity: stable
+availability: live
+qrl_relationship: native
+qrl_support:
+  - generation: 1.x
+    environments:
+      - mainnet
+      - testnet
+  - generation: '2.0'
+    environments:
+      - testnet
+description: 'Analytics-first block explorer for QRL and QRL 2.0: aggregated time-series, cross-chain charts, rich lists,
+  wallet classification, and validator and mining dashboards — built around network-wide data, not just single block and transaction
+  lookups.'
+publisher:
+  name: 12remember
+  url: https://quantascan.io
+maintainers:
+  - name: 12remember
+    contact: https://quantascan.io
+source_availability: unavailable
+repositories: []
+links:
+  - type: website
+    url: https://quantascan.io
+    primary: true
+  - type: documentation
+    url: https://quantascan.io/api-docs
+listed_at: '2026-08-02'
+data_updated_at: '2026-08-02'
+features:
+  - Dual-generation coverage — QRL 1.x mainnet and QRL 2.0 testnet data
+  - Aggregated time-series and analytics charts across the whole network
+  - Rich list, wallet distribution, and wallet entity classification
+  - Validator and beacon-chain dashboards for QRL 2.0
+  - Mining pool dominance and reward analytics for QRL
+  - Cross-chain unified account history and supply timelines
+  - Free public REST API with usage-metered API keys
+logos:
+  - path: quantascan/icon.svg
+    description: Quantascan logo
 gallery:
   - type: image
     path: quantascan/homepage.png
@@ -45,23 +73,6 @@ gallery:
   - type: image
     path: quantascan/exchange-flow.png
     caption: Exchange flows — how much QRL sits on exchanges and whether it is moving in or out, per exchange.
-
-features:
-  - Dual-chain coverage — QRL (PoW legacy) and QRL 2.0 (PoS, EVM-compatible)
-  - Aggregated time-series and analytics charts across the whole network
-  - Rich list, wallet distribution, and wallet entity classification
-  - Validator and beacon-chain dashboards for QRL 2.0
-  - Mining pool dominance and reward analytics for QRL
-  - Cross-chain unified account history and supply timelines
-  - Free public REST API with usage-metered API keys
-
-application:
-  platforms:
-    - web
-  supported_networks:
-    - mainnet
-    - testnet
-
 long_description: |
   Quantascan is an analytics-first platform for the QRL ecosystem, covering
   both QRL (the Proof-of-Work legacy chain) and QRL 2.0 (the Proof-of-Stake,

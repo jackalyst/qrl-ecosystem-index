@@ -1,37 +1,46 @@
 id: qrl-web-tools
 name: QRL Web Tools
 project_type: tooling
-qrl_versions:
-  - 1.x
-status: production
-description: >
-  A collection of browser-based QRL 1.x utilities for generating wallets,
-  inspecting addresses, validating hexseeds, and testing mnemonic phrases,
-  available as a downloadable offline release.
-category: developer-utility
-tags:
+primary_category: security-custody-account-management
+secondary_categories:
+  - developer-experience
+capabilities:
+  - key-management
+platforms:
+  - web
+keywords:
   - wallet
   - address-validation
   - offline
   - webassembly
-author: The QRL
-license: MIT
-created: 2026-08-17
-updated: 2026-08-17
-
-url: https://github.com/theQRL/webtools/releases/latest
-github: https://github.com/theQRL/webtools
-
-open_source: true
-audited: false
-
+maturity: stable
+availability: live
+qrl_relationship: native
+qrl_support:
+  - generation: 1.x
+    environments: []
+description: |
+  A collection of browser-based QRL 1.x utilities for generating wallets, inspecting addresses, validating hexseeds, and testing mnemonic phrases, available as a downloadable offline release.
+publisher:
+  name: The QRL
+  url: https://github.com/theQRL/webtools
+maintainers:
+  - name: The QRL
+    contact: https://github.com/theQRL/webtools
+source_availability: full
+repositories:
+  - id: main
+    role: tooling
+    url: https://github.com/theQRL/webtools
+    license: MIT
+links:
+  - type: website
+    url: https://github.com/theQRL/webtools/releases/latest
+    primary: true
+listed_at: '2026-08-17'
+data_updated_at: '2026-08-17'
 features:
   - Offline-capable browser wallet generator
   - QRL address inspection and validation
   - Hexseed format validation
   - Mnemonic phrase testing
-
-tooling:
-  languages:
-    - javascript
-    - vue

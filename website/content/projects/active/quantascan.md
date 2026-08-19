@@ -2,21 +2,18 @@
 aliases:
     - /projects/active/quantascan/
     - /projects/archived/quantascan/
-audited: false
-audits: []
-author: 12remember
-categories:
+availability: live
+capabilities:
     - explorer
-category: explorer
-clients: []
-created: "2026-08-02"
-default_client_url: https://quantascan.io
+    - analytics
+categories:
+    - network-operations
+    - assets-tokenization
+data_updated_at: "2026-08-02"
 description: 'Analytics-first block explorer for QRL and QRL 2.0: aggregated time-series, cross-chain charts, rich lists, wallet classification, and validator and mining dashboards — built around network-wide data, not just single block and transaction lookups.'
-discord: ""
-docs: https://quantascan.io/api-docs
-ecosystem_type: application
+display_status: Stable · Mainnet + Testnet
 features:
-    - Dual-chain coverage — QRL (PoW legacy) and QRL 2.0 (PoS, EVM-compatible)
+    - Dual-generation coverage — QRL 1.x mainnet and QRL 2.0 testnet data
     - Aggregated time-series and analytics charts across the whole network
     - Rich list, wallet distribution, and wallet entity classification
     - Validator and beacon-chain dashboards for QRL 2.0
@@ -36,28 +33,8 @@ gallery:
     - type: image
       path: quantascan/exchange-flow.png
       caption: Exchange flows — how much QRL sits on exchanges and whether it is moving in or out, per exchange.
-github: ""
-license: none
-logos:
-    - path: quantascan/icon.svg
-      description: ""
-maintainers:
-    - 12remember
-open_source: false
-platforms:
-    - web
-project-types:
-    - applications
-project_type: application
-project_url: https://quantascan.io
-qrl_versions:
-    - 1.x
-    - "2.0"
-status: production
-supported_networks:
-    - mainnet
-    - testnet
-tags:
+id: quantascan
+keywords:
     - explorer
     - analytics
     - dashboards
@@ -66,9 +43,57 @@ tags:
     - validators
     - mining
     - statistics
+    - portfolio
+links:
+    - type: website
+      url: https://quantascan.io
+      primary: true
+    - type: documentation
+      url: https://quantascan.io/api-docs
+listed_at: "2026-08-02"
+logos:
+    - path: quantascan/icon.svg
+      description: Quantascan logo
+maintainer_records:
+    - name: 12remember
+      contact: https://quantascan.io
+maintainers:
+    - 12remember
+maturity: stable
+platforms:
+    - web
+primary_category: network-operations
+primary_link:
+    type: website
+    url: https://quantascan.io
+    primary: true
+primary_url: https://quantascan.io
+project-types:
+    - applications
+project_type: application
+publisher:
+    name: 12remember
+    url: https://quantascan.io
+qrl_environments:
+    - mainnet
+    - testnet
+qrl_generations:
+    - 1.x
+    - "2.0"
+qrl_relationship: native
+qrl_support:
+    - generation: 1.x
+      environments:
+        - mainnet
+        - testnet
+    - generation: "2.0"
+      environments:
+        - testnet
+repositories: []
+secondary_categories:
+    - assets-tokenization
+source_availability: unavailable
 title: Quantascan
-twitter: ""
-updated: "2026-08-02"
 url: /projects/quantascan/
 ---
 

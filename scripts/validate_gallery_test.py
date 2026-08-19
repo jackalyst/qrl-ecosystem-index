@@ -1,5 +1,7 @@
 import tempfile
 import unittest
+import struct
+import zlib
 from pathlib import Path
 
 from validate_gallery import MAX_SCREENSHOT_BYTES, validate_gallery
@@ -15,10 +17,21 @@ class ValidateGalleryTest(unittest.TestCase):
     def tearDown(self):
         self.temporary_directory.cleanup()
 
-    def add_image(self, filename: str, size: int = 8) -> None:
+    def add_image(self, filename: str, size: int | None = None) -> None:
         path = self.root / "images" / "screenshots" / "example-project" / filename
         path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_bytes(b"x" * size)
+        if size is not None:
+            path.write_bytes(b"x" * size)
+            return
+        signature = b"\x89PNG\r\n\x1a\n"
+        def chunk(kind: bytes, payload: bytes) -> bytes:
+            return struct.pack(">I", len(payload)) + kind + payload + struct.pack(">I", zlib.crc32(kind + payload) & 0xFFFFFFFF)
+        path.write_bytes(
+            signature
+            + chunk(b"IHDR", struct.pack(">IIBBBBB", 1, 1, 8, 6, 0, 0, 0))
+            + chunk(b"IDAT", zlib.compress(b"\x00\x00\x00\x00\x00"))
+            + chunk(b"IEND", b"")
+        )
 
     def validate(self, gallery):
         return validate_gallery(
@@ -39,7 +52,7 @@ class ValidateGalleryTest(unittest.TestCase):
         gallery = []
         for index in range(10):
             if index % 2 == 0:
-                filename = f"screen-{index}.webp"
+                filename = f"screen-{index}.png"
                 self.add_image(filename)
                 gallery.append(
                     {

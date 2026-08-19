@@ -2,47 +2,65 @@
 aliases:
     - /projects/active/qrl-tokenomics/
     - /projects/archived/qrl-tokenomics/
-audited: false
-audits: []
-author: The QRL Community
-categories:
+availability: live
+capabilities:
     - analytics
-category: analytics
-clients: []
-created: "2026-08-17"
-default_client_github: https://github.com/theqrl-community/qrl-tokenomics
-default_client_url: https://github.com/theqrl-community/qrl-tokenomics
+categories:
+    - finance
+    - education-research-ecosystem
+data_updated_at: "2026-08-17"
 description: Community-maintained Python tools and datasets for examining QRL 1.x supply, emission, block-reward decay, and other macro- and micro-tokenomics questions.
-discord: ""
-docs: ""
-ecosystem_type: tooling
+display_status: Stable
 features:
     - QRL supply and emission datasets
     - Block-height-based emission calculations
     - Python tools for tokenomics analysis
     - Background notes on QRL supply and mining economics
-github: https://github.com/theqrl-community/qrl-tokenomics
-languages:
-    - python
-license: MIT
-logos: []
-maintainers:
-    - The QRL Community
-open_source: true
-project-types:
-    - tooling
-project_type: tooling
-project_url: https://github.com/theqrl-community/qrl-tokenomics
-qrl_versions:
-    - 1.x
-status: production
-tags:
+id: qrl-tokenomics
+keywords:
     - tokenomics
     - emission
     - datasets
     - analysis
+links:
+    - type: website
+      url: https://github.com/theqrl-community/qrl-tokenomics
+      primary: true
+listed_at: "2026-08-17"
+maintainer_records:
+    - name: The QRL Community
+      contact: https://github.com/theqrl-community/qrl-tokenomics
+maintainers:
+    - The QRL Community
+maturity: stable
+platforms: []
+primary_category: finance
+primary_link:
+    type: website
+    url: https://github.com/theqrl-community/qrl-tokenomics
+    primary: true
+primary_url: https://github.com/theqrl-community/qrl-tokenomics
+project-types:
+    - tooling
+project_type: tooling
+publisher:
+    name: The QRL Community
+    url: https://github.com/theqrl-community/qrl-tokenomics
+qrl_environments: []
+qrl_generations:
+    - 1.x
+qrl_relationship: native
+qrl_support:
+    - generation: 1.x
+      environments: []
+repositories:
+    - id: main
+      role: tooling
+      url: https://github.com/theqrl-community/qrl-tokenomics
+      license: MIT
+secondary_categories:
+    - education-research-ecosystem
+source_availability: full
 title: QRL Tokenomics Tools
-twitter: ""
-updated: "2026-08-17"
 url: /projects/qrl-tokenomics/
 ---

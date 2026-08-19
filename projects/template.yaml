@@ -1,103 +1,138 @@
-# Template for QRL Ecosystem Project Submission
-# Copy this file to projects/active/<your-project-id>.yaml
-# (or projects/archived/ for inactive projects)
-# and fill out all required fields.
+# QRL Ecosystem Index schema v6 template.
+# Copy to projects/active/<id>.yaml, or projects/archived/<id>.yaml only when
+# availability is archived. Remove unused examples before submitting.
 
 id: your-project-id
 name: Your Project Name
-# Choose the parent project type first, then one allowed child category below.
-project_type: dapp  # Options: dapp, application, infrastructure, tooling, community
-qrl_versions:  # One or both: 1.x, 2.0
-  - "2.0"
-status: development  # Options: development, production, archived (see CONTRIBUTING.md)
+
+# Independent classification facets. See website/data/classification.yaml.
+project_type: application
+primary_category: security-custody-account-management
+secondary_categories:
+  - payments-commerce
+capabilities:
+  - wallet
+  - key-management
+# Where a visitor can use the project. Use [] when this does not apply.
+platforms:
+  - web # web | browser-extension | desktop | mobile
+# Search-only terms; these do not create taxonomy pages.
+keywords:
+  - browser-wallet
+
+# Lifecycle describes separate facts.
+maturity: beta # prototype | beta | stable | deprecated
+availability: live # live | limited | paused | offline | archived
+# maintenance: active # active | low-activity | inactive
+
+# native | deployed | integrated | ecosystem-resource
+qrl_relationship: native
+qrl_support:
+  - generation: "2.0" # 1.x | 2.0
+    environments:
+      - testnet # mainnet (1.x only) | testnet | devnet (2.0 only) | local-private
+    # evidence:
+    #   - https://docs.example.com/qrl-support
+
 description: >
-  A brief description of your project (max 280 characters).
-category: defi  # Must be allowed beneath project_type; see CONTRIBUTING.md
-tags:
-  - tag1
-  - tag2
-author: Your Name or Organization
-license: MIT  # SPDX license identifier
-created: YYYY-MM-DD  # ISO 8601 date
-updated: YYYY-MM-DD  # ISO 8601 date
+  A factual project summary no longer than 280 characters.
 
-# Optional fields
-url: https://your-project.example.com
-github: https://github.com/your-org/your-repo
-docs: https://docs.your-project.example.com
-discord: https://discord.gg/your-invite
-twitter: https://twitter.com/your-handle
+publisher:
+  name: Your Name or Organization
+  url: https://example.com/
+maintainers:
+  - name: Public Maintainer Name
+    contact: https://github.com/example-maintainer
 
-open_source: true
-audited: false
-# audits:
-#   - auditor: Example Security
-#     audit_url: https://security.example.com/audit
+# full | partial | unavailable | not-applicable
+source_availability: full
+repositories:
+  - id: main
+    role: client # contracts | frontend | client | sdk | infrastructure | tooling | content | other
+    url: https://github.com/example-org/example-project
+    license: MIT # Valid SPDX expression or NOASSERTION when genuinely unknown
 
-# Platform-specific destinations. Mark one as default for project cards,
-# listings, and generated indexes. Keep url/github above as fallbacks.
-#clients:
-#  - platform: web
-#    url: https://your-project.example.com
-#    github: https://github.com/your-org/your-web-client
-#    default: true
-#  - platform: android
-#    url: https://play.google.com/store/apps/details?id=example
-#    github: https://github.com/your-org/your-android-client
+links:
+  - type: website
+    url: https://example.com/
+    primary: true
+  - type: documentation
+    url: https://docs.example.com/
+  - type: social
+    platform: x
+    url: https://x.com/example
 
-# Logo (local files only - no external URLs for security)
-# Place logo files in images/logos/<project-id>/ and reference them here
-#logo: your-project/icon.png
-
-# Logos (full format for multiple variants)
-#logos:
-#  - path: your-project/icon.png
-#    description: Project icon (recommended: 128x128 or 256x256)
-#  - path: your-project/logo-full.svg
-#    description: Full-width logo variant
-
-# Gallery (ordered local images and YouTube videos; 1-10 items total)
-# Place image files in images/screenshots/<project-id>/; use only the 11-character ID for YouTube videos.
-#gallery:
-#  - type: image
-#    path: your-project/main-dashboard.webp
-#    caption: Main dashboard showing current network activity
-#  - type: youtube
-#    id: M7lc1UVf-VE
-#    caption: Project demonstration
+# Directory-maintained dates.
+listed_at: 2026-08-17
+data_updated_at: 2026-08-17
+# project_launched_at: 2026-08-01
+# last_release_at: 2026-08-15
+# last_verified_at: 2026-08-17
 
 features:
-  - Feature 1
-  - Feature 2
-  - Feature 3
+  - A concise, factual feature
+  - Another factual feature
 
-long_description: |
-  Provide a more detailed description of your project here.
-  This can include markdown formatting.
+# Protocols require at least one deployment. Other types may add deployments
+# when a concrete deployed instance is part of the project.
+# deployments:
+#   - id: qrl-2-testnet-v2
+#     network: qrl-2-testnet-v2
+#     operational_state: live # live | limited | paused | offline
+#     identifiers:
+#       - type: contract
+#         value: Q0000000000000000000000000000000000000000
+#         role: primary
+#     evidence:
+#       - https://github.com/example-org/example-project/tree/example-revision
+#     source_verification: unverified # verified | unverified | not-applicable | unknown
 
-# Type-specific block (only include ONE matching your project_type)
-dapp:
-  network: testnet  # Options: mainnet, testnet
-  contract_address: "Q0000..."
-  token: "TOKEN"
+# Security reports are factual provenance, never an “audited” or “safe” badge.
+# security_reviews:
+#   - auditor: Example Security
+#     report_url: https://security.example.com/report.pdf
+#     report_date: 2026-08-01
+#     repository_id: main
+#     revision: 0123456789abcdef
+#     scope: Client signing and transaction submission paths
+#     deployment_ids: []
+#     remediation_status: not-reported # not-reported | open | partial | completed
 
-application:
-  platforms:  # e.g., linux, windows, macos, android, ios, web, hardware
-    - web
-  supported_networks:  # e.g., mainnet, testnet
-    - testnet
+# Optional evidence hooks do not produce public trust labels in the v6 launch.
+# evidence:
+#   - type: qrl-relationship # qrl-relationship | deployment | integration | ownership
+#     url: https://docs.example.com/qrl-integration
+#     note: Public integration documentation
+#     checked_at: 2026-08-17
 
-infrastructure:
-  supported_networks:  # e.g., mainnet, testnet
-    - testnet
-  endpoints:
-    - https://api.example.com
+# relationships:
+#   - type: uses-protocol # fork-of | successor-to | frontend-for | uses-protocol | part-of
+#     project_id: existing-project-id
+# previous_names:
+#   - Previous Project Name
 
-tooling:
-  languages:  # e.g., python, javascript, go, rust
-    - python
+# Tokens or collections may be attached to a project; they are not project types.
+# assets:
+#   - type: token
+#     name: Example Token
+#     symbol: EXAMPLE
+#     deployment_id: qrl-2-testnet-v2
+#     identifier: Q0000000000000000000000000000000000000000
+#     evidence_url: https://docs.example.com/token
 
-community:
-  platforms:  # e.g., discord, telegram, forum
-    - discord
-  language: English
+# PNG, WebP, or SVG logos under images/logos/<id>/.
+# logos:
+#   - path: your-project-id/icon.webp
+#     description: Your Project icon
+
+# Gallery images are under images/screenshots/<id>/; YouTube uses only its ID.
+# gallery:
+#   - type: image
+#     path: your-project-id/dashboard.webp
+#     caption: Dashboard showing current network activity
+#   - type: youtube
+#     id: M7lc1UVf-VE
+#     caption: Project demonstration
+
+# long_description: |
+#   An optional longer Markdown description. Raw HTML is not rendered.

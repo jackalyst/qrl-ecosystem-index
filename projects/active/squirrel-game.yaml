@@ -1,37 +1,61 @@
 id: squirrel-game
 name: Squirrel Game
-project_type: dapp
-qrl_versions:
-  - "2.0"
-status: development
-description: >
-  An on-chain strategy game on the QRL 2.0 testnet where Quantum Computer NFTs
-  mine qBTC and Squirrel NFTs tax or steal it, with Hyperion contracts for
-  minting, staking, traits, yield accounting, and commit-reveal randomness.
-category: gaming
-tags:
+project_type: protocol
+primary_category: gaming-virtual-worlds
+secondary_categories:
+  - assets-tokenization
+capabilities:
+  - staking
+platforms: []
+keywords:
   - gaming
   - nft
   - staking
   - hyperion
-author: PhuocNG0308
-license: none
-created: 2026-08-17
-updated: 2026-08-17
-
-url: https://github.com/PhuocNG0308/squirrel-game
-github: https://github.com/PhuocNG0308/squirrel-game
-
-open_source: true
-audited: false
-
+maturity: beta
+availability: live
+qrl_relationship: native
+qrl_support:
+  - generation: '2.0'
+    environments:
+      - testnet
+description: |
+  An on-chain strategy game on the QRL 2.0 testnet where Quantum Computer NFTs mine qBTC and Squirrel NFTs tax or steal it, with Hyperion contracts for minting, staking, traits, yield accounting, and commit-reveal randomness.
+publisher:
+  name: PhuocNG0308
+  url: https://github.com/PhuocNG0308/squirrel-game
+maintainers:
+  - name: PhuocNG0308
+    contact: https://github.com/PhuocNG0308/squirrel-game
+source_availability: full
+repositories:
+  - id: main
+    role: contracts
+    url: https://github.com/PhuocNG0308/squirrel-game
+    license: NOASSERTION
+links:
+  - type: website
+    url: https://github.com/PhuocNG0308/squirrel-game
+    primary: true
+listed_at: '2026-08-17'
+data_updated_at: '2026-08-17'
 features:
   - Deployed NFT minting and staking contracts on the QRL 2.0 testnet
   - Quantum Computer mining and Squirrel tax-and-steal game mechanics
   - On-chain traits, metadata, yield accounting, and token economics
   - Commit-reveal flow using a future block for random outcomes
-
-dapp:
-  network: testnet
-  contract_address: "Qfb47c6091d44465E10A576EeAD73c049C339258b"
-  token: qBTC
+deployments:
+  - id: qrl-2-testnet-v2
+    network: qrl-2-testnet-v2
+    operational_state: live
+    identifiers:
+      - type: contract
+        value: Qfb47c6091d44465E10A576EeAD73c049C339258b
+    evidence:
+      - https://github.com/PhuocNG0308/squirrel-game
+    source_verification: unverified
+assets:
+  - type: token
+    name: qBTC
+    symbol: qBTC
+    deployment_id: qrl-2-testnet-v2

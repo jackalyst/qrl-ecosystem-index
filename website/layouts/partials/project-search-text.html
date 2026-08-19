@@ -1,50 +1,55 @@
-{{- $parts := slice .Title .Params.description .Params.category (partial "category-label.html" .Params.category) .Params.status .Params.author .Params.license .Params.project_url .Params.github .Params.docs .Params.discord .Params.twitter .Params.project_type (partial "project-type-label.html" .Params.project_type) .Params.ecosystem_type -}}
-{{- with (index .Params "project-types") -}}
-    {{- range . -}}
-        {{- $parts = $parts | append . -}}
-        {{- $parts = $parts | append (partial "project-type-label.html" .) -}}
-    {{- end -}}
-{{- end -}}
-{{- range .Params.categories -}}
+{{- $parts := slice .Title .Params.description .Params.project_type (partial "project-type-label.html" .Params.project_type) .Params.primary_category (partial "category-label.html" .Params.primary_category) .Params.display_status .Params.maturity .Params.availability .Params.qrl_relationship .Params.source_availability .Params.publisher.name .Params.publisher.url -}}
+{{- range .Params.secondary_categories -}}
     {{- $parts = $parts | append . -}}
+    {{- $parts = $parts | append (partial "category-label.html" .) -}}
 {{- end -}}
-{{- range .Params.tags -}}
+{{- range .Params.capabilities -}}
     {{- $parts = $parts | append . -}}
-{{- end -}}
-{{- range .Params.qrl_versions -}}
-    {{- $parts = $parts | append . -}}
-    {{- $parts = $parts | append (printf "QRL %s" .) -}}
-{{- end -}}
-{{- range .Params.features -}}
-    {{- $parts = $parts | append . -}}
-{{- end -}}
-{{- range .Params.clients -}}
-    {{- $parts = $parts | append .platform -}}
-    {{- $parts = $parts | append .url -}}
-    {{- $parts = $parts | append .github -}}
+    {{- $parts = $parts | append (partial "capability-label.html" .) -}}
 {{- end -}}
 {{- range .Params.platforms -}}
     {{- $parts = $parts | append . -}}
+    {{- $parts = $parts | append (partial "platform-label.html" .) -}}
 {{- end -}}
-{{- range .Params.supported_networks -}}
-    {{- $parts = $parts | append . -}}
+{{- range .Params.keywords -}}{{- $parts = $parts | append . -}}{{- end -}}
+{{- range .Params.qrl_support -}}
+    {{- $parts = $parts | append .generation -}}
+    {{- range .environments }}{{- $parts = $parts | append . -}}{{- end -}}
 {{- end -}}
-{{- range .Params.endpoints -}}
-    {{- $parts = $parts | append . -}}
+{{- range .Params.maintainer_records -}}
+    {{- $parts = $parts | append .name -}}
+    {{- $parts = $parts | append .contact -}}
 {{- end -}}
-{{- range .Params.languages -}}
-    {{- $parts = $parts | append . -}}
+{{- range .Params.repositories -}}
+    {{- $parts = $parts | append .role -}}
+    {{- $parts = $parts | append .url -}}
+    {{- $parts = $parts | append .license -}}
 {{- end -}}
-{{- with .Params.language -}}
-    {{- $parts = $parts | append . -}}
+{{- range .Params.links -}}
+    {{- $parts = $parts | append .type -}}
+    {{- $parts = $parts | append .label -}}
+    {{- $parts = $parts | append .platform -}}
+    {{- $parts = $parts | append .url -}}
 {{- end -}}
-{{- with .Params.network -}}
-    {{- $parts = $parts | append . -}}
+{{- range .Params.deployments -}}
+    {{- $parts = $parts | append .network -}}
+    {{- $parts = $parts | append .operational_state -}}
+    {{- $parts = $parts | append .source_verification -}}
+    {{- range .identifiers -}}
+        {{- $parts = $parts | append .type -}}
+        {{- $parts = $parts | append .role -}}
+        {{- $parts = $parts | append .value -}}
+    {{- end -}}
 {{- end -}}
-{{- with .Params.contract_address -}}
-    {{- $parts = $parts | append . -}}
+{{- range .Params.assets -}}
+    {{- $parts = $parts | append .type -}}
+    {{- $parts = $parts | append .name -}}
+    {{- $parts = $parts | append .symbol -}}
 {{- end -}}
-{{- with .Params.token -}}
-    {{- $parts = $parts | append . -}}
+{{- range .Params.security_reviews -}}
+    {{- $parts = $parts | append .auditor -}}
+    {{- $parts = $parts | append .scope -}}
+    {{- $parts = $parts | append .remediation_status -}}
 {{- end -}}
+{{- range .Params.features -}}{{- $parts = $parts | append . -}}{{- end -}}
 {{- delimit $parts " " | plainify | lower -}}

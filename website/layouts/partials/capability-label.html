@@ -1,0 +1,6 @@
+{{- $meta := partial "capability-meta.html" . -}}
+{{- with $meta.label -}}
+    {{- . -}}
+{{- else -}}
+    {{- . | humanize | title -}}
+{{- end -}}

@@ -1,33 +1,70 @@
 id: quantaswap
 name: QuantaSwap
-project_type: dapp
-qrl_versions:
-  - "2.0"
-status: development
-description: >
-  Cross-chain atomic swaps between native QRL and native ETH using hashed
-  timelock contracts on both chains. No bridge, no wrapped assets, no
-  custodian: each leg settles natively and the swap secret never leaves
-  the client.
-category: defi
-tags:
+project_type: protocol
+primary_category: interoperability-messaging-data
+secondary_categories:
+  - finance
+capabilities:
+  - atomic-swap
+  - dex
+  - wallet-connector
+platforms: []
+keywords:
   - atomic-swaps
   - htlc
   - cross-chain
   - ethereum
-author: DigitalGuards
-license: GPL-3.0
-created: 2026-07-11
-updated: 2026-07-14
-
-url: https://quantaswap.io/
-github: https://github.com/DigitalGuards/QuantaSwap
-twitter: https://x.com/DigitalGuards
-
-open_source: true
-audited: false
-
-logo: quantaswap/icon.svg
+maturity: beta
+availability: live
+qrl_relationship: native
+qrl_support:
+  - generation: '2.0'
+    environments:
+      - testnet
+description: |
+  Cross-chain atomic swaps between native QRL and native ETH using hashed timelock contracts on both chains. No bridge, no wrapped assets, no custodian: each leg settles natively and the swap secret never leaves the client.
+publisher:
+  name: DigitalGuards
+  url: https://github.com/DigitalGuards/QuantaSwap
+maintainers:
+  - name: DigitalGuards
+    contact: https://github.com/DigitalGuards/QuantaSwap
+source_availability: full
+repositories:
+  - id: main
+    role: contracts
+    url: https://github.com/DigitalGuards/QuantaSwap
+    license: GPL-3.0
+links:
+  - type: website
+    url: https://quantaswap.io/
+    primary: false
+  - type: application
+    url: https://quantaswap.io/
+    platform: web
+    primary: true
+  - type: social
+    url: https://x.com/DigitalGuards
+listed_at: '2026-07-11'
+data_updated_at: '2026-07-14'
+features:
+  - HTLC atomic swaps between QRL v2 testnet and Ethereum Sepolia
+  - Ownerless, non-upgradeable contracts with no pause switch; one artifact deploys to both chains
+  - Two-party order book for coordination only; clients re-verify every step on-chain
+  - QRL leg connects via the MyQRLWallet relay or the QRL browser extension, ETH leg via EIP-6963 wallets
+deployments:
+  - id: qrl-2-testnet-v2
+    network: qrl-2-testnet-v2
+    operational_state: live
+    identifiers:
+      - type: contract
+        value: Q94cd8e406d2bb4ea251dce3f0558941f2ac056ee
+    evidence:
+      - https://github.com/DigitalGuards/QuantaSwap
+    source_verification: unverified
+logos:
+  - path: quantaswap/icon.svg
+    description: QuantaSwap logo
 gallery:
   - type: youtube
     id: rIwqXEEpaaM
@@ -41,24 +78,6 @@ gallery:
   - type: image
     path: quantaswap/screenshot3.png
     caption: Plain language guide on how QuantaSwap works and how to use it.
-
-clients:
-  - platform: web
-    url: https://quantaswap.io/
-    github: https://github.com/DigitalGuards/QuantaSwap
-    default: true
-
-features:
-  - HTLC atomic swaps between QRL v2 testnet and Ethereum Sepolia
-  - Ownerless, non-upgradeable contracts with no pause switch; one artifact deploys to both chains
-  - Two-party order book for coordination only; clients re-verify every step on-chain
-  - QRL leg connects via the MyQRLWallet relay or the QRL browser extension, ETH leg via EIP-6963 wallets
-
-dapp:
-  network: testnet
-  contract_address: "Q94cd8e406d2bb4ea251dce3f0558941f2ac056ee"
-  token: "none"
-
 long_description: |
   QuantaSwap is an open-source dApp for trustless cross-chain swaps between
   the two native coins: QRL on the QRL 2.0 network and ETH on Ethereum. Swaps

@@ -1,49 +1,58 @@
 id: hyperion
 name: Hyperion
 project_type: tooling
-qrl_versions:
-  - "2.0"
-status: development
-description: >
-  QRL's contract-oriented smart-contract language and compiler for the Quantum
-  Resistant Virtual Machine, designed as a Solidity-derived toolchain for
-  building tokens, applications, voting systems, and other QRL 2.0 contracts.
-category: compiler
-tags:
+primary_category: developer-experience
+secondary_categories: []
+capabilities:
+  - compiler
+  - contract-template
+platforms: []
+keywords:
   - smart-contracts
   - compiler
   - language
   - qrvm
-author: The QRL
-license: GPL-3.0
-created: 2026-08-17
-updated: 2026-08-17
-
-url: https://github.com/theQRL/hyperion
-github: https://github.com/theQRL/hyperion
-docs: https://github.com/theQRL/hyperion/tree/main/docs
-
-open_source: true
-audited: false
-
-clients:
-  - platform: native compiler
-    github: https://github.com/theQRL/hyperion
-    default: true
-  - platform: javascript bindings
+maturity: beta
+availability: live
+qrl_relationship: native
+qrl_support:
+  - generation: '2.0'
+    environments: []
+description: |
+  QRL's contract-oriented smart-contract language and compiler for the Quantum Resistant Virtual Machine, designed as a Solidity-derived toolchain for building tokens, applications, voting systems, and other QRL 2.0 contracts.
+publisher:
+  name: The QRL
+  url: https://github.com/theQRL/hyperion
+maintainers:
+  - name: The QRL
+    contact: https://github.com/theQRL/hyperion
+source_availability: full
+repositories:
+  - id: main
+    role: tooling
+    url: https://github.com/theQRL/hyperion
+    license: GPL-3.0
+  - id: javascript-bindings
+    role: client
+    url: https://github.com/theQRL/hypc-js
+    license: NOASSERTION
+  - id: browser-binary
+    role: client
+    url: https://github.com/theQRL/hypc-bin
+    license: NOASSERTION
+links:
+  - type: website
+    url: https://github.com/theQRL/hyperion
+    primary: true
+  - type: application
     url: https://www.npmjs.com/package/@theqrl/hypc
-    github: https://github.com/theQRL/hypc-js
-  - platform: browser binary
-    github: https://github.com/theQRL/hypc-bin
-
+    platform: javascript bindings
+  - type: documentation
+    url: https://github.com/theQRL/hyperion/tree/main/docs
+listed_at: '2026-08-17'
+data_updated_at: '2026-08-17'
 features:
   - Solidity-derived contract language for QRL 2.0
   - Compilation to QRVM-compatible bytecode
   - Native compiler and JavaScript bindings
   - Example voting, auction, and remote-purchase contracts
-
-tooling:
-  languages:
-    - hyperion
-    - c++
-    - javascript

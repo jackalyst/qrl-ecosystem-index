@@ -1,36 +1,45 @@
 id: qrl-file-tools
 name: QRL File Tools
 project_type: tooling
-qrl_versions:
-  - "2.0"
-status: development
-description: >
-  Command-line tools for post-quantum file signing, signature verification,
-  public-key extraction, hashing, and salt generation using FIPS 204 ML-DSA-87
-  or legacy Dilithium signatures.
-category: cli
-tags:
+primary_category: security-custody-account-management
+secondary_categories:
+  - developer-experience
+capabilities:
+  - cli
+platforms: []
+keywords:
   - cli
   - file-signing
   - mldsa
   - hashing
-author: The QRL
-license: MIT
-created: 2026-08-17
-updated: 2026-08-17
-
-url: https://github.com/theQRL/qrlft
-github: https://github.com/theQRL/qrlft
-
-open_source: true
-audited: false
-
+maturity: beta
+availability: live
+qrl_relationship: native
+qrl_support:
+  - generation: '2.0'
+    environments: []
+description: |
+  Command-line tools for post-quantum file signing, signature verification, public-key extraction, hashing, and salt generation using FIPS 204 ML-DSA-87 or legacy Dilithium signatures.
+publisher:
+  name: The QRL
+  url: https://github.com/theQRL/qrlft
+maintainers:
+  - name: The QRL
+    contact: https://github.com/theQRL/qrlft
+source_availability: full
+repositories:
+  - id: main
+    role: tooling
+    url: https://github.com/theQRL/qrlft
+    license: NOASSERTION
+links:
+  - type: website
+    url: https://github.com/theQRL/qrlft
+    primary: true
+listed_at: '2026-08-17'
+data_updated_at: '2026-08-17'
 features:
   - ML-DSA-87 and Dilithium file or string signing
   - Detached signature verification and public-key extraction
   - SHA-3, SHA-2, Keccak, and BLAKE2 hashing
   - Secure key-file permissions and application-specific signing contexts
-
-tooling:
-  languages:
-    - go

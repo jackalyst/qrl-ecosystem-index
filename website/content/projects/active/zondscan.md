@@ -2,53 +2,71 @@
 aliases:
     - /projects/active/zondscan/
     - /projects/archived/zondscan/
-audited: false
-audits: []
-author: DigitalGuards
-categories:
+availability: live
+capabilities:
     - explorer
-category: explorer
-clients: []
-created: "2026-06-09"
-default_client_github: https://github.com/DigitalGuards/zondscan
-default_client_url: https://zondscan.com/
+    - analytics
+categories:
+    - network-operations
+data_updated_at: "2026-07-14"
 description: A QRL Zond network explorer for browsing blocks, transactions, smart contracts, validators, addresses, and chain activity.
-discord: ""
-docs: ""
-ecosystem_type: application
+display_status: Beta · Testnet
 features:
     - Real-time QRL Zond blockchain data exploration
     - Transaction, block, smart contract, and validator views
     - Address details, balance checking, richlist, and unit conversion tools
     - Next.js frontend with a Go-powered backend API
     - Responsive web interface for desktop and mobile devices
-github: https://github.com/DigitalGuards/zondscan
-license: MIT
-logos:
-    - path: zondscan/icon.png
-      description: ""
-maintainers:
-    - DigitalGuards
-open_source: true
-platforms:
-    - web
-    - mobile
-project-types:
-    - applications
-project_type: application
-project_url: https://zondscan.com/
-qrl_versions:
-    - "2.0"
-status: development
-supported_networks:
-    - testnet
-tags:
+id: zondscan
+keywords:
     - explorer
     - zond
     - validators
+links:
+    - type: website
+      url: https://zondscan.com/
+      primary: true
+listed_at: "2026-06-09"
+logos:
+    - path: zondscan/icon.png
+      description: ZondScan logo
+maintainer_records:
+    - name: DigitalGuards
+      contact: https://github.com/DigitalGuards/zondscan
+maintainers:
+    - DigitalGuards
+maturity: beta
+platforms:
+    - web
+primary_category: network-operations
+primary_link:
+    type: website
+    url: https://zondscan.com/
+    primary: true
+primary_url: https://zondscan.com/
+project-types:
+    - applications
+project_type: application
+publisher:
+    name: DigitalGuards
+    url: https://github.com/DigitalGuards/zondscan
+qrl_environments:
+    - testnet
+qrl_generations:
+    - "2.0"
+qrl_relationship: native
+qrl_support:
+    - generation: "2.0"
+      environments:
+        - testnet
+repositories:
+    - id: main
+      role: client
+      url: https://github.com/DigitalGuards/zondscan
+      license: MIT
+secondary_categories: []
+source_availability: full
 title: ZondScan
-twitter: ""
-updated: "2026-07-14"
 url: /projects/zondscan/
 ---
 

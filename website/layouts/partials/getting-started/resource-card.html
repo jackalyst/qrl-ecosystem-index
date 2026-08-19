@@ -1,17 +1,15 @@
 {{- $project := . -}}
-{{- $visitURL := $project.Params.project_url -}}
-{{- with $project.Params.default_client_url }}{{ $visitURL = . }}{{ end -}}
-{{- $metadata := $project.Params.platforms | default (slice) -}}
-{{- if not $metadata }}{{ $metadata = $project.Params.supported_networks | default (slice) }}{{ end -}}
-{{- if and (not $metadata) $project.Params.network }}{{ $metadata = slice $project.Params.network }}{{ end -}}
-{{- if not $metadata }}{{ $metadata = $project.Params.languages | default (slice) }}{{ end -}}
+{{- $visitURL := $project.Params.primary_url -}}
+{{- $metadata := $project.Params.qrl_environments | default (slice) -}}
+{{- if not $metadata }}{{ $metadata = $project.Params.qrl_generations | default (slice) }}{{ end -}}
+{{- if not $metadata }}{{ $metadata = $project.Params.capabilities | default (slice) }}{{ end -}}
 <article class="guide-resource-card">
     <header>
         <div>
-            <p class="guide-resource-type">{{ with $project.Params.category }}{{ partial "category-label.html" . }}{{ else }}{{ partial "project-type-label.html" $project.Params.project_type }}{{ end }}</p>
+            <p class="guide-resource-type">{{ with $project.Params.primary_category }}{{ partial "category-label.html" . }}{{ else }}{{ partial "project-type-label.html" $project.Params.project_type }}{{ end }}</p>
             <h4>{{ $project.Title }}</h4>
         </div>
-        {{ with $project.Params.status }}<span class="status status-{{ . }}">{{ . }}</span>{{ end }}
+        {{ with $project.Params.display_status }}<span class="status status-{{ $project.Params.availability }}">{{ . }}</span>{{ end }}
     </header>
     {{ with $project.Params.description }}<p class="guide-resource-description">{{ . }}</p>{{ end }}
     {{ with $metadata }}

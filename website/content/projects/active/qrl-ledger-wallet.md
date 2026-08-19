@@ -2,49 +2,70 @@
 aliases:
     - /projects/active/qrl-ledger-wallet/
     - /projects/archived/qrl-ledger-wallet/
-audited: false
-audits: []
-author: The QRL
-categories:
+availability: live
+capabilities:
     - wallet
-category: wallet
-clients: []
-created: "2026-08-17"
-default_client_github: https://github.com/theQRL/ledger-qrl-app
-default_client_url: https://docs.theqrl.org/use/wallet/ledger/overview/
+    - hardware-wallet
+    - key-management
+categories:
+    - security-custody-account-management
+    - payments-commerce
+data_updated_at: "2026-08-17"
 description: The QRL application for Ledger Nano hardware wallets, keeping XMSS keys offline while supporting QRL transfers, messages, multiple address trees, OTS tracking, and optional passphrase-protected address spaces.
-discord: ""
-docs: https://docs.theqrl.org/use/wallet/ledger/overview/
-ecosystem_type: application
+display_status: Stable · Mainnet
 features:
     - Support for Ledger Nano X and Nano S Plus devices
     - XMSS private keys retained on the hardware secure element
     - Dual address-tree support with OTS index tracking
     - Native QRL transfers and message transactions
-github: https://github.com/theQRL/ledger-qrl-app
-license: Apache-2.0
-logos: []
-maintainers:
-    - The QRL
-open_source: true
-platforms:
-    - hardware
-project-types:
-    - applications
-project_type: application
-project_url: https://docs.theqrl.org/use/wallet/ledger/overview/
-qrl_versions:
-    - 1.x
-status: production
-supported_networks:
-    - mainnet
-tags:
+id: qrl-ledger-wallet
+keywords:
     - wallet
     - hardware-wallet
     - ledger
     - xmss
+    - signing
+links:
+    - type: website
+      url: https://docs.theqrl.org/use/wallet/ledger/overview/
+      primary: true
+listed_at: "2026-08-17"
+maintainer_records:
+    - name: The QRL
+      contact: https://github.com/theQRL/ledger-qrl-app
+maintainers:
+    - The QRL
+maturity: stable
+platforms: []
+primary_category: security-custody-account-management
+primary_link:
+    type: website
+    url: https://docs.theqrl.org/use/wallet/ledger/overview/
+    primary: true
+primary_url: https://docs.theqrl.org/use/wallet/ledger/overview/
+project-types:
+    - applications
+project_type: application
+publisher:
+    name: The QRL
+    url: https://github.com/theQRL/ledger-qrl-app
+qrl_environments:
+    - mainnet
+qrl_generations:
+    - 1.x
+qrl_relationship: native
+qrl_support:
+    - generation: 1.x
+      environments:
+        - mainnet
+repositories:
+    - id: main
+      role: client
+      url: https://github.com/theQRL/ledger-qrl-app
+      license: Apache-2.0
+secondary_categories:
+    - payments-commerce
+source_availability: full
 title: QRL Ledger Wallet
-twitter: ""
-updated: "2026-08-17"
 url: /projects/qrl-ledger-wallet/
 ---

@@ -29,51 +29,75 @@ import (
 )
 
 type Project struct {
-	ID              string        `yaml:"id"`
-	Name            string        `yaml:"name"`
-	ProjectType     string        `yaml:"project_type"`
-	QRLVersions     []string      `yaml:"qrl_versions"`
-	Status          string        `yaml:"status"`
-	Description     string        `yaml:"description"`
-	Category        string        `yaml:"category"`
-	Tags            []string      `yaml:"tags"`
-	Author          string        `yaml:"author"`
-	License         string        `yaml:"license"`
-	Created         string        `yaml:"created"`
-	Updated         string        `yaml:"updated"`
-	URL             string        `yaml:"url"`
-	GitHub          string        `yaml:"github"`
-	Docs            string        `yaml:"docs"`
-	Discord         string        `yaml:"discord"`
-	Twitter         string        `yaml:"twitter"`
-	OpenSource      bool          `yaml:"open_source"`
-	Audited         bool          `yaml:"audited"`
-	Audits          []Audit       `yaml:"audits"`
-	Clients         []Client      `yaml:"clients"`
-	Logo            string        `yaml:"logo"`
-	Logos           []Logo        `yaml:"logos"`
-	Gallery         []GalleryItem `yaml:"gallery"`
-	Features        []string      `yaml:"features"`
-	LongDescription string        `yaml:"long_description"`
-	// Type-specific blocks
-	Dapp           *DappBlock           `yaml:"dapp,omitempty"`
-	Application    *ApplicationBlock    `yaml:"application,omitempty"`
-	Infrastructure *InfrastructureBlock `yaml:"infrastructure,omitempty"`
-	Tooling        *ToolingBlock        `yaml:"tooling,omitempty"`
-	Community      *CommunityBlock      `yaml:"community,omitempty"`
+	ID                  string           `yaml:"id" json:"id"`
+	Name                string           `yaml:"name" json:"name"`
+	ProjectType         string           `yaml:"project_type" json:"project_type"`
+	PrimaryCategory     string           `yaml:"primary_category" json:"primary_category"`
+	SecondaryCategories []string         `yaml:"secondary_categories" json:"secondary_categories"`
+	Capabilities        []string         `yaml:"capabilities" json:"capabilities"`
+	Platforms           []string         `yaml:"platforms" json:"platforms"`
+	Keywords            []string         `yaml:"keywords" json:"keywords"`
+	Maturity            string           `yaml:"maturity" json:"maturity"`
+	Availability        string           `yaml:"availability" json:"availability"`
+	Maintenance         string           `yaml:"maintenance,omitempty" json:"maintenance,omitempty"`
+	QRLRelationship     string           `yaml:"qrl_relationship" json:"qrl_relationship"`
+	QRLSupport          []QRLSupport     `yaml:"qrl_support" json:"qrl_support"`
+	Deployments         []Deployment     `yaml:"deployments,omitempty" json:"deployments,omitempty"`
+	Description         string           `yaml:"description" json:"description"`
+	Publisher           Publisher        `yaml:"publisher" json:"publisher"`
+	Maintainers         []Maintainer     `yaml:"maintainers" json:"maintainers"`
+	SourceAvailability  string           `yaml:"source_availability" json:"source_availability"`
+	Repositories        []Repository     `yaml:"repositories" json:"repositories"`
+	Links               []Link           `yaml:"links" json:"links"`
+	SecurityReviews     []SecurityReview `yaml:"security_reviews,omitempty" json:"security_reviews,omitempty"`
+	Evidence            []Evidence       `yaml:"evidence,omitempty" json:"evidence,omitempty"`
+	Relationships       []Relationship   `yaml:"relationships,omitempty" json:"relationships,omitempty"`
+	PreviousNames       []string         `yaml:"previous_names,omitempty" json:"previous_names,omitempty"`
+	Assets              []Asset          `yaml:"assets,omitempty" json:"assets,omitempty"`
+	ListedAt            string           `yaml:"listed_at" json:"listed_at"`
+	DataUpdatedAt       string           `yaml:"data_updated_at" json:"data_updated_at"`
+	ProjectLaunchedAt   string           `yaml:"project_launched_at,omitempty" json:"project_launched_at,omitempty"`
+	LastReleaseAt       string           `yaml:"last_release_at,omitempty" json:"last_release_at,omitempty"`
+	LastVerifiedAt      string           `yaml:"last_verified_at,omitempty" json:"last_verified_at,omitempty"`
+	Logos               []Logo           `yaml:"logos,omitempty" json:"logos,omitempty"`
+	Gallery             []GalleryItem    `yaml:"gallery,omitempty" json:"gallery,omitempty"`
+	Features            []string         `yaml:"features" json:"features"`
+	LongDescription     string           `yaml:"long_description,omitempty" json:"long_description,omitempty"`
 }
 
 type Classification struct {
 	ProjectTypes []ProjectTypeDefinition `yaml:"project_types"`
+	Categories   []CategoryDefinition    `yaml:"categories"`
+	Capabilities []CapabilityDefinition  `yaml:"capabilities"`
+	Platforms    []PlatformDefinition    `yaml:"platforms"`
+	Networks     []NetworkDefinition     `yaml:"networks"`
 }
 
 type ProjectTypeDefinition struct {
-	ID           string               `yaml:"id"`
-	TaxonomySlug string               `yaml:"taxonomy_slug"`
-	Label        string               `yaml:"label"`
-	Description  string               `yaml:"description"`
-	Ideas        []string             `yaml:"ideas"`
-	Categories   []CategoryDefinition `yaml:"categories"`
+	ID           string   `yaml:"id"`
+	TaxonomySlug string   `yaml:"taxonomy_slug"`
+	Label        string   `yaml:"label"`
+	Description  string   `yaml:"description"`
+	Ideas        []string `yaml:"ideas"`
+}
+
+type CapabilityDefinition struct {
+	ID          string `yaml:"id"`
+	Label       string `yaml:"label"`
+	Description string `yaml:"description"`
+}
+
+type PlatformDefinition struct {
+	ID          string `yaml:"id"`
+	Label       string `yaml:"label"`
+	Description string `yaml:"description"`
+}
+
+type NetworkDefinition struct {
+	ID          string `yaml:"id"`
+	Label       string `yaml:"label"`
+	Generation  string `yaml:"generation"`
+	Environment string `yaml:"environment"`
 }
 
 type CategoryDefinition struct {
@@ -95,41 +119,82 @@ type GalleryItem struct {
 	Caption string `yaml:"caption"`
 }
 
-type Audit struct {
-	Auditor  string `yaml:"auditor"`
-	AuditURL string `yaml:"audit_url"`
+type Publisher struct {
+	Name string `yaml:"name" json:"name"`
+	URL  string `yaml:"url,omitempty" json:"url,omitempty"`
 }
 
-type Client struct {
-	Platform string `yaml:"platform" json:"platform"`
-	URL      string `yaml:"url,omitempty" json:"url,omitempty"`
-	GitHub   string `yaml:"github,omitempty" json:"github,omitempty"`
-	Default  bool   `yaml:"default,omitempty" json:"default,omitempty"`
+type Maintainer struct {
+	Name    string `yaml:"name" json:"name"`
+	Contact string `yaml:"contact" json:"contact"`
 }
 
-type DappBlock struct {
-	Network         string `yaml:"network"`
-	ContractAddress string `yaml:"contract_address"`
-	Token           string `yaml:"token"`
+type QRLSupport struct {
+	Generation   string   `yaml:"generation" json:"generation"`
+	Environments []string `yaml:"environments" json:"environments"`
+	Evidence     []string `yaml:"evidence,omitempty" json:"evidence,omitempty"`
 }
 
-type ApplicationBlock struct {
-	Platforms         []string `yaml:"platforms"`
-	SupportedNetworks []string `yaml:"supported_networks"`
+type Deployment struct {
+	ID                 string                 `yaml:"id" json:"id"`
+	Network            string                 `yaml:"network" json:"network"`
+	OperationalState   string                 `yaml:"operational_state" json:"operational_state"`
+	Identifiers        []DeploymentIdentifier `yaml:"identifiers" json:"identifiers"`
+	Evidence           []string               `yaml:"evidence" json:"evidence"`
+	SourceVerification string                 `yaml:"source_verification" json:"source_verification"`
 }
 
-type InfrastructureBlock struct {
-	SupportedNetworks []string `yaml:"supported_networks"`
-	Endpoints         []string `yaml:"endpoints"`
+type DeploymentIdentifier struct {
+	Type  string `yaml:"type" json:"type"`
+	Value string `yaml:"value" json:"value"`
+	Role  string `yaml:"role,omitempty" json:"role,omitempty"`
 }
 
-type ToolingBlock struct {
-	Languages []string `yaml:"languages"`
+type Repository struct {
+	ID      string `yaml:"id" json:"id"`
+	Role    string `yaml:"role" json:"role"`
+	URL     string `yaml:"url" json:"url"`
+	License string `yaml:"license" json:"license"`
 }
 
-type CommunityBlock struct {
-	Platforms []string `yaml:"platforms"`
-	Language  string   `yaml:"language"`
+type Link struct {
+	Type     string `yaml:"type" json:"type"`
+	URL      string `yaml:"url" json:"url"`
+	Label    string `yaml:"label,omitempty" json:"label,omitempty"`
+	Platform string `yaml:"platform,omitempty" json:"platform,omitempty"`
+	Primary  bool   `yaml:"primary,omitempty" json:"primary,omitempty"`
+}
+
+type SecurityReview struct {
+	Auditor           string   `yaml:"auditor" json:"auditor"`
+	ReportURL         string   `yaml:"report_url" json:"report_url"`
+	ReportDate        string   `yaml:"report_date,omitempty" json:"report_date,omitempty"`
+	RepositoryID      string   `yaml:"repository_id,omitempty" json:"repository_id,omitempty"`
+	Revision          string   `yaml:"revision,omitempty" json:"revision,omitempty"`
+	Scope             string   `yaml:"scope" json:"scope"`
+	DeploymentIDs     []string `yaml:"deployment_ids,omitempty" json:"deployment_ids,omitempty"`
+	RemediationStatus string   `yaml:"remediation_status" json:"remediation_status"`
+}
+
+type Evidence struct {
+	Type      string `yaml:"type" json:"type"`
+	URL       string `yaml:"url" json:"url"`
+	Note      string `yaml:"note,omitempty" json:"note,omitempty"`
+	CheckedAt string `yaml:"checked_at,omitempty" json:"checked_at,omitempty"`
+}
+
+type Relationship struct {
+	Type      string `yaml:"type" json:"type"`
+	ProjectID string `yaml:"project_id" json:"project_id"`
+}
+
+type Asset struct {
+	Type         string `yaml:"type" json:"type"`
+	Name         string `yaml:"name" json:"name"`
+	Symbol       string `yaml:"symbol,omitempty" json:"symbol,omitempty"`
+	DeploymentID string `yaml:"deployment_id,omitempty" json:"deployment_id,omitempty"`
+	Identifier   string `yaml:"identifier,omitempty" json:"identifier,omitempty"`
+	EvidenceURL  string `yaml:"evidence_url,omitempty" json:"evidence_url,omitempty"`
 }
 
 func main() {
@@ -204,63 +269,132 @@ func loadClassification(path string) (Classification, error) {
 }
 
 func validateClassification(classification Classification) error {
-	if len(classification.ProjectTypes) == 0 {
-		return fmt.Errorf("no project types are defined")
+	if len(classification.ProjectTypes) == 0 || len(classification.Categories) == 0 || len(classification.Capabilities) == 0 || len(classification.Platforms) == 0 || len(classification.Networks) == 0 {
+		return fmt.Errorf("project types, categories, capabilities, platforms, and networks are required")
 	}
-
-	projectTypes := make(map[string]bool, len(classification.ProjectTypes))
-	taxonomySlugs := make(map[string]bool, len(classification.ProjectTypes))
+	seen := make(map[string]string)
 	for _, projectType := range classification.ProjectTypes {
-		if projectType.ID == "" || projectType.TaxonomySlug == "" || projectType.Label == "" {
-			return fmt.Errorf("project types require id, taxonomy_slug, and label")
+		if projectType.ID == "" || projectType.TaxonomySlug == "" || projectType.Label == "" || projectType.Description == "" {
+			return fmt.Errorf("project types require id, taxonomy_slug, label, and description")
 		}
-		if projectTypes[projectType.ID] {
+		if previous := seen["type:"+projectType.ID]; previous != "" {
 			return fmt.Errorf("duplicate project type %q", projectType.ID)
 		}
-		if taxonomySlugs[projectType.TaxonomySlug] {
+		seen["type:"+projectType.ID] = projectType.ID
+		if previous := seen["slug:"+projectType.TaxonomySlug]; previous != "" {
 			return fmt.Errorf("duplicate project type taxonomy slug %q", projectType.TaxonomySlug)
 		}
-		if len(projectType.Categories) == 0 {
-			return fmt.Errorf("project type %q has no categories", projectType.ID)
-		}
-		projectTypes[projectType.ID] = true
-		taxonomySlugs[projectType.TaxonomySlug] = true
+		seen["slug:"+projectType.TaxonomySlug] = projectType.ID
 	}
-
-	categories := make(map[string]string)
-	for _, projectType := range classification.ProjectTypes {
-		for _, category := range projectType.Categories {
-			if category.ID == "" || category.Label == "" {
-				return fmt.Errorf("categories under %q require id and label", projectType.ID)
-			}
-			if projectTypes[category.ID] {
-				return fmt.Errorf("category %q duplicates a project type", category.ID)
-			}
-			if parent, exists := categories[category.ID]; exists {
-				return fmt.Errorf("category %q belongs to both %q and %q", category.ID, parent, projectType.ID)
-			}
-			categories[category.ID] = projectType.ID
+	for _, category := range classification.Categories {
+		if category.ID == "" || category.Label == "" || category.Description == "" {
+			return fmt.Errorf("categories require id, label, and description")
 		}
+		if previous := seen["category:"+category.ID]; previous != "" {
+			return fmt.Errorf("duplicate category %q", category.ID)
+		}
+		seen["category:"+category.ID] = category.ID
+	}
+	for _, capability := range classification.Capabilities {
+		if capability.ID == "" || capability.Label == "" || capability.Description == "" {
+			return fmt.Errorf("capabilities require id, label, and description")
+		}
+		if previous := seen["capability:"+capability.ID]; previous != "" {
+			return fmt.Errorf("duplicate capability %q", capability.ID)
+		}
+		seen["capability:"+capability.ID] = capability.ID
+	}
+	for _, platform := range classification.Platforms {
+		if platform.ID == "" || platform.Label == "" || platform.Description == "" {
+			return fmt.Errorf("platforms require id, label, and description")
+		}
+		if previous := seen["platform:"+platform.ID]; previous != "" {
+			return fmt.Errorf("duplicate platform %q", platform.ID)
+		}
+		seen["platform:"+platform.ID] = platform.ID
+	}
+	for _, network := range classification.Networks {
+		if network.ID == "" || network.Label == "" || network.Generation == "" || network.Environment == "" {
+			return fmt.Errorf("networks require id, label, generation, and environment")
+		}
+		if previous := seen["network:"+network.ID]; previous != "" {
+			return fmt.Errorf("duplicate network %q", network.ID)
+		}
+		seen["network:"+network.ID] = network.ID
 	}
 	return nil
 }
 
 func validateProjectClassifications(projects []Project, classification Classification) error {
-	allowed := make(map[string]map[string]bool, len(classification.ProjectTypes))
+	projectTypes := make(map[string]bool, len(classification.ProjectTypes))
 	for _, projectType := range classification.ProjectTypes {
-		allowed[projectType.ID] = make(map[string]bool, len(projectType.Categories))
-		for _, category := range projectType.Categories {
-			allowed[projectType.ID][category.ID] = true
-		}
+		projectTypes[projectType.ID] = true
 	}
+	categories := make(map[string]bool, len(classification.Categories))
+	for _, category := range classification.Categories {
+		categories[category.ID] = true
+	}
+	capabilities := make(map[string]bool, len(classification.Capabilities))
+	for _, capability := range classification.Capabilities {
+		capabilities[capability.ID] = true
+	}
+	platforms := make(map[string]bool, len(classification.Platforms))
+	for _, platform := range classification.Platforms {
+		platforms[platform.ID] = true
+	}
+	usedCapabilities := make(map[string]bool, len(classification.Capabilities))
 
 	for _, project := range projects {
-		categories, projectTypeExists := allowed[project.ProjectType]
-		if !projectTypeExists {
+		if !projectTypes[project.ProjectType] {
 			return fmt.Errorf("%s uses unknown project type %q", project.ID, project.ProjectType)
 		}
-		if !categories[project.Category] {
-			return fmt.Errorf("%s uses category %q outside project type %q", project.ID, project.Category, project.ProjectType)
+		if !categories[project.PrimaryCategory] {
+			return fmt.Errorf("%s uses unknown primary category %q", project.ID, project.PrimaryCategory)
+		}
+		seenCategories := map[string]bool{project.PrimaryCategory: true}
+		for _, category := range project.SecondaryCategories {
+			if !categories[category] {
+				return fmt.Errorf("%s uses unknown secondary category %q", project.ID, category)
+			}
+			if seenCategories[category] {
+				return fmt.Errorf("%s repeats category %q", project.ID, category)
+			}
+			seenCategories[category] = true
+		}
+		if len(project.Capabilities) == 0 {
+			return fmt.Errorf("%s has no capabilities", project.ID)
+		}
+		if len(project.Capabilities) > 4 {
+			return fmt.Errorf("%s has more than four capabilities", project.ID)
+		}
+		seenCapabilities := make(map[string]bool, len(project.Capabilities))
+		for _, capability := range project.Capabilities {
+			if !capabilities[capability] {
+				return fmt.Errorf("%s uses unknown capability %q", project.ID, capability)
+			}
+			if seenCapabilities[capability] {
+				return fmt.Errorf("%s repeats capability %q", project.ID, capability)
+			}
+			seenCapabilities[capability] = true
+			usedCapabilities[capability] = true
+		}
+		if len(project.Platforms) > 4 {
+			return fmt.Errorf("%s has more than four platforms", project.ID)
+		}
+		seenPlatforms := make(map[string]bool, len(project.Platforms))
+		for _, platform := range project.Platforms {
+			if !platforms[platform] {
+				return fmt.Errorf("%s uses unknown platform %q", project.ID, platform)
+			}
+			if seenPlatforms[platform] {
+				return fmt.Errorf("%s repeats platform %q", project.ID, platform)
+			}
+			seenPlatforms[platform] = true
+		}
+	}
+	for _, capability := range classification.Capabilities {
+		if !usedCapabilities[capability.ID] {
+			return fmt.Errorf("capability %q is not represented by any project", capability.ID)
 		}
 	}
 	return nil
@@ -293,10 +427,6 @@ func processDir(dir string, projects *[]Project) {
 			fmt.Fprintf(os.Stderr, "Error parsing YAML %s: %v\n", filepath, err)
 			continue
 		}
-		if project.Logo != "" && len(project.Logos) == 0 {
-			project.Logos = []Logo{{Path: project.Logo}}
-		}
-
 		*projects = append(*projects, project)
 	}
 }
@@ -326,7 +456,7 @@ func copyAssetTree(sourceDir, destinationDir string) error {
 		if entry.IsDir() {
 			return os.MkdirAll(destinationPath, 0755)
 		}
-		if entry.Name() == ".gitkeep" {
+		if strings.HasPrefix(entry.Name(), ".") {
 			return nil
 		}
 
@@ -380,71 +510,86 @@ func generateProjectPage(p Project) {
 		return
 	}
 
+	categories := append([]string{p.PrimaryCategory}, p.SecondaryCategories...)
+	maintainerNames := make([]string, 0, len(p.Maintainers))
+	for _, maintainer := range p.Maintainers {
+		maintainerNames = append(maintainerNames, maintainer.Name)
+	}
 	params := map[string]interface{}{
+		"id":           p.ID,
 		"url":          projectPermalink(p),
 		"aliases":      legacyProjectAliases(p),
 		"title":        p.Name,
-		"status":       p.Status,
-		"category":     p.Category,
-		"categories":   []string{p.Category},
-		"tags":         p.Tags,
-		"qrl_versions": p.QRLVersions,
 		"project_type": p.ProjectType,
 		"project-types": []string{
 			projectTypeSlug(p.ProjectType),
 		},
-		"author":      p.Author,
-		"maintainers": []string{p.Author},
-		"license":     p.License,
-		"created":     p.Created,
-		"updated":     p.Updated,
-		"description": strings.TrimSpace(p.Description),
-		"project_url": p.URL,
-		"github":      p.GitHub,
-		"docs":        p.Docs,
-		"discord":     p.Discord,
-		"twitter":     p.Twitter,
-		"open_source": p.OpenSource,
-		"audited":     p.Audited,
-		"audits":      p.Audits,
-		"clients":     p.Clients,
-		"logos":       p.Logos,
-		"features":    p.Features,
+		"primary_category":     p.PrimaryCategory,
+		"secondary_categories": p.SecondaryCategories,
+		"categories":           categories,
+		"capabilities":         p.Capabilities,
+		"platforms":            p.Platforms,
+		"keywords":             p.Keywords,
+		"maturity":             p.Maturity,
+		"availability":         p.Availability,
+		"display_status":       displayStatus(p),
+		"qrl_relationship":     p.QRLRelationship,
+		"qrl_support":          p.QRLSupport,
+		"qrl_generations":      qrlGenerations(p),
+		"qrl_environments":     qrlEnvironments(p),
+		"publisher":            p.Publisher,
+		"maintainer_records":   p.Maintainers,
+		"maintainers":          maintainerNames,
+		"source_availability":  p.SourceAvailability,
+		"repositories":         p.Repositories,
+		"links":                p.Links,
+		"listed_at":            p.ListedAt,
+		"data_updated_at":      p.DataUpdatedAt,
+		"description":          strings.TrimSpace(p.Description),
+		"features":             p.Features,
+	}
+	if len(p.Logos) > 0 {
+		params["logos"] = p.Logos
+	}
+	if p.Maintenance != "" {
+		params["maintenance"] = p.Maintenance
+	}
+	if len(p.Deployments) > 0 {
+		params["deployments"] = p.Deployments
+	}
+	if len(p.SecurityReviews) > 0 {
+		params["security_reviews"] = p.SecurityReviews
+	}
+	if len(p.Evidence) > 0 {
+		params["evidence"] = p.Evidence
+	}
+	if len(p.Relationships) > 0 {
+		params["relationships"] = p.Relationships
+	}
+	if len(p.PreviousNames) > 0 {
+		params["previous_names"] = p.PreviousNames
+	}
+	if len(p.Assets) > 0 {
+		params["assets"] = p.Assets
+	}
+	if p.ProjectLaunchedAt != "" {
+		params["project_launched_at"] = p.ProjectLaunchedAt
+	}
+	if p.LastReleaseAt != "" {
+		params["last_release_at"] = p.LastReleaseAt
+	}
+	if p.LastVerifiedAt != "" {
+		params["last_verified_at"] = p.LastVerifiedAt
 	}
 	if len(p.Gallery) > 0 {
 		params["gallery"] = p.Gallery
 	}
 
-	if client, ok := defaultClient(p); ok {
-		params["default_client"] = client
-	}
-	if url := defaultProjectURL(p); url != "" {
-		params["default_client_url"] = url
-	}
-	if github := defaultProjectGitHub(p); github != "" {
-		params["default_client_github"] = github
-	}
-
-	if p.Dapp != nil {
-		params["ecosystem_type"] = "dapp"
-		params["network"] = p.Dapp.Network
-		params["contract_address"] = p.Dapp.ContractAddress
-		params["token"] = p.Dapp.Token
-	} else if p.Application != nil {
-		params["ecosystem_type"] = "application"
-		params["platforms"] = p.Application.Platforms
-		params["supported_networks"] = p.Application.SupportedNetworks
-	} else if p.Infrastructure != nil {
-		params["ecosystem_type"] = "infrastructure"
-		params["supported_networks"] = p.Infrastructure.SupportedNetworks
-		params["endpoints"] = p.Infrastructure.Endpoints
-	} else if p.Tooling != nil {
-		params["ecosystem_type"] = "tooling"
-		params["languages"] = p.Tooling.Languages
-	} else if p.Community != nil {
-		params["ecosystem_type"] = "community"
-		params["platforms"] = p.Community.Platforms
-		params["language"] = p.Community.Language
+	if link, ok := primaryLink(p); ok {
+		params["primary_link"] = link
+		params["primary_url"] = link.URL
+	} else if len(p.Repositories) > 0 {
+		params["primary_url"] = p.Repositories[0].URL
 	}
 
 	content, err := projectPageContent(params, p.LongDescription)
@@ -472,9 +617,9 @@ func projectPageContent(params map[string]interface{}, longDescription string) (
 }
 
 func projectOutputPath(p Project) string {
-	// Determine section based on status
+	// Archived records remain historical listings; every other availability is active.
 	section := "projects/active"
-	if p.Status == "archived" {
+	if p.Availability == "archived" {
 		section = "projects/archived"
 	}
 
@@ -494,40 +639,71 @@ func legacyProjectAliases(p Project) []string {
 
 func generateJSONIndex(projects []Project) {
 	type IndexProject struct {
-		ID          string   `json:"id"`
-		Name        string   `json:"name"`
-		Status      string   `json:"status"`
-		ProjectType string   `json:"project_type"`
-		Category    string   `json:"category"`
-		QRLVersions []string `json:"qrl_versions"`
-		Description string   `json:"description"`
-		URL         string   `json:"url"`
-		GitHub      string   `json:"github"`
-		Logo        string   `json:"logo,omitempty"`
-		Clients     []Client `json:"clients,omitempty"`
+		ID                  string       `json:"id"`
+		Name                string       `json:"name"`
+		ProjectType         string       `json:"project_type"`
+		PrimaryCategory     string       `json:"primary_category"`
+		SecondaryCategories []string     `json:"secondary_categories"`
+		Capabilities        []string     `json:"capabilities"`
+		Platforms           []string     `json:"platforms"`
+		Keywords            []string     `json:"keywords"`
+		Maturity            string       `json:"maturity"`
+		Availability        string       `json:"availability"`
+		Maintenance         string       `json:"maintenance,omitempty"`
+		DisplayStatus       string       `json:"display_status"`
+		QRLRelationship     string       `json:"qrl_relationship"`
+		QRLSupport          []QRLSupport `json:"qrl_support"`
+		Deployments         []Deployment `json:"deployments"`
+		Description         string       `json:"description"`
+		PrimaryURL          string       `json:"primary_url"`
+		SourceAvailability  string       `json:"source_availability"`
+		Repositories        []Repository `json:"repositories"`
+		Links               []Link       `json:"links"`
+		Logo                string       `json:"logo,omitempty"`
 	}
 
 	var index []IndexProject
 	for _, p := range projects {
+		deployments := p.Deployments
+		if deployments == nil {
+			deployments = []Deployment{}
+		}
+		primaryURL := ""
+		if link, ok := primaryLink(p); ok {
+			primaryURL = link.URL
+		} else if len(p.Repositories) > 0 {
+			primaryURL = p.Repositories[0].URL
+		}
 		index = append(index, IndexProject{
-			ID:          p.ID,
-			Name:        p.Name,
-			Status:      p.Status,
-			ProjectType: p.ProjectType,
-			Category:    p.Category,
-			QRLVersions: p.QRLVersions,
-			Description: strings.TrimSpace(p.Description),
-			URL:         defaultProjectURL(p),
-			GitHub:      defaultProjectGitHub(p),
-			Logo:        defaultLogoURL(p),
-			Clients:     p.Clients,
+			ID:                  p.ID,
+			Name:                p.Name,
+			ProjectType:         p.ProjectType,
+			PrimaryCategory:     p.PrimaryCategory,
+			SecondaryCategories: p.SecondaryCategories,
+			Capabilities:        p.Capabilities,
+			Platforms:           p.Platforms,
+			Keywords:            p.Keywords,
+			Maturity:            p.Maturity,
+			Availability:        p.Availability,
+			Maintenance:         p.Maintenance,
+			DisplayStatus:       displayStatus(p),
+			QRLRelationship:     p.QRLRelationship,
+			QRLSupport:          p.QRLSupport,
+			Deployments:         deployments,
+			Description:         strings.TrimSpace(p.Description),
+			PrimaryURL:          primaryURL,
+			SourceAvailability:  p.SourceAvailability,
+			Repositories:        p.Repositories,
+			Links:               p.Links,
+			Logo:                defaultLogoURL(p),
 		})
 	}
 
 	data, _ := json.MarshalIndent(map[string]interface{}{
-		"generated": time.Now().UTC().Format(time.RFC3339),
-		"count":     len(projects),
-		"projects":  index,
+		"schema_version": 6,
+		"generated_at":   time.Now().UTC().Format(time.RFC3339),
+		"count":          len(projects),
+		"projects":       index,
 	}, "", "  ")
 
 	if err := os.WriteFile("website/static/index.json", append(data, '\n'), 0644); err != nil {
@@ -539,35 +715,16 @@ func escapeMarkdown(s string) string {
 	return s
 }
 
-func defaultClient(p Project) (Client, bool) {
-	for _, client := range p.Clients {
-		if client.Default {
-			return client, true
+func primaryLink(p Project) (Link, bool) {
+	for _, link := range p.Links {
+		if link.Primary {
+			return link, true
 		}
 	}
-	for _, client := range p.Clients {
-		if client.URL != "" {
-			return client, true
-		}
+	if len(p.Links) > 0 {
+		return p.Links[0], true
 	}
-	if len(p.Clients) > 0 {
-		return p.Clients[0], true
-	}
-	return Client{}, false
-}
-
-func defaultProjectURL(p Project) string {
-	if client, ok := defaultClient(p); ok && client.URL != "" {
-		return client.URL
-	}
-	return p.URL
-}
-
-func defaultProjectGitHub(p Project) string {
-	if client, ok := defaultClient(p); ok && client.GitHub != "" {
-		return client.GitHub
-	}
-	return p.GitHub
+	return Link{}, false
 }
 
 func defaultLogoURL(p Project) string {
@@ -579,13 +736,57 @@ func defaultLogoURL(p Project) string {
 
 func projectTypeSlug(projectType string) string {
 	switch projectType {
-	case "dapp":
-		return "dapps"
+	case "protocol":
+		return "protocols"
 	case "application":
 		return "applications"
+	case "resource":
+		return "resources"
 	default:
 		return projectType
 	}
+}
+
+func qrlGenerations(p Project) []string {
+	values := make([]string, 0, len(p.QRLSupport))
+	seen := make(map[string]bool)
+	for _, support := range p.QRLSupport {
+		if support.Generation != "" && !seen[support.Generation] {
+			values = append(values, support.Generation)
+			seen[support.Generation] = true
+		}
+	}
+	return values
+}
+
+func qrlEnvironments(p Project) []string {
+	var values []string
+	seen := make(map[string]bool)
+	for _, support := range p.QRLSupport {
+		for _, environment := range support.Environments {
+			if !seen[environment] {
+				values = append(values, environment)
+				seen[environment] = true
+			}
+		}
+	}
+	return values
+}
+
+func displayStatus(p Project) string {
+	if p.Availability != "" && p.Availability != "live" {
+		return strings.Title(strings.ReplaceAll(p.Availability, "-", " "))
+	}
+	maturity := strings.Title(strings.ReplaceAll(p.Maturity, "-", " "))
+	environments := qrlEnvironments(p)
+	if len(environments) == 0 {
+		return maturity
+	}
+	labels := make([]string, 0, len(environments))
+	for _, environment := range environments {
+		labels = append(labels, strings.Title(strings.ReplaceAll(environment, "-", "/")))
+	}
+	return maturity + " · " + strings.Join(labels, " + ")
 }
 
 const (
@@ -949,16 +1150,16 @@ func projectInitials(name string) string {
 
 func projectTypeLabel(projectType string) string {
 	switch projectType {
-	case "dapp":
-		return "DApp"
+	case "protocol":
+		return "Protocol"
 	case "application":
 		return "Application"
 	case "infrastructure":
 		return "Infrastructure"
 	case "tooling":
 		return "Tooling"
-	case "community":
-		return "Community"
+	case "resource":
+		return "Community & Resource"
 	default:
 		return projectType
 	}

@@ -1,0 +1,60 @@
+name: Listing or safety concern
+description: Report inaccurate, impersonating, compromised, harmful, or policy-violating listing content.
+title: "[Listing concern]: "
+labels:
+  - moderation
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form for listing and link concerns. Do not publish secrets, personal information, exploit code, seed phrases, or private keys. Read `docs/MODERATION.md` before submitting.
+  - type: input
+    id: project
+    attributes:
+      label: Project ID or URL
+      placeholder: project-id or https://www.qrlecosystem.com/projects/project-id/
+    validations:
+      required: true
+  - type: dropdown
+    id: concern
+    attributes:
+      label: Concern type
+      options:
+        - Harmful or compromised destination
+        - Impersonation or misleading ownership
+        - Materially inaccurate listing
+        - Delisting or takedown request
+        - Spam or unrelated project
+        - Other policy concern
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: Give a concise factual account and explain any immediate visitor risk.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Public evidence
+      description: Include HTTPS links, dates, repository revisions, or deployment identifiers. Do not attach harmful payloads.
+    validations:
+      required: true
+  - type: input
+    id: relationship
+    attributes:
+      label: Your relationship to the project
+      placeholder: User, maintainer, publisher, security researcher, or no affiliation
+    validations:
+      required: true
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: Confirmation
+      options:
+        - label: I have not included secrets, personal information, exploit code, seed phrases, or private keys.
+          required: true
+        - label: I understand that this report and its public evidence may be reviewed in a public issue.
+          required: true

@@ -5,6 +5,8 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+  schedule:
+    - cron: '15 0 * * 1'
   workflow_dispatch:
 
 permissions: {}
@@ -34,132 +36,16 @@ jobs:
         run: go mod download
 
       - name: Install validation dependencies
-        run: python3 -m pip install --user pyyaml jsonschema
+        run: python3 -m pip install --requirement requirements-validation.txt
 
       - name: Validate project data
-        run: |
-          python3 << 'EOF'
-          import json
-          import re
-          import sys
-          from datetime import date, datetime
-          from collections import Counter
-          from pathlib import Path
-          from urllib.parse import urlparse
+        run: python3 scripts/validate_projects.py
 
-          import jsonschema
-          import yaml
+      - name: Run validator unit tests
+        run: python3 -m unittest discover -s scripts -p 'validate_*_test.py'
 
-          VALID_STATUSES = {'development', 'production', 'archived'}
-          VALID_NETWORKS = {'mainnet', 'testnet'}
-          DATE_PATTERN = re.compile(r'^\d{4}-\d{2}-\d{2}$')
-
-          schema = json.loads(Path('schema/project.schema.json').read_text())
-          errors = []
-          ids = []
-
-          def valid_url(value):
-              if not value:
-                  return True
-              parsed = urlparse(value)
-              return bool(parsed.scheme and parsed.netloc)
-
-          def validate_logo_path(yaml_file, logo_path, label):
-              if not logo_path:
-                  return
-              if logo_path.startswith(('http://', 'https://', '//')):
-                  errors.append(f"{yaml_file}: {label} must be a local path, not a URL: {logo_path}")
-                  return
-              full_path = Path('images/logos') / logo_path
-              if not full_path.exists():
-                  errors.append(f"{yaml_file}: {label} file not found: {logo_path} (expected at {full_path})")
-
-          def normalize_for_schema(value):
-              if isinstance(value, (date, datetime)):
-                  return value.isoformat()
-              if isinstance(value, list):
-                  return [normalize_for_schema(item) for item in value]
-              if isinstance(value, dict):
-                  return {key: normalize_for_schema(item) for key, item in value.items()}
-              return value
-
-          for yaml_file in Path('projects').rglob('*.yaml'):
-              if yaml_file.name == 'template.yaml':
-                  continue
-
-              with open(yaml_file) as f:
-                  data = yaml.safe_load(f)
-
-              if not data:
-                  errors.append(f"{yaml_file}: Empty file")
-                  continue
-
-              if yaml_file.name != f"{data.get('id', 'MISSING')}.yaml":
-                  errors.append(f"{yaml_file}: Filename does not match id '{data.get('id')}.yaml'")
-
-              if yaml_file.name != 'template.yaml' and data.get('id'):
-                  ids.append(data['id'])
-
-              status = data.get('status', 'MISSING')
-              parent_dir = yaml_file.parent.name
-              if status == 'archived' and parent_dir != 'archived':
-                  errors.append(f"{yaml_file}: Status is 'archived' but file is in '{parent_dir}/'")
-              elif status in ('active', 'testnet') and parent_dir != 'active':
-                  errors.append(f"{yaml_file}: Status is '{status}' but file is in '{parent_dir}/'")
-
-              try:
-                  jsonschema.validate(instance=normalize_for_schema(data), schema=schema)
-              except jsonschema.ValidationError as e:
-                  errors.append(f"{yaml_file}: Schema validation: {e.message}")
-
-              for field in ['created', 'updated']:
-                  if field in data and not DATE_PATTERN.match(str(data[field])):
-                      errors.append(f"{yaml_file}: Invalid date format for '{field}': {data[field]}")
-
-              if 'description' in data and len(data['description']) > 280:
-                  errors.append(f"{yaml_file}: Description exceeds 280 characters ({len(data['description'])})")
-
-              if data.get('status') and data['status'] not in VALID_STATUSES:
-                  errors.append(f"{yaml_file}: Invalid status '{data['status']}'")
-
-              if data.get('network') and data['network'] not in VALID_NETWORKS:
-                  errors.append(f"{yaml_file}: Invalid network '{data['network']}'")
-
-              for field in ['url', 'github', 'docs']:
-                  if field in data and data[field] and not valid_url(data[field]):
-                      errors.append(f"{yaml_file}: Invalid URL for '{field}': {data[field]}")
-
-              validate_logo_path(yaml_file, data.get('logo'), 'logo')
-              for index, logo in enumerate(data.get('logos') or []):
-                  if isinstance(logo, dict):
-                      validate_logo_path(yaml_file, logo.get('path'), f'logos[{index}].path')
-                  elif isinstance(logo, str):
-                      validate_logo_path(yaml_file, logo, f'logos[{index}]')
-
-              if 'tags' in data and not isinstance(data['tags'], list):
-                  errors.append(f"{yaml_file}: Tags must be a list")
-              if 'features' in data and not isinstance(data['features'], list):
-                  errors.append(f"{yaml_file}: Features must be a list")
-
-          duplicates = [project_id for project_id, count in Counter(ids).items() if count > 1]
-          if duplicates:
-              errors.append(f"Duplicate IDs found: {duplicates}")
-
-          if errors:
-              print("VALIDATION ERRORS:")
-              print("\n".join(f"  - {error}" for error in errors))
-              sys.exit(1)
-
-          print("All project data is valid.")
-          EOF
-
-      - name: Validate gallery media
-        run: python3 scripts/validate_gallery.py
-
-      - name: Validate classification hierarchy
-        run: |
-          python3 scripts/validate_classification.py
-          python3 -m unittest discover -s scripts -p 'validate_classification_test.py'
+      - name: Test project filter state
+        run: node --test tests/project-filters.test.cjs
 
       - name: Generate project content
         run: go run scripts/generate.go
@@ -169,6 +55,9 @@ jobs:
         with:
           hugo-version: '0.162.1'
           extended: true
+
+      - name: Verify Markdown safety fixture
+        run: python3 scripts/validate_markdown_safety.py
 
       - name: Build Hugo site
         run: hugo --gc --minify --cleanDestinationDir --forceSyncStatic

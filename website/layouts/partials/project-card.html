@@ -1,13 +1,11 @@
 {{- $project := .project -}}
-{{- $variant := .variant | default "" -}}
 {{- $projectTypeID := $project.Params.project_type -}}
 {{- $projectTypeSlug := "" -}}
 {{- with (index $project.Params "project-types") -}}
     {{- range first 1 . }}{{ $projectTypeSlug = . }}{{ end -}}
 {{- end -}}
 {{- if not $projectTypeSlug }}{{ $projectTypeSlug = $project.Params.project_type }}{{ end -}}
-{{- $visitURL := $project.Params.project_url -}}
-{{- with $project.Params.default_client_url }}{{ $visitURL = . }}{{ end -}}
+{{- $visitURL := $project.Params.primary_url -}}
 {{- $cleanTitle := replaceRE "[^[:alnum:]]" "" $project.Title -}}
 {{- $initials := upper (substr $cleanTitle 0 2) -}}
 {{- if not $initials }}{{ $initials = "QI" }}{{ end -}}
@@ -17,34 +15,38 @@
         {{- with .path }}{{ $logoURL = printf "/images/logos/%s" . }}{{ end -}}
     {{- end -}}
 {{- end -}}
-<article class="project-card{{ with $variant }} {{ . }}{{ end }}"
+<article class="project-card"
     data-project
     data-search="{{ partial "project-search-text.html" $project }}"
-    data-category="{{ with $project.Params.category }}{{ . | lower }}{{ end }}"
+    data-categories="{{ delimit $project.Params.categories " " }}"
+    data-capabilities="{{ delimit $project.Params.capabilities " " }}"
+    data-platforms="{{ delimit $project.Params.platforms " " }}"
     data-type="{{ $projectTypeID | lower }}"
-    data-qrl-versions="{{ delimit $project.Params.qrl_versions " " }}"
-    data-status="{{ with $project.Params.status }}{{ . | lower }}{{ end }}">
+    data-qrl-generations="{{ delimit $project.Params.qrl_generations " " }}"
+    data-environments="{{ delimit $project.Params.qrl_environments " " }}"
+    data-maturity="{{ $project.Params.maturity }}"
+    data-availability="{{ $project.Params.availability }}">
     <a class="project-card-link" href="{{ $project.RelPermalink }}" aria-label="View {{ $project.Title }} listing"></a>
     <div class="project-card-top">
         <div class="project-mark project-mark-small">
             {{ if $logoURL }}<img src="{{ $logoURL | relURL }}" alt="" loading="lazy">{{ else }}<span>{{ $initials }}</span>{{ end }}
         </div>
         <div class="project-card-badges">
-            {{ with $project.Params.status }}<span class="status status-{{ . }}">{{ . }}</span>{{ end }}
-            {{ range $project.Params.qrl_versions }}<span class="meta-chip version-chip">QRL {{ . }}</span>{{ end }}
-            {{ if $project.Params.open_source }}<span class="meta-chip source-chip">Open source</span>{{ end }}
+            {{ with $project.Params.display_status }}<span class="status status-{{ $project.Params.availability }}">{{ . }}</span>{{ end }}
+            {{ range $project.Params.qrl_generations }}<span class="meta-chip version-chip">QRL {{ . }}</span>{{ end }}
+            {{ if eq $project.Params.source_availability "full" }}<span class="meta-chip source-chip">Source available</span>{{ else if eq $project.Params.source_availability "partial" }}<span class="meta-chip source-chip">Partial source</span>{{ end }}
         </div>
     </div>
     <div class="project-card-body">
         <p class="project-card-kicker">
             {{ with $projectTypeID }}<span>{{ partial "project-type-label.html" . }}</span>{{ end }}
-            {{ with $project.Params.category }}<span>{{ partial "category-label.html" . }}</span>{{ end }}
+            {{ with $project.Params.primary_category }}<span>{{ partial "category-label.html" . }}</span>{{ end }}
         </p>
         <h3><span class="project-card-title">{{ $project.Title }}</span></h3>
         {{ with $project.Params.description }}<p class="project-card-description">{{ . }}</p>{{ end }}
     </div>
     <div class="project-card-footer">
-        {{ with $project.Params.author }}<a class="project-card-author" href="{{ printf "/maintainers/%s/" (. | urlize) | relURL }}">By {{ . }}</a>{{ end }}
+        {{ with $project.Params.publisher }}{{ with .url }}<a class="project-card-author" href="{{ . }}" target="_blank" rel="noopener">By {{ $project.Params.publisher.name }} <span aria-hidden="true">↗</span></a>{{ else }}<span class="project-card-author">By {{ .name }}</span>{{ end }}{{ end }}
         {{ with $visitURL }}
         <a class="card-action" href="{{ . }}" target="_blank" rel="noopener">Visit project <span aria-hidden="true">↗</span></a>
         {{ else }}

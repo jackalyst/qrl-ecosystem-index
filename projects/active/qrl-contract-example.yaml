@@ -1,37 +1,49 @@
 id: qrl-contract-example
 name: QRL Contract Example
 project_type: tooling
-qrl_versions:
-  - "2.0"
-status: development
-description: >
-  A JavaScript reference project for compiling, deploying, and interacting
-  with a Hyperion token contract on QRL 2.0 using @theqrl/web3, including
-  on-chain transfers and off-chain balance queries.
-category: template
-tags:
+primary_category: developer-experience
+secondary_categories: []
+capabilities:
+  - contract-template
+  - deployment
+platforms: []
+keywords:
   - smart-contract
   - hyperion
   - web3
   - javascript
   - token
-author: The QRL
-license: MIT
-created: 2026-08-17
-updated: 2026-08-17
-
-url: https://github.com/theQRL/qrl-contract-example
-github: https://github.com/theQRL/qrl-contract-example
-
-open_source: true
-audited: false
-
+maturity: beta
+availability: live
+qrl_relationship: native
+qrl_support:
+  - generation: '2.0'
+    environments: []
+description: |
+  A JavaScript reference project for compiling, deploying, and interacting with a Hyperion token contract on QRL 2.0 using @theqrl/web3, including on-chain transfers and off-chain balance queries.
+publisher:
+  name: The QRL
+  url: https://github.com/theQRL/qrl-contract-example
+maintainers:
+  - name: The QRL
+    contact: https://github.com/theQRL/qrl-contract-example
+source_availability: full
+repositories:
+  - id: main
+    role: tooling
+    url: https://github.com/theQRL/qrl-contract-example
+    license: MIT
+links:
+  - type: website
+    url: https://github.com/theQRL/qrl-contract-example
+    primary: true
+listed_at: '2026-08-17'
+data_updated_at: '2026-08-17'
 features:
   - Hyperion token contract built from ERC20 and IERC20 examples
   - Local contract compilation with @theqrl/hypc
   - Contract deployment from a Dilithium-seeded account with @theqrl/web3
   - On-chain token transfers and read-only balance queries
-
 long_description: |
   QRL Contract Example is an open-source JavaScript reference project from The
   QRL for getting started with smart contracts on QRL 2.0. Its upstream README
@@ -42,8 +54,3 @@ long_description: |
   @theqrl/web3, submit an on-chain token transfer, and query a token balance
   without creating a transaction. The repository provides a compact starting
   point for learning the QRL 2.0 contract workflow.
-
-tooling:
-  languages:
-    - javascript
-    - hyperion

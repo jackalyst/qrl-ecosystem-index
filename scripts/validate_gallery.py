@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import re
+import struct
 import sys
 from pathlib import Path, PurePosixPath
 from typing import Any
@@ -12,10 +13,58 @@ import yaml
 
 
 MAX_GALLERY_ITEMS = 10
-MAX_SCREENSHOT_BYTES = 3 * 1024 * 1024
+MAX_SCREENSHOT_BYTES = 2 * 1024 * 1024
+MAX_IMAGE_PIXELS = 10_000_000
 MAX_CAPTION_LENGTH = 160
 SUPPORTED_EXTENSIONS = {".png", ".jpg", ".jpeg", ".webp"}
 YOUTUBE_ID_PATTERN = re.compile(r"^[A-Za-z0-9_-]{11}$")
+
+
+def image_dimensions(path: Path, data: bytes) -> tuple[int, int] | None:
+    if path.suffix == ".png":
+        if len(data) < 24 or data[:8] != b"\x89PNG\r\n\x1a\n":
+            return None
+        return struct.unpack(">II", data[16:24])
+    if path.suffix == ".webp":
+        if len(data) < 30 or data[:4] != b"RIFF" or data[8:12] != b"WEBP":
+            return None
+        chunk = data[12:16]
+        if chunk == b"VP8X":
+            return 1 + int.from_bytes(data[24:27], "little"), 1 + int.from_bytes(data[27:30], "little")
+        if chunk == b"VP8L" and data[20] == 0x2F:
+            bits = int.from_bytes(data[21:25], "little")
+            return (bits & 0x3FFF) + 1, ((bits >> 14) & 0x3FFF) + 1
+        if chunk == b"VP8 " and data[23:26] == b"\x9d\x01\x2a":
+            return int.from_bytes(data[26:28], "little") & 0x3FFF, int.from_bytes(data[28:30], "little") & 0x3FFF
+        return None
+    if path.suffix in {".jpg", ".jpeg"}:
+        if len(data) < 4 or data[:2] != b"\xff\xd8":
+            return None
+        offset = 2
+        while offset + 9 < len(data):
+            if data[offset] != 0xFF:
+                offset += 1
+                continue
+            marker = data[offset + 1]
+            if marker in {0xC0, 0xC1, 0xC2, 0xC3, 0xC5, 0xC6, 0xC7, 0xC9, 0xCA, 0xCB, 0xCD, 0xCE, 0xCF}:
+                return int.from_bytes(data[offset + 5 : offset + 7], "big"), int.from_bytes(data[offset + 7 : offset + 9], "big")
+            if marker in {0xD8, 0xD9}:
+                offset += 2
+                continue
+            length = int.from_bytes(data[offset + 2 : offset + 4], "big")
+            if length < 2:
+                return None
+            offset += 2 + length
+        return None
+    return None
+
+
+def metadata_is_clean(path: Path, data: bytes) -> bool:
+    if path.suffix == ".png":
+        return not any(chunk in data for chunk in (b"eXIf", b"tEXt", b"zTXt", b"iTXt"))
+    if path.suffix == ".webp":
+        return b"EXIF" not in data and b"XMP " not in data
+    return b"Exif\x00\x00" not in data and b"http://ns.adobe.com/xap/1.0/" not in data
 
 
 def validate_gallery(
@@ -134,6 +183,21 @@ def validate_gallery(
         if full_path.stat().st_size > MAX_SCREENSHOT_BYTES:
             errors.append(
                 f"{yaml_path}: {label} exceeds the 2 MB file-size limit: {screenshot_path}"
+            )
+            continue
+        image_data = full_path.read_bytes()
+        dimensions = image_dimensions(full_path, image_data)
+        if not dimensions:
+            errors.append(
+                f"{yaml_path}: {label} contents do not match its extension: {screenshot_path}"
+            )
+        elif dimensions[0] * dimensions[1] > MAX_IMAGE_PIXELS:
+            errors.append(
+                f"{yaml_path}: {label} exceeds the 10 megapixel limit: {screenshot_path}"
+            )
+        if not metadata_is_clean(full_path, image_data):
+            errors.append(
+                f"{yaml_path}: {label} contains embedded EXIF, XMP, or text metadata: {screenshot_path}"
             )
 
     return errors

@@ -1,19 +1,11 @@
 {{ define "main" }}
 {{ $projects := slice }}
-{{ range where (where site.RegularPages "Section" "projects") "Params.status" "!=" "archived" }}
-    {{ if in (.Params.qrl_versions | default (slice)) "2.0" }}{{ $projects = $projects | append . }}{{ end }}
+{{ range where (where site.RegularPages "Section" "projects") "Params.availability" "!=" "archived" }}
+    {{ if in (.Params.qrl_generations | default (slice)) "2.0" }}{{ $projects = $projects | append . }}{{ end }}
 {{ end }}
-{{ $categoryTotal := 0 }}
 {{ $representedCategories := 0 }}
-{{ $representedProjectTypes := 0 }}
-{{ range hugo.Data.classification.project_types }}
-    {{ $typeProjects := where $projects "Params.project_type" .id }}
-    {{ if gt (len $typeProjects) 0 }}{{ $representedProjectTypes = add $representedProjectTypes 1 }}{{ end }}
-    {{ range .categories }}
-        {{ $categoryTotal = add $categoryTotal 1 }}
-        {{ $categoryProjects := where $typeProjects "Params.category" .id }}
-        {{ if gt (len $categoryProjects) 0 }}{{ $representedCategories = add $representedCategories 1 }}{{ end }}
-    {{ end }}
+{{ range hugo.Data.classification.categories }}
+    {{ if gt (len (where $projects "Params.categories" "intersect" (slice .id))) 0 }}{{ $representedCategories = add $representedCategories 1 }}{{ end }}
 {{ end }}
 
 <section class="page-hero page-hero-compact ideas-hero">
@@ -23,116 +15,55 @@
 </section>
 
 <section class="ideas-section ideas-section-first" aria-labelledby="coverage-title">
-    <div class="section-heading">
-        <p class="eyebrow">Generated from the classification hierarchy</p>
-        <h2 id="coverage-title">Coverage snapshot</h2>
-    </div>
+    <div class="section-heading"><p class="eyebrow">Generated from independent facets</p><h2 id="coverage-title">Coverage snapshot</h2></div>
     <div class="coverage-stats">
-        <div class="coverage-stat">
-            <span class="count">{{ len $projects }}</span>
-            <span class="label">QRL 2.0 projects listed</span>
-        </div>
-        <div class="coverage-stat">
-            <span class="count">{{ sub $categoryTotal $representedCategories }}</span>
-            <span class="label">Open category opportunities</span>
-        </div>
-        <div class="coverage-stat">
-            <span class="count">{{ sub (len hugo.Data.classification.project_types) $representedProjectTypes }}</span>
-            <span class="label">Missing project types</span>
-        </div>
+        <div class="coverage-stat"><span class="count">{{ len $projects }}</span><span class="label">QRL 2.0 projects listed</span></div>
+        <div class="coverage-stat"><span class="count">{{ sub (len hugo.Data.classification.categories) $representedCategories }}</span><span class="label">Open use-case categories</span></div>
+        <div class="coverage-stat"><span class="count">{{ len hugo.Data.classification.capabilities }}</span><span class="label">Controlled capabilities</span></div>
     </div>
 </section>
 
 <section class="ideas-section" aria-labelledby="priority-title">
-    <div class="section-heading">
-        <p class="eyebrow">Highest need</p>
-        <h2 id="priority-title">Unrepresented categories</h2>
-    </div>
-    {{ $hasMissingCategory := false }}
-    <div class="classification-opportunity-groups">
-        {{ range $projectType := hugo.Data.classification.project_types }}
-        {{ $typeProjects := where $projects "Params.project_type" $projectType.id }}
-        {{ $missingInType := 0 }}
-        {{ range $projectType.categories }}{{ if eq (len (where $typeProjects "Params.category" .id)) 0 }}{{ $missingInType = add $missingInType 1 }}{{ end }}{{ end }}
-        {{ if gt $missingInType 0 }}
-        {{ $hasMissingCategory = true }}
-        <section class="classification-opportunity-group" aria-labelledby="missing-{{ $projectType.id }}">
-            <div class="classification-opportunity-heading">
-                <p class="eyebrow">Project type</p>
-                <h3 id="missing-{{ $projectType.id }}">{{ $projectType.label }}</h3>
-            </div>
-            <div class="coverage-grid">
-                {{ range $projectType.categories }}
-                    {{ $count := len (where $typeProjects "Params.category" .id) }}
-                    {{ if eq $count 0 }}
-                        {{ partial "coverage-card.html" (dict "item" . "count" $count "status" "Opportunity" "parent" $projectType.label "id" (printf "category-%s" .id)) }}
-                    {{ end }}
-                {{ end }}
-            </div>
-        </section>
-        {{ end }}
-        {{ end }}
-    </div>
-    {{ if not $hasMissingCategory }}
-    <p>Every child category currently has at least one listed project. The next best target is deeper coverage and independent implementations.</p>
+    <div class="section-heading"><p class="eyebrow">Highest need</p><h2 id="priority-title">Unrepresented categories</h2></div>
+    {{ $hasMissing := false }}
+    <div class="coverage-grid">
+    {{ range hugo.Data.classification.categories }}
+        {{ $count := len (where $projects "Params.categories" "intersect" (slice .id)) }}
+        {{ if eq $count 0 }}{{ $hasMissing = true }}{{ partial "coverage-card.html" (dict "item" . "count" $count "status" "Opportunity" "id" (printf "category-%s" .id)) }}{{ end }}
     {{ end }}
+    </div>
+    {{ if not $hasMissing }}<p>Every use-case category currently has at least one listing. The next best target is deeper coverage and independent implementations.</p>{{ end }}
 </section>
 
 <section class="ideas-section" aria-labelledby="light-title">
-    <div class="section-heading">
-        <p class="eyebrow">Needs depth</p>
-        <h2 id="light-title">Lightly covered categories</h2>
-    </div>
-    {{ $hasLightCategory := false }}
+    <div class="section-heading"><p class="eyebrow">Needs depth</p><h2 id="light-title">Lightly covered categories</h2></div>
     <div class="coverage-grid">
-        {{ range $projectType := hugo.Data.classification.project_types }}
-            {{ $typeProjects := where $projects "Params.project_type" $projectType.id }}
-            {{ range $projectType.categories }}
-                {{ $count := len (where $typeProjects "Params.category" .id) }}
-                {{ if eq $count 1 }}
-                    {{ $hasLightCategory = true }}
-                    {{ partial "coverage-card.html" (dict "item" . "count" $count "status" "Light coverage" "parent" $projectType.label) }}
-                {{ end }}
-            {{ end }}
-        {{ end }}
+    {{ range hugo.Data.classification.categories }}
+        {{ $count := len (where $projects "Params.categories" "intersect" (slice .id)) }}
+        {{ if eq $count 1 }}{{ partial "coverage-card.html" (dict "item" . "count" $count "status" "Light coverage") }}{{ end }}
+    {{ end }}
     </div>
-    {{ if not $hasLightCategory }}<p>No category has exactly one listing right now.</p>{{ end }}
 </section>
 
 <section class="ideas-section" aria-labelledby="type-title">
-    <div class="section-heading">
-        <p class="eyebrow">Parent coverage</p>
-        <h2 id="type-title">Project type coverage</h2>
-    </div>
+    <div class="section-heading"><p class="eyebrow">Artifact coverage</p><h2 id="type-title">Project type coverage</h2></div>
     <div class="coverage-grid coverage-grid-compact">
         {{ range hugo.Data.classification.project_types }}
             {{ $count := len (where $projects "Params.project_type" .id) }}
-            {{ $status := "Covered" }}
-            {{ if eq $count 0 }}{{ $status = "Missing" }}{{ else if eq $count 1 }}{{ $status = "Light coverage" }}{{ end }}
+            {{ $status := "Covered" }}{{ if eq $count 0 }}{{ $status = "Missing" }}{{ else if eq $count 1 }}{{ $status = "Light coverage" }}{{ end }}
             {{ partial "coverage-card.html" (dict "item" . "count" $count "status" $status) }}
         {{ end }}
     </div>
 </section>
 
 <section class="ideas-section" aria-labelledby="checklist-title">
-    <div class="section-heading">
-        <p class="eyebrow">How to choose</p>
-        <h2 id="checklist-title">Coverage checklist</h2>
-    </div>
+    <div class="section-heading"><p class="eyebrow">How to choose</p><h2 id="checklist-title">Coverage checklist</h2></div>
     <ul>
-        <li>Does it make QRL 2.0 easier to use, build on, monitor, or explain?</li>
-        <li>Does it fill a child category with few or no current listings?</li>
-        <li>Does its project type describe what it is and its category describe its capability?</li>
-        <li>Can it be maintained by a small team or community contributor?</li>
-        <li>Can the project publish enough information for others to evaluate and list it?</li>
+        <li>Does its project type describe what the listed artifact is?</li>
+        <li>Do its primary and secondary categories describe the problems it addresses?</li>
+        <li>Do controlled capabilities describe the concrete features it provides?</li>
+        <li>Does it identify QRL support and any deployment environment accurately?</li>
+        <li>Can it publish enough information for visitors to evaluate it independently?</li>
     </ul>
-</section>
-
-<section class="ideas-section" aria-labelledby="existing-title">
-    <div class="section-heading">
-        <p class="eyebrow">Keep the index current</p>
-        <h2 id="existing-title">Adding existing projects</h2>
-    </div>
-    <p>If one of these QRL 2.0 ideas already exists, add it as a project listing. Choose its parent project type first, then one of that type's child categories.</p>
 </section>
 {{ end }}

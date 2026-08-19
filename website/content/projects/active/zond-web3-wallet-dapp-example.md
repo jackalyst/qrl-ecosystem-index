@@ -2,49 +2,67 @@
 aliases:
     - /projects/active/zond-web3-wallet-dapp-example/
     - /projects/archived/zond-web3-wallet-dapp-example/
-audited: false
-audits: []
-author: The QRL
+availability: live
+capabilities:
+    - contract-template
+    - wallet-connector
 categories:
-    - template
-category: template
-clients: []
-created: "2026-08-17"
-default_client_github: https://github.com/theQRL/zond-web3-wallet-dapp-example
-default_client_url: https://github.com/theQRL/zond-web3-wallet-dapp-example
+    - developer-experience
+data_updated_at: "2026-08-17"
 description: A React and TypeScript example dApp for discovering and connecting to the Zond Web3 Wallet and other EIP-6963 browser wallets, exercising wallet and Zond JSON-RPC methods, and inspecting responses or errors.
-discord: ""
-docs: ""
-ecosystem_type: tooling
+display_status: Beta
 features:
     - EIP-6963 discovery and connection for compatible browser wallets
     - Selected wallet, account, UUID, and reverse-DNS details
     - Interactive restricted and unrestricted JSON-RPC method examples
     - Wallet response and error inspection
-github: https://github.com/theQRL/zond-web3-wallet-dapp-example
-languages:
-    - typescript
-license: MIT
-logos: []
-maintainers:
-    - The QRL
-open_source: true
-project-types:
-    - tooling
-project_type: tooling
-project_url: https://github.com/theQRL/zond-web3-wallet-dapp-example
-qrl_versions:
-    - "2.0"
-status: development
-tags:
+id: zond-web3-wallet-dapp-example
+keywords:
     - dapp
     - wallet
     - eip-6963
     - json-rpc
     - typescript
+    - testing
+links:
+    - type: website
+      url: https://github.com/theQRL/zond-web3-wallet-dapp-example
+      primary: true
+listed_at: "2026-08-17"
+maintainer_records:
+    - name: The QRL
+      contact: https://github.com/theQRL/zond-web3-wallet-dapp-example
+maintainers:
+    - The QRL
+maturity: beta
+platforms: []
+primary_category: developer-experience
+primary_link:
+    type: website
+    url: https://github.com/theQRL/zond-web3-wallet-dapp-example
+    primary: true
+primary_url: https://github.com/theQRL/zond-web3-wallet-dapp-example
+project-types:
+    - tooling
+project_type: tooling
+publisher:
+    name: The QRL
+    url: https://github.com/theQRL/zond-web3-wallet-dapp-example
+qrl_environments: []
+qrl_generations:
+    - "2.0"
+qrl_relationship: native
+qrl_support:
+    - generation: "2.0"
+      environments: []
+repositories:
+    - id: main
+      role: tooling
+      url: https://github.com/theQRL/zond-web3-wallet-dapp-example
+      license: MIT
+secondary_categories: []
+source_availability: full
 title: Zond Web3 Wallet dApp Example
-twitter: ""
-updated: "2026-08-17"
 url: /projects/zond-web3-wallet-dapp-example/
 ---
 

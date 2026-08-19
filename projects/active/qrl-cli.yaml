@@ -1,36 +1,49 @@
 id: qrl-cli
 name: qrl-cli
 project_type: tooling
-qrl_versions:
-  - 1.x
-status: production
-description: >
-  An official command-line client for QRL 1.x wallet creation, balances,
-  transfers, messages, notarization, tokens, OTS tracking, address validation,
-  offline signing, and scripting against mainnet or testnet nodes.
-category: cli
-tags:
+primary_category: developer-experience
+secondary_categories:
+  - security-custody-account-management
+  - utility-storage-compute
+capabilities:
+  - cli
+  - wallet
+  - notarization
+  - token-creator
+platforms: []
+keywords:
   - cli
   - wallet
   - automation
   - npm
-author: The QRL Foundation
-license: MIT
-created: 2026-08-17
-updated: 2026-08-17
-
-url: https://www.npmjs.com/package/@theqrl/cli
-github: https://github.com/theQRL/qrl-cli
-
-open_source: true
-audited: false
-
+maturity: stable
+availability: live
+qrl_relationship: native
+qrl_support:
+  - generation: 1.x
+    environments: []
+description: |
+  An official command-line client for QRL 1.x wallet creation, balances, transfers, messages, notarization, tokens, OTS tracking, address validation, offline signing, and scripting against mainnet or testnet nodes.
+publisher:
+  name: The QRL Foundation
+  url: https://github.com/theQRL/qrl-cli
+maintainers:
+  - name: The QRL Foundation
+    contact: https://github.com/theQRL/qrl-cli
+source_availability: full
+repositories:
+  - id: main
+    role: tooling
+    url: https://github.com/theQRL/qrl-cli
+    license: NOASSERTION
+links:
+  - type: package
+    url: https://www.npmjs.com/package/@theqrl/cli
+    primary: true
+listed_at: '2026-08-17'
+data_updated_at: '2026-08-17'
 features:
   - Wallet creation, balance lookup, transfers, and transaction history
   - Token creation and transfer, messaging, and notarization commands
   - Offline transaction signing and OTS index inspection
   - JSON output and configurable gRPC endpoints for automation
-
-tooling:
-  languages:
-    - javascript

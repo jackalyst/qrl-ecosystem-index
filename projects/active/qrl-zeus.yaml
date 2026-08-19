@@ -1,50 +1,59 @@
 id: qrl-zeus
 name: Zeus
 project_type: application
-qrl_versions:
-  - 1.x
-status: development
-description: >
-  An experimental multi-platform interface for QRL 1.x that combines wallet
-  and network interactions in a Vue, Ionic, Capacitor, and Electron client,
-  backed by a REST-to-gRPC proxy for QRL nodes.
-category: wallet
-tags:
+primary_category: security-custody-account-management
+secondary_categories:
+  - payments-commerce
+  - network-operations
+capabilities:
+  - wallet
+platforms:
+  - mobile
+  - desktop
+  - web
+keywords:
   - wallet
   - web
   - desktop
   - mobile
-author: The QRL
-license: MIT
-created: 2026-08-17
-updated: 2026-08-17
-
-url: https://zeus.theqrl.org/
-github: https://github.com/theQRL/zeus
-
-open_source: true
-audited: false
-
-clients:
-  - platform: web
+maturity: beta
+availability: live
+qrl_relationship: native
+qrl_support:
+  - generation: 1.x
+    environments:
+      - mainnet
+      - testnet
+description: |
+  An experimental multi-platform interface for QRL 1.x that combines wallet and network interactions in a Vue, Ionic, Capacitor, and Electron client, backed by a REST-to-gRPC proxy for QRL nodes.
+publisher:
+  name: The QRL
+  url: https://github.com/theQRL/zeus
+maintainers:
+  - name: The QRL
+    contact: https://github.com/theQRL/zeus
+source_availability: full
+repositories:
+  - id: main
+    role: client
+    url: https://github.com/theQRL/zeus
+    license: MIT
+  - id: proxy
+    role: client
+    url: https://github.com/theQRL/zeus-proxy
+    license: NOASSERTION
+links:
+  - type: website
     url: https://zeus.theqrl.org/
-    github: https://github.com/theQRL/zeus
-    default: true
-  - platform: proxy
-    github: https://github.com/theQRL/zeus-proxy
-
+    primary: false
+  - type: application
+    url: https://zeus.theqrl.org/
+    platform: web
+    primary: true
+listed_at: '2026-08-17'
+data_updated_at: '2026-08-17'
 features:
   - QRL wallet and network interaction interface
   - Shared web, desktop, iOS, and Android codebase
   - Integration with QRLLIB and QRL helper packages
   - REST middleware for communicating with QRL node gRPC services
-
-application:
-  platforms:
-    - web
-    - desktop
-    - android
-    - ios
-  supported_networks:
-    - mainnet
-    - testnet
