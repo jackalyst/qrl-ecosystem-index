@@ -784,6 +784,12 @@ main {
     align-items: end;
 }
 
+.directory-actions {
+    display: flex;
+    align-items: flex-end;
+    gap: var(--space-5);
+}
+
 .section-link,
 .text-action {
     display: inline-flex;
@@ -1034,6 +1040,10 @@ main {
     content: "·";
 }
 
+.project-card-recency {
+    color: var(--blue);
+}
+
 .project-card h3 {
     margin: var(--space-2) 0 0;
 }
@@ -1125,7 +1135,8 @@ main {
     grid-template-columns: minmax(16rem, 1.45fr) minmax(9rem, 0.65fr);
 }
 
-.filter-control {
+.filter-control,
+.sort-control {
     display: grid;
     gap: var(--space-2);
     color: var(--muted);
@@ -1136,8 +1147,13 @@ main {
     text-transform: uppercase;
 }
 
+.sort-control {
+    min-width: 15rem;
+}
+
 .filter-control input,
-.filter-control select {
+.filter-control select,
+.sort-control select {
     width: 100%;
     min-height: 2.8rem;
     border: 1px solid var(--line);
@@ -1157,7 +1173,8 @@ main {
 }
 
 .filter-control input:focus,
-.filter-control select:focus {
+.filter-control select:focus,
+.sort-control select:focus {
     border-color: var(--blue);
     box-shadow: 0 0 0 3px var(--focus);
 }
@@ -3260,6 +3277,18 @@ body.gallery-dialog-open {
     .footer-bottom {
         align-items: flex-start;
         flex-direction: column;
+    }
+
+    .directory-actions {
+        width: 100%;
+        align-items: stretch;
+        flex-direction: column;
+        gap: var(--space-3);
+    }
+
+    .sort-control {
+        width: 100%;
+        min-width: 0;
     }
 
     .section-link {

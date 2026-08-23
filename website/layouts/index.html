@@ -1,5 +1,6 @@
 {{ define "main" }}
 {{ $projects := where site.RegularPages "Section" "projects" }}
+{{ $sortedProjects := partial "sorted-projects.html" $projects }}
 {{ $activeProjects := where $projects "Params.availability" "!=" "archived" }}
 {{ $spotlightCandidates := slice }}
 {{ range $activeProjects }}
@@ -68,14 +69,17 @@
             <p class="eyebrow">Browse the ecosystem</p>
             <h2 id="directory-title">The full index</h2>
         </div>
-        <p class="result-summary"><strong data-result-count>{{ len $projects }}</strong> matching projects</p>
+        <div class="directory-actions">
+            <p class="result-summary"><strong data-result-count>{{ len $projects }}</strong> matching projects</p>
+            {{ partial "project-sort.html" (dict "id_prefix" "project") }}
+        </div>
     </div>
 
     {{ partial "project-filters.html" (dict "id_prefix" "project" "show_classification" true "show_status" true) }}
 
     <div class="project-grid" data-project-list>
-        {{ range $projects }}
-            {{ partial "project-card.html" (dict "project" .) }}
+        {{ range $sortedProjects }}
+            {{ partial "project-card.html" (dict "project" (index . "project")) }}
         {{ end }}
     </div>
     <p class="no-results" data-no-results hidden><span data-no-results-copy>No matching projects. Try a broader search or reset a filter.</span> <a href="{{ relURL "/ideas/" }}" data-no-results-ideas data-ideas-base="{{ relURL "/ideas/" }}" hidden>Explore this opportunity.</a></p>

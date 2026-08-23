@@ -1,0 +1,6 @@
+{{- $sortable := slice -}}
+{{- range sort . "Title" -}}
+    {{- $recency := partial "project-recency.html" . -}}
+    {{- $sortable = $sortable | append (dict "date" (index $recency "date") "project" .) -}}
+{{- end -}}
+{{- return (sort $sortable "date" "desc") -}}

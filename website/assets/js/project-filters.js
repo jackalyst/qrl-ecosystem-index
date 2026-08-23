@@ -10,6 +10,13 @@
         { key: "availability", parameter: "availability", label: "Availability", selector: "[data-project-availability]" },
         { key: "environment", parameter: "environment", label: "Environment", selector: "[data-project-environment]" },
     ];
+    const sortDefinition = {
+        parameter: "sort",
+        defaultValue: "latest",
+        selector: "[data-project-sort]",
+        values: ["latest", "added", "oldest", "name-asc", "name-desc"],
+    };
+    const sortValues = new Set(sortDefinition.values);
     const definitionsByKey = new Map(filterDefinitions.map((definition) => [definition.key, definition]));
     const normalize = (value) => value.toString().normalize("NFKD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
     const values = (project, field) => (project.dataset[field] || "").split(/\s+/).filter(Boolean);
@@ -43,8 +50,78 @@
     const buildRelativeUrl = (pathname, search, hash, state, managedKeys) =>
         `${pathname}${writeFilterState(search, state, managedKeys)}${hash}`;
 
+    const readSortState = (search) => {
+        const value = new URLSearchParams(search).get(sortDefinition.parameter) || "";
+        return sortValues.has(value) ? value : sortDefinition.defaultValue;
+    };
+
+    const writeSortState = (search, value) => {
+        const parameters = new URLSearchParams(search);
+        const normalizedValue = sortValues.has(value) ? value : sortDefinition.defaultValue;
+        parameters.delete(sortDefinition.parameter);
+
+        if (normalizedValue !== sortDefinition.defaultValue) {
+            parameters.set(sortDefinition.parameter, normalizedValue);
+        }
+
+        const serialized = parameters.toString();
+        return serialized ? `?${serialized}` : "";
+    };
+
+    const buildDirectoryUrl = (pathname, search, hash, state, managedKeys, sortValue) => {
+        const filteredSearch = writeFilterState(search, state, managedKeys);
+        return `${pathname}${writeSortState(filteredSearch, sortValue)}${hash}`;
+    };
+
+    const compareProjectTitles = (first, second) =>
+        normalize(first.dataset.sortTitle || "").localeCompare(normalize(second.dataset.sortTitle || ""));
+
+    const compareProjectDates = (first, second, field, direction) => {
+        const firstDate = first.dataset[field] || "";
+        const secondDate = second.dataset[field] || "";
+
+        if (!firstDate && !secondDate) {
+            return 0;
+        }
+        if (!firstDate) {
+            return 1;
+        }
+        if (!secondDate) {
+            return -1;
+        }
+
+        return direction * firstDate.localeCompare(secondDate);
+    };
+
+    const sortProjects = (projects, requestedSort) => {
+        const sortValue = sortValues.has(requestedSort) ? requestedSort : sortDefinition.defaultValue;
+
+        return [...projects].sort((first, second) => {
+            if (sortValue === "name-asc") {
+                return compareProjectTitles(first, second);
+            }
+            if (sortValue === "name-desc") {
+                return compareProjectTitles(second, first);
+            }
+
+            const field = sortValue === "added" ? "listedAt" : "recencyAt";
+            const direction = sortValue === "oldest" ? 1 : -1;
+            return compareProjectDates(first, second, field, direction) || compareProjectTitles(first, second);
+        });
+    };
+
     if (typeof module !== "undefined" && module.exports) {
-        module.exports = { buildRelativeUrl, filterDefinitions, readFilterState, writeFilterState };
+        module.exports = {
+            buildDirectoryUrl,
+            buildRelativeUrl,
+            filterDefinitions,
+            readFilterState,
+            readSortState,
+            sortDefinition,
+            sortProjects,
+            writeFilterState,
+            writeSortState,
+        };
     }
 
     if (typeof document === "undefined" || typeof window === "undefined") {
@@ -52,8 +129,10 @@
     }
 
     document.querySelectorAll("[data-project-directory]").forEach((directory) => {
-        const projects = Array.from(directory.querySelectorAll("[data-project-list] [data-project]"));
+        const projectList = directory.querySelector("[data-project-list]");
+        const projects = Array.from(projectList?.querySelectorAll("[data-project]") || []);
         const controls = Object.fromEntries(filterDefinitions.map(({ key, selector }) => [key, directory.querySelector(selector)]));
+        const sortControl = directory.querySelector(sortDefinition.selector);
         const count = directory.querySelector("[data-result-count]");
         const empty = directory.querySelector("[data-no-results]");
         const emptyCopy = directory.querySelector("[data-no-results-copy]");
@@ -62,7 +141,7 @@
         const activeFilterList = directory.querySelector("[data-active-filter-list]");
         const clearFilters = directory.querySelector("[data-clear-filters]");
 
-        if (!controls.search || !controls.generation || !count || !empty) {
+        if (!projectList || !controls.search || !controls.generation || !sortControl || !count || !empty) {
             return;
         }
 
@@ -135,15 +214,18 @@
                     details.open = true;
                 }
             });
+
+            sortControl.value = readSortState(window.location.search);
         };
 
         const syncUrl = (historyMode) => {
-            const nextUrl = buildRelativeUrl(
+            const nextUrl = buildDirectoryUrl(
                 window.location.pathname,
                 window.location.search,
                 window.location.hash,
                 controlState(),
-                managedKeys
+                managedKeys,
+                sortControl.value
             );
             const currentUrl = `${window.location.pathname}${window.location.search}${window.location.hash}`;
 
@@ -153,6 +235,8 @@
         };
 
         const update = (historyMode = "") => {
+            sortProjects(projects, sortControl.value).forEach((project) => projectList.append(project));
+
             const tokens = normalize(controls.search.value).trim().split(/\s+/).filter(Boolean);
             const matchesProject = (project, ignoredFacet = "") =>
                 (!tokens.length || tokens.every((token) => normalize(project.dataset.search || "").includes(token))) &&
@@ -225,6 +309,7 @@
         filterDefinitions.filter(({ key }) => key !== "search" && controls[key]).forEach(({ key }) => {
             controls[key].addEventListener("change", () => update("push"));
         });
+        sortControl.addEventListener("change", () => update("push"));
 
         activeFilterList?.addEventListener("click", (event) => {
             const button = event.target.closest("[data-remove-filter]");

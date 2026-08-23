@@ -1,0 +1,15 @@
+{
+  "name": "qrl-ecosystem-index",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "gui:evaluate": "node scripts/gui-evaluate.mjs",
+    "gui:evaluate:local": "node scripts/gui-evaluate.mjs --url http://127.0.0.1:1313/"
+  },
+  "devDependencies": {
+    "playwright": "1.62.1"
+  }
+}

@@ -1,16 +1,31 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
+const fs = require("node:fs");
+const path = require("node:path");
+const vm = require("node:vm");
+
+const browserModule = { exports: {} };
+const browserScript = fs.readFileSync(
+    path.join(__dirname, "../website/assets/js/project-filters.js"),
+    "utf8"
+);
+vm.runInNewContext(browserScript, { module: browserModule, URLSearchParams });
+const toPlain = (value) => JSON.parse(JSON.stringify(value));
 
 const {
+    buildDirectoryUrl,
     buildRelativeUrl,
     filterDefinitions,
     readFilterState,
+    readSortState,
+    sortProjects,
     writeFilterState,
-} = require("../website/assets/js/project-filters.js");
+    writeSortState,
+} = browserModule.exports;
 
 test("uses stable, readable query parameter names for every filter", () => {
     assert.deepEqual(
-        filterDefinitions.map(({ key, parameter }) => [key, parameter]),
+        toPlain(filterDefinitions.map(({ key, parameter }) => [key, parameter])),
         [
             ["search", "q"],
             ["type", "type"],
@@ -27,7 +42,7 @@ test("uses stable, readable query parameter names for every filter", () => {
 
 test("reads the complete filter state from a shareable URL", () => {
     assert.deepEqual(
-        readFilterState("?q=wallet&type=application&category=finance&capability=wallet&platform=web&generation=2.0&maturity=beta&availability=live&environment=testnet"),
+        toPlain(readFilterState("?q=wallet&type=application&category=finance&capability=wallet&platform=web&generation=2.0&maturity=beta&availability=live&environment=testnet")),
         {
             search: "wallet",
             type: "application",
@@ -70,5 +85,62 @@ test("builds a relative URL without losing the page anchor", () => {
             ["type", "capability"]
         ),
         "/projects/?ref=directory&type=protocol&capability=node-client#results"
+    );
+});
+
+test("defaults to the latest added or released sort without adding URL noise", () => {
+    assert.equal(readSortState("?q=wallet"), "latest");
+    assert.equal(writeSortState("?q=wallet&sort=latest", "latest"), "?q=wallet");
+});
+
+test("persists a non-default sort alongside filters and unrelated parameters", () => {
+    assert.equal(
+        buildDirectoryUrl(
+            "/projects/",
+            "?ref=directory&sort=oldest",
+            "#results",
+            { search: "wallet", type: "application" },
+            ["search", "type"],
+            "name-asc"
+        ),
+        "/projects/?ref=directory&q=wallet&type=application&sort=name-asc#results"
+    );
+});
+
+test("sorts by latest added or released date with names as a stable tie-breaker", () => {
+    const projects = [
+        { dataset: { sortTitle: "Zulu", listedAt: "2026-08-20", recencyAt: "2026-08-20" } },
+        { dataset: { sortTitle: "Beta", listedAt: "2026-08-21", recencyAt: "2026-08-23" } },
+        { dataset: { sortTitle: "Alpha", listedAt: "2026-08-23", recencyAt: "2026-08-23" } },
+    ];
+
+    assert.deepEqual(
+        toPlain(sortProjects(projects, "latest").map((project) => project.dataset.sortTitle)),
+        ["Alpha", "Beta", "Zulu"]
+    );
+    assert.deepEqual(
+        toPlain(sortProjects(projects, "added").map((project) => project.dataset.sortTitle)),
+        ["Alpha", "Beta", "Zulu"]
+    );
+    assert.deepEqual(
+        toPlain(sortProjects(projects, "oldest").map((project) => project.dataset.sortTitle)),
+        ["Zulu", "Alpha", "Beta"]
+    );
+});
+
+test("sorts project names in either direction", () => {
+    const projects = [
+        { dataset: { sortTitle: "Zulu", listedAt: "2026-08-20", recencyAt: "2026-08-20" } },
+        { dataset: { sortTitle: "alpha", listedAt: "2026-08-23", recencyAt: "2026-08-23" } },
+        { dataset: { sortTitle: "Beta", listedAt: "2026-08-21", recencyAt: "2026-08-21" } },
+    ];
+
+    assert.deepEqual(
+        toPlain(sortProjects(projects, "name-asc").map((project) => project.dataset.sortTitle)),
+        ["alpha", "Beta", "Zulu"]
+    );
+    assert.deepEqual(
+        toPlain(sortProjects(projects, "name-desc").map((project) => project.dataset.sortTitle)),
+        ["Zulu", "Beta", "alpha"]
     );
 });
