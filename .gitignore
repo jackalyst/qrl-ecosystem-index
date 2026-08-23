@@ -5,6 +5,12 @@
 /website/public/
 /website/resources/_gen/
 
+# Local GUI evaluation tooling and evidence
+/node_modules/
+/artifacts/gui-evaluation/
+/playwright-report/
+/test-results/
+
 # Python cache files
 __pycache__/
 *.pyc

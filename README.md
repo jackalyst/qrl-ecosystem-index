@@ -66,6 +66,17 @@ hugo --source website --gc --minify --cleanDestinationDir --forceSyncStatic
 python3 scripts/validate_agent_outputs.py
 ```
 
+For functional and visual GUI evaluation with local Chromium:
+
+```sh
+npm ci
+npx playwright install chromium
+hugo server --source website --bind 127.0.0.1 --port 1313
+npm run gui:evaluate:local
+```
+
+See [`docs/GUI_EVALUATION.md`](docs/GUI_EVALUATION.md) for viewport selection, Chrome support, generated evidence, and adapting the harness to larger projects.
+
 Do not commit `public/` or `website/public/` build output.
 
 ## Repository structure
