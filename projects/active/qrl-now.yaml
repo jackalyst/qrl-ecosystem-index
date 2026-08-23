@@ -1,0 +1,64 @@
+id: qrl-now
+name: QRL Now
+project_type: application
+primary_category: finance
+secondary_categories: []
+capabilities:
+  - analytics
+platforms:
+  - web
+keywords:
+  - market-data
+  - price-tracking
+  - ohlcv
+  - exchange-comparison
+  - real-time
+maturity: beta
+availability: live
+maintenance: active
+qrl_relationship: ecosystem-resource
+qrl_support:
+  - generation: 1.x
+    environments: []
+description: >
+  Real-time QRL market dashboard aggregating QRL/USDT prices, OHLCV history, volume, and spreads across exchanges, with volume-weighted composite views and responsive charts.
+publisher:
+  name: Matasx
+  url: https://github.com/Matasx
+maintainers:
+  - name: Matasx
+    contact: https://github.com/Matasx
+source_availability: unavailable
+repositories: []
+links:
+  - type: website
+    url: https://qrl.now
+    primary: true
+listed_at: '2026-08-23'
+data_updated_at: '2026-08-23'
+project_launched_at: '2026-08-21'
+last_verified_at: '2026-08-23'
+features:
+  - Real-time QRL/USDT prices, bid and ask quotes, spreads, and 24-hour market statistics
+  - Volume-ranked coverage of MEXC, LBank, Biconomy, XT, and Dex-Trade
+  - Multi-exchange price lines, composite OHLC, market spread, and exchange OHLC comparison views
+  - Historical OHLCV data across common trading timeframes with incremental older-data loading
+  - Volume-weighted composite pricing, per-exchange sparklines, and resilient live updates
+logos:
+  - path: qrl-now/icon.png
+    description: QRL Now logo
+gallery:
+  - type: image
+    path: qrl-now/dashboard.png
+    caption: Live dashboard with volume-ranked exchanges, 24-hour sparklines, composite market statistics, and price history controls.
+long_description: |
+  QRL Now is a browser-based market dashboard for comparing exchange-listed
+  QRL pairs. It combines current quotes, 24-hour statistics, OHLCV history,
+  volume, and spreads from multiple market sources and provides both
+  per-exchange and composite chart views.
+
+  The service consumes public exchange market data and does not query or
+  depend on a QRL node. Its current directory support metadata references QRL
+  1.x because that is the QRL asset represented by the tracked spot markets;
+  support for future QRL generations depends on their exchange listings rather
+  than a chain-specific application integration.
