@@ -1,0 +1,11 @@
+{{- $idPrefix := .id_prefix -}}
+<label class="sort-control" for="{{ $idPrefix }}-sort">
+    <span>Sort by</span>
+    <select id="{{ $idPrefix }}-sort" data-project-sort>
+        <option value="latest">Latest added / released</option>
+        <option value="added">Recently added</option>
+        <option value="oldest">Oldest added / released</option>
+        <option value="name-asc">Name A–Z</option>
+        <option value="name-desc">Name Z–A</option>
+    </select>
+</label>

@@ -1,6 +1,6 @@
 {
-  "count": 41,
-  "generated_at": "2026-08-19T08:11:55Z",
+  "count": 42,
+  "generated_at": "2026-08-23T18:14:41Z",
   "projects": [
     {
       "id": "acornswap",
@@ -1101,6 +1101,50 @@
           "url": "https://docs.theqrl.org/use/node/"
         }
       ]
+    },
+    {
+      "id": "qrl-now",
+      "name": "QRL Now",
+      "project_type": "application",
+      "primary_category": "finance",
+      "secondary_categories": [],
+      "capabilities": [
+        "analytics"
+      ],
+      "platforms": [
+        "web"
+      ],
+      "keywords": [
+        "market-data",
+        "price-tracking",
+        "ohlcv",
+        "exchange-comparison",
+        "real-time"
+      ],
+      "maturity": "beta",
+      "availability": "live",
+      "maintenance": "active",
+      "display_status": "Beta",
+      "qrl_relationship": "ecosystem-resource",
+      "qrl_support": [
+        {
+          "generation": "1.x",
+          "environments": []
+        }
+      ],
+      "deployments": [],
+      "description": "Real-time QRL market dashboard aggregating QRL/USDT prices, OHLCV history, volume, and spreads across exchanges, with volume-weighted composite views and responsive charts.",
+      "primary_url": "https://qrl.now",
+      "source_availability": "unavailable",
+      "repositories": [],
+      "links": [
+        {
+          "type": "website",
+          "url": "https://qrl.now",
+          "primary": true
+        }
+      ],
+      "logo": "/images/logos/qrl-now/icon.png"
     },
     {
       "id": "qrl-offline-wallet-generator",

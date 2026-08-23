@@ -1,0 +1,18 @@
+{{- $project := . -}}
+{{- $date := printf "%v" $project.Params.listed_at -}}
+{{- $label := "Added" -}}
+{{- with $project.Params.project_launched_at -}}
+    {{- $candidate := printf "%v" . -}}
+    {{- if gt $candidate $date -}}
+        {{- $date = $candidate -}}
+        {{- $label = "Launched" -}}
+    {{- end -}}
+{{- end -}}
+{{- with $project.Params.last_release_at -}}
+    {{- $candidate := printf "%v" . -}}
+    {{- if gt $candidate $date -}}
+        {{- $date = $candidate -}}
+        {{- $label = "Released" -}}
+    {{- end -}}
+{{- end -}}
+{{- return (dict "date" $date "label" $label) -}}

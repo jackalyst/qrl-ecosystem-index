@@ -71,14 +71,18 @@
 {{ end }}
 
 {{ if $showsProjectCards }}
+{{ $sortedProjects := partial "sorted-projects.html" .Pages }}
 <section class="listing-section" aria-labelledby="listing-results-title" data-project-directory>
     <div class="listing-toolbar">
         <div><p class="eyebrow">{{ if eq .Section "projects" }}All listings{{ else }}Matching projects{{ end }}</p><h2 id="listing-results-title">{{ if eq .Section "projects" }}Explore projects{{ else }}Projects in this view{{ end }}</h2></div>
-        <p class="result-summary"><strong data-result-count>{{ len .Pages }}</strong> matching projects</p>
+        <div class="directory-actions">
+            <p class="result-summary"><strong data-result-count>{{ len .Pages }}</strong> matching projects</p>
+            {{ partial "project-sort.html" (dict "id_prefix" "project-directory") }}
+        </div>
     </div>
     {{ partial "project-filters.html" (dict "id_prefix" "project-directory" "show_classification" (eq .Section "projects") "show_status" (eq .Section "projects")) }}
     <div class="project-grid" data-project-list>
-        {{ range .Pages }}{{ partial "project-card.html" (dict "project" .) }}{{ end }}
+        {{ range $sortedProjects }}{{ partial "project-card.html" (dict "project" (index . "project")) }}{{ end }}
     </div>
     <p class="no-results" data-no-results hidden><span data-no-results-copy>No matching projects. Try a broader search or reset a filter.</span> <a href="{{ relURL "/ideas/" }}" data-no-results-ideas data-ideas-base="{{ relURL "/ideas/" }}" hidden>Explore this opportunity.</a></p>
 </section>

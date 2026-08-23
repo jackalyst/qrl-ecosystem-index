@@ -1,4 +1,7 @@
 {{- $project := .project -}}
+{{- $recency := partial "project-recency.html" $project -}}
+{{- $recencyDate := index $recency "date" -}}
+{{- $recencyLabel := index $recency "label" -}}
 {{- $projectTypeID := $project.Params.project_type -}}
 {{- $projectTypeSlug := "" -}}
 {{- with (index $project.Params "project-types") -}}
@@ -17,6 +20,9 @@
 {{- end -}}
 <article class="project-card"
     data-project
+    data-sort-title="{{ $project.Title }}"
+    data-listed-at="{{ $project.Params.listed_at }}"
+    data-recency-at="{{ $recencyDate }}"
     data-search="{{ partial "project-search-text.html" $project }}"
     data-categories="{{ delimit $project.Params.categories " " }}"
     data-capabilities="{{ delimit $project.Params.capabilities " " }}"
@@ -41,6 +47,7 @@
         <p class="project-card-kicker">
             {{ with $projectTypeID }}<span>{{ partial "project-type-label.html" . }}</span>{{ end }}
             {{ with $project.Params.primary_category }}<span>{{ partial "category-label.html" . }}</span>{{ end }}
+            <span class="project-card-recency">{{ $recencyLabel }} <time datetime="{{ $recencyDate }}">{{ time.Format "Jan 2, 2006" $recencyDate }}</time></span>
         </p>
         <h3><span class="project-card-title">{{ $project.Title }}</span></h3>
         {{ with $project.Params.description }}<p class="project-card-description">{{ . }}</p>{{ end }}
