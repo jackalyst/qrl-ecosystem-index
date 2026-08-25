@@ -10,7 +10,7 @@ categories:
     - security-custody-account-management
     - payments-commerce
     - assets-tokenization
-data_updated_at: "2026-07-14"
+data_updated_at: "2026-08-25"
 description: 'A family of wallet applications for QRL 2.0: web wallet, Android app, desktop wallet, and browser extension, with post-quantum dApp connectivity over the QRL Connect relay protocol.'
 display_status: Beta · Testnet
 features:
@@ -18,6 +18,16 @@ features:
     - Android app and hardened Electron desktop wallet
     - Browser extension (MIT fork of the QRL web3 wallet)
     - dApp connectivity via the QRL Connect relay protocol (ML-KEM-768 + AES-256-GCM, ML-DSA-87 signing)
+gallery:
+    - type: image
+      path: myqrlwallet/wallet-suite.jpg
+      caption: MyQRLWallet landing page introducing the post-quantum wallet suite for web, desktop, mobile, and browser extensions.
+    - type: image
+      path: myqrlwallet/platforms.jpg
+      caption: Platform overview highlighting the web wallet, browser extension, and hardened desktop application.
+    - type: image
+      path: myqrlwallet/product-tour.jpg
+      caption: Product tour showing the desktop and mobile wallet dashboard with balances, transfers, and token management.
 id: myqrlwallet
 keywords:
     - wallet

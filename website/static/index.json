@@ -1,6 +1,6 @@
 {
   "count": 42,
-  "generated_at": "2026-08-25T06:00:20Z",
+  "generated_at": "2026-08-25T17:50:19Z",
   "projects": [
     {
       "id": "acornswap",
@@ -2303,7 +2303,8 @@
       "secondary_categories": [],
       "capabilities": [
         "explorer",
-        "analytics"
+        "analytics",
+        "faucet"
       ],
       "platforms": [
         "web"

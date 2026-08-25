@@ -8,7 +8,7 @@ capabilities:
     - analytics
 categories:
     - network-operations
-data_updated_at: "2026-08-17"
+data_updated_at: "2026-08-25"
 description: An independent QRL 1.x mining pool offering PPS+, PROPX, and solo mining, global endpoints, worker statistics, TLS ports, adjustable payout thresholds, fixed or dynamic difficulty, and miner notifications.
 display_status: Stable · Mainnet
 features:
@@ -16,6 +16,16 @@ features:
     - Global mining endpoints with TLS support
     - Per-rig statistics and estimated earnings
     - Adjustable payout thresholds and worker notifications
+gallery:
+    - type: image
+      path: hero-miners/dashboard.jpg
+      caption: HeroMiners QRL dashboard showing live network and pool rates, mining endpoints, news, and operating statistics.
+    - type: image
+      path: hero-miners/how-to-start.jpg
+      caption: Regional QRL mining servers, latency measurements, supported ports, TLS, VarDiff, and difficulty settings.
+    - type: image
+      path: hero-miners/pool-blocks.jpg
+      caption: Pool-block statistics showing 30-day activity and effort plus recent rewards, heights, regions, and status.
 id: hero-miners
 keywords:
     - mining

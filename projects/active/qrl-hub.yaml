@@ -34,12 +34,22 @@ links:
     url: https://qrlhub.com/
     primary: true
 listed_at: '2026-05-29'
-data_updated_at: '2026-05-29'
+data_updated_at: '2026-08-25'
 features:
   - Educational QRL and quantum-security resources
   - Quantum computing and blockchain security news
   - QRL 2.0 updates and builder-oriented information
   - Multilingual website content
+gallery:
+  - type: image
+    path: qrl-hub/homepage.jpg
+    caption: QRL Hub homepage introducing QRL's quantum-safe history and the transition to QRL 2.0.
+  - type: image
+    path: qrl-hub/qubit-tracker.jpg
+    caption: Qubit Tracker comparing current logical-qubit records with estimates for breaking Bitcoin signatures.
+  - type: image
+    path: qrl-hub/qrl-2-guide.jpg
+    caption: QRL 2.0 guide covering the live testnet, EVM-compatible smart contracts, and independent security audits.
 long_description: |
   QRL Hub is a community-maintained resource website for learning about QRL,
   quantum computing threats, blockchain security, and the quantum-resistant

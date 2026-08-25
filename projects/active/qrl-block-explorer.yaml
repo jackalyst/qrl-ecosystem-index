@@ -42,7 +42,7 @@ links:
   - type: documentation
     url: https://docs.theqrl.org/use/tools/explorer/overview/
 listed_at: '2026-08-17'
-data_updated_at: '2026-08-24'
+data_updated_at: '2026-08-25'
 features:
   - Block, transaction, address, token, and unconfirmed-transaction lookup
   - Network status, peers, rich list, and mining statistics
@@ -55,3 +55,6 @@ gallery:
   - type: image
     path: qrl-block-explorer/latest-blocks.jpg
     caption: Latest-blocks view showing pagination and recent block height, transaction, reward, interval, and miner details.
+  - type: image
+    path: qrl-block-explorer/rich-list.jpg
+    caption: Rich-list view ranking leading QRL addresses by balance and percentage of total supply.

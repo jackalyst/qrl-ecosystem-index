@@ -10,7 +10,7 @@ capabilities:
 categories:
     - security-custody-account-management
     - payments-commerce
-data_updated_at: "2026-08-17"
+data_updated_at: "2026-08-25"
 description: The QRL application for Ledger Nano hardware wallets, keeping XMSS keys offline while supporting QRL transfers, messages, multiple address trees, OTS tracking, and optional passphrase-protected address spaces.
 display_status: Stable · Mainnet
 features:
@@ -18,6 +18,16 @@ features:
     - XMSS private keys retained on the hardware secure element
     - Dual address-tree support with OTS index tracking
     - Native QRL transfers and message transactions
+gallery:
+    - type: image
+      path: qrl-ledger-wallet/qrl-ready.jpg
+      caption: Ledger Nano displaying QRL READY with 256 XMSS one-time signature keys remaining.
+    - type: image
+      path: qrl-ledger-wallet/ledger-transfer.png
+      caption: Ledger Nano reviewing a 13 QRL transfer amount on-device before signing.
+    - type: image
+      path: qrl-ledger-wallet/address-verification.png
+      caption: Ledger Nano verifying a QRL receiving address directly on the hardware display.
 id: qrl-ledger-wallet
 keywords:
     - wallet

@@ -8,7 +8,7 @@ capabilities:
     - analytics
 categories:
     - network-operations
-data_updated_at: "2026-08-17"
+data_updated_at: "2026-08-25"
 description: An independent QRL 1.x PROP and solo mining pool with regional servers, dynamic or fixed difficulty, TLS ports, per-worker statistics, configurable payouts, and Telegram or email notifications.
 display_status: Stable · Mainnet
 features:
@@ -16,6 +16,16 @@ features:
     - Regional servers across Europe, North America, and Asia
     - TLS, dynamic or fixed difficulty, and configurable payment thresholds
     - Worker statistics and Telegram or email notifications
+gallery:
+    - type: image
+      path: mining-ocean/dashboard.jpg
+      caption: MiningOcean dashboard showing live QRL pool, network, miner, block, fee, and payment statistics.
+    - type: image
+      path: mining-ocean/how-to-start.jpg
+      caption: Mining setup guide with regional QRL server endpoints and connection status.
+    - type: image
+      path: mining-ocean/pool-blocks.jpg
+      caption: Pool-block dashboard with 30-day block and luck trends plus recent block rewards and effort.
 id: mining-ocean
 keywords:
     - mining

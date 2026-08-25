@@ -6,9 +6,10 @@ availability: live
 capabilities:
     - explorer
     - analytics
+    - faucet
 categories:
     - network-operations
-data_updated_at: "2026-07-14"
+data_updated_at: "2026-08-25"
 description: A QRL Zond network explorer for browsing blocks, transactions, smart contracts, validators, addresses, and chain activity.
 display_status: Beta · Testnet
 features:
@@ -17,6 +18,16 @@ features:
     - Address details, balance checking, richlist, and unit conversion tools
     - Next.js frontend with a Go-powered backend API
     - Responsive web interface for desktop and mobile devices
+gallery:
+    - type: image
+      path: zondscan/network-overview.jpg
+      caption: Live Zond network overview with chain statistics, recent blocks, and transactions.
+    - type: image
+      path: zondscan/latest-blocks.jpg
+      caption: Latest synced Zond blocks with hashes, transaction counts, timestamps, and gas usage.
+    - type: image
+      path: zondscan/validators.jpg
+      caption: Validator dashboard with epoch progress, staking totals, status distribution, and network trends.
 id: zondscan
 keywords:
     - explorer

@@ -68,7 +68,7 @@ links:
   - type: social
     url: https://x.com/DigitalGuards
 listed_at: '2026-06-09'
-data_updated_at: '2026-07-14'
+data_updated_at: '2026-08-25'
 features:
   - Web wallet for account creation, transactions, tokens, and NFTs on the quantum-resistant ledger
   - Android app and hardened Electron desktop wallet
@@ -77,6 +77,16 @@ features:
 logos:
   - path: myqrlwallet/icon.png
     description: MyQRLWallet logo
+gallery:
+  - type: image
+    path: myqrlwallet/wallet-suite.jpg
+    caption: MyQRLWallet landing page introducing the post-quantum wallet suite for web, desktop, mobile, and browser extensions.
+  - type: image
+    path: myqrlwallet/platforms.jpg
+    caption: Platform overview highlighting the web wallet, browser extension, and hardened desktop application.
+  - type: image
+    path: myqrlwallet/product-tour.jpg
+    caption: Product tour showing the desktop and mobile wallet dashboard with balances, transfers, and token management.
 long_description: |
   MyQRLWallet is a DigitalGuards family of wallet applications for QRL 2.0.
   It started as a browser-based web wallet (qrlwallet.com) for creating
