@@ -41,13 +41,23 @@ links:
     platform: web
     primary: true
 listed_at: '2026-06-10'
-data_updated_at: '2026-06-10'
+data_updated_at: '2026-08-24'
 features:
   - Peer-to-peer marketplace for digital goods and services
   - Secure account, listing, transaction, and reputation flows
   - Encrypted chat and privacy-oriented marketplace features
   - Commitment-protocol tools including wagers, polls, notary, and Merkle proofs
   - Web interface with accessibility and multilingual controls
+gallery:
+  - type: image
+    path: peerquanta/digital-notary.jpg
+    caption: Digital Notary tool with file selection, verification, and optional identity-binding controls.
+  - type: image
+    path: peerquanta/commitment-protocols.jpg
+    caption: Commitment Protocols workspace with commit, reveal, and verify flows for cryptographic commitments.
+  - type: image
+    path: peerquanta/marketplace.jpg
+    caption: PeerQuanta marketplace home with navigation for listings, forums, statistics, chat, tools, and transactions.
 long_description: |
   PeerQuanta is a web-based peer-to-peer marketplace for digital goods and
   services. The site describes itself as a decentralized marketplace focused on

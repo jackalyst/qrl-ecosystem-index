@@ -10,7 +10,7 @@ categories:
     - payments-commerce
     - social-creator-content
     - identity-naming-privacy
-data_updated_at: "2026-06-10"
+data_updated_at: "2026-08-24"
 description: A decentralized peer-to-peer marketplace for secure and anonymous digital goods and services, with encrypted chat and commitment-protocol features.
 display_status: Beta · Testnet
 features:
@@ -19,6 +19,16 @@ features:
     - Encrypted chat and privacy-oriented marketplace features
     - Commitment-protocol tools including wagers, polls, notary, and Merkle proofs
     - Web interface with accessibility and multilingual controls
+gallery:
+    - type: image
+      path: peerquanta/digital-notary.jpg
+      caption: Digital Notary tool with file selection, verification, and optional identity-binding controls.
+    - type: image
+      path: peerquanta/commitment-protocols.jpg
+      caption: Commitment Protocols workspace with commit, reveal, and verify flows for cryptographic commitments.
+    - type: image
+      path: peerquanta/marketplace.jpg
+      caption: PeerQuanta marketplace home with navigation for listings, forums, statistics, chat, tools, and transactions.
 id: peerquanta
 keywords:
     - marketplace
