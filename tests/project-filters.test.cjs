@@ -15,13 +15,29 @@ const toPlain = (value) => JSON.parse(JSON.stringify(value));
 const {
     buildDirectoryUrl,
     buildRelativeUrl,
+    countActiveFilters,
     filterDefinitions,
+    projectNoun,
     readFilterState,
     readSortState,
     sortProjects,
     writeFilterState,
     writeSortState,
 } = browserModule.exports;
+
+test("counts selected filters without treating the visible search field as a filter", () => {
+    assert.equal(
+        countActiveFilters({ search: "wallet", type: "application", category: "finance", platform: "" }),
+        2
+    );
+    assert.equal(countActiveFilters({ search: "wallet", type: "", category: "" }), 0);
+});
+
+test("uses correct singular and plural project labels", () => {
+    assert.equal(projectNoun(0), "projects");
+    assert.equal(projectNoun(1), "project");
+    assert.equal(projectNoun(2), "projects");
+});
 
 test("uses stable, readable query parameter names for every filter", () => {
     assert.deepEqual(
@@ -65,6 +81,17 @@ test("writes active filters while preserving unrelated parameters", () => {
             ["search", "type", "category"]
         ),
         "?utm_source=community&type=protocol&q=qrl+wallet"
+    );
+});
+
+test("clears every managed filter while preserving unrelated parameters", () => {
+    assert.equal(
+        writeFilterState(
+            "?ref=community&q=wallet&type=application&generation=2.0",
+            { search: "", type: "", generation: "" },
+            ["search", "type", "generation"]
+        ),
+        "?ref=community"
     );
 });
 

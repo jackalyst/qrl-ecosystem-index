@@ -18,6 +18,9 @@
         {{- with .path }}{{ $logoURL = printf "/images/logos/%s" . }}{{ end -}}
     {{- end -}}
 {{- end -}}
+{{- $galleryImages := where ($project.Params.gallery | default slice) "type" "image" -}}
+{{- $previewImage := false -}}
+{{- if gt (len $galleryImages) 0 }}{{ $previewImage = index $galleryImages 0 }}{{ end -}}
 <article class="project-card"
     data-project
     data-sort-title="{{ $project.Title }}"
@@ -33,15 +36,15 @@
     data-maturity="{{ $project.Params.maturity }}"
     data-availability="{{ $project.Params.availability }}">
     <a class="project-card-link" href="{{ $project.RelPermalink }}" aria-label="View {{ $project.Title }} listing"></a>
-    <div class="project-card-top">
-        <div class="project-mark project-mark-small">
-            {{ if $logoURL }}<img src="{{ $logoURL | relURL }}" alt="" loading="lazy">{{ else }}<span>{{ $initials }}</span>{{ end }}
-        </div>
-        <div class="project-card-badges">
-            {{ with $project.Params.display_status }}<span class="status status-{{ $project.Params.availability }}">{{ . }}</span>{{ end }}
-            {{ range $project.Params.qrl_generations }}<span class="meta-chip version-chip">QRL {{ . }}</span>{{ end }}
-            {{ if eq $project.Params.source_availability "full" }}<span class="meta-chip source-chip">Source available</span>{{ else if eq $project.Params.source_availability "partial" }}<span class="meta-chip source-chip">Partial source</span>{{ end }}
-        </div>
+    <div class="project-card-media{{ if $previewImage }} project-card-media-image{{ else if $logoURL }} project-card-media-logo{{ else }} project-card-media-fallback{{ end }}" data-project-media="{{ if $previewImage }}image{{ else if $logoURL }}logo{{ else }}initials{{ end }}">
+        {{ if $previewImage }}
+        <img src="{{ printf "/images/screenshots/%s" $previewImage.path | relURL }}" alt="" loading="lazy" decoding="async">
+        {{ else if $logoURL }}
+        <span class="project-card-media-mark"><img src="{{ $logoURL | relURL }}" alt="" loading="lazy" decoding="async"></span>
+        {{ else }}
+        <span class="project-card-media-initials" aria-hidden="true">{{ $initials }}</span>
+        <span class="project-card-media-label">{{ partial "project-type-label.html" $projectTypeID }}</span>
+        {{ end }}
     </div>
     <div class="project-card-body">
         <p class="project-card-kicker">
@@ -51,6 +54,11 @@
         </p>
         <h3><span class="project-card-title">{{ $project.Title }}</span></h3>
         {{ with $project.Params.description }}<p class="project-card-description">{{ . }}</p>{{ end }}
+        <div class="project-card-badges" role="group" aria-label="Project status and compatibility">
+            {{ with $project.Params.display_status }}<span class="status status-{{ $project.Params.availability }}">{{ . }}</span>{{ end }}
+            {{ range $project.Params.qrl_generations }}<span class="meta-chip version-chip">QRL {{ . }}</span>{{ end }}
+            {{ if eq $project.Params.source_availability "full" }}<span class="meta-chip source-chip">Source available</span>{{ else if eq $project.Params.source_availability "partial" }}<span class="meta-chip source-chip">Partial source</span>{{ end }}
+        </div>
     </div>
     <div class="project-card-footer">
         {{ with $project.Params.publisher }}{{ with .url }}<a class="project-card-author" href="{{ . }}" target="_blank" rel="noopener">By {{ $project.Params.publisher.name }} <span aria-hidden="true">↗</span></a>{{ else }}<span class="project-card-author">By {{ .name }}</span>{{ end }}{{ end }}

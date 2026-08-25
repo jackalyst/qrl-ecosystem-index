@@ -20,6 +20,9 @@
     const definitionsByKey = new Map(filterDefinitions.map((definition) => [definition.key, definition]));
     const normalize = (value) => value.toString().normalize("NFKD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
     const values = (project, field) => (project.dataset[field] || "").split(/\s+/).filter(Boolean);
+    const countActiveFilters = (state, excludedKeys = ["search"]) =>
+        Object.entries(state).filter(([key, value]) => !excludedKeys.includes(key) && (value ?? "").toString().trim()).length;
+    const projectNoun = (count) => count === 1 ? "project" : "projects";
 
     const readFilterState = (search) => {
         const parameters = new URLSearchParams(search);
@@ -114,7 +117,9 @@
         module.exports = {
             buildDirectoryUrl,
             buildRelativeUrl,
+            countActiveFilters,
             filterDefinitions,
+            projectNoun,
             readFilterState,
             readSortState,
             sortDefinition,
@@ -128,18 +133,29 @@
         return;
     }
 
+    document.documentElement.classList.add("has-js");
+
     document.querySelectorAll("[data-project-directory]").forEach((directory) => {
         const projectList = directory.querySelector("[data-project-list]");
         const projects = Array.from(projectList?.querySelectorAll("[data-project]") || []);
         const controls = Object.fromEntries(filterDefinitions.map(({ key, selector }) => [key, directory.querySelector(selector)]));
         const sortControl = directory.querySelector(sortDefinition.selector);
         const count = directory.querySelector("[data-result-count]");
+        const resultNoun = directory.querySelector("[data-result-noun]");
         const empty = directory.querySelector("[data-no-results]");
         const emptyCopy = directory.querySelector("[data-no-results-copy]");
         const ideasLink = directory.querySelector("[data-no-results-ideas]");
         const activeFilters = directory.querySelector("[data-active-filters]");
         const activeFilterList = directory.querySelector("[data-active-filter-list]");
-        const clearFilters = directory.querySelector("[data-clear-filters]");
+        const clearFilterButtons = Array.from(directory.querySelectorAll("[data-clear-filters]"));
+        const filterDialog = directory.querySelector("[data-filter-dialog]");
+        const filterDialogOpen = directory.querySelector("[data-filter-dialog-open]");
+        const filterDialogCloseButtons = Array.from(directory.querySelectorAll("[data-filter-dialog-close]"));
+        const activeFilterCount = directory.querySelector("[data-active-filter-count]");
+        const dialogResultCount = directory.querySelector("[data-dialog-result-count]");
+        const dialogResultNoun = directory.querySelector("[data-dialog-result-noun]");
+        const mobileFilterQuery = window.matchMedia("(max-width: 640px)");
+        let restoreDialogFocus = false;
 
         if (!projectList || !controls.search || !controls.generation || !sortControl || !count || !empty) {
             return;
@@ -163,7 +179,7 @@
         };
 
         const renderActiveFilters = () => {
-            if (!activeFilters || !activeFilterList || !clearFilters) {
+            if (!activeFilters || !activeFilterList || !clearFilterButtons.length) {
                 return;
             }
 
@@ -191,6 +207,72 @@
 
             activeFilterList.replaceChildren(...items);
             activeFilters.hidden = selected.length === 0;
+        };
+
+        const renderResultState = (visible) => {
+            const noun = projectNoun(visible);
+            const state = controlState();
+            const selectedFilterCount = countActiveFilters(state);
+
+            count.textContent = visible;
+            if (resultNoun) {
+                resultNoun.textContent = noun;
+            }
+            if (dialogResultCount) {
+                dialogResultCount.textContent = visible;
+            }
+            if (dialogResultNoun) {
+                dialogResultNoun.textContent = noun;
+            }
+            if (activeFilterCount) {
+                activeFilterCount.textContent = selectedFilterCount;
+                activeFilterCount.hidden = selectedFilterCount === 0;
+            }
+            if (filterDialogOpen) {
+                filterDialogOpen.setAttribute(
+                    "aria-label",
+                    selectedFilterCount ? `Filters, ${selectedFilterCount} active` : "Filters"
+                );
+            }
+        };
+
+        const dialogIsModal = () => {
+            if (!filterDialog) {
+                return false;
+            }
+            try {
+                return filterDialog.matches(":modal");
+            } catch {
+                return false;
+            }
+        };
+
+        const syncDialogMode = () => {
+            if (!filterDialog) {
+                return;
+            }
+
+            restoreDialogFocus = false;
+            document.documentElement.classList.remove("filter-dialog-active");
+            if (mobileFilterQuery.matches) {
+                if (filterDialog.open && !dialogIsModal()) {
+                    filterDialog.close();
+                }
+            } else {
+                if (dialogIsModal()) {
+                    filterDialog.close();
+                }
+                filterDialog.setAttribute("open", "");
+                filterDialogOpen?.setAttribute("aria-expanded", "false");
+            }
+        };
+
+        const closeFilterDialog = () => {
+            if (!filterDialog || !dialogIsModal()) {
+                return;
+            }
+            restoreDialogFocus = true;
+            filterDialog.close();
         };
 
         const restoreFromUrl = () => {
@@ -284,7 +366,7 @@
                 }
             });
 
-            count.textContent = visible;
+            renderResultState(visible);
             empty.hidden = visible !== 0;
             if (visible === 0 && controls.category && controls.category.value && ideasLink && emptyCopy) {
                 const option = controls.category.selectedOptions[0];
@@ -323,13 +405,53 @@
             control.focus({ preventScroll: true });
         });
 
-        clearFilters?.addEventListener("click", () => {
-            Object.values(controls).filter(Boolean).forEach((control) => {
-                control.value = "";
+        clearFilterButtons.forEach((button) => {
+            button.addEventListener("click", () => {
+                Object.values(controls).filter(Boolean).forEach((control) => {
+                    control.value = "";
+                });
+                update("push");
+                if (!dialogIsModal()) {
+                    controls.search.focus({ preventScroll: true });
+                }
             });
-            update("push");
-            controls.search.focus({ preventScroll: true });
         });
+
+        filterDialogOpen?.addEventListener("click", () => {
+            if (!filterDialog || !mobileFilterQuery.matches) {
+                return;
+            }
+            if (filterDialog.open && !dialogIsModal()) {
+                filterDialog.close();
+            }
+            filterDialog.showModal();
+            document.documentElement.classList.add("filter-dialog-active");
+            filterDialogOpen.setAttribute("aria-expanded", "true");
+            filterDialog.querySelector("select")?.focus({ preventScroll: true });
+        });
+
+        filterDialogCloseButtons.forEach((button) => button.addEventListener("click", closeFilterDialog));
+
+        filterDialog?.addEventListener("click", (event) => {
+            if (event.target === filterDialog) {
+                closeFilterDialog();
+            }
+        });
+
+        filterDialog?.addEventListener("cancel", () => {
+            restoreDialogFocus = true;
+        });
+
+        filterDialog?.addEventListener("close", () => {
+            document.documentElement.classList.remove("filter-dialog-active");
+            filterDialogOpen?.setAttribute("aria-expanded", "false");
+            if (restoreDialogFocus && mobileFilterQuery.matches) {
+                filterDialogOpen?.focus({ preventScroll: true });
+            }
+            restoreDialogFocus = false;
+        });
+
+        mobileFilterQuery.addEventListener("change", syncDialogMode);
 
         const restoreAndUpdate = () => {
             restoreFromUrl();
@@ -338,6 +460,7 @@
 
         window.addEventListener("popstate", restoreAndUpdate);
         window.addEventListener("pageshow", restoreAndUpdate);
+        syncDialogMode();
         restoreFromUrl();
         update();
     });
