@@ -9,7 +9,7 @@ capabilities:
 categories:
     - security-custody-account-management
     - payments-commerce
-data_updated_at: "2026-08-17"
+data_updated_at: "2026-08-25"
 description: A non-custodial QRL 1.x wallet for Android and iOS with biometric access, transaction history, multiple-wallet support, contacts, custom nodes, and QRL purchasing through Banxa.
 display_status: Stable · Mainnet
 features:
@@ -17,6 +17,10 @@ features:
     - Biometric and passcode access controls
     - Multiple wallets, contacts, custom nodes, and transaction export
     - In-app QRL purchasing through Banxa
+gallery:
+    - type: image
+      path: qrl-mobile-wallet/google-play-gallery.png
+      caption: Official Google Play screenshots showing wallet balances, transfers, community links, multilingual access, and transaction details.
 id: qrl-mobile-wallet
 keywords:
     - wallet

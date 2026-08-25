@@ -43,9 +43,13 @@ links:
     url: https://apps.apple.com/app/qrl-mobile/id6448219494
     platform: ios
 listed_at: '2026-08-17'
-data_updated_at: '2026-08-17'
+data_updated_at: '2026-08-25'
 features:
   - Send, receive, and manage QRL from Android and iOS devices
   - Biometric and passcode access controls
   - Multiple wallets, contacts, custom nodes, and transaction export
   - In-app QRL purchasing through Banxa
+gallery:
+  - type: image
+    path: qrl-mobile-wallet/google-play-gallery.png
+    caption: Official Google Play screenshots showing wallet balances, transfers, community links, multilingual access, and transaction details.

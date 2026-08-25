@@ -10,7 +10,7 @@ categories:
     - security-custody-account-management
     - payments-commerce
     - assets-tokenization
-data_updated_at: "2026-06-09"
+data_updated_at: "2026-08-25"
 description: A Chromium-based browser extension wallet for creating and importing QRL accounts, sending transactions, connecting to dApps, and managing QRC-20 tokens.
 display_status: Beta · Testnet
 features:
@@ -19,6 +19,10 @@ features:
     - QRL transaction sending with gas fee estimates
     - EIP-1193 and EIP-6963 dApp connectivity
     - QRC-20 token import and transfer support
+gallery:
+    - type: image
+      path: qrl-web3-wallet/preview-cover.png
+      caption: QRL Web3 Wallet interface collage showing account management, network selection, dApp connection, and transaction flows.
 id: qrl-web3-wallet
 keywords:
     - wallet

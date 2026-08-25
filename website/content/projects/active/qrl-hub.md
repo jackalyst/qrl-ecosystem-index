@@ -8,7 +8,7 @@ capabilities:
     - news
 categories:
     - education-research-ecosystem
-data_updated_at: "2026-05-29"
+data_updated_at: "2026-08-25"
 description: A community-maintained educational website covering QRL, quantum computing threats, blockchain security, quantum news, and QRL 2.0 updates.
 display_status: Stable
 features:
@@ -16,6 +16,16 @@ features:
     - Quantum computing and blockchain security news
     - QRL 2.0 updates and builder-oriented information
     - Multilingual website content
+gallery:
+    - type: image
+      path: qrl-hub/homepage.jpg
+      caption: QRL Hub homepage introducing QRL's quantum-safe history and the transition to QRL 2.0.
+    - type: image
+      path: qrl-hub/qubit-tracker.jpg
+      caption: Qubit Tracker comparing current logical-qubit records with estimates for breaking Bitcoin signatures.
+    - type: image
+      path: qrl-hub/qrl-2-guide.jpg
+      caption: QRL 2.0 guide covering the live testnet, EVM-compatible smart contracts, and independent security audits.
 id: qrl-hub
 keywords:
     - education

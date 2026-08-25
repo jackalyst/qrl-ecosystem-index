@@ -6,6 +6,7 @@ secondary_categories: []
 capabilities:
   - explorer
   - analytics
+  - faucet
 platforms:
   - web
 keywords:
@@ -38,7 +39,7 @@ links:
     url: https://zondscan.com/
     primary: true
 listed_at: '2026-06-09'
-data_updated_at: '2026-07-14'
+data_updated_at: '2026-08-25'
 features:
   - Real-time QRL Zond blockchain data exploration
   - Transaction, block, smart contract, and validator views
@@ -48,6 +49,16 @@ features:
 logos:
   - path: zondscan/icon.png
     description: ZondScan logo
+gallery:
+  - type: image
+    path: zondscan/network-overview.jpg
+    caption: Live Zond network overview with chain statistics, recent blocks, and transactions.
+  - type: image
+    path: zondscan/latest-blocks.jpg
+    caption: Latest synced Zond blocks with hashes, transaction counts, timestamps, and gas usage.
+  - type: image
+    path: zondscan/validators.jpg
+    caption: Validator dashboard with epoch progress, staking totals, status distribution, and network trends.
 long_description: |
   ZondScan is a DigitalGuards block explorer for the QRL Zond network. It
   provides a web interface for exploring blocks, transactions, smart contracts,

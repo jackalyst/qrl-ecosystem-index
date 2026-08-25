@@ -9,7 +9,7 @@ capabilities:
 categories:
     - network-operations
     - assets-tokenization
-data_updated_at: "2026-08-24"
+data_updated_at: "2026-08-25"
 description: The official explorer for the QRL 1.x mainnet, providing block, transaction, address, token, rich-list, peer, mempool, network-statistics, and JSON API views backed by a connected QRL node.
 display_status: Stable · Mainnet
 features:
@@ -24,6 +24,9 @@ gallery:
     - type: image
       path: qrl-block-explorer/latest-blocks.jpg
       caption: Latest-blocks view showing pagination and recent block height, transaction, reward, interval, and miner details.
+    - type: image
+      path: qrl-block-explorer/rich-list.jpg
+      caption: Rich-list view ranking leading QRL addresses by balance and percentage of total supply.
 id: qrl-block-explorer
 keywords:
     - explorer
