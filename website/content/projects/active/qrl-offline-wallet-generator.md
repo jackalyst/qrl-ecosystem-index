@@ -8,7 +8,7 @@ capabilities:
     - key-management
 categories:
     - security-custody-account-management
-data_updated_at: "2026-08-17"
+data_updated_at: "2026-08-24"
 description: An official single-file QRL 1.x wallet generator designed for air-gapped use, with locally generated XMSS keys, encrypted or unencrypted JSON export, printable output, checksums, and build attestations.
 display_status: Stable · Mainnet
 features:
@@ -16,6 +16,13 @@ features:
     - Local XMSS key generation with no network connection required
     - Encrypted JSON, unencrypted JSON, print, and PDF export
     - Published SHA-256 checksums and GitHub build attestations
+gallery:
+    - type: image
+      path: qrl-offline-wallet-generator/generator-home.jpg
+      caption: Wallet generator start screen with hash-function and XMSS tree-height options plus existing-wallet regeneration.
+    - type: image
+      path: qrl-offline-wallet-generator/offline-documentation.jpg
+      caption: Offline-use documentation covering release verification, configuration, generation, and wallet output.
 id: qrl-offline-wallet-generator
 keywords:
     - wallet

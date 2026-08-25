@@ -452,7 +452,7 @@ main {
 .project-spotlight-media {
     display: grid;
     overflow: hidden;
-    aspect-ratio: 8 / 5;
+    aspect-ratio: 16 / 9;
     place-items: center;
     border-bottom: 1px solid var(--line);
     background: var(--surface-muted);

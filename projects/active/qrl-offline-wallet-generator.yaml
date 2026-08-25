@@ -49,9 +49,16 @@ links:
   - type: documentation
     url: https://docs.theqrl.org/use/wallet/offline/
 listed_at: '2026-08-17'
-data_updated_at: '2026-08-17'
+data_updated_at: '2026-08-24'
 features:
   - Self-contained HTML release for air-gapped wallet generation
   - Local XMSS key generation with no network connection required
   - Encrypted JSON, unencrypted JSON, print, and PDF export
   - Published SHA-256 checksums and GitHub build attestations
+gallery:
+  - type: image
+    path: qrl-offline-wallet-generator/generator-home.jpg
+    caption: Wallet generator start screen with hash-function and XMSS tree-height options plus existing-wallet regeneration.
+  - type: image
+    path: qrl-offline-wallet-generator/offline-documentation.jpg
+    caption: Offline-use documentation covering release verification, configuration, generation, and wallet output.
