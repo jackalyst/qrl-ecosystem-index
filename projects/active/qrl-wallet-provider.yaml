@@ -38,9 +38,13 @@ links:
     url: https://www.npmjs.com/package/@theqrl/qrl-wallet-provider
     primary: true
 listed_at: '2026-08-17'
-data_updated_at: '2026-08-17'
+data_updated_at: '2026-08-24'
 features:
   - EIP-6963 wallet discovery and announcement
   - Ethereum-style request and event provider interface
   - PostMessage streams between dApps and the browser extension
   - Published TypeScript package for QRL dApp integrations
+gallery:
+  - type: image
+    path: qrl-wallet-provider/provider-architecture.jpg
+    caption: Architecture overview showing a browser dApp connected to the QRL wallet extension through the wallet provider.
