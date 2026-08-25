@@ -10,7 +10,7 @@ categories:
     - security-custody-account-management
     - payments-commerce
     - assets-tokenization
-data_updated_at: "2026-08-17"
+data_updated_at: "2026-08-24"
 description: The official QRL 1.x wallet, available as a browser application and Electron desktop client for Windows, macOS, and Linux, with local XMSS operations and Ledger hardware-wallet support.
 display_status: Stable · Mainnet + Testnet
 features:
@@ -18,6 +18,13 @@ features:
     - Electron desktop releases for Windows, macOS, and Linux
     - Wallet creation, import, transactions, tokens, messages, and on-chain tools
     - Ledger Nano X and Nano S Plus integration
+gallery:
+    - type: image
+      path: qrl-wallet/create-wallet.jpg
+      caption: Web Wallet creation screen with passphrase, XMSS tree-height, and hash-function options.
+    - type: image
+      path: qrl-wallet/open-wallet.jpg
+      caption: Web Wallet access screen with wallet-file selection, optional passphrase, and unlock controls.
 id: qrl-wallet
 keywords:
     - wallet

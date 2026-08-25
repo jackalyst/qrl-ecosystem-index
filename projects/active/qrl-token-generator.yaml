@@ -35,9 +35,16 @@ links:
     url: https://qrl-zond.com/create-token
     primary: true
 listed_at: '2026-08-17'
-data_updated_at: '2026-08-17'
+data_updated_at: '2026-08-24'
 features:
   - No-code fungible token deployment on the QRL 2.0 testnet
   - Configurable token name, symbol, supply, and decimals
   - Optional minting, burning, ownership, and recipient controls
   - Optional maximum wallet holdings and transaction limits
+gallery:
+  - type: image
+    path: qrl-token-generator/create-token-form.jpg
+    caption: Configured token creation form showing name, symbol, initial supply, and decimal settings.
+  - type: image
+    path: qrl-token-generator/token-options.jpg
+    caption: Token options for minting, burning, recipient, owner, wallet-cap, and transaction-limit controls.

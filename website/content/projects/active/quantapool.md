@@ -15,7 +15,7 @@ categories:
     - finance
     - network-operations
     - assets-tokenization
-data_updated_at: "2026-07-14"
+data_updated_at: "2026-08-25"
 deployments:
     - id: qrl-2-testnet-v2
       network: qrl-2-testnet-v2
@@ -34,6 +34,16 @@ features:
     - Withdrawal request and claim flow with protocol-enforced delay
     - Public pool, validator, reward, and contract statistics
     - QRL Wallet browser extension connectivity
+gallery:
+    - type: image
+      path: quantapool/staking.jpg
+      caption: Liquid-staking screen showing QRL input, stQRL output, exchange rate, minimum deposit, and protocol status.
+    - type: image
+      path: quantapool/protocol-stats.jpg
+      caption: Protocol statistics for the staking pool, validators, rewards, withdrawal reserve, and QRL 2.0 testnet contracts.
+    - type: image
+      path: quantapool/how-it-works.jpg
+      caption: Plain-language guide explaining pooled validators, stQRL shares, and reward-driven exchange-rate growth.
 id: quantapool
 keywords:
     - liquid-staking
