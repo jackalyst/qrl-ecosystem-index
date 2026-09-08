@@ -1,0 +1,116 @@
+{{- $kind := .kind -}}
+{{- $variant := .variant -}}
+{{- $aria := .aria -}}
+<div class="og-card og-card-{{ $kind }} og-card-{{ $variant }}" role="img" aria-label="{{ $aria }}">
+    {{ if and (eq $kind "home") (eq $variant "signal") }}
+    <div class="og-card-home-field">
+        <div class="og-card-copy">
+            <p class="og-card-kicker">Homepage / ecosystem index</p>
+            <h3 class="og-card-title">A clearer view of<br>what’s being built<br>on QRL.</h3>
+            <p class="og-card-subtitle">Projects and tools across QRL 1.x + 2.0.</p>
+        </div>
+        <div class="og-card-home-signal-panel">
+            <p class="og-card-panel-label">Explore the ecosystem</p>
+            <div class="og-card-signal-row"><strong>QRL 1.x</strong><span>Established chain</span></div>
+            <div class="og-card-signal-row"><strong>QRL 2.0</strong><span>Build the next layer</span></div>
+            <div class="og-card-signal-rule"></div>
+            <div class="og-card-signal-foot"><span>Index</span><span>Browse by need</span></div>
+        </div>
+    </div>
+    <div class="og-card-footer">
+        {{ partial "og-card-brand.html" (dict "dark" false) }}
+        <span class="og-card-domain">qrlecosystem.com</span>
+    </div>
+    {{ else if and (eq $kind "home") (eq $variant "ledger") }}
+    <div class="og-card-ledger-field">
+        <div class="og-card-ledger-top">
+            <p class="og-card-kicker">Homepage / QRL Ecosystem Index</p>
+            <span class="og-card-ledger-mark">1.x <i>/</i> 2.0</span>
+        </div>
+        <div class="og-card-ledger-main">
+            <div class="og-card-ledger-stat"><strong>49</strong><span>projects listed</span></div>
+            <div class="og-card-ledger-copy">
+                <h3 class="og-card-title">Explore what’s<br>being built<br>across QRL.</h3>
+                <p class="og-card-subtitle">A structured view of projects, tools, services, and resources.</p>
+            </div>
+        </div>
+        <div class="og-card-ledger-rail"><span>13 categories</span><span>5 project types</span><span>Community maintained</span></div>
+    </div>
+    <div class="og-card-footer og-card-footer-dark">
+        {{ partial "og-card-brand.html" (dict "dark" true) }}
+        <span class="og-card-domain">qrlecosystem.com</span>
+    </div>
+    {{ else if and (eq $kind "guide") (eq $variant "journey") }}
+    <div class="og-card-guide-field">
+        <div class="og-card-guide-copy">
+            <p class="og-card-kicker">Getting started / QRL 2.0 Testnet V2</p>
+            <h3 class="og-card-title">From zero to<br>deployed on<br>QRL 2.0.</h3>
+            <p class="og-card-subtitle">A path from node to wallet-connected dApp.</p>
+        </div>
+        <div class="og-card-journey-panel">
+            <p class="og-card-panel-label">Developer path</p>
+            <div class="og-card-journey-grid">
+                <span><b>01</b>Node</span><span><b>02</b>Sync</span><span><b>03</b>Wallet</span>
+                <span><b>04</b>Test funds</span><span><b>05</b>Contract</span><span><b>06</b>dApp</span>
+            </div>
+            <p class="og-card-journey-line">Run <i>→</i> fund <i>→</i> deploy <i>→</i> connect</p>
+        </div>
+    </div>
+    <div class="og-card-footer">
+        {{ partial "og-card-brand.html" (dict "dark" false) }}
+        <span class="og-card-domain">qrlecosystem.com</span>
+    </div>
+    {{ else if and (eq $kind "guide") (eq $variant "outcome") }}
+    <div class="og-card-outcome-field">
+        <div class="og-card-outcome-copy">
+            <p class="og-card-kicker">QRL 2.0 / Testnet V2</p>
+            <h3 class="og-card-title">A complete<br>testnet<br>development loop.</h3>
+            <p class="og-card-subtitle">Node, wallet, contract, and dApp in one guided path.</p>
+        </div>
+        <div class="og-card-outcome-route">
+            <span class="og-card-route-count">06 steps</span>
+            <div class="og-card-route-list"><span>Node</span><span>Sync</span><span>Wallet</span><span>Test funds</span><span>Contract</span><span>dApp</span></div>
+            <p>Build on QRL 2.0 <i>↗</i></p>
+        </div>
+    </div>
+    <div class="og-card-footer og-card-footer-dark">
+        {{ partial "og-card-brand.html" (dict "dark" true) }}
+        <span class="og-card-domain">qrlecosystem.com</span>
+    </div>
+    {{ else if eq $kind "project" }}
+    <div class="og-card-project-field">
+        <div class="og-card-project-copy">
+            <p class="og-card-kicker">Project / Application</p>
+            <h3 class="og-card-title">Quantascan</h3>
+            <p class="og-card-project-role">Analytics-first block explorer</p>
+            <p class="og-card-subtitle">Network-wide data for QRL 1.x + QRL 2.0.</p>
+            <div class="og-card-badges"><span>QRL 1.x</span><span>QRL 2.0</span><span>Web</span></div>
+        </div>
+        <figure class="og-card-project-media">
+            <img src="{{ "/images/screenshots/quantascan/homepage.png" | relURL }}" alt="Quantascan network dashboard">
+            <figcaption>Network analytics</figcaption>
+        </figure>
+    </div>
+    <div class="og-card-footer">
+        {{ partial "og-card-brand.html" (dict "dark" false) }}
+        <span class="og-card-domain">qrlecosystem.com</span>
+    </div>
+    {{ else if eq $kind "collection" }}
+    <div class="og-card-collection-field">
+        <div class="og-card-collection-copy">
+            <p class="og-card-kicker">Collection / Developer experience</p>
+            <h3 class="og-card-title">Tools for<br>building<br>on QRL.</h3>
+            <p class="og-card-subtitle">Build, test, deploy, and integrate QRL software.</p>
+        </div>
+        <div class="og-card-collection-panel">
+            <span class="og-card-collection-count">17</span>
+            <span class="og-card-collection-count-label">projects in this view</span>
+            <div class="og-card-collection-list"><span>Libraries</span><span>Compilers</span><span>SDKs</span><span>Deployment tools</span></div>
+        </div>
+    </div>
+    <div class="og-card-footer">
+        {{ partial "og-card-brand.html" (dict "dark" false) }}
+        <span class="og-card-domain">qrlecosystem.com</span>
+    </div>
+    {{ end }}
+</div>

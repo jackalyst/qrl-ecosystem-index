@@ -1,0 +1,6 @@
+{{- $dark := .dark -}}
+{{- $asset := "brand/qei.png" -}}
+{{- if $dark }}{{ $asset = "brand/qei-darkmode.png" }}{{ end -}}
+{{- with resources.Get $asset -}}
+<img class="og-card-wordmark" src="{{ .RelPermalink }}" alt="QRL Ecosystem Index">
+{{- end -}}

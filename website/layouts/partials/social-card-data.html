@@ -1,0 +1,61 @@
+{{- $description := .Description | default .Site.Params.description | plainify -}}
+{{- $card := dict "title" .Title "description" $description "image" .Site.Params.openGraphDefaultImage "alt" .Site.Title "type" "website" -}}
+
+{{- if .IsHome -}}
+    {{- $card = dict "title" "A clearer view of what’s being built on QRL." "description" "Projects and tools across QRL 1.x and QRL 2.0." "image" "/images/og/default.png" "alt" "QRL Ecosystem Index — ecosystem discovery" "type" "website" -}}
+{{- else if eq .Section "getting-started" -}}
+    {{- $card = dict "title" "From zero to deployed on QRL 2.0." "description" "A practical path from node to wallet-connected dApp." "image" "/images/og/getting-started.png" "alt" "Getting Started on QRL 2.0 — developer path from node to dApp" "type" "website" -}}
+{{- else if or (eq .Section "ideas") (and .File (eq .File.ContentBaseName "ideas")) -}}
+    {{- $card = dict "title" "See what’s missing. Then build it." "description" "Coverage gaps and builder opportunities across the QRL 2.0 ecosystem." "image" "/images/og/editorial/ideas.png" "alt" "QRL 2.0 ideas — ecosystem coverage gaps and builder opportunities" "type" "article" -}}
+{{- else if eq .Section "about" -}}
+    {{- $card = dict "title" "About the QRL Ecosystem Index" "description" "A structured, community-maintained view of projects across QRL 1.x and QRL 2.0." "image" "/images/og/editorial/about.png" "alt" "About the QRL Ecosystem Index" "type" "article" -}}
+{{- else if and .IsPage (eq .Type "projects") -}}
+    {{- $card = dict "title" .Title "description" $description "image" (printf "/images/og/projects/%s.png" .File.ContentBaseName) "alt" (printf "%s — QRL Ecosystem project listing" .Title) "type" "website" -}}
+{{- else if and (eq .Kind "term") (eq .Data.Plural "categories") -}}
+    {{- $meta := partial "category-meta.html" .Data.Term -}}
+    {{- $termDescription := $description -}}
+    {{- with index $meta "category" }}{{ $termDescription = .description | plainify }}{{ end -}}
+    {{- $termTitle := printf "Explore %s on QRL." (.Title | lower) -}}
+    {{- if eq .Data.Term "developer-experience" }}{{ $termTitle = "Tools for building on QRL." }}{{ end -}}
+    {{- $card = dict "title" $termTitle "description" $termDescription "image" (printf "/images/og/collections/categories/%s.png" .Data.Term) "alt" (printf "%s collection — QRL Ecosystem Index" .Title) "type" "website" -}}
+{{- else if and (eq .Kind "term") (eq .Data.Plural "capabilities") -}}
+    {{- $meta := partial "capability-meta.html" .Data.Term -}}
+    {{- $termDescription := $description -}}
+    {{- with $meta }}{{ $termDescription = .description | plainify }}{{ end -}}
+    {{- $card = dict "title" (printf "Find %s tools on QRL." (.Title | lower)) "description" $termDescription "image" (printf "/images/og/collections/capabilities/%s.png" .Data.Term) "alt" (printf "%s capability collection — QRL Ecosystem Index" .Title) "type" "website" -}}
+{{- else if and (eq .Kind "term") (eq .Data.Plural "project-types") -}}
+    {{- $meta := partial "project-type-meta.html" .Data.Term -}}
+    {{- $termDescription := $description -}}
+    {{- with $meta }}{{ $termDescription = .description | plainify }}{{ end -}}
+    {{- $card = dict "title" (printf "Browse %s projects." (.Title | lower)) "description" $termDescription "image" (printf "/images/og/collections/project-types/%s.png" .Data.Term) "alt" (printf "%s project collection — QRL Ecosystem Index" .Title) "type" "website" -}}
+{{- else if and (eq .Kind "term") (eq .Data.Plural "publishers") -}}
+    {{- $card = dict "title" (printf "Projects by %s." .Title) "description" (printf "Projects published by %s." .Title) "image" (printf "/images/og/collections/publishers/%s.png" (urlize .Data.Term)) "alt" (printf "Projects published by %s — QRL Ecosystem Index" .Title) "type" "website" -}}
+{{- else if and (eq .Kind "term") (eq .Data.Plural "maintainers") -}}
+    {{- $card = dict "title" (printf "Projects maintained by %s." .Title) "description" (printf "Projects maintained by %s." .Title) "image" (printf "/images/og/collections/maintainers/%s.png" (urlize .Data.Term)) "alt" (printf "Projects maintained by %s — QRL Ecosystem Index" .Title) "type" "website" -}}
+{{- else if eq .Kind "taxonomy" -}}
+    {{- $taxonomyTitle := .Title -}}
+    {{- $taxonomyDescription := $description -}}
+    {{- $taxonomyImage := printf "/images/og/default.png" -}}
+    {{- if eq .Data.Plural "categories" }}
+        {{- $taxonomyTitle = "Explore QRL use cases." -}}
+        {{- $taxonomyDescription = "Browse projects by the problem space they address." -}}
+        {{- $taxonomyImage = "/images/og/collections/categories-index.png" -}}
+    {{- else if eq .Data.Plural "capabilities" }}
+        {{- $taxonomyTitle = "Find tools by capability." -}}
+        {{- $taxonomyDescription = "Compare the practical building blocks available across the ecosystem." -}}
+        {{- $taxonomyImage = "/images/og/collections/capabilities-index.png" -}}
+    {{- else if eq .Data.Plural "project-types" }}
+        {{- $taxonomyTitle = "Browse the QRL project landscape." -}}
+        {{- $taxonomyDescription = "Explore protocols, applications, infrastructure, tooling, and resources." -}}
+        {{- $taxonomyImage = "/images/og/collections/project-types-index.png" -}}
+    {{- else if eq .Data.Plural "publishers" }}
+        {{- $taxonomyTitle = "Explore projects by publisher." -}}
+        {{- $taxonomyDescription = "Browse the people and organizations publishing projects in the index." -}}
+    {{- else if eq .Data.Plural "maintainers" }}
+        {{- $taxonomyTitle = "Explore projects by maintainer." -}}
+        {{- $taxonomyDescription = "Browse the people maintaining projects in the index." -}}
+    {{- end -}}
+    {{- $card = dict "title" $taxonomyTitle "description" $taxonomyDescription "image" $taxonomyImage "alt" (printf "%s — QRL Ecosystem Index" $taxonomyTitle) "type" "website" -}}
+{{- end -}}
+
+{{- return $card -}}

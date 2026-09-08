@@ -1,0 +1,219 @@
+{{ define "main" }}
+<section class="og-review-hero">
+    <div class="og-review-hero-copy">
+        <p class="eyebrow">Design review / social sharing</p>
+        <h1>OpenGraph card system</h1>
+        <p class="page-dek">A page-first family of previews for the QRL Ecosystem Index — designed to make a shared URL legible before the surrounding post does.</p>
+    </div>
+    <div class="og-review-hero-meta" aria-label="Prototype constraints">
+        <span>1200 × 630 canvas</span>
+        <span>600 × 315 check</span>
+        <span>300 × 158 check</span>
+    </div>
+</section>
+
+<section class="og-review-section og-review-intent" aria-labelledby="intent-title">
+    <div class="og-review-heading">
+        <p class="eyebrow">Design decision</p>
+        <h2 id="intent-title">Make the page the headline.</h2>
+    </div>
+    <div class="og-review-intent-grid">
+        <div class="og-review-callout">
+            <p class="og-review-callout-label">Recommended direction</p>
+            <h3>Editorial signal + restrained system.</h3>
+            <p>Each card leads with the page’s job — discovery, onboarding, project evaluation, or collection browsing — and keeps QRL Ecosystem provenance as the supporting third read.</p>
+        </div>
+        <div class="og-review-hierarchy" aria-label="Information hierarchy">
+            <div><b>01</b><span>First read</span><strong>What this specific page is about</strong></div>
+            <div><b>02</b><span>Second read</span><strong>Why it is useful or relevant</strong></div>
+            <div><b>03</b><span>Third read</span><strong>QRL Ecosystem provenance + context</strong></div>
+        </div>
+    </div>
+</section>
+
+<section class="og-review-section" aria-labelledby="baseline-title">
+    <div class="og-review-heading og-review-heading-row">
+        <div>
+            <p class="eyebrow">Current baseline</p>
+            <h2 id="baseline-title">The existing cards have a solid visual base, but a narrow system.</h2>
+        </div>
+        <p class="og-review-heading-note">Both are 1200 × 630 PNGs generated outside the Hugo templates.</p>
+    </div>
+    <div class="og-review-baseline-grid">
+        <figure class="og-baseline-card">
+            <img src="{{ "/images/og-review/current-default.png" | relURL }}" alt="Current generic QRL Ecosystem Index social card">
+            <figcaption><strong>Current default</strong><span>Used by the homepage, Getting Started, collections, and most editorial pages.</span></figcaption>
+        </figure>
+        <figure class="og-baseline-card">
+            <img src="{{ "/images/og-review/current-quantascan.png" | relURL }}" alt="Current Quantascan social card">
+            <figcaption><strong>Current project card</strong><span>Better page specificity, but the full listing description is still doing too much work.</span></figcaption>
+        </figure>
+    </div>
+    <div class="og-review-diagnosis">
+        <p><strong>Diagnosis.</strong> The default card says “QRL Ecosystem Index” but not what the shared page helps someone do. Getting Started therefore looks like another directory page, and a collection page loses its browse-by-facet meaning. Project cards are closer: the name and screenshot lead, but they need a condensed descriptor and a small, deliberate set of QRL context badges.</p>
+    </div>
+</section>
+
+<section class="og-review-section" aria-labelledby="homepage-title">
+    <div class="og-review-heading og-review-heading-row">
+        <div>
+            <p class="eyebrow">Archetype 01 / homepage</p>
+            <h2 id="homepage-title">Ecosystem discovery</h2>
+        </div>
+        <p class="og-review-heading-note">The proposition should do more work than the word “index.”</p>
+    </div>
+    <div class="og-review-options">
+        <article class="og-review-option og-review-option-recommended">
+            <div class="og-review-option-head"><span>Option A</span><strong>Recommended / proposition-led</strong></div>
+            <figure class="og-card-figure">
+                <div class="og-card-stage"><div class="og-card-safe-label">1200 × 630 · safe area shown by composition</div>{{ partial "og-card-prototype.html" (dict "kind" "home" "variant" "signal" "aria" "Homepage card: A clearer view of what’s being built on QRL, with QRL 1.x and QRL 2.0 as the supporting context.") }}</div>
+                <figcaption><strong>Why it wins</strong><span>It keeps the current proposition as the first read, then uses the two QRL generations as meaningful orientation rather than decoration.</span></figcaption>
+            </figure>
+        </article>
+        <article class="og-review-option">
+            <div class="og-review-option-head"><span>Option B</span><strong>Alternate / breadth-led</strong></div>
+            <figure class="og-card-figure">
+                <div class="og-card-stage"><div class="og-card-safe-label">1200 × 630 · safe area shown by composition</div>{{ partial "og-card-prototype.html" (dict "kind" "home" "variant" "ledger" "aria" "Homepage card: 49 projects listed across QRL 1.x and QRL 2.0, presented as an ecosystem index.") }}</div>
+                <figcaption><strong>Useful, but secondary</strong><span>The scale signal is memorable, but counts age quickly and do not explain why the directory matters.</span></figcaption>
+            </figure>
+        </article>
+    </div>
+</section>
+
+<section class="og-review-section" aria-labelledby="guide-title">
+    <div class="og-review-heading og-review-heading-row">
+        <div>
+            <p class="eyebrow">Archetype 02 / Getting Started</p>
+            <h2 id="guide-title">Developer onboarding</h2>
+        </div>
+        <p class="og-review-heading-note">This is a path, not another index view.</p>
+    </div>
+    <div class="og-review-options">
+        <article class="og-review-option og-review-option-recommended">
+            <div class="og-review-option-head"><span>Option A</span><strong>Recommended / journey-led</strong></div>
+            <figure class="og-card-figure">
+                <div class="og-card-stage"><div class="og-card-safe-label">1200 × 630 · safe area shown by composition</div>{{ partial "og-card-prototype.html" (dict "kind" "guide" "variant" "journey" "aria" "Getting Started card: From zero to deployed on QRL 2.0, with the six-step developer journey from node to dApp.") }}</div>
+                <figcaption><strong>Why it wins</strong><span>The promised outcome and the Node → Sync → Wallet → Test funds → Contract → dApp sequence are both visible in one scan.</span></figcaption>
+            </figure>
+        </article>
+        <article class="og-review-option">
+            <div class="og-review-option-head"><span>Option B</span><strong>Alternate / outcome-led</strong></div>
+            <figure class="og-card-figure">
+                <div class="og-card-stage"><div class="og-card-safe-label">1200 × 630 · safe area shown by composition</div>{{ partial "og-card-prototype.html" (dict "kind" "guide" "variant" "outcome" "aria" "Getting Started card: A complete QRL 2.0 Testnet V2 development loop, shown as six steps.") }}</div>
+                <figcaption><strong>Clear, but less direct</strong><span>The loop metaphor is strong, though the “from zero to deployed” promise is less immediate than in the recommended composition.</span></figcaption>
+            </figure>
+        </article>
+    </div>
+</section>
+
+<section class="og-review-section" aria-labelledby="project-title">
+    <div class="og-review-heading og-review-heading-row">
+        <div>
+            <p class="eyebrow">Archetype 03 / project page</p>
+            <h2 id="project-title">Project evaluation</h2>
+        </div>
+        <p class="og-review-heading-note">Answer “what is this?” before “who lists it?”</p>
+    </div>
+    <figure class="og-card-figure og-card-figure-single">
+        <div class="og-card-stage"><div class="og-card-safe-label">1200 × 630 · project image stays subordinate to the descriptor</div>{{ partial "og-card-prototype.html" (dict "kind" "project" "variant" "default" "aria" "Project card: Quantascan, an analytics-first block explorer for QRL 1.x and QRL 2.0, with a network dashboard image.") }}</div>
+        <figcaption><strong>Project rule</strong><span>Project name first; concise role second; at most three useful context badges; image as evidence, not as a competing headline.</span></figcaption>
+    </figure>
+</section>
+
+<section class="og-review-section" aria-labelledby="collection-title">
+    <div class="og-review-heading og-review-heading-row">
+        <div>
+            <p class="eyebrow">Archetype 04 / category or collection</p>
+            <h2 id="collection-title">Browse by facet</h2>
+        </div>
+        <p class="og-review-heading-note">Translate the collection’s organizing idea into a useful promise.</p>
+    </div>
+    <figure class="og-card-figure og-card-figure-single">
+        <div class="og-card-stage"><div class="og-card-safe-label">1200 × 630 · category meaning leads; count supports</div>{{ partial "og-card-prototype.html" (dict "kind" "collection" "variant" "default" "aria" "Collection card: Tools for building on QRL, covering libraries, compilers, SDKs, and deployment tools.") }}</div>
+        <figcaption><strong>Collection rule</strong><span>Use the facet label as context, but rewrite the title as a benefit or organizing idea. The count is proof of breadth, not the headline.</span></figcaption>
+    </figure>
+</section>
+
+<section class="og-review-section og-review-scale" aria-labelledby="scale-title">
+    <div class="og-review-heading">
+        <p class="eyebrow">Thumbnail check</p>
+        <h2 id="scale-title">Recommended cards at 600 × 315 and 300 × 158.</h2>
+        <p class="og-review-heading-note">The cards keep one strong message, one supporting cue, and a quiet provenance line as they shrink.</p>
+    </div>
+    <div class="og-scale-group">
+        <div class="og-scale-label"><span>600 × 315</span><small>Feed preview</small></div>
+        <div class="og-scale-grid og-scale-grid-medium">
+            <div>{{ partial "og-card-prototype.html" (dict "kind" "home" "variant" "signal" "aria" "Homepage recommendation at 600 by 315 pixels.") }}</div>
+            <div>{{ partial "og-card-prototype.html" (dict "kind" "guide" "variant" "journey" "aria" "Getting Started recommendation at 600 by 315 pixels.") }}</div>
+        </div>
+    </div>
+    <div class="og-scale-group">
+        <div class="og-scale-label"><span>300 × 158</span><small>Small thumbnail</small></div>
+        <div class="og-scale-grid og-scale-grid-small">
+            <div>{{ partial "og-card-prototype.html" (dict "kind" "home" "variant" "signal" "aria" "Homepage recommendation at 300 by 158 pixels.") }}</div>
+            <div>{{ partial "og-card-prototype.html" (dict "kind" "guide" "variant" "journey" "aria" "Getting Started recommendation at 300 by 158 pixels.") }}</div>
+            <div>{{ partial "og-card-prototype.html" (dict "kind" "project" "variant" "default" "aria" "Project recommendation at 300 by 158 pixels.") }}</div>
+            <div>{{ partial "og-card-prototype.html" (dict "kind" "collection" "variant" "default" "aria" "Collection recommendation at 300 by 158 pixels.") }}</div>
+        </div>
+    </div>
+</section>
+
+<section class="og-review-section" aria-labelledby="rules-title">
+    <div class="og-review-heading">
+        <p class="eyebrow">System rules</p>
+        <h2 id="rules-title">A reusable grammar with page-specific copy.</h2>
+    </div>
+    <div class="og-rules-grid">
+        <article class="og-rule"><p class="og-rule-number">01</p><h3>Typography</h3><p>Use Inter for the headline at a tight display size; use DM Sans for the supporting line; use IBM Plex Mono only for small labels and structured metadata.</p></article>
+        <article class="og-rule"><p class="og-rule-number">02</p><h3>Safe areas</h3><p>Keep primary copy inside roughly 80 px left/right and 60 px top/bottom on the 1200 × 630 canvas. Treat the outer edge as breathing room, not a content rail.</p></article>
+        <article class="og-rule"><p class="og-rule-number">03</p><h3>Brand placement</h3><p>Place the QRL Ecosystem wordmark once in the footer or upper-right. Keep the domain quiet. Provenance supports the page; it does not compete with it.</p></article>
+        <article class="og-rule"><p class="og-rule-number">04</p><h3>Title + subtitle</h3><p>Write a card title for scanning, not for metadata parity. Prefer one proposition or role plus one explanatory sentence; avoid full-page descriptions and visible ellipses.</p></article>
+        <article class="og-rule"><p class="og-rule-number">05</p><h3>Page-type labels</h3><p>Use a small, consistent kicker: Homepage / ecosystem index; Getting started / QRL 2.0; Project / application; Collection / developer experience.</p></article>
+        <article class="og-rule"><p class="og-rule-number">06</p><h3>Project imagery</h3><p>Use the first strong gallery image as evidence, cropped to a calm panel with a restrained frame. Never let a screenshot carry the page title.</p></article>
+        <article class="og-rule"><p class="og-rule-number">07</p><h3>Fallback treatment</h3><p>If no screenshot exists, use a quiet surface with the project’s logo or initials and a category accent. Keep it intentional; do not show an empty image frame.</p></article>
+        <article class="og-rule"><p class="og-rule-number">08</p><h3>Badge limits</h3><p>Show no more than three badges. Prefer the one or two QRL generations plus one practical context such as Web, Testnet, or Source available.</p></article>
+        <article class="og-rule"><p class="og-rule-number">09</p><h3>Long copy</h3><p>Derive a concise social summary from existing page and project data. If a project title exceeds two lines, reduce title size once; never compress body copy until it becomes unreadable.</p></article>
+    </div>
+</section>
+
+<section class="og-review-section og-review-implementation" aria-labelledby="implementation-title">
+    <div class="og-review-heading">
+        <p class="eyebrow">Production handoff</p>
+        <h2 id="implementation-title">What changes later in Hugo.</h2>
+    </div>
+    <div class="og-implementation-grid">
+        <div>
+            <h3>Reusable</h3>
+            <ul>
+                <li>1200 × 630 raster output, safe-area grid, typography, color tokens, footer wordmark, and domain treatment.</li>
+                <li>Four archetypes: ecosystem, guide, project, and collection.</li>
+                <li>Three metadata layers: page label, page message, restrained provenance.</li>
+            </ul>
+        </div>
+        <div>
+            <h3>Page-specific</h3>
+            <ul>
+                <li>Headline and subtitle, rewritten for the share context rather than copied verbatim from the H1 or description.</li>
+                <li>Project descriptor, selected QRL/network context, image, and fallback initials.</li>
+                <li>Collection organizing idea and current count, when the count adds useful context.</li>
+            </ul>
+        </div>
+        <div>
+            <h3>Recommended metadata/content changes</h3>
+            <ul>
+                <li>Keep project front matter unchanged; derive card copy from existing titles, descriptions, taxonomy definitions, QRL support, platforms, and gallery data.</li>
+                <li>Add collection descriptions to the taxonomy data so OG descriptions do not fall back to the site-wide default.</li>
+                <li>Generate explicit homepage, Getting Started, collection, and project assets; do not route every non-project URL to one default PNG.</li>
+            </ul>
+        </div>
+        <div>
+            <h3>Likely Hugo approach</h3>
+            <ul>
+                <li>Extend <code>social-meta.html</code> to resolve a page-type data object and set matching title/description/image fields for both OG and Twitter.</li>
+                <li>Refactor the Go card renderer into shared primitives plus four page-type renderers, with title wrapping and image fallback helpers.</li>
+                <li>Keep this prototype page as the visual contract for future card refinements.</li>
+            </ul>
+        </div>
+    </div>
+</section>
+{{ end }}

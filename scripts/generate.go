@@ -12,6 +12,7 @@ import (
 	"math"
 	"os"
 	"path/filepath"
+	"sort"
 	"strings"
 	"time"
 	"unicode"
@@ -225,7 +226,7 @@ func main() {
 	for _, p := range projects {
 		generateProjectPage(p)
 	}
-	if err := generateSocialCards(projects, "images", filepath.Join("website", "static", "images", "og")); err != nil {
+	if err := generateSocialCards(projects, classification, "images", filepath.Join("website", "static", "images", "og")); err != nil {
 		fmt.Fprintf(os.Stderr, "Error generating social preview cards: %v\n", err)
 		os.Exit(1)
 	}
@@ -798,22 +799,33 @@ const (
 var (
 	cardPaper       = color.RGBA{R: 244, G: 242, B: 235, A: 255}
 	cardInk         = color.RGBA{R: 20, G: 38, B: 49, A: 255}
-	cardMuted       = color.RGBA{R: 76, G: 92, B: 101, A: 255}
-	cardLine        = color.RGBA{R: 205, G: 210, B: 207, A: 255}
-	cardAccent      = color.RGBA{R: 42, G: 142, B: 154, A: 255}
-	cardAccentLight = color.RGBA{R: 215, G: 235, B: 234, A: 255}
+	cardMuted       = color.RGBA{R: 83, G: 100, B: 107, A: 255}
+	cardLine        = color.RGBA{R: 207, G: 214, B: 210, A: 255}
+	cardAccent      = color.RGBA{R: 7, G: 93, B: 164, A: 255}
+	cardAccentLight = color.RGBA{R: 219, G: 234, B: 242, A: 255}
+	cardAmber       = color.RGBA{R: 191, G: 118, B: 16, A: 255}
 	cardWhite       = color.RGBA{R: 255, G: 255, B: 255, A: 255}
 )
 
 type socialCardFonts struct {
 	label   font.Face
+	small   font.Face
 	title   font.Face
 	titleSm font.Face
 	body    font.Face
 	initial font.Face
 }
 
-func generateSocialCards(projects []Project, assetRoot, outputRoot string) error {
+type socialCollectionCard struct {
+	Path        string
+	Kicker      string
+	Title       string
+	Description string
+	Count       int
+	CountLabel  string
+}
+
+func generateSocialCards(projects []Project, classification Classification, assetRoot, outputRoot string) error {
 	if err := os.RemoveAll(outputRoot); err != nil {
 		return err
 	}
@@ -826,8 +838,29 @@ func generateSocialCards(projects []Project, assetRoot, outputRoot string) error
 	if err != nil {
 		return err
 	}
-	if err := writeSocialCard(filepath.Join(outputRoot, "default.png"), renderDefaultSocialCard(fonts)); err != nil {
-		return err
+	fixedCards := []struct {
+		path string
+		card image.Image
+	}{
+		{path: "default.png", card: renderHomepageSocialCard(fonts)},
+		{path: "getting-started.png", card: renderGettingStartedSocialCard(fonts)},
+		{path: filepath.Join("editorial", "about.png"), card: renderEditorialSocialCard("ABOUT THE INDEX", "A structured view of QRL projects.", "A community-maintained directory across QRL 1.x and QRL 2.0.", fonts)},
+		{path: filepath.Join("editorial", "ideas.png"), card: renderEditorialSocialCard("QRL 2.0 IDEAS", "See what’s missing. Then build it.", "Coverage gaps and builder opportunities across the QRL 2.0 ecosystem.", fonts)},
+	}
+	for _, item := range fixedCards {
+		if err := writeSocialCard(filepath.Join(outputRoot, item.path), item.card); err != nil {
+			return err
+		}
+	}
+
+	for _, collection := range socialCollectionCards(projects, classification) {
+		card, err := renderCollectionSocialCard(collection, fonts)
+		if err != nil {
+			return fmt.Errorf("%s: %w", collection.Path, err)
+		}
+		if err := writeSocialCard(filepath.Join(outputRoot, collection.Path), card); err != nil {
+			return err
+		}
 	}
 
 	for _, project := range projects {
@@ -840,6 +873,197 @@ func generateSocialCards(projects []Project, assetRoot, outputRoot string) error
 		}
 	}
 	return nil
+}
+
+func socialCollectionCards(projects []Project, classification Classification) []socialCollectionCard {
+	cards := []socialCollectionCard{
+		{
+			Path:        filepath.Join("collections", "categories-index.png"),
+			Kicker:      "COLLECTION / USE-CASE CATEGORIES",
+			Title:       "Explore QRL use cases.",
+			Description: "Browse projects by the problem space they address.",
+			Count:       len(classification.Categories),
+			CountLabel:  "categories represented",
+		},
+		{
+			Path:        filepath.Join("collections", "capabilities-index.png"),
+			Kicker:      "COLLECTION / CAPABILITIES",
+			Title:       "Find tools by capability.",
+			Description: "Compare the practical building blocks available across the ecosystem.",
+			Count:       len(classification.Capabilities),
+			CountLabel:  "capabilities represented",
+		},
+		{
+			Path:        filepath.Join("collections", "project-types-index.png"),
+			Kicker:      "COLLECTION / PROJECT TYPES",
+			Title:       "Browse the QRL project landscape.",
+			Description: "Explore protocols, applications, infrastructure, tooling, and resources.",
+			Count:       len(classification.ProjectTypes),
+			CountLabel:  "project types represented",
+		},
+	}
+
+	for _, category := range classification.Categories {
+		cards = append(cards, socialCollectionCard{
+			Path:        filepath.Join("collections", "categories", category.ID+".png"),
+			Kicker:      "COLLECTION / CATEGORY",
+			Title:       collectionTitle("category", category.Label),
+			Description: category.Description,
+			Count:       countCategoryProjects(projects, category.ID),
+			CountLabel:  "projects in this view",
+		})
+	}
+	for _, capability := range classification.Capabilities {
+		cards = append(cards, socialCollectionCard{
+			Path:        filepath.Join("collections", "capabilities", capability.ID+".png"),
+			Kicker:      "COLLECTION / CAPABILITY",
+			Title:       collectionTitle("capability", capability.Label),
+			Description: capability.Description,
+			Count:       countCapabilityProjects(projects, capability.ID),
+			CountLabel:  "projects in this view",
+		})
+	}
+	for _, projectType := range classification.ProjectTypes {
+		cards = append(cards, socialCollectionCard{
+			Path:        filepath.Join("collections", "project-types", projectType.TaxonomySlug+".png"),
+			Kicker:      "COLLECTION / PROJECT TYPE",
+			Title:       collectionTitle("project type", projectType.Label),
+			Description: projectType.Description,
+			Count:       countProjectTypeProjects(projects, projectType.ID),
+			CountLabel:  "projects in this view",
+		})
+	}
+
+	publisherCounts := make(map[string]int)
+	publisherLabels := make(map[string]string)
+	maintainerCounts := make(map[string]int)
+	maintainerLabels := make(map[string]string)
+	for _, project := range projects {
+		if name := strings.TrimSpace(project.Publisher.Name); name != "" {
+			slug := slugifyText(name)
+			publisherCounts[slug]++
+			publisherLabels[slug] = name
+		}
+		for _, maintainer := range project.Maintainers {
+			name := strings.TrimSpace(maintainer.Name)
+			if name == "" {
+				continue
+			}
+			slug := slugifyText(name)
+			maintainerCounts[slug]++
+			maintainerLabels[slug] = name
+		}
+	}
+	for _, slug := range sortedStringKeys(publisherLabels) {
+		cards = append(cards, socialCollectionCard{
+			Path:        filepath.Join("collections", "publishers", slug+".png"),
+			Kicker:      "COLLECTION / PUBLISHER",
+			Title:       collectionTitle("publisher", publisherLabels[slug]),
+			Description: "Projects published by " + publisherLabels[slug] + ".",
+			Count:       publisherCounts[slug],
+			CountLabel:  "projects in this view",
+		})
+	}
+	for _, slug := range sortedStringKeys(maintainerLabels) {
+		cards = append(cards, socialCollectionCard{
+			Path:        filepath.Join("collections", "maintainers", slug+".png"),
+			Kicker:      "COLLECTION / MAINTAINER",
+			Title:       collectionTitle("maintainer", maintainerLabels[slug]),
+			Description: "Projects maintained by " + maintainerLabels[slug] + ".",
+			Count:       maintainerCounts[slug],
+			CountLabel:  "projects in this view",
+		})
+	}
+
+	return cards
+}
+
+func countCategoryProjects(projects []Project, category string) int {
+	count := 0
+	for _, project := range projects {
+		if project.PrimaryCategory == category || containsString(project.SecondaryCategories, category) {
+			count++
+		}
+	}
+	return count
+}
+
+func countCapabilityProjects(projects []Project, capability string) int {
+	count := 0
+	for _, project := range projects {
+		if containsString(project.Capabilities, capability) {
+			count++
+		}
+	}
+	return count
+}
+
+func countProjectTypeProjects(projects []Project, projectType string) int {
+	count := 0
+	for _, project := range projects {
+		if project.ProjectType == projectType {
+			count++
+		}
+	}
+	return count
+}
+
+func containsString(values []string, target string) bool {
+	for _, value := range values {
+		if value == target {
+			return true
+		}
+	}
+	return false
+}
+
+func sortedStringKeys(values map[string]string) []string {
+	keys := make([]string, 0, len(values))
+	for key := range values {
+		keys = append(keys, key)
+	}
+	sort.Strings(keys)
+	return keys
+}
+
+func collectionTitle(kind, label string) string {
+	if kind == "category" && strings.EqualFold(label, "Developer experience") {
+		return "Tools for building on QRL."
+	}
+	cleanLabel := strings.ToLower(strings.TrimSpace(label))
+	switch kind {
+	case "category":
+		return "Explore " + cleanLabel + " on QRL."
+	case "capability":
+		return "Find " + cleanLabel + " tools on QRL."
+	case "project type":
+		return "Browse " + cleanLabel + " projects."
+	case "publisher":
+		return "Projects by " + label + "."
+	case "maintainer":
+		return "Projects maintained by " + label + "."
+	default:
+		return label
+	}
+}
+
+func slugifyText(value string) string {
+	var builder strings.Builder
+	dashPending := false
+	for _, r := range strings.ToLower(strings.TrimSpace(value)) {
+		if unicode.IsLetter(r) || unicode.IsNumber(r) {
+			if dashPending && builder.Len() > 0 {
+				builder.WriteByte('-')
+			}
+			builder.WriteRune(r)
+			dashPending = false
+			continue
+		}
+		if builder.Len() > 0 {
+			dashPending = true
+		}
+	}
+	return strings.Trim(builder.String(), "-")
 }
 
 func newSocialCardFonts() (socialCardFonts, error) {
@@ -856,6 +1080,10 @@ func newSocialCardFonts() (socialCardFonts, error) {
 	}
 
 	label, err := makeFace(bold, 18)
+	if err != nil {
+		return socialCardFonts{}, err
+	}
+	small, err := makeFace(bold, 14)
 	if err != nil {
 		return socialCardFonts{}, err
 	}
@@ -877,6 +1105,7 @@ func newSocialCardFonts() (socialCardFonts, error) {
 	}
 	return socialCardFonts{
 		label:   label,
+		small:   small,
 		title:   title,
 		titleSm: titleSm,
 		body:    body,
@@ -884,54 +1113,106 @@ func newSocialCardFonts() (socialCardFonts, error) {
 	}, nil
 }
 
-func renderDefaultSocialCard(fonts socialCardFonts) image.Image {
+func newSocialCard() *image.RGBA {
 	card := image.NewRGBA(image.Rect(0, 0, socialCardWidth, socialCardHeight))
 	draw.Draw(card, card.Bounds(), &image.Uniform{C: cardPaper}, image.Point{}, draw.Src)
 	drawCardBackground(card)
-	drawLabel(card, fonts.label, "QRL / COMMUNITY INDEX", 72, 64, cardAccent)
-	drawWrappedText(card, fonts.title, "QRL Ecosystem\nIndex", 72, 190, 600, 2, 76, cardInk)
-	drawWrappedText(card, fonts.body, "A community-maintained view of projects, tools, services, and resources across QRL 1.x and QRL 2.0.", 72, 410, 580, 3, 36, cardMuted)
-	drawCardMotif(card, "QI", fonts, 770, 90, 350, 410)
-	drawFooter(card, fonts)
 	return card
 }
 
+func renderHomepageSocialCard(fonts socialCardFonts) image.Image {
+	card := newSocialCard()
+	drawLabel(card, fonts.label, "HOMEPAGE / ECOSYSTEM INDEX", 80, 92, cardAmber)
+	drawWrappedTextNoEllipsis(card, fonts.title, "A clearer view of\nwhat’s being built\non QRL.", 80, 190, 570, 3, 70, cardInk)
+	drawWrappedTextNoEllipsis(card, fonts.body, "Projects and tools across QRL 1.x + 2.0.", 80, 395, 520, 2, 34, cardMuted)
+
+	panel := image.Rect(720, 80, 1120, 512)
+	drawPanelShadow(card, panel, 12)
+	drawRoundedRect(card, panel, 24, cardInk)
+	drawLabel(card, fonts.label, "EXPLORE THE ECOSYSTEM", 758, 140, cardAccentLight)
+	drawSignalRow(card, fonts, "QRL 1.x", "Established chain", 758, 222)
+	drawSignalRow(card, fonts, "QRL 2.0", "Build the next layer", 758, 330)
+	draw.Draw(card, image.Rect(758, 405, 1080, 407), &image.Uniform{C: color.RGBA{R: 91, G: 111, B: 122, A: 255}}, image.Point{}, draw.Src)
+	drawLabel(card, fonts.label, "INDEX", 758, 462, cardPaper)
+	drawLabel(card, fonts.label, "BROWSE BY NEED", 915, 462, cardPaper)
+	drawCardFooter(card, fonts, false)
+	return card
+}
+
+func renderGettingStartedSocialCard(fonts socialCardFonts) image.Image {
+	card := newSocialCard()
+	drawLabel(card, fonts.label, "GETTING STARTED / QRL 2.0 TESTNET V2", 80, 92, cardAmber)
+	drawWrappedTextNoEllipsis(card, fonts.title, "From zero to\ndeployed on\nQRL 2.0.", 80, 190, 570, 3, 70, cardInk)
+	drawWrappedTextNoEllipsis(card, fonts.body, "A path from node to wallet-connected dApp.", 80, 395, 520, 2, 34, cardMuted)
+
+	panel := image.Rect(720, 80, 1120, 512)
+	drawPanelShadow(card, panel, 12)
+	drawRoundedRect(card, panel, 24, cardAccent)
+	drawLabel(card, fonts.label, "DEVELOPER PATH", 758, 140, cardAccentLight)
+	steps := []string{"01 NODE", "02 SYNC", "03 WALLET", "04 FUNDS", "05 CONTRACT", "06 DAPP"}
+	for index, step := range steps {
+		column := index % 3
+		row := index / 3
+		x := 758 + column*106
+		y := 220 + row*104
+		draw.Draw(card, image.Rect(x, y-24, x+92, y-22), &image.Uniform{C: cardAccentLight}, image.Point{}, draw.Src)
+		drawLabel(card, fonts.small, step, x, y, cardWhite)
+	}
+	drawLabel(card, fonts.small, "RUN  →  FUND  →  DEPLOY  →  CONNECT", 758, 462, cardWhite)
+	drawCardFooter(card, fonts, false)
+	return card
+}
+
+func renderEditorialSocialCard(kicker, title, description string, fonts socialCardFonts) image.Image {
+	card := newSocialCard()
+	drawLabel(card, fonts.label, kicker, 80, 92, cardAmber)
+	drawWrappedTextNoEllipsis(card, fonts.title, title, 80, 205, 580, 3, 72, cardInk)
+	drawWrappedTextNoEllipsis(card, fonts.body, description, 80, 405, 540, 3, 34, cardMuted)
+
+	panel := image.Rect(760, 104, 1120, 490)
+	drawPanelShadow(card, panel, 12)
+	drawRoundedRect(card, panel, 24, cardInk)
+	drawLabel(card, fonts.label, "QRL / ECOSYSTEM INDEX", 800, 174, cardAccentLight)
+	drawLabel(card, fonts.titleSm, "READ", 800, 300, cardAccentLight)
+	drawLabel(card, fonts.label, "STRUCTURED CONTEXT", 800, 354, cardPaper)
+	drawLabel(card, fonts.label, "COMMUNITY MAINTAINED", 800, 414, cardPaper)
+	drawCardFooter(card, fonts, false)
+	return card
+}
+
+func renderCollectionSocialCard(collection socialCollectionCard, fonts socialCardFonts) (image.Image, error) {
+	card := newSocialCard()
+	drawLabel(card, fonts.label, collection.Kicker, 80, 92, cardAmber)
+	titleFace := fonts.title
+	if len([]rune(collection.Title)) > 28 {
+		titleFace = fonts.titleSm
+	}
+	drawWrappedTextNoEllipsis(card, titleFace, collection.Title, 80, 205, 570, 3, 72, cardInk)
+	drawWrappedTextNoEllipsis(card, fonts.body, compactCardText(collection.Description, 14), 80, 405, 540, 3, 34, cardMuted)
+
+	panel := image.Rect(720, 80, 1120, 512)
+	drawPanelShadow(card, panel, 12)
+	drawRoundedRect(card, panel, 24, cardAccent)
+	drawLabel(card, fonts.label, fmt.Sprintf("%d", collection.Count), 758, 270, cardWhite)
+	drawLabel(card, fonts.label, strings.ToUpper(collection.CountLabel), 758, 322, cardAccentLight)
+	draw.Draw(card, image.Rect(758, 370, 1080, 372), &image.Uniform{C: cardAccentLight}, image.Point{}, draw.Src)
+	drawLabel(card, fonts.label, "QRL 1.X + 2.0", 758, 426, cardWhite)
+	drawLabel(card, fonts.label, "COMMUNITY MAINTAINED", 758, 466, cardWhite)
+	drawCardFooter(card, fonts, false)
+	return card, nil
+}
+
 func renderProjectSocialCard(project Project, assetRoot string, fonts socialCardFonts) (image.Image, error) {
-	card := image.NewRGBA(image.Rect(0, 0, socialCardWidth, socialCardHeight))
-	draw.Draw(card, card.Bounds(), &image.Uniform{C: cardPaper}, image.Point{}, draw.Src)
-	drawCardBackground(card)
-
-	markRect := image.Rect(72, 74, 158, 160)
-	drawRoundedRect(card, markRect, 18, cardWhite)
-	drawRoundedBorder(card, markRect, 18, cardLine, 2)
-	logoDrawn := false
-	if len(project.Logos) > 0 && project.Logos[0].Path != "" {
-		logoPath := filepath.Join(assetRoot, "logos", filepath.FromSlash(project.Logos[0].Path))
-		logo, err := loadProjectLogo(logoPath, 66, 66)
-		if err != nil {
-			return nil, fmt.Errorf("load logo: %w", err)
-		}
-		drawImageContain(card, logo, image.Rect(82, 84, 148, 150))
-		logoDrawn = true
-	}
-	if !logoDrawn {
-		initials := projectInitials(project.Name)
-		drawCenteredText(card, fonts.label, initials, markRect, cardInk)
-	}
-
-	drawLabel(card, fonts.label, "QRL / ECOSYSTEM INDEX", 176, 105, cardAccent)
-	drawLabel(card, fonts.label, strings.ToUpper(projectTypeLabel(project.ProjectType)), 176, 143, cardMuted)
+	card := newSocialCard()
+	drawLabel(card, fonts.label, "PROJECT / "+strings.ToUpper(projectTypeLabel(project.ProjectType)), 80, 92, cardAmber)
 
 	titleFace := fonts.title
-	if len([]rune(project.Name)) > 18 {
+	if len([]rune(project.Name)) > 18 || len(wrapText(titleFace, project.Name, 540)) > 2 {
 		titleFace = fonts.titleSm
 	}
-	titleLines := wrapText(titleFace, project.Name, 570)
-	if len(titleLines) > 2 {
-		titleFace = fonts.titleSm
-	}
-	drawWrappedText(card, titleFace, project.Name, 72, 238, 570, 3, 68, cardInk)
-	drawWrappedText(card, fonts.body, strings.TrimSpace(project.Description), 72, 410, 570, 3, 35, cardMuted)
+	drawWrappedTextNoEllipsis(card, titleFace, project.Name, 80, 210, 560, 2, 68, cardInk)
+	drawWrappedTextNoEllipsis(card, fonts.body, projectDescriptor(project), 80, 350, 520, 2, 34, cardMuted)
+	drawBadgeRow(card, fonts, projectCardBadges(project), 80, 452)
 
 	if galleryImage, ok := firstGalleryImage(project.Gallery); ok {
 		screenshotPath := filepath.Join(assetRoot, "screenshots", filepath.FromSlash(galleryImage.Path))
@@ -941,10 +1222,10 @@ func renderProjectSocialCard(project Project, assetRoot string, fonts socialCard
 		}
 		drawScreenshotPanel(card, screenshot)
 	} else {
-		drawCardMotif(card, projectInitials(project.Name), fonts, 728, 58, 402, 476)
+		drawProjectFallbackPanel(card, project, assetRoot, fonts)
 	}
 
-	drawFooter(card, fonts)
+	drawCardFooter(card, fonts, false)
 	return card, nil
 }
 
@@ -957,15 +1238,79 @@ func firstGalleryImage(gallery []GalleryItem) (GalleryItem, bool) {
 	return GalleryItem{}, false
 }
 
+func projectDescriptor(project Project) string {
+	return compactCardText(project.Description, 10)
+}
+
+func compactCardText(value string, maxWords int) string {
+	value = strings.TrimSpace(strings.Join(strings.Fields(value), " "))
+	if value == "" {
+		return "QRL ecosystem project"
+	}
+	lower := strings.ToLower(value)
+	cutAt := -1
+	for _, marker := range []string{" for the qrl ", " for qrl ", ": ", " — "} {
+		if index := strings.Index(lower, marker); index > 24 && (cutAt == -1 || index < cutAt) {
+			cutAt = index
+		}
+	}
+	if cutAt > 0 {
+		value = strings.TrimSpace(value[:cutAt])
+	}
+	if sentenceEnd := strings.IndexAny(value, ".!? "); sentenceEnd > 0 && sentenceEnd < len(value)-1 && value[sentenceEnd] == '.' {
+		value = strings.TrimSpace(value[:sentenceEnd])
+	}
+	words := strings.Fields(value)
+	if len(words) > maxWords {
+		words = words[:maxWords]
+	}
+	return strings.Trim(strings.Join(words, " "), " ,;:")
+}
+
+func projectCardBadges(project Project) []string {
+	badges := make([]string, 0, 3)
+	for _, generation := range qrlGenerations(project) {
+		if len(badges) == 2 {
+			break
+		}
+		badges = append(badges, "QRL "+generation)
+	}
+	for _, platform := range project.Platforms {
+		if len(badges) == 3 {
+			break
+		}
+		badges = append(badges, strings.Title(strings.ReplaceAll(platform, "-", " ")))
+	}
+	if len(badges) < 3 {
+		for _, environment := range qrlEnvironments(project) {
+			if len(badges) == 3 {
+				break
+			}
+			label := strings.Title(strings.ReplaceAll(environment, "-", "/"))
+			if !containsString(badges, label) {
+				badges = append(badges, label)
+			}
+		}
+	}
+	return badges
+}
+
 func drawCardBackground(card *image.RGBA) {
 	draw.Draw(card, image.Rect(0, 0, 14, socialCardHeight), &image.Uniform{C: cardAccent}, image.Point{}, draw.Src)
+	gridInk := color.RGBA{R: 224, G: 222, B: 212, A: 255}
+	for x := 680; x < 1160; x += 48 {
+		draw.Draw(card, image.Rect(x, 54, x+1, 548), &image.Uniform{C: gridInk}, image.Point{}, draw.Over)
+	}
+	for y := 54; y < 548; y += 48 {
+		draw.Draw(card, image.Rect(680, y, 1160, y+1), &image.Uniform{C: gridInk}, image.Point{}, draw.Over)
+	}
 }
 
 func drawScreenshotPanel(card *image.RGBA, screenshot image.Image) {
-	contentWidth, contentHeight := fitImageDimensions(screenshot.Bounds(), 420, 450)
+	contentWidth, contentHeight := fitImageDimensions(screenshot.Bounds(), 390, 410)
 	frameWidth := contentWidth + 36
 	frameHeight := contentHeight + 36
-	available := image.Rect(684, 38, 1140, 524)
+	available := image.Rect(692, 72, 1132, 520)
 	left := available.Min.X + (available.Dx()-frameWidth)/2
 	top := available.Min.Y + (available.Dy()-frameHeight)/2
 	panelRect := image.Rect(left, top, left+frameWidth, top+frameHeight)
@@ -980,6 +1325,46 @@ func drawScreenshotPanel(card *image.RGBA, screenshot image.Image) {
 	draw.DrawMask(card, imageRect, fitted, image.Point{}, mask, image.Point{}, draw.Over)
 }
 
+func drawProjectFallbackPanel(card *image.RGBA, project Project, assetRoot string, fonts socialCardFonts) {
+	panel := image.Rect(720, 80, 1120, 512)
+	drawPanelShadow(card, panel, 12)
+	drawRoundedRect(card, panel, 24, cardInk)
+	drawLabel(card, fonts.label, "NO PREVIEW IMAGE", 758, 140, cardAccentLight)
+	markBounds := image.Rect(808, 174, 1032, 398)
+	drawCircle(card, image.Pt(920, 286), 106, cardAccent)
+	drawCircle(card, image.Pt(920, 286), 94, cardAccentLight)
+	drawCenteredText(card, fonts.initial, projectInitials(project.Name), markBounds, cardInk)
+	if len(project.Logos) > 0 && project.Logos[0].Path != "" {
+		logoPath := filepath.Join(assetRoot, "logos", filepath.FromSlash(project.Logos[0].Path))
+		if logo, err := loadProjectLogo(logoPath, 72, 72); err == nil {
+			drawImageContain(card, logo, image.Rect(884, 250, 956, 322))
+		}
+	}
+	drawLabel(card, fonts.label, "PROJECT MARK", 850, 458, cardPaper)
+}
+
+func drawPanelShadow(card *image.RGBA, panel image.Rectangle, offset int) {
+	drawRoundedRect(card, panel.Add(image.Pt(offset, offset)), 24, cardAccentLight)
+}
+
+func drawSignalRow(card *image.RGBA, fonts socialCardFonts, title, subtitle string, x, baseline int) {
+	draw.Draw(card, image.Rect(x, baseline-62, 1080, baseline-60), &image.Uniform{C: color.RGBA{R: 91, G: 111, B: 122, A: 255}}, image.Point{}, draw.Src)
+	drawLabel(card, fonts.titleSm, title, x, baseline, cardPaper)
+	drawLabel(card, fonts.label, subtitle, x, baseline+34, cardAccentLight)
+}
+
+func drawBadgeRow(card *image.RGBA, fonts socialCardFonts, badges []string, x, baseline int) {
+	currentX := x
+	for _, badge := range badges {
+		width := measureText(fonts.label, strings.ToUpper(badge)) + 28
+		bounds := image.Rect(currentX, baseline-26, currentX+width, baseline+12)
+		drawRoundedRect(card, bounds, 18, cardWhite)
+		drawRoundedBorder(card, bounds, 18, cardLine, 2)
+		drawCenteredText(card, fonts.label, strings.ToUpper(badge), bounds, cardMuted)
+		currentX += width + 12
+	}
+}
+
 func drawCardMotif(card *image.RGBA, initials string, fonts socialCardFonts, x, y, width, height int) {
 	rect := image.Rect(x, y, x+width, y+height)
 	drawRoundedRect(card, rect, 28, cardInk)
@@ -987,6 +1372,18 @@ func drawCardMotif(card *image.RGBA, initials string, fonts socialCardFonts, x, 
 	drawCircle(card, circleCenter, minInt(width, height)/3, cardAccent)
 	drawCircle(card, circleCenter, minInt(width, height)/3-12, cardAccentLight)
 	drawCenteredText(card, fonts.initial, initials, image.Rect(circleCenter.X-130, circleCenter.Y-100, circleCenter.X+130, circleCenter.Y+100), cardInk)
+}
+
+func drawCardFooter(card *image.RGBA, fonts socialCardFonts, dark bool) {
+	lineColor := color.Color(cardLine)
+	textColor := color.Color(cardMuted)
+	if dark {
+		lineColor = color.RGBA{R: 91, G: 111, B: 122, A: 255}
+		textColor = cardPaper
+	}
+	draw.Draw(card, image.Rect(80, 559, 1120, 561), &image.Uniform{C: lineColor}, image.Point{}, draw.Src)
+	drawLabel(card, fonts.label, "QRL / ECOSYSTEM INDEX", 80, 594, textColor)
+	drawLabel(card, fonts.label, "QRLECOSYSTEM.COM", 928, 594, textColor)
 }
 
 func drawFooter(card *image.RGBA, fonts socialCardFonts) {
@@ -1082,6 +1479,16 @@ func drawWrappedText(destination draw.Image, face font.Face, text string, x, bas
 	if len(lines) > maxLines {
 		lines = lines[:maxLines]
 		lines[maxLines-1] = ellipsize(face, lines[maxLines-1], maxWidth)
+	}
+	for index, line := range lines {
+		drawLabel(destination, face, line, x, baseline+index*lineHeight, ink)
+	}
+}
+
+func drawWrappedTextNoEllipsis(destination draw.Image, face font.Face, text string, x, baseline, maxWidth, maxLines, lineHeight int, ink color.Color) {
+	lines := wrapText(face, text, maxWidth)
+	if len(lines) > maxLines {
+		lines = lines[:maxLines]
 	}
 	for index, line := range lines {
 		drawLabel(destination, face, line, x, baseline+index*lineHeight, ink)

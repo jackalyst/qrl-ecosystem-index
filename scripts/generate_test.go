@@ -472,11 +472,14 @@ func TestGenerateSocialCardsWithAndWithoutProjectMedia(t *testing.T) {
 		},
 	}
 
-	if err := generateSocialCards(projects, assetRoot, outputRoot); err != nil {
+	if err := generateSocialCards(projects, Classification{}, assetRoot, outputRoot); err != nil {
 		t.Fatalf("generate social cards: %v", err)
 	}
 	for _, path := range []string{
 		filepath.Join(outputRoot, "default.png"),
+		filepath.Join(outputRoot, "getting-started.png"),
+		filepath.Join(outputRoot, "editorial", "about.png"),
+		filepath.Join(outputRoot, "editorial", "ideas.png"),
 		filepath.Join(outputRoot, "projects", "with-media.png"),
 		filepath.Join(outputRoot, "projects", "video-only.png"),
 	} {
